@@ -10,6 +10,7 @@ import user.controller.content.MyDataEvt;
 
 @SuppressWarnings("serial")
 public class MyDataView extends JFrame{
+	
 	private JLabel jlMyPage;
 	private JTextArea jtaName;
 	private JButton jbtOrderList, jbtMyData, jbtWithdrawal, jbtOk, jbtLogOut;
