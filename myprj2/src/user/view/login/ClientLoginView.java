@@ -83,7 +83,6 @@ public class ClientLoginView extends JFrame {
 
 		setBounds(100, 100, 500, 350);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}// AdminLoginView
 
 	public JTextField getJtfId() {
