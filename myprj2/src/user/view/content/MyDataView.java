@@ -13,11 +13,13 @@ public class MyDataView extends JFrame{
 	private JLabel jlMyPage;
 	private JTextArea jtaName;
 	private JButton jbtOrderList, jbtMyData, jbtWithdrawal, jbtOk, jbtLogOut;
+	//카드등록, 찜하기, 주문내역, 내정보변경 
 	
 	public MyDataView() {
 		super("마이페이지");
+		
 		jlMyPage= new JLabel("마이페이지");
-		jtaName= new JTextArea("\n\t+회원님 환영합니다. \n");
+		jtaName= new JTextArea("+회원님 환영합니다. \n");
 		jbtOrderList= new JButton("주문내역");
 		jbtMyData= new JButton("내 정보 변경");
 		jbtWithdrawal= new JButton("탈퇴");
