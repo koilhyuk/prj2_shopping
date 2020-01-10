@@ -91,7 +91,7 @@ public class UserGoodsMainView extends JFrame {
 	public static String ip;
 	public static final String KEY = "9394959696959493";
 
-	public static final String USER_FILE_PATH = "C:/Users/SAMSUNG/AppData/Roaming/SPB_Data/git/prj2/myprj2/src/admin/img";
+	public static final String USER_FILE_PATH = "C:/Users/SAMSUNG/AppData/Roaming/SPB_Data/git/prj2_shopping/myprj2/src/user/img";
 
 	public UserGoodsMainView(String id, String ip) {// 비회원일 경우 로그인 버튼으로 변경
 		super("\"" + id + "\" 님이 로그인하셨습니다.");

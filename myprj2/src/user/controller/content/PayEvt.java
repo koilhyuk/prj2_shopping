@@ -185,7 +185,7 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 			System.err.println(bgiVO);
 			uDAO.insertNewOrdering(bgiVO);
 			// 성공을 했다면 최근 oCode가져오기
-			uDAO.selectRecentOrdering(bgiVO.getmId());
+			oCode = uDAO.selectRecentOrdering(bgiVO.getmId());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -194,6 +194,42 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 		return oCode;
 	}// paymentNewGoods
 
+	private int buyGoodsInventory(String goodsGode) {
+		int goodsInventory = 0;
+
+		UserDAO uDAO = UserDAO.getInstance();
+		try {
+			goodsInventory = uDAO.selectGoodsInventory(goodsGode);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end catch
+
+		return goodsInventory;
+	}// buyGoodsInventory
+
+	private boolean updateGoodsInventory(String gCode, int goodsQuantity) {
+		boolean successFlag = false;
+		UserDAO uDAO = UserDAO.getInstance();
+		try {
+			successFlag = uDAO.updateInventoryGoods(gCode, goodsQuantity);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end catch
+		return successFlag;
+	}// updateGoodsInventory
+
+	private void insertNewOrderPay(String oCode, String pCode) {
+		UserDAO uDAO = UserDAO.getInstance();
+		try {
+			uDAO.insertOrderPay(oCode, pCode);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end catch
+		
+	}// insertNewOrderPay
+
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 
@@ -201,6 +237,8 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 		String orderPhone = "";
 		String cardCode = "";
 		String orderCode = "";
+		int orderGoodsQuantity = sniDTO.getmQuantity();
+		int goodsInventory = 0;
 
 		if (ae.getSource() == pv.getJbtnPay() || ae.getSource() == pv.getJtfCardCVC()) {// 결제하기 버튼
 			if (!chkInputData()) {// 입력 값 부족
@@ -214,15 +252,28 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 				return;
 			} // end if
 
+			goodsInventory = buyGoodsInventory(sniDTO.getgCode().trim());
+			if (orderGoodsQuantity > goodsInventory) {
+				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv,
+						"상품 재고량을 초과하였습니다. 죄송합니다. (재고량 : " + goodsInventory + "개)");
+				return;
+			} // end if
+
 			zipSeq = addrSearchSeq(pv.getJtfzipcode().getText().trim(), pv.getJtfDelivery().getText().trim());
 			orderPhone = pv.getJcbPhoneNum().getSelectedItem().toString().trim() + "-"
 					+ pv.getJtfPhoneFront().getText().trim() + "-" + pv.getJtfPhoneBehind().getText().trim();
 
 			BuyGoodsInformVO bgiVO = new BuyGoodsInformVO(sniDTO.getgCode(), orderPhone, sniDTO.getmDetailAddr(),
-					pv.getJtfDetailDel().getText().trim(), pv.getJtfOrder().getText().trim(), sniDTO.getmId(),
+					pv.getJtfDemand().getText().trim(), pv.getJtfOrder().getText().trim(), sniDTO.getmId(),
 					sniDTO.getmQuantity(), sniDTO.getTotalMoney(), zipSeq);
 
 			orderCode = paymentNewGoods(bgiVO);
+
+			if (!updateGoodsInventory(sniDTO.getgCode().trim(), orderGoodsQuantity)) {
+				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "DBMS 문제 발생");
+			} // end if
+			
+			insertNewOrderPay(orderCode, cardCode);// 결제 수단, 주문 코드 테이블에 등록
 
 		} // end if
 

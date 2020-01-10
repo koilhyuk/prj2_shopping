@@ -846,9 +846,9 @@ public class UserDAO {
 		try {
 			con = getConnection();
 			StringBuilder insertNewOrdering = new StringBuilder();
-			insertNewOrdering
-			.append("		insert into pay(O_CODE, G_CODE, O_PHONE, O_QUANTITY,O_ADDR, O_BUYPAY, O_DELMSG, O_PERSON, M_ID, Z_SEQ)	")
-			.append("		values(o_code, ?,?,?,?,?,?,?,?,?)	");
+			insertNewOrdering.append(
+					"		insert into ORDERING(O_CODE, G_CODE, O_PHONE, O_QUANTITY,O_ADDR, O_BUYPAY, O_DELMSG, O_PERSON, M_ID, Z_SEQ)	")
+					.append("		values(o_code, ?,?,?,?,?,?,?,?,?)	");
 
 			pstmt = con.prepareStatement(insertNewOrdering.toString());
 
@@ -871,8 +871,8 @@ public class UserDAO {
 				con.close();
 			}
 		} // end finally
-	}//insertNewOrdering
-	
+	}// insertNewOrdering
+
 	public String selectRecentOrdering(String mId) throws SQLException {
 		String orderingCode = "";
 		Connection con = null;
@@ -882,12 +882,8 @@ public class UserDAO {
 		try {
 			con = getConnection();
 			StringBuilder selectRecentOCode = new StringBuilder();
-			selectRecentOCode
-			.append("	select o_code 	")
-			.append("	from(select o_code from ordering 	")
-			.append("	where m_id=? 	")
-			.append("	order by O_DATE     desc) 	")
-			.append("	 where rownum=1	");
+			selectRecentOCode.append("	select o_code 	").append("	from(select o_code from ordering 	")
+					.append("	where m_id=? 	").append("	order by O_DATE     desc) 	").append("	 where rownum=1	");
 
 			pstmt = con.prepareStatement(selectRecentOCode.toString());
 			pstmt.setString(1, mId);
@@ -909,9 +905,99 @@ public class UserDAO {
 				con.close();
 			}
 		} // end finally
-
 		return orderingCode;
 	}// selectRecentOrdering
-	
+
+	public int selectGoodsInventory(String goodsGode) throws SQLException {
+		int goodsInventory = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			StringBuilder selectBuyGoodsInven = new StringBuilder();
+			selectBuyGoodsInven.append("	select g_inventory from GOODS 	").append("	where   g_code=? 	");
+
+			pstmt = con.prepareStatement(selectBuyGoodsInven.toString());
+			pstmt.setString(1, goodsGode.trim());
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				goodsInventory = rs.getInt("g_inventory");
+			} // end while
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+
+		return goodsInventory;
+	}// selectGoodsInventory
+
+	public boolean updateInventoryGoods(String gCode, int goodsQuantity) throws SQLException {
+		boolean updateChk = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = getConnection();
+			StringBuilder updateGInventory = new StringBuilder();
+			updateGInventory.append("	update  GOODS  	")
+					.append("	set G_INVENTORY= (select G_INVENTORY from goods where g_code=?)-?,  G_SALENUM =   (select G_SALENUM from goods where g_code=?)+?	")
+					.append("	where g_code=?	");
+
+			pstmt = con.prepareStatement(updateGInventory.toString());
+			pstmt.setString(1, gCode.trim());
+			pstmt.setInt(2, goodsQuantity);
+			pstmt.setString(3, gCode.trim());
+			pstmt.setInt(4, goodsQuantity);
+			pstmt.setString(5, gCode.trim());
+
+			updateChk = pstmt.executeUpdate() == 1;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+		return updateChk;
+	}// updateInventoryGoods
+
+	public void insertOrderPay(String oCode, String pCode) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = getConnection();
+			StringBuilder insertNewOP = new StringBuilder();
+			insertNewOP.append("		insert into ORDER_PAY(O_CODE, P_CODE)	").append("		values(?,?)	");
+
+			pstmt = con.prepareStatement(insertNewOP.toString());
+			pstmt.setString(1, oCode);
+			pstmt.setString(2, pCode);
+
+			pstmt.execute();
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+	}// insertOrderPay
 
 }// class
