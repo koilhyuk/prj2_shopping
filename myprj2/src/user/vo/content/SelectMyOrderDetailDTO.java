@@ -2,8 +2,8 @@ package user.vo.content;
 
 public class SelectMyOrderDetailDTO {
 
-	private String o_code, g_name, o_delivery, o_date, o_delmsg, p_method, b_name;
-	private int o_quantity,o_score, o_price;
+	private String o_code, g_name, o_delivery, o_date, o_delmsg, p_method, b_name,g_img;
+	private int o_quantity,o_score, o_buypay;
 	public String getO_code() {
 		return o_code;
 	}
@@ -46,6 +46,12 @@ public class SelectMyOrderDetailDTO {
 	public void setB_name(String b_name) {
 		this.b_name = b_name;
 	}
+	public String getG_img() {
+		return g_img;
+	}
+	public void setG_img(String g_img) {
+		this.g_img = g_img;
+	}
 	public int getO_quantity() {
 		return o_quantity;
 	}
@@ -58,11 +64,12 @@ public class SelectMyOrderDetailDTO {
 	public void setO_score(int o_score) {
 		this.o_score = o_score;
 	}
-	public int getO_price() {
-		return o_price;
+	public int getO_buypay() {
+		return o_buypay;
 	}
-	public void setO_price(int o_price) {
-		this.o_price = o_price;
+	public void setO_buypay(int o_buypay) {
+		this.o_buypay = o_buypay;
 	}
+	
 	
 }

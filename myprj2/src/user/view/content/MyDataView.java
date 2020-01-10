@@ -130,7 +130,7 @@ public class MyDataView extends JFrame{
 
 	
 	public static void main(String[] args) {
-		new MyDataView("test¤¤¤¤");
+		new MyDataView("aa5969");
 	}//main
 
 }//class

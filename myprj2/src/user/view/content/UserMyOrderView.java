@@ -54,28 +54,23 @@ public class UserMyOrderView extends JFrame {
 		// 번호추가
 		String[] columnName = { "상품명", "브랜드", "배송여부", "가격", "주문일" };
 
-		dtmOrderList = new DefaultTableModel(columnName, 20) ;
+		dtmOrderList = new DefaultTableModel(columnName, 20) {
 //			// 숫자는 숫자로 정렬하기 위한 처리 2019-09-12 15:35
-//			Class[] types = { String.class, String.class, String.class, Integer.class, Integer.class, Integer.class,
-//					Integer.class, Date.class };
-//
-//			@Override
-//			public Class getColumnClass(int columnIndex) { // 정렬
-//				return this.types[columnIndex];
-//			}
-//		};
+			Class[] types = { String.class, String.class, String.class,Integer.class, Date.class };
 
-		jtOrder = new JTable(dtmOrderList); //{
-//			@Override
-//			public Class<?> getColumnClass(int column) { // 이미지
-//				return getValueAt(0, column).getClass();
-//			}// getColumnClass
-//
-//			@Override
-//			public boolean isCellEditable(int row, int column) {// 편집못하게 막음
-//				return false;
-//			}// isCellEditable
-//		};
+			@Override
+			public Class getColumnClass(int columnIndex) { // 정렬
+				return this.types[columnIndex];
+			}
+		};
+
+		jtOrder = new JTable(dtmOrderList){
+
+			@Override
+			public boolean isCellEditable(int row, int column) {// 편집못하게 막음
+				return false;
+			}// isCellEditable
+		};
 
 		th = jtOrder.getTableHeader(); // header설정
 		th.setFont(fontHh); // header 폰트 변경
@@ -128,11 +123,10 @@ public class UserMyOrderView extends JFrame {
 		jtOrder.setRowSorter(table);
 
 		UserMyOrderEvt umo= new UserMyOrderEvt(this,id);
-//		// action이벤트 처리
+		// action이벤트 처리
 		jbtBack.addActionListener(umo);
-//		// 마우스 이벤트 처리
-//		jtOrder.addMouseListener(ple);
-//		jtfSearch.addMouseListener(ple);
+		// 마우스 이벤트 처리
+		jtOrder.addMouseListener(umo);
 
 		jtOrder.getTableHeader().setReorderingAllowed(false);// 컬럼이동방지
 		jtOrder.getTableHeader().setResizingAllowed(false);// 크기조절불가
@@ -170,11 +164,6 @@ public class UserMyOrderView extends JFrame {
 
 	public static String getId() {
 		return id;
-	}
-
-
-	public static void main(String[] args) {
-		new UserMyOrderView("hyebin");
 	}
 
 }// class

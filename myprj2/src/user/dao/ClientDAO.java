@@ -573,13 +573,19 @@ public class ClientDAO {
 		try {
 			con=getConnection();
 			StringBuilder selectDetailMyOrder= new StringBuilder();
-			selectDetailMyOrder.append(" ");
+			selectDetailMyOrder.append(" select o.o_code, g.g_name,o_quantity, o_delivery, o_date, o_delmsg, p_method,o.o_buypay, g_img	")
+			.append(" from ordering o, goods g ,order_pay op, pay p	")
+			.append(" where (g.g_code=o.g_code) and (op.o_code=o.o_code) and (p.p_code=op.p_code) and o.o_code=?	");
 			
 			pstmt = con.prepareStatement(selectDetailMyOrder.toString());
-			pstmt.setString(0, moDTO.getO_code());
-			
+			pstmt.setString(1, moDTO.getO_code());
 			rs=pstmt.executeQuery();
-			////////////¼öÁ¤Áß//////////
+			if(rs.next()) {
+				moDTO.setO_delmsg(rs.getString("o_delmsg"));
+				moDTO.setP_method(rs.getString("p_method"));
+				moDTO.setO_buypay(rs.getInt("o_buypay"));
+				moDTO.setG_img(rs.getString("g_img"));
+			}//end if
 		}finally {
 			if(rs !=null) {rs.close();}//end if
 			if(pstmt !=null) {pstmt.close();}//end if

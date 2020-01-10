@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 import user.dao.ClientDAO;
 import user.view.content.MyDataView;
+import user.view.content.UserMyOrderDetailView;
 import user.view.content.UserMyOrderView;
 import user.vo.content.SelectMyOrderDetailDTO;
 import user.vo.content.SelectMyOrderVO;
@@ -76,11 +77,16 @@ public class UserMyOrderEvt extends MouseAdapter implements ActionListener{
 		moDTO.setG_name(goodsName);
 		moDTO.setB_name(brandName);
 		moDTO.setO_delivery(delivery);
-		moDTO.setO_price(price);
+		moDTO.setO_buypay(price);
 		moDTO.setO_date(orderDate);
 		
 		ClientDAO cDAO=ClientDAO.getInstance();
-		
+		try {
+			cDAO.selectDetailMyOrder(moDTO);
+			new UserMyOrderDetailView(moDTO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//end catch
 	}//selectDetailOrder
 	
 	@Override
@@ -95,7 +101,7 @@ public class UserMyOrderEvt extends MouseAdapter implements ActionListener{
 		if(me.getClickCount()==2) {
 			if(me.getSource()==umo.getJtOrder()) {
 				JTable jtOrder=umo.getJtOrder();
-				
+				selectDetailOrder(jtOrder);
 			}//end if
 		}//end if
 	}//mouseClicked
