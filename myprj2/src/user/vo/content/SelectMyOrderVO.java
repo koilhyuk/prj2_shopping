@@ -1,4 +1,4 @@
-package user.newtest;
+package user.vo.content;
 
 public class SelectMyOrderVO {
 	private String o_delivery  , o_date, g_name, b_name;

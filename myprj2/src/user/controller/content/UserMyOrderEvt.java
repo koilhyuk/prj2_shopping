@@ -1,4 +1,4 @@
-package user.newtest;
+package user.controller.content;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 
 import user.dao.ClientDAO;
 import user.view.content.MyDataView;
+import user.view.content.UserMyOrderView;
+import user.vo.content.SelectMyOrderVO;
 
 public class UserMyOrderEvt implements ActionListener{
 

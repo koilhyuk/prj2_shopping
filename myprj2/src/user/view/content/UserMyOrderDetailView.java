@@ -1,4 +1,4 @@
-package user.newtest;
+package user.view.content;
 
 import java.awt.Color;
 import java.awt.Font;

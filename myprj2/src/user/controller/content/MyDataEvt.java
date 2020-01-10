@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import user.newtest.UserMyOrderView;
 import user.view.content.MyDataView;
 import user.view.content.MyPageView;
 import user.view.content.UserCardUploadView;
+import user.view.content.UserMyOrderView;
 
 public class MyDataEvt implements ActionListener{
 	private MyDataView mdv ;

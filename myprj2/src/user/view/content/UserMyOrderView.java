@@ -1,4 +1,4 @@
-package user.newtest;
+package user.view.content;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,6 +28,7 @@ import javax.swing.table.TableRowSorter;
 
 import admin.controller.AdGoodsManageEvt;
 import admin.run.StaticCla;
+import user.controller.content.UserMyOrderEvt;
 
 @SuppressWarnings("serial")
 public class UserMyOrderView extends JFrame {

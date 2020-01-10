@@ -10,7 +10,6 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 import user.controller.content.MyDataEvt;
-import user.newtest.UserMyOrderView;
 
 @SuppressWarnings("serial")
 public class MyDataView extends JFrame{

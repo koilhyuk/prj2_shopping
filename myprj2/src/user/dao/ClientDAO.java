@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import user.newtest.SelectMyOrderVO;
 import user.vo.CalcVO;
 import user.vo.content.MyPageDetailVO;
 import user.vo.content.MyPageUpdateVO;
+import user.vo.content.SelectMyOrderVO;
 import user.vo.login.JoinDetailVO;
 import user.vo.login.LoginFoundIdVO;
 import user.vo.login.LoginFoundPwVO;
