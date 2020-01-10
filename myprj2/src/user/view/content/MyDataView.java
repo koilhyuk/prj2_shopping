@@ -46,8 +46,6 @@ public class MyDataView extends JFrame{
 		JLabel jtaImage= new JLabel("이미지"+iImage);
 		jtaImage.setBorder(new TitledBorder("이미지"));
 		//수동
-		
-		
 		setLayout(null);
 		jlMyPage.setBounds(10, 10, 100, 40);
 		jtaName.setBounds(40, 70, 400, 50);

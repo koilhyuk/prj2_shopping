@@ -43,7 +43,7 @@ public class UserMyOrderDetailView extends JDialog implements ActionListener {
 		jlImg = new JLabel(newImg);
 		jlImg.setBorder(new EtchedBorder(EtchedBorder.RAISED)); // borderµ¹Ãâ
 		Font font = new Font("¸¼Àº °íµñ", Font.BOLD, 20);
-		Font fontCon = new Font("¸¼Àº °íµñ", Font.BOLD, 14);
+		Font fontCon = new Font("¸¼Àº °íµñ", Font.BOLD, 15);
 		// ¶óº§
 		JTextField jlTitle = new JTextField(" ÁÖ¹®Á¤º¸  ");
 		Font titleFont = new Font("¸¼Àº °íµñ", Font.BOLD, 20);
@@ -125,7 +125,7 @@ public class UserMyOrderDetailView extends JDialog implements ActionListener {
 		jpGoods.add(jtfbuyNum);//
 		jtfbuyMethod.setBounds(100, 110, 230, 30);
 		jpGoods.add(jtfbuyMethod);
-		jtfTotalPrice.setBounds(140, 160, 230, 30);
+		jtfTotalPrice.setBounds(120, 160, 230, 30);
 		jpGoods.add(jtfTotalPrice);
 		jtfOrderDate.setBounds(90, 210, 230, 30);
 		jpGoods.add(jtfOrderDate);
@@ -156,7 +156,7 @@ public class UserMyOrderDetailView extends JDialog implements ActionListener {
 
 		setLayout(null); // ¼öµ¿
 		jlTitle.setBounds(50, 10, 200, 30);
-//		jlImg.setBounds(10, 60, 270, 350);
+		jlImg.setBounds(10, 60, 270, 350);
 		Font fontLabel = new Font("¸¼Àº °íµñ", Font.BOLD, 17);
 		jlPayTitle.setFont(fontLabel);
 		jlDeliTitle.setFont(fontLabel);
@@ -170,7 +170,7 @@ public class UserMyOrderDetailView extends JDialog implements ActionListener {
 		jbtnClose.setBounds(280, 570, 120, 30);
 		
 		add(jlTitle);
-//		add(jlImg);
+		add(jlImg);
 		add(jpGoods);
 		add(jpDelivery);
 		add(jbtnClose);

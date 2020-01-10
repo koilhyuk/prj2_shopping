@@ -2,14 +2,17 @@ package user.controller.content;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import user.dao.ClientDAO;
 import user.view.content.MyDataView;
-import user.view.content.MyPageView;
+import user.view.content.UserCusDataView;
 import user.view.content.UserCardUploadView;
 import user.view.content.UserMyOrderView;
+import user.vo.content.SelectCusDataVO;
 
 public class MyDataEvt implements ActionListener{
 	private MyDataView mdv ;
@@ -18,6 +21,19 @@ public class MyDataEvt implements ActionListener{
 		this.mdv=mdv;
 		this.id=id;
 	}//myDataEvt
+	
+	public void searchCusData() {
+		SelectCusDataVO cdVO = new SelectCusDataVO();
+		cdVO.setM_id(id);
+		ClientDAO cDAO= ClientDAO.getInstance();
+		try {
+			cDAO.selectCusData(cdVO);
+			new UserCusDataView(id,  cdVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//end catch
+		
+	}//searchCusData
 
 	
 		@Override
@@ -25,9 +41,9 @@ public class MyDataEvt implements ActionListener{
 			if(ae.getSource()==mdv.getJbtOrderList()) {//주문내역
 				new UserMyOrderView(id);
 			}//end if
-			
+			 SelectCusDataVO cdVO= new SelectCusDataVO();
 			if(ae.getSource()==mdv.getJbtMyData()) {//내정보변경
-					new MyPageView();
+					searchCusData();
 			}//end if
 			
 			if(ae.getSource()==mdv.getJbtWithdrawal()) {//카드등록

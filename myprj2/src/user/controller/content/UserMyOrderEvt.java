@@ -50,7 +50,7 @@ public class UserMyOrderEvt extends MouseAdapter implements ActionListener{
 			for(int i=0; i<list.size(); i++) {
 				smVO=list.get(i);
 				rowData= new Object[5];
-				rowData[0]=smVO.getG_name();
+				rowData[0]=smVO.getG_name()+"("+smVO.getO_code()+")";
 				rowData[1]=smVO.getB_name();
 				rowData[2]=smVO.getO_delivery();
 				rowData[3]=smVO.getG_price();
@@ -68,13 +68,16 @@ public class UserMyOrderEvt extends MouseAdapter implements ActionListener{
 	 */
 	public void selectDetailOrder(JTable jtOrder) {
 		SelectMyOrderDetailDTO moDTO = new SelectMyOrderDetailDTO();
-		String goodsName =(String)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(),0);
+		String name =(String)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(),0);
+		String goodsName =name.substring(0, name.lastIndexOf("("));
+		String orderNum= name.substring(name.lastIndexOf("(") + 1, name.lastIndexOf(")"));
 		String brandName=(String)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(), 1);
 		String delivery=(String)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(), 2);
 		int price=(int)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(), 3);
 		String orderDate=(String)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(), 4);
 		
 		moDTO.setG_name(goodsName);
+		moDTO.setO_code(orderNum);
 		moDTO.setB_name(brandName);
 		moDTO.setO_delivery(delivery);
 		moDTO.setO_buypay(price);

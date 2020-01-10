@@ -11,6 +11,7 @@ import java.util.List;
 import user.vo.CalcVO;
 import user.vo.content.MyPageDetailVO;
 import user.vo.content.MyPageUpdateVO;
+import user.vo.content.SelectCusDataVO;
 import user.vo.content.SelectMyOrderDetailDTO;
 import user.vo.content.SelectMyOrderVO;
 import user.vo.login.JoinDetailVO;
@@ -371,40 +372,6 @@ public class ClientDAO {
 
 		return seq;
 	}// seqSearch
-
-//	public boolean updateMyPage(myPageUpdateVO mpuVO) throws SQLException {
-//		boolean updateFlag = false;
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//
-//		try {
-//			con = getConnection();
-//			StringBuilder updateMyPage = new StringBuilder();
-//			updateMyPage.append("		update myPage ")
-//					.append("		set pass=?, newPass=?, addr=?, phoneFront=?, phoneBehind=?, email=? ")
-//					.append("		where myPageDetailView=?	");
-//
-//			pstmt = con.prepareStatement(updateMyPage.toString());
-//
-//			pstmt.setString(1, mpuVO.getPass());
-//			pstmt.setString(2, mpuVO.getNewpass());
-//			pstmt.setString(3, mpuVO.getAddr());
-//			pstmt.setString(4, mpuVO.getPhoneNumfront());
-//			pstmt.setString(5, mpuVO.getPhoneNumBehind());
-//			pstmt.setString(6, mpuVO.getEmail());
-//
-//			updateFlag = pstmt.executeUpdate() == 1;
-//		} finally {
-//			if (pstmt != null) {
-//				pstmt.close();
-//			} // end if
-//			if (con != null) {
-//				con.close();
-//			} // end if
-//		} // end finally
-//		return updateFlag;
-//	}// updateMyPage
-
 	public void insertMemJoin(JoinDetailVO jdVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -552,7 +519,7 @@ public class ClientDAO {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				soVO = new SelectMyOrderVO(rs.getString("o_delivery"), rs.getString("o_date"), rs.getString("g_name")
-						,rs.getString("b_name"),rs.getInt("g_price"));
+						,rs.getString("b_name"),rs.getString("o_code"),rs.getInt("g_price"));
 				orderList.add(soVO);
 			}//end while
 		
@@ -565,6 +532,11 @@ public class ClientDAO {
 		return orderList;
 	}//selectAllOrderList
 	
+	/**
+	 * 주문내역 상세확인
+	 * @param moDTO
+	 * @throws SQLException
+	 */
 	public void selectDetailMyOrder(SelectMyOrderDetailDTO moDTO) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -581,6 +553,7 @@ public class ClientDAO {
 			pstmt.setString(1, moDTO.getO_code());
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
+				moDTO.setO_quantity(rs.getInt("o_quantity"));
 				moDTO.setO_delmsg(rs.getString("o_delmsg"));
 				moDTO.setP_method(rs.getString("p_method"));
 				moDTO.setO_buypay(rs.getInt("o_buypay"));
@@ -593,4 +566,39 @@ public class ClientDAO {
 		}//end finally
 		
 	}//selectDetailMyOrder
+	
+	public void selectCusData(SelectCusDataVO cdVO) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=getConnection();
+			StringBuilder selectCusData= new StringBuilder();
+			selectCusData.append(" select m_id, m_name, m_pass, m_birth, m_phone, m_detail_addr, m_email , concat(concat(concat(z_sido,' '||nvl(z_gugun,' ')),' '||z_dong),' '||z_bunji) z_addr, z_zipcode ")
+			.append("	from member m, address a	")
+			.append("	where (m.z_seq=a.z_seq) and m_id=? 	");
+			
+			pstmt=con.prepareStatement(selectCusData.toString());
+			pstmt.setString(1, cdVO.getM_id());
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cdVO.setM_birth( rs.getString("m_birth"));
+				cdVO.setM_detail_addr(rs.getString("m_detail_addr"));
+				cdVO.setM_email( rs.getString("m_email"));
+				cdVO.setM_id(rs.getString("m_id"));
+				cdVO.setM_name(rs.getString("m_name"));
+				cdVO.setM_pass(rs.getString("m_pass"));
+				cdVO.setM_phone(rs.getString("m_phone"));
+				cdVO.setZ_addr(rs.getString("z_addr"));
+				cdVO.setZ_zipcode(rs.getString("z_zipcode"));
+			}//end if
+			
+		}finally {
+			if(rs != null) {rs.close();}//end if
+			if(pstmt != null) {pstmt.close();}//end if
+			if(con != null) {con.close();}//end if
+		}//end finally
+	}//selectCusData
 }// class
