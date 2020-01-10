@@ -1,0 +1,179 @@
+package user.newtest;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.sql.Date;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import admin.controller.AdGoodsManageEvt;
+import admin.run.StaticCla;
+
+@SuppressWarnings("serial")
+public class UserMyOrderView extends JFrame {
+
+	private DefaultTableModel dtmOrderList;
+	private JTable jtOrder;
+	private JScrollPane jspOrder;
+	private JTableHeader th;
+	private JButton jbtBack;
+
+	private static String id;
+	public UserMyOrderView(String id) {
+		this.id=id;
+		setBackground(Color.white);
+
+		JLabel jlTitle = new JLabel("'"+id+"'고객님의 주문내역");
+		jlTitle.setForeground(Color.white);
+		jbtBack= new JButton("마이페이지로 가기");
+		// 폰트
+		Font font = new Font("맑은 고딕", Font.BOLD, 20); // 타이틀폰트
+		Font fontHh = new Font("맑은 고딕", Font.BOLD, 15); // 테이블헤더
+		jlTitle.setFont(font);
+		// 번호추가
+		String[] columnName = { "상품명", "브랜드", "배송여부", "가격", "주문일" };
+
+		dtmOrderList = new DefaultTableModel(columnName, 20) ;
+//			// 숫자는 숫자로 정렬하기 위한 처리 2019-09-12 15:35
+//			Class[] types = { String.class, String.class, String.class, Integer.class, Integer.class, Integer.class,
+//					Integer.class, Date.class };
+//
+//			@Override
+//			public Class getColumnClass(int columnIndex) { // 정렬
+//				return this.types[columnIndex];
+//			}
+//		};
+
+		jtOrder = new JTable(dtmOrderList); //{
+//			@Override
+//			public Class<?> getColumnClass(int column) { // 이미지
+//				return getValueAt(0, column).getClass();
+//			}// getColumnClass
+//
+//			@Override
+//			public boolean isCellEditable(int row, int column) {// 편집못하게 막음
+//				return false;
+//			}// isCellEditable
+//		};
+
+		th = jtOrder.getTableHeader(); // header설정
+		th.setFont(fontHh); // header 폰트 변경
+		th.setBackground(new Color(0x3F4040));
+		th.setForeground(Color.white);
+		jtOrder.setBorder(new LineBorder(new Color(0x3F4040)));
+		jtOrder.setSelectionForeground(new Color(0x3F4040));
+		jtOrder.setBackground(Color.white);
+		Font tableList = new Font("맑은 고딕", Font.PLAIN, 15);
+		jtOrder.setFont(tableList);
+
+		// 헤더 정렬
+		DefaultTableCellRenderer dtcrCenter = new DefaultTableCellRenderer(); // 셀 가운데 정렬을 위해
+		DefaultTableCellRenderer dtcrRight = new DefaultTableCellRenderer(); // 셀 오른쪽 정렬을 위해
+		dtcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
+		dtcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
+		TableColumnModel tcm = jtOrder.getColumnModel();// 정렬할 컬럼모델을 가져옴
+		tcm.getColumn(0).setCellRenderer(dtcrCenter);
+		tcm.getColumn(2).setCellRenderer(dtcrCenter);
+		tcm.getColumn(3).setCellRenderer(dtcrRight);
+		tcm.getColumn(4).setCellRenderer(dtcrRight);
+
+		jspOrder = new JScrollPane(jtOrder); // 스크롤
+		th.setPreferredSize(new Dimension(20, 30)); // header 높이 변경
+		jtOrder.setRowHeight(60);
+		jtOrder.getColumnModel().getColumn(0).setPreferredWidth(110);
+		jtOrder.getColumnModel().getColumn(1).setPreferredWidth(100);
+		jtOrder.getColumnModel().getColumn(2).setPreferredWidth(80);
+		jtOrder.getColumnModel().getColumn(3).setPreferredWidth(80);
+		jtOrder.getColumnModel().getColumn(4).setPreferredWidth(50);
+
+		JPanel jpLabel = new JPanel();
+		jpLabel.setLayout(null);
+		add(jlTitle);
+		add(jbtBack);
+		jlTitle.setBounds(150, 20, 400, 50);
+		jbtBack.setBounds(900, 30, 200, 30);
+		jpLabel.setBackground(new Color(0x3F4040));
+		jpLabel.setBorder(new LineBorder(Color.black));
+		jpLabel.setBounds(-5, 0, 1700, 80);
+		
+		setLayout(null); // 수동배치
+
+		jspOrder.setBounds(80, 120, 1000, 500);
+		add(jspOrder);
+		add(jpLabel);
+//		jtOrder.setRowSorter(new TableRowSorter(dtmOrderList)); ////////// 열 정렬 (오름차순, 내림차순)/////////09-11추가
+		jtOrder.setAutoCreateRowSorter(true);
+		TableRowSorter<TableModel> table = new TableRowSorter<TableModel>(jtOrder.getModel());
+		jtOrder.setRowSorter(table);
+
+		UserMyOrderEvt umo= new UserMyOrderEvt(this,id);
+//		// action이벤트 처리
+		jbtBack.addActionListener(umo);
+//		// 마우스 이벤트 처리
+//		jtOrder.addMouseListener(ple);
+//		jtfSearch.addMouseListener(ple);
+
+		jtOrder.getTableHeader().setReorderingAllowed(false);// 컬럼이동방지
+		jtOrder.getTableHeader().setResizingAllowed(false);// 크기조절불가
+
+		setVisible(true);
+		setBounds(100, 100, 1200, 700);
+
+	}// AdGoodsManageView
+
+	
+	public DefaultTableModel getDtmOrderList() {
+		return dtmOrderList;
+	}
+
+
+	public JTable getJtOrder() {
+		return jtOrder;
+	}
+
+
+	public JScrollPane getJspOrder() {
+		return jspOrder;
+	}
+
+
+	public JTableHeader getTh() {
+		return th;
+	}
+
+
+	public JButton getJbtBack() {
+		return jbtBack;
+	}
+
+
+	public static String getId() {
+		return id;
+	}
+
+
+	public static void main(String[] args) {
+		new UserMyOrderView("hyebin");
+	}
+
+}// class

@@ -1,0 +1,33 @@
+package user.newtest;
+
+public class SelectMyOrderVO {
+	private String o_delivery  , o_date, g_name, b_name;
+	private int g_price;
+	public SelectMyOrderVO(String o_delivery, String o_date, String g_name, String b_name, int g_price) {
+		super();
+		this.o_delivery = o_delivery;
+		this.o_date = o_date;
+		this.g_name = g_name;
+		this.b_name = b_name;
+		this.g_price = g_price;
+	}
+	public String getO_delivery() {
+		return o_delivery;
+	}
+	public String getO_date() {
+		return o_date;
+	}
+	public String getG_name() {
+		return g_name;
+	}
+	public String getB_name() {
+		return b_name;
+	}
+	public int getG_price() {
+		return g_price;
+	}
+	
+	
+	
+	
+}
