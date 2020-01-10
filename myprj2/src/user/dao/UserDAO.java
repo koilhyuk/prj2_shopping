@@ -650,7 +650,7 @@ public class UserDAO {
 
 			StringBuilder selectClickGoods = new StringBuilder();
 			selectClickGoods.append(
-					"	select  g_price, g_inventory, g_code, g_name, g_score, g_strong, g_img , b_name, d_type, c_type 	")
+					"	select  g_price, g_inventory, g_code, g_name, g_score, g_strong, g_img , b_name, d_type, c_type,   g_salenum 	")
 					.append("	from GOODS g, Brand b , DETAIL_CLOTHESTYPE dc	")
 					.append("	where (g.b_code=b.b_code and g.d_code = dc.d_code) and g_code=?	");
 
@@ -667,8 +667,9 @@ public class UserDAO {
 				scgdDTO.setgInventory(rs.getInt("g_inventory"));
 				scgdDTO.setgName(rs.getString("g_name"));
 				scgdDTO.setgPrice(rs.getInt("g_price"));
-				scgdDTO.setgScore(rs.getString("g_score"));
+				scgdDTO.setgScore(rs.getInt("g_score"));
 				scgdDTO.setgStrong(rs.getString("g_strong"));
+				scgdDTO.setgSaleNum(rs.getInt("g_salenum"));
 			} // end if
 
 		} finally {

@@ -107,4 +107,12 @@ public class CompleteOrderInformDTO {
 		this.oTotalMoney = oTotalMoney;
 	}
 
+	@Override
+	public String toString() {
+		return "CompleteOrderInformDTO [gImg=" + gImg + ", mName=" + mName + ", oDate=" + oDate + ", gName=" + gName
+				+ ", oCode=" + oCode + ", oPhone=" + oPhone + ", oAddressee=" + oAddressee + ", oDetailAddr="
+				+ oDetailAddr + ", oDemand=" + oDemand + ", pMethod=" + pMethod + ", oQuantity=" + oQuantity
+				+ ", oTotalMoney=" + oTotalMoney + "]";
+	}
+
 }// class

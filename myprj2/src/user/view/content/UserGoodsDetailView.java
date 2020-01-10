@@ -1,9 +1,9 @@
 package user.view.content;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,7 +13,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 import user.controller.content.UserGoodsDetailEvt;
 import user.controller.content.UserGoodsMainEvt;
@@ -24,34 +26,82 @@ public class UserGoodsDetailView extends JDialog {
 
 	private JButton jbtnBuy, jbtnPlus, jbtnMinus;
 	private JTable jtProduct;
-	private JPanel jp;
-	private JLabel jlGName, jlGPrice;
+	private JLabel jlGName, jlGPrice, jlGTotalPrice;
 	private JTextArea jtaStrong;
-	private JTextField jtfSelectNum, jtfBrand;
+	private JTextField jtfSelectNum;
 
 	public UserGoodsDetailView(SelectClickGoodsDetailDTO scgdDTO) {
 		super(UserGoodsMainEvt.ugmv, "Ä«µåµî·Ï", true);
 
-		JLabel jlimg = new JLabel(new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/rs_gd_" + scgdDTO.getgImg()));
-		JLabel jldetail = new JLabel("»óÇ°»ó¼¼º¸±â");
-		jldetail.setForeground(Color.white);
+		JLabel jlImg = new JLabel(new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/rs_gd_" + scgdDTO.getgImg()));
+		JLabel jlDetail = new JLabel("»óÇ°»ó¼¼º¸±â");
+		JLabel jlBrandTag = new JLabel("-ºê·£µå");
+		JLabel jlBrand = new JLabel(scgdDTO.getbName(), JLabel.LEFT);
+		JLabel jlPriceTag = new JLabel("-°¡°Ý");
+
+		JLabel jlSellTag = new JLabel("-´©Àû ÆÇ¸Å");
+		JLabel jlSell = new JLabel(String.valueOf(scgdDTO.getgSaleNum()) + " °³", JLabel.LEFT);
+		JLabel jlLikeTag = new JLabel("-¢¾Âò");
+		JLabel jlTotalMoneyTag = new JLabel("ÃÑ »óÇ° ±Ý¾×");
+
+		jlDetail.setForeground(Color.white);
 		jlGName = new JLabel(scgdDTO.getgName(), JLabel.LEFT);
 		jlGPrice = new JLabel(String.valueOf(scgdDTO.getgPrice()) + "¿ø", JLabel.LEFT);
-		JLabel jl_su = new JLabel("¼ö·®");
+		jlGTotalPrice = new JLabel(String.valueOf(scgdDTO.getgPrice()) + "¿ø", JLabel.RIGHT);
+
+		JLabel jlGoodsStarTag = new JLabel("-ÆòÁ¡");
+		JLabel jlGoodsStar = new JLabel("-ÆòÁ¡");
+		switch (scgdDTO.getgScore()) {
+		case 5:
+			jlGoodsStar = new JLabel("¡Ú¡Ú¡Ú¡Ú¡Ú", JLabel.LEFT);
+			break;
+		case 4:
+			jlGoodsStar = new JLabel("¡Ú¡Ú¡Ú¡Ú¡Ù", JLabel.LEFT);
+			break;
+		case 3:
+			jlGoodsStar = new JLabel("¡Ú¡Ú¡Ú¡Ù¡Ù", JLabel.LEFT);
+			break;
+		case 2:
+			jlGoodsStar = new JLabel("¡Ú¡Ú¡Ù¡Ù¡Ù", JLabel.LEFT);
+			break;
+		case 1:
+			jlGoodsStar = new JLabel("¡Ú¡Ù¡Ù¡Ù¡Ù", JLabel.LEFT);
+			break;
+		case 0:
+			jlGoodsStar = new JLabel("¡Ù¡Ù¡Ù¡Ù¡Ù", JLabel.LEFT);
+			break;
+		default:
+			jlGoodsStar = new JLabel("");
+			break;
+		}// switch
+
 		jtfSelectNum = new JTextField("1");
 		jtfSelectNum.setHorizontalAlignment(JTextField.CENTER);
-		jtfBrand = new JTextField(scgdDTO.getbName());
 
 		Font f = new Font("¸¼Àº °íµñ)", Font.BOLD, 30);
-		jldetail.setFont(f);
+		jlDetail.setFont(f);
 
-		jtaStrong = new JTextArea(scgdDTO.getgStrong());
+		jtaStrong = new JTextArea(scgdDTO.getgStrong()) {
+			@Override
+			public boolean isEditable() {
+				return false;
+			}
+		};
 
-		jlGName.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 20));
-		jlGPrice.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 20));
-		jl_su.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 20));
+		jlGoodsStarTag.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+		jlPriceTag.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+		jlBrandTag.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+		jlGName.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));
+		jlGPrice.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		jlBrand.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		jlSell.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		jlGoodsStar.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		jlSellTag.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+		jlLikeTag.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+		jlTotalMoneyTag.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 20));
+		jlGTotalPrice.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 20));
 
-		jbtnBuy = new JButton("±¸¸ÅÇÏ±â");
+		jbtnBuy = new JButton("±¸¸Å");
 		jbtnBuy.setForeground(Color.white);
 		jbtnBuy.setBackground(new Color(0x3F4040));
 		jbtnMinus = new JButton("-");
@@ -61,49 +111,82 @@ public class UserGoodsDetailView extends JDialog {
 		jbtnPlus.setForeground(Color.white);
 		jbtnPlus.setBackground(new Color(0x3F4040));
 
-		jp = new JPanel();
-		JPanel jp1 = new JPanel();
-		jp.setPreferredSize(new Dimension(800, 500));
-		JScrollPane jsp = new JScrollPane(jp);
+		JPanel jpDetail = new JPanel();
+		JScrollPane jsp = new JScrollPane();
 		jsp.setLayout(null);
 
-		jtaStrong.setBounds(30, 400, 720, 300);
-		jl_su.setBounds(400, 200, 100, 50);
-		jlGPrice.setBounds(400, 130, 380, 50);
-		jlGName.setBounds(400, 50, 380, 50);
-		jlimg.setBounds(50, 25, 270, 350);
-		jlimg.setBorder(new LineBorder(Color.BLACK));
-		jbtnBuy.setBounds(600, 290, 100, 30);
-		jldetail.setBounds(350, 30, 200, 50);
-		jtfSelectNum.setBounds(522, 215, 60, 26);
-		jbtnMinus.setBounds(482, 215, 40, 25);
-		jbtnPlus.setBounds(580, 215, 42, 25);
+		jtaStrong.setBounds(30, 400, 720, 250);
 
-		jp1.setBounds(20, 0, 800, 80);
-		jp1.setBackground(new Color(0x3F4040));
+		jlImg.setBounds(50, 25, 270, 350);
+		jlImg.setBorder(new LineBorder(Color.BLACK));
+		jlDetail.setBounds(350, 30, 200, 50);
 
+		jlGName.setBounds(360, 20, 410, 50);
+
+		jlBrandTag.setBounds(360, 70, 90, 50);
+		jlBrand.setBounds(470, 70, 300, 50);
+		jlPriceTag.setBounds(360, 110, 90, 50);
+		jlGPrice.setBounds(470, 110, 300, 50);
+
+		jlGoodsStarTag.setBounds(360, 150, 90, 50);
+		jlGoodsStar.setBounds(470, 150, 300, 50);
+
+		jlSellTag.setBounds(360, 190, 90, 50);
+		jlSell.setBounds(470, 190, 300, 50);
+
+		jlLikeTag.setBounds(360, 230, 90, 50);
+
+		jbtnMinus.setBounds(512, 280, 40, 28);
+		jtfSelectNum.setBounds(552, 280, 60, 29);
+		jbtnPlus.setBounds(610, 280, 42, 28);
+		jbtnBuy.setBounds(660, 280, 80, 28);
+
+		Border borderColor = BorderFactory.createLineBorder(Color.black);
+		JPanel jpTotalMoney = new JPanel();
+
+		jpTotalMoney.setBorder(borderColor);
+		jpTotalMoney.setBounds(360, 320, 380, 60);
+		jpTotalMoney.setLayout(null);
+
+		jlTotalMoneyTag.setBounds(15, 0, 140, 60);
+		jlGTotalPrice.setBounds(150, 0, 220, 60);
+		
+		jpTotalMoney.add(jlGTotalPrice);
+		jpTotalMoney.add(jlTotalMoneyTag);
+
+		jpDetail.setBounds(20, 0, 800, 80);
+		jpDetail.setBackground(new Color(0x3F4040));
+
+		jsp.add(jpTotalMoney);
+		jsp.add(jlSell);
+		jsp.add(jlBrand);
+		jsp.add(jlGoodsStar);
+		jsp.add(jlSellTag);
+		jsp.add(jlLikeTag);
+		jsp.add(jlGoodsStarTag);
+		jsp.add(jlBrandTag);
 		jsp.add(jbtnPlus);
 		jsp.add(jbtnMinus);
 		jsp.add(jtfSelectNum);
-		jsp.setBounds(20, 80, 800, 800);
 		jsp.add(jbtnBuy);
-		jsp.add(jlimg);
+		jsp.add(jlImg);
 		jsp.add(jlGName);
 		jsp.add(jlGPrice);
-		jsp.add(jl_su);
+		jsp.add(jlPriceTag);
 		jsp.add(jtaStrong);
+		jsp.setBounds(20, 80, 800, 800);
 
-		jp1.add(jldetail);
+		jpDetail.add(jlDetail);
 		add(jsp);
-		add(jp1);
+		add(jpDetail);
 
 		setLayout(null);
-		UserGoodsDetailEvt u_evt = new UserGoodsDetailEvt(this, scgdDTO.getgCode());
-		jbtnBuy.addActionListener(u_evt);
-		jbtnMinus.addActionListener(u_evt);
-		jbtnPlus.addActionListener(u_evt);
+		UserGoodsDetailEvt uEvt = new UserGoodsDetailEvt(this, scgdDTO.getgCode());
+		jbtnBuy.addActionListener(uEvt);
+		jbtnMinus.addActionListener(uEvt);
+		jbtnPlus.addActionListener(uEvt);
 
-		setBounds(100, 50, 850, 800);
+		setBounds(200, 20, 850, 800);
 		setVisible(true);
 
 	}
@@ -140,7 +223,8 @@ public class UserGoodsDetailView extends JDialog {
 		return jtfSelectNum;
 	}
 
-	public JTextField getJtfBrand() {
-		return jtfBrand;
+	public JLabel getJlGTotalPrice() {
+		return jlGTotalPrice;
 	}
+
 }// class

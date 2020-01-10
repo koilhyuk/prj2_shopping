@@ -28,12 +28,10 @@ public class PayView extends JDialog {
 			jtfzipcode, getsu, jtfprice, jtfDetailDel;
 	private JButton jbtnPay, jbtnCancel, jbtnaddr;
 
- 
 	private JPasswordField jtfCardCVC, jtfCardOne, jtfCardTwo, jtfCardThree, jtfCardFour;
 
 	private DefaultComboBoxModel<String> dcbmPhone, dcbmCard;
 	private JComboBox<String> jcbPhoneNum, jcbCard;
-
 
 	public PayView(SellNextInformDTO sniDTO, selectZipcodeVO zipcodeData) {
 		super(UserGoodsMainEvt.ugmv, "상품결제", false);
@@ -50,7 +48,7 @@ public class PayView extends JDialog {
 			tempData = cardList.get(i);
 			dcbmCard.addElement(tempData.getCardMethod());
 		} // end for
-		
+
 		jcbCard = new JComboBox<String>(dcbmCard);
 
 		// 라벨
@@ -88,19 +86,18 @@ public class PayView extends JDialog {
 		jtfDelivery = new JTextField();
 		jtfFinalPrice = new JTextField(100);
 		jtfDemand = new JTextField(100);
-		
+
 		jtfCardOne = new JPasswordField();
 		jtfCardTwo = new JPasswordField();
 		jtfCardThree = new JPasswordField();
 		jtfCardFour = new JPasswordField();
-		
-		
+
 		jtfCardCVC = new JPasswordField();
 		jtfzipcode = new JTextField(5);
-		//	수정제한
+		// 수정제한
 		jtfCardOne.setEditable(false);
 		jtfCardThree.setEditable(false);
-		
+
 		// JButton
 		jbtnPay = new JButton("결제하기");
 		jbtnCancel = new JButton("취소하기");
@@ -179,7 +176,7 @@ public class PayView extends JDialog {
 		jtfProName.setText(sniDTO.getgName());
 		jtfFinalPrice.setText(String.valueOf(sniDTO.getTotalMoney()));
 		jtfOrder.setText(sniDTO.getmName());
-		System.err.println("PayView===="+sniDTO.getCardList().get(0).getCarNum());
+		System.err.println("PayView====" + sniDTO.getCardList().get(0).getCarNum());
 		jtfPhoneFront.setText(
 				sniDTO.getmPhone().substring(sniDTO.getmPhone().indexOf("-") + 1, sniDTO.getmPhone().indexOf("-") + 5));
 		jtfPhoneBehind.setText(sniDTO.getmPhone().substring(sniDTO.getmPhone().lastIndexOf("-") + 1,
@@ -232,18 +229,16 @@ public class PayView extends JDialog {
 		add(jbtnPay);
 		add(jbtnCancel);
 		add(jbtnaddr);
-		
+
 		////// 이벤트 처리
-		PayEvt pfEvt=new PayEvt(this, sniDTO);
-		
+		PayEvt pfEvt = new PayEvt(this, sniDTO);
+
 		jbtnPay.addActionListener(pfEvt);
 		jbtnCancel.addActionListener(pfEvt);
 		jcbCard.addActionListener(pfEvt);
 		jbtnaddr.addActionListener(pfEvt);
 		jtfDetailDel.addActionListener(pfEvt);
-		
-		
-		
+
 		jtfCardTwo.addKeyListener(pfEvt);
 		jtfCardFour.addKeyListener(pfEvt);
 		jtfCardCVC.addKeyListener(pfEvt);
@@ -251,134 +246,104 @@ public class PayView extends JDialog {
 		jtfPhoneFront.addKeyListener(pfEvt);
 		jtfPhoneBehind.addKeyListener(pfEvt);
 		jtfDemand.addKeyListener(pfEvt);
-		////
-		
-		
-		
+
 		// 가시화
 		setBounds(100, 100, 530, 730);
 		setVisible(true);
 		setResizable(false);
 
-
 	}// payView
-
 
 	public JTextField getJtfProName() {
 		return jtfProName;
 	}
 
-
 	public JTextField getJtfOrder() {
 		return jtfOrder;
 	}
-
 
 	public JTextField getJtfPhoneFront() {
 		return jtfPhoneFront;
 	}
 
-
 	public JTextField getJtfPhoneBehind() {
 		return jtfPhoneBehind;
 	}
-
 
 	public JTextField getJtfDelivery() {
 		return jtfDelivery;
 	}
 
-
 	public JTextField getJtfFinalPrice() {
 		return jtfFinalPrice;
 	}
-
 
 	public JTextField getJtfDemand() {
 		return jtfDemand;
 	}
 
-
 	public JTextField getJtfzipcode() {
 		return jtfzipcode;
 	}
-
 
 	public JTextField getGetsu() {
 		return getsu;
 	}
 
-
 	public JTextField getJtfprice() {
 		return jtfprice;
 	}
-
 
 	public JTextField getJtfDetailDel() {
 		return jtfDetailDel;
 	}
 
-
 	public JButton getJbtnPay() {
 		return jbtnPay;
 	}
-
 
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
 
-
 	public JButton getJbtnaddr() {
 		return jbtnaddr;
 	}
-
 
 	public JPasswordField getJtfCardCVC() {
 		return jtfCardCVC;
 	}
 
-
 	public JPasswordField getJtfCardOne() {
 		return jtfCardOne;
 	}
-
 
 	public JPasswordField getJtfCardTwo() {
 		return jtfCardTwo;
 	}
 
-
 	public JPasswordField getJtfCardThree() {
 		return jtfCardThree;
 	}
-
 
 	public JPasswordField getJtfCardFour() {
 		return jtfCardFour;
 	}
 
-
 	public DefaultComboBoxModel<String> getDcbmPhone() {
 		return dcbmPhone;
 	}
-
 
 	public DefaultComboBoxModel<String> getDcbmCard() {
 		return dcbmCard;
 	}
 
-
 	public JComboBox<String> getJcbPhoneNum() {
 		return jcbPhoneNum;
 	}
 
-
 	public JComboBox<String> getJcbCard() {
 		return jcbCard;
 	}
-
-
-
 
 }// class

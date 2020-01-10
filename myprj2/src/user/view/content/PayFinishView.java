@@ -1,4 +1,4 @@
-package user.newtest;
+package user.view.content;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,7 +13,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import user.controller.content.UserGoodsMainEvt;
-import user.view.content.UserGoodsMainView;
 import user.vo.content.CompleteOrderInformDTO;
 
 public class PayFinishView extends JDialog {

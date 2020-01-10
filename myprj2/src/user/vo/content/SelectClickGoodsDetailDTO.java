@@ -1,8 +1,8 @@
 package user.vo.content;
 
 public class SelectClickGoodsDetailDTO {
-	private int gPrice, gInventory;
-	private String gCode, gName, gScore, gStrong, gImg, bName, dName, cName;
+	private int gPrice, gInventory, gScore, gSaleNum;
+	private String gCode, gName, gStrong, gImg, bName, dName, cName;
 
 	public int getgPrice() {
 		return gPrice;
@@ -20,6 +20,22 @@ public class SelectClickGoodsDetailDTO {
 		this.gInventory = gInventory;
 	}
 
+	public int getgScore() {
+		return gScore;
+	}
+
+	public void setgScore(int gScore) {
+		this.gScore = gScore;
+	}
+
+	public int getgSaleNum() {
+		return gSaleNum;
+	}
+
+	public void setgSaleNum(int gSaleNum) {
+		this.gSaleNum = gSaleNum;
+	}
+
 	public String getgCode() {
 		return gCode;
 	}
@@ -34,14 +50,6 @@ public class SelectClickGoodsDetailDTO {
 
 	public void setgName(String gName) {
 		this.gName = gName;
-	}
-
-	public String getgScore() {
-		return gScore;
-	}
-
-	public void setgScore(String gScore) {
-		this.gScore = gScore;
 	}
 
 	public String getgStrong() {
@@ -86,9 +94,9 @@ public class SelectClickGoodsDetailDTO {
 
 	@Override
 	public String toString() {
-		return "SelectClickGoodsDetailDTO [gPrice=" + gPrice + ", gInventory=" + gInventory + ", gCode=" + gCode
-				+ ", gName=" + gName + ", gScore=" + gScore + ", gStrong=" + gStrong + ", gImg=" + gImg + ", bName="
-				+ bName + ", dName=" + dName + ", cName=" + cName + "]";
+		return "SelectClickGoodsDetailDTO [gPrice=" + gPrice + ", gInventory=" + gInventory + ", gScore=" + gScore
+				+ ", gSaleNum=" + gSaleNum + ", gCode=" + gCode + ", gName=" + gName + ", gStrong=" + gStrong
+				+ ", gImg=" + gImg + ", bName=" + bName + ", dName=" + dName + ", cName=" + cName + "]";
 	}
 
 }

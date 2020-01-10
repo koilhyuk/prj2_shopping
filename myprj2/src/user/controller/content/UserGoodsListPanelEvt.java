@@ -70,7 +70,6 @@ public class UserGoodsListPanelEvt implements ActionListener {
 		if (e.getSource() == uglpv.getJbtnGoodsDetail()) {
 			if (UserGoodsMainView.id != null && !UserGoodsMainView.id.isEmpty()) {// 회원일때만
 				insertRecent();
-
 			} else {// 비회원일 때
 				insertNmRecent();
 			} // end if

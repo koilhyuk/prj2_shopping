@@ -34,17 +34,15 @@ public class UserGoodsDetailEvt implements ActionListener {
 		SellNextInformDTO sniDTO = new SellNextInformDTO();
 		selectZipcodeVO zipcodeData = null;
 
-		String g_name = String.valueOf(ugdv.getJlGName().getText());
-		String g_price = String
-				.valueOf(ugdv.getJlGPrice().getText().substring(0, ugdv.getJlGPrice().getText().lastIndexOf("원")));
-		System.err.println("가격================================" + g_price);
-		String g_su = String.valueOf(ugdv.getJtfSelectNum().getText());
+		String gName = String.valueOf(ugdv.getJlGName().getText());
+		String gPrice = ugdv.getJlGPrice().getText().substring(0, ugdv.getJlGPrice().getText().lastIndexOf("원"));
+		String gSu = ugdv.getJtfSelectNum().getText();
 
 		sniDTO.setgCode(gCode);
-		sniDTO.setgName(g_name);
-		sniDTO.setmQuantity(Integer.parseInt(g_su));
-		sniDTO.setTotalMoney(Integer.parseInt(g_price) * Integer.parseInt(g_su));
-		sniDTO.setgPrice(Integer.parseInt(g_price));
+		sniDTO.setgName(gName);
+		sniDTO.setmQuantity(Integer.parseInt(gSu));
+		sniDTO.setTotalMoney(Integer.parseInt(gPrice) * Integer.parseInt(gSu));
+		sniDTO.setgPrice(Integer.parseInt(gPrice));
 		sniDTO.setmId(UserGoodsMainView.id);
 
 		UserDAO uDAO = UserDAO.getInstance();
@@ -61,7 +59,7 @@ public class UserGoodsDetailEvt implements ActionListener {
 			DataDecrypt dd = new DataDecrypt(UserGoodsMainView.KEY);
 			sniDTO.getCardList().get(0).setCarNum(dd.decryption(tempCardNum));
 			zipcodeData = saDAO.zipCodeSearch(sniDTO.getmSeq());
-			int getsu = Integer.parseInt(g_su);
+			int getsu = Integer.parseInt(gSu);
 			if (getsu > 0) {
 				ugdv.dispose();// 현재창 닫기
 				new PayView(sniDTO, zipcodeData);
@@ -77,12 +75,14 @@ public class UserGoodsDetailEvt implements ActionListener {
 			e.printStackTrace();
 		} catch (GeneralSecurityException e) {
 			e.printStackTrace();
-		}
+		} // end catch
 
 	}// UserGoodsDetailView
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		int realPrice = Integer
+				.parseInt(ugdv.getJlGPrice().getText().substring(0, ugdv.getJlGPrice().getText().lastIndexOf("원")));
 		if (ae.getSource() == ugdv.getJbtnBuy()) {
 			if (UserGoodsMainView.id != null && !UserGoodsMainView.id.isEmpty()) {// 회원
 				sellGoodsProcess();
@@ -98,6 +98,7 @@ public class UserGoodsDetailEvt implements ActionListener {
 			if (minus > 1) {
 				minus = minus - 1;
 				ugdv.getJtfSelectNum().setText(String.valueOf(minus));
+				ugdv.getJlGTotalPrice().setText(String.valueOf(minus * realPrice)+"원");
 			} // end if
 		} // end if
 
@@ -105,6 +106,7 @@ public class UserGoodsDetailEvt implements ActionListener {
 			int plus = Integer.parseInt(ugdv.getJtfSelectNum().getText());
 			plus = plus + 1;
 			ugdv.getJtfSelectNum().setText(String.valueOf(plus));
+			ugdv.getJlGTotalPrice().setText(String.valueOf(plus * realPrice)+"원");
 		} // end if
 	}// action
 

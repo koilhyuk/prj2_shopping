@@ -17,7 +17,7 @@ import kr.co.sist.util.cipher.DataDecrypt;
 import kr.co.sist.util.cipher.DataEncrypt;
 import user.dao.SelectAddrDAO;
 import user.dao.UserDAO;
-import user.newtest.PayFinishView;
+import user.view.content.PayFinishView;
 import user.view.content.PayView;
 import user.view.content.UserGoodsMainView;
 import user.view.content.ZipcodeSearchOrderView;
@@ -252,6 +252,7 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 
+		sniDTO.setmName(pv.getJtfOrder().getText().trim());
 		int zipSeq = 0;
 		String orderPhone = "";
 		String cardCode = "";
@@ -323,13 +324,13 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 				coiDTO.setoQuantity(sniDTO.getmQuantity());
 				coiDTO.setoTotalMoney(sniDTO.getTotalMoney());
 				coiDTO.setpMethod(cardMethod);
+				System.err.println(coiDTO);
 
 				// 상품 명(sniDTO gName), 수량(sniDTO mQuantity), 주문번호(orderCode), 연락처(orderPhone),
 				// 수취인(sniDTO mName),
 				// 배송지(delivery + sniDTO.getmDetailAddr() + (zipcode),
 				// 요청사항(deliveryDemand) 주문 수단(cardMethod), , 총 결제
 				// 금액(sniDTO totalMoney)
-
 				pv.dispose();
 
 				new PayFinishView(coiDTO);
