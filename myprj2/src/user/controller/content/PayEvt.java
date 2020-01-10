@@ -253,6 +253,7 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 
 		sniDTO.setmName(pv.getJtfOrder().getText().trim());
+		sniDTO.setmDetailAddr(pv.getJtfDetailDel().getText().trim());
 		int zipSeq = 0;
 		String orderPhone = "";
 		String cardCode = "";
