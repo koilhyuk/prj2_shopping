@@ -17,17 +17,19 @@ import kr.co.sist.util.cipher.DataDecrypt;
 import kr.co.sist.util.cipher.DataEncrypt;
 import user.dao.SelectAddrDAO;
 import user.dao.UserDAO;
+import user.newtest.PayFinishView;
 import user.view.content.PayView;
 import user.view.content.UserGoodsMainView;
 import user.view.content.ZipcodeSearchOrderView;
 import user.vo.content.BuyGoodsInformVO;
+import user.vo.content.CompleteOrderInformDTO;
 import user.vo.content.SelectOrderChkCard;
 import user.vo.content.SellNextInformDTO;
+import user.vo.content.UnCompleteOrderInformVO;
 
 public class PayEvt extends KeyAdapter implements ActionListener {
 
 	private SellNextInformDTO sniDTO;
-
 	private PayView pv;
 
 	public PayEvt(PayView pv, SellNextInformDTO sniDTO) {
@@ -227,8 +229,25 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end catch
-		
+
 	}// insertNewOrderPay
+
+	private UnCompleteOrderInformVO completeBuyGoods(String oCode) {
+		UnCompleteOrderInformVO ucoiVO = null;
+		UserDAO uDAO = UserDAO.getInstance();
+		try {
+
+			ucoiVO = uDAO.selectEmptyInform(oCode);
+			if (ucoiVO == null) {
+				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "DBMS 문제 발생");
+			} // end if
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end catch
+
+		return ucoiVO;
+	}// completeBuyGoods
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
@@ -239,42 +258,83 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 		String orderCode = "";
 		int orderGoodsQuantity = sniDTO.getmQuantity();
 		int goodsInventory = 0;
+		String delivery = "";
+		String zipcode = "";
+		String deliveryDemand = "";
 
 		if (ae.getSource() == pv.getJbtnPay() || ae.getSource() == pv.getJtfCardCVC()) {// 결제하기 버튼
-			if (!chkInputData()) {// 입력 값 부족
-				return;
-			} // end if
+			if (JOptionPane.showConfirmDialog(UserGoodsMainEvt.ugmv, "상품을 결제하시겠습니까?") == JOptionPane.YES_OPTION) {
+				String cardMethod = "";
+				UnCompleteOrderInformVO ucoiVO = null;
+				CompleteOrderInformDTO coiDTO = null;
 
-			cardCode = chkInputCard();
+				if (!chkInputData()) {// 입력 값 부족
+					return;
+				} // end if
 
-			if ("".equals(cardCode) || cardCode == null) {
-				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "입력한 카드정보가 일치하지 않습니다.");
-				return;
-			} // end if
+				delivery = pv.getJtfDelivery().getText().trim();
+				zipcode = pv.getJtfzipcode().getText().trim();
+				cardMethod = pv.getJcbCard().getSelectedItem().toString().trim();
+				deliveryDemand = pv.getJtfDemand().getText().trim();
 
-			goodsInventory = buyGoodsInventory(sniDTO.getgCode().trim());
-			if (orderGoodsQuantity > goodsInventory) {
-				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv,
-						"상품 재고량을 초과하였습니다. 죄송합니다. (재고량 : " + goodsInventory + "개)");
-				return;
-			} // end if
+				cardCode = chkInputCard();
+				if ("".equals(cardCode) || cardCode == null) {
+					JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "입력한 카드정보가 일치하지 않습니다.");
+					return;
+				} // end if
 
-			zipSeq = addrSearchSeq(pv.getJtfzipcode().getText().trim(), pv.getJtfDelivery().getText().trim());
-			orderPhone = pv.getJcbPhoneNum().getSelectedItem().toString().trim() + "-"
-					+ pv.getJtfPhoneFront().getText().trim() + "-" + pv.getJtfPhoneBehind().getText().trim();
+				goodsInventory = buyGoodsInventory(sniDTO.getgCode().trim());
+				if (orderGoodsQuantity > goodsInventory) {
+					JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv,
+							"상품 재고량을 초과하였습니다. 죄송합니다. (재고량 : " + goodsInventory + "개)");
+					return;
+				} // end if
 
-			BuyGoodsInformVO bgiVO = new BuyGoodsInformVO(sniDTO.getgCode(), orderPhone, sniDTO.getmDetailAddr(),
-					pv.getJtfDemand().getText().trim(), pv.getJtfOrder().getText().trim(), sniDTO.getmId(),
-					sniDTO.getmQuantity(), sniDTO.getTotalMoney(), zipSeq);
+				zipSeq = addrSearchSeq(zipcode, delivery);
+				orderPhone = pv.getJcbPhoneNum().getSelectedItem().toString().trim() + "-"
+						+ pv.getJtfPhoneFront().getText().trim() + "-" + pv.getJtfPhoneBehind().getText().trim();
 
-			orderCode = paymentNewGoods(bgiVO);
+				BuyGoodsInformVO bgiVO = new BuyGoodsInformVO(sniDTO.getgCode(), orderPhone, sniDTO.getmDetailAddr(),
+						deliveryDemand, sniDTO.getmName(), sniDTO.getmId(), sniDTO.getmQuantity(),
+						sniDTO.getTotalMoney(), zipSeq);
 
-			if (!updateGoodsInventory(sniDTO.getgCode().trim(), orderGoodsQuantity)) {
-				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "DBMS 문제 발생");
-			} // end if
-			
-			insertNewOrderPay(orderCode, cardCode);// 결제 수단, 주문 코드 테이블에 등록
+				orderCode = paymentNewGoods(bgiVO);
 
+				if (!updateGoodsInventory(sniDTO.getgCode().trim(), orderGoodsQuantity)) {
+					JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "DBMS 문제 발생");
+					return;
+				} // end if
+
+				insertNewOrderPay(orderCode, cardCode);// 결제 수단, 주문 코드 테이블에 등록
+
+				// 상품 사진, 구매자, 주문 일자
+				ucoiVO = completeBuyGoods(orderCode);
+
+				coiDTO = new CompleteOrderInformDTO();
+				coiDTO.setgImg(ucoiVO.getgImg());
+				coiDTO.setgName(sniDTO.getgName());
+				coiDTO.setmName(ucoiVO.getmName());
+				coiDTO.setoAddressee(sniDTO.getmName());
+				coiDTO.setoCode(orderCode);
+				coiDTO.setoDate(ucoiVO.getoDate());
+				coiDTO.setoDemand(deliveryDemand);
+				coiDTO.setoDetailAddr(delivery + " " + sniDTO.getmDetailAddr() + " (" + zipcode + ")");
+				coiDTO.setoPhone(orderPhone);
+				coiDTO.setoQuantity(sniDTO.getmQuantity());
+				coiDTO.setoTotalMoney(sniDTO.getTotalMoney());
+				coiDTO.setpMethod(cardMethod);
+
+				// 상품 명(sniDTO gName), 수량(sniDTO mQuantity), 주문번호(orderCode), 연락처(orderPhone),
+				// 수취인(sniDTO mName),
+				// 배송지(delivery + sniDTO.getmDetailAddr() + (zipcode),
+				// 요청사항(deliveryDemand) 주문 수단(cardMethod), , 총 결제
+				// 금액(sniDTO totalMoney)
+
+				pv.dispose();
+
+				new PayFinishView(coiDTO);
+
+			} // end joptionpane yes
 		} // end if
 
 		if (ae.getSource() == pv.getJbtnCancel()) {// 취소 버튼

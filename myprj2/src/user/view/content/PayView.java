@@ -36,7 +36,7 @@ public class PayView extends JDialog {
 
 
 	public PayView(SellNextInformDTO sniDTO, selectZipcodeVO zipcodeData) {
-		super(UserGoodsMainEvt.ugmv, "카드등록", false);
+		super(UserGoodsMainEvt.ugmv, "상품결제", false);
 		// 핸드폰
 		String[] phoneData = { "010", "011", "019", "017" };
 		dcbmPhone = new DefaultComboBoxModel<String>(phoneData);
@@ -59,7 +59,7 @@ public class PayView extends JDialog {
 		jlPay.setFont(f);
 		jlPay.setForeground(Color.white);
 		JLabel jlProName = new JLabel("상품명");
-		JLabel jlOrder = new JLabel("주문자");
+		JLabel jlOrder = new JLabel("수령인");
 		JLabel jlPhone = new JLabel("전화번호");
 		JLabel jlPhoneFront = new JLabel("-");
 		JLabel jlPhoneBehind = new JLabel("-");

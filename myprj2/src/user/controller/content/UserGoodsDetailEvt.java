@@ -34,9 +34,11 @@ public class UserGoodsDetailEvt implements ActionListener {
 		SellNextInformDTO sniDTO = new SellNextInformDTO();
 		selectZipcodeVO zipcodeData = null;
 
-		String g_name = String.valueOf(ugdv.getJlG_name().getText());
-		String g_price = String.valueOf(ugdv.getJlg_price().getText());
-		String g_su = String.valueOf(ugdv.getJtf().getText());
+		String g_name = String.valueOf(ugdv.getJlGName().getText());
+		String g_price = String
+				.valueOf(ugdv.getJlGPrice().getText().substring(0, ugdv.getJlGPrice().getText().lastIndexOf("원")));
+		System.err.println("가격================================" + g_price);
+		String g_su = String.valueOf(ugdv.getJtfSelectNum().getText());
 
 		sniDTO.setgCode(gCode);
 		sniDTO.setgName(g_name);
@@ -81,7 +83,7 @@ public class UserGoodsDetailEvt implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if (ae.getSource() == ugdv.getJbtbuy()) {
+		if (ae.getSource() == ugdv.getJbtnBuy()) {
 			if (UserGoodsMainView.id != null && !UserGoodsMainView.id.isEmpty()) {// 회원
 				sellGoodsProcess();
 			} else {// 비회원일 때 로그인 하게 하기
@@ -91,18 +93,18 @@ public class UserGoodsDetailEvt implements ActionListener {
 			} // end else
 		} // end if
 
-		if (ae.getSource() == ugdv.getJbtminus()) {
-			int minus = Integer.parseInt(ugdv.getJtf().getText());
+		if (ae.getSource() == ugdv.getJbtnMinus()) {
+			int minus = Integer.parseInt(ugdv.getJtfSelectNum().getText());
 			if (minus > 1) {
 				minus = minus - 1;
-				ugdv.getJtf().setText(String.valueOf(minus));
+				ugdv.getJtfSelectNum().setText(String.valueOf(minus));
 			} // end if
 		} // end if
 
-		if (ae.getSource() == ugdv.getJbtplus()) {
-			int plus = Integer.parseInt(ugdv.getJtf().getText());
+		if (ae.getSource() == ugdv.getJbtnPlus()) {
+			int plus = Integer.parseInt(ugdv.getJtfSelectNum().getText());
 			plus = plus + 1;
-			ugdv.getJtf().setText(String.valueOf(plus));
+			ugdv.getJtfSelectNum().setText(String.valueOf(plus));
 		} // end if
 	}// action
 

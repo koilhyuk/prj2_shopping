@@ -21,6 +21,7 @@ import user.vo.content.SelectGoodsCheckVO;
 import user.vo.content.SelectOrderChkCard;
 import user.vo.content.SelectRecentGoodsVO;
 import user.vo.content.SellNextInformDTO;
+import user.vo.content.UnCompleteOrderInformVO;
 
 public class UserDAO {
 	private static UserDAO uDAO;
@@ -951,8 +952,8 @@ public class UserDAO {
 		try {
 			con = getConnection();
 			StringBuilder updateGInventory = new StringBuilder();
-			updateGInventory.append("	update  GOODS  	")
-					.append("	set G_INVENTORY= (select G_INVENTORY from goods where g_code=?)-?,  G_SALENUM =   (select G_SALENUM from goods where g_code=?)+?	")
+			updateGInventory.append("	update  GOODS  	").append(
+					"	set G_INVENTORY= (select G_INVENTORY from goods where g_code=?)-?,  G_SALENUM =   (select G_SALENUM from goods where g_code=?)+?	")
 					.append("	where g_code=?	");
 
 			pstmt = con.prepareStatement(updateGInventory.toString());
@@ -1000,4 +1001,45 @@ public class UserDAO {
 		} // end finally
 	}// insertOrderPay
 
+	public UnCompleteOrderInformVO selectEmptyInform(String oCode) throws SQLException {
+
+		UnCompleteOrderInformVO ucoiVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			StringBuilder selectEmpInform = new StringBuilder();
+			selectEmpInform.append("	select g.g_img, m.m_name, to_char(o.o_date,'yyyy-mm-dd am hh:mi:ss') o_date	")
+					.append("	from GOODS  g, MEMBER m ,ORDERING o 	")
+					.append("	where (g.g_code=o.g_code and m.m_id=o.m_id)   and    o.o_code=?	");
+
+			pstmt = con.prepareStatement(selectEmpInform.toString());
+			pstmt.setString(1, oCode.trim());
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				ucoiVO = new UnCompleteOrderInformVO(rs.getString("g_img"), rs.getString("m_name"),
+						rs.getString("o_date"));
+			} // end while
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+
+		return ucoiVO;
+	}// selectEmptyInform
+	
+	
+	
 }// class
