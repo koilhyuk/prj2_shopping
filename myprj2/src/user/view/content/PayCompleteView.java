@@ -15,11 +15,11 @@ import javax.swing.border.TitledBorder;
 import user.controller.content.UserGoodsMainEvt;
 import user.vo.content.CompleteOrderInformDTO;
 
-public class PayFinishView extends JDialog {
+public class PayCompleteView extends JDialog {
 
 	JButton btnOk;
 
-	public PayFinishView(CompleteOrderInformDTO coiDTO) {
+	public PayCompleteView(CompleteOrderInformDTO coiDTO) {
 		super(UserGoodsMainEvt.ugmv, "결제 완료", false);
 		// 이미지
 		JLabel jlImg = new JLabel((new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/rs_gds_" + coiDTO.getgImg())));// 이미지

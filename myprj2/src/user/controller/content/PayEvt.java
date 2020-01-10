@@ -17,7 +17,7 @@ import kr.co.sist.util.cipher.DataDecrypt;
 import kr.co.sist.util.cipher.DataEncrypt;
 import user.dao.SelectAddrDAO;
 import user.dao.UserDAO;
-import user.view.content.PayFinishView;
+import user.view.content.PayCompleteView;
 import user.view.content.PayView;
 import user.view.content.UserGoodsMainView;
 import user.view.content.ZipcodeSearchOrderView;
@@ -333,7 +333,7 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 				// ฑÝพื(sniDTO totalMoney)
 				pv.dispose();
 
-				new PayFinishView(coiDTO);
+				new PayCompleteView(coiDTO);
 
 			} // end joptionpane yes
 		} // end if
