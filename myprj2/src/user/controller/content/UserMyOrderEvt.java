@@ -2,17 +2,22 @@ package user.controller.content;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import user.dao.ClientDAO;
 import user.view.content.MyDataView;
 import user.view.content.UserMyOrderView;
+import user.vo.content.SelectMyOrderDetailDTO;
 import user.vo.content.SelectMyOrderVO;
 
-public class UserMyOrderEvt implements ActionListener{
+public class UserMyOrderEvt extends MouseAdapter implements ActionListener{
 
 	private UserMyOrderView umo;
 	private static String id;
@@ -55,13 +60,44 @@ public class UserMyOrderEvt implements ActionListener{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//end catch
-		
 	}//searchOrderList
+	
+	/**
+	 * 상세 주문내역 
+	 */
+	public void selectDetailOrder(JTable jtOrder) {
+		SelectMyOrderDetailDTO moDTO = new SelectMyOrderDetailDTO();
+		String goodsName =(String)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(),0);
+		String brandName=(String)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(), 1);
+		String delivery=(String)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(), 2);
+		int price=(int)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(), 3);
+		String orderDate=(String)umo.getJtOrder().getValueAt(jtOrder.getSelectedRow(), 4);
+		
+		moDTO.setG_name(goodsName);
+		moDTO.setB_name(brandName);
+		moDTO.setO_delivery(delivery);
+		moDTO.setO_price(price);
+		moDTO.setO_date(orderDate);
+		
+		ClientDAO cDAO=ClientDAO.getInstance();
+		
+	}//selectDetailOrder
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-//		if(ae.getSource()==umo.getJbtBack()) {//마이페이지
+		if(ae.getSource()==umo.getJbtBack()) {//마이페이지
 //			new MyDataView(id);
-//		}//end if
+		}//end if
 	}//actionPerformed
+
+	@Override
+	public void mouseClicked(MouseEvent me) {
+		if(me.getClickCount()==2) {
+			if(me.getSource()==umo.getJtOrder()) {
+				JTable jtOrder=umo.getJtOrder();
+				
+			}//end if
+		}//end if
+	}//mouseClicked
+	
 }//class

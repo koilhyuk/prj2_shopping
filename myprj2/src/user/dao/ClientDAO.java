@@ -11,6 +11,7 @@ import java.util.List;
 import user.vo.CalcVO;
 import user.vo.content.MyPageDetailVO;
 import user.vo.content.MyPageUpdateVO;
+import user.vo.content.SelectMyOrderDetailDTO;
 import user.vo.content.SelectMyOrderVO;
 import user.vo.login.JoinDetailVO;
 import user.vo.login.LoginFoundIdVO;
@@ -526,6 +527,12 @@ public class ClientDAO {
 		return updateFlag;
 	}// updateMemIp
 
+	/**
+	 * 주문내역 확인가능
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<SelectMyOrderVO> selectAllOrderList(String id) throws SQLException{
 		List<SelectMyOrderVO> orderList=new ArrayList<SelectMyOrderVO>();
 		Connection con=null;
@@ -556,5 +563,28 @@ public class ClientDAO {
 		}//finally
 		
 		return orderList;
-	}//
+	}//selectAllOrderList
+	
+	public void selectDetailMyOrder(SelectMyOrderDetailDTO moDTO) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=getConnection();
+			StringBuilder selectDetailMyOrder= new StringBuilder();
+			selectDetailMyOrder.append(" ");
+			
+			pstmt = con.prepareStatement(selectDetailMyOrder.toString());
+			pstmt.setString(0, moDTO.getO_code());
+			
+			rs=pstmt.executeQuery();
+			////////////수정중//////////
+		}finally {
+			if(rs !=null) {rs.close();}//end if
+			if(pstmt !=null) {pstmt.close();}//end if
+			if(con !=null) {con.close();}//end if
+		}//end finally
+		
+	}//selectDetailMyOrder
 }// class

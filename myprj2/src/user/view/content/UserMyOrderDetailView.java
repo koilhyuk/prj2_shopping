@@ -1,45 +1,43 @@
 package user.view.content;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 import admin.run.StaticCla;
-import admin.vo.SelectOrderDetailDTO;
 
 @SuppressWarnings("serial")
 public class UserMyOrderDetailView extends JDialog implements ActionListener {
 //	private JTextField jtfOrderer, jtfReceive, jtfRecAddr, jtfPhone, jtfGoodsName, jtfbuyNum, jtfbuyMethod,
 
-	private JLabel jtfOrderer, jtfReceive, jtfRecAddr, jtfPhone, jtfGoodsName, jtfbuyNum, jtfbuyMethod, jtfTotalPrice,
-			jtfOrderDate, jtfDeliveryFlag, jtfDeliverMsg, jtfScore;
-
-	private JButton jbtnClose;
+	private JLabel jtfGoodsName, jtfbuyNum, jtfbuyMethod, jtfTotalPrice,jtfOrderDate, jtfDeliveryFlag, jtfDeliverMsg;
+	private DefaultComboBoxModel<Integer> dcbmScore;
+	private JComboBox<Integer> jcbScore;
+	private JButton jbtnClose, jbtnScore;
 	private JLabel jlImg;
 
-	private SelectOrderDetailDTO odDTO;
+//	private SelectOrderDetailDTO odDTO;
 
-	public UserMyOrderDetailView(SelectOrderDetailDTO odDTO) {
+	public UserMyOrderDetailView(/* SelectOrderDetailDTO odDTO */) {
 		super(StaticCla.mv, "상품관리-상세보기", true);
-		this.odDTO = odDTO;
+//		this.odDTO = odDTO;
 		// 이미지
-		ImageIcon iiImage = new ImageIcon(StaticCla.FILE_PATH+"/gd_" + odDTO.getG_img());
-		Image img = iiImage.getImage();
-		Image chgimg = img.getScaledInstance(250, 350, Image.SCALE_SMOOTH);// 이미지 사이즈변경
-		ImageIcon newImg = new ImageIcon(chgimg);
-		jlImg = new JLabel(newImg);
-		jlImg.setBorder(new EtchedBorder(EtchedBorder.RAISED)); // border돌출
+//		ImageIcon iiImage = new ImageIcon(StaticCla.FILE_PATH+"/gd_" + odDTO.getG_img());
+//		Image img = iiImage.getImage();
+//		Image chgimg = img.getScaledInstance(250, 350, Image.SCALE_SMOOTH);// 이미지 사이즈변경
+//		ImageIcon newImg = new ImageIcon(chgimg);
+//		jlImg = new JLabel(newImg);
+//		jlImg.setBorder(new EtchedBorder(EtchedBorder.RAISED)); // border돌출
 		Font font = new Font("맑은 고딕", Font.BOLD, 20);
 		Font fontCon = new Font("맑은 고딕", Font.BOLD, 14);
 		// 라벨
@@ -50,24 +48,16 @@ public class UserMyOrderDetailView extends JDialog implements ActionListener {
 		jlTitle.setForeground(Color.white);
 		jlTitle.setHorizontalAlignment(JTextField.CENTER);
 		
-		JLabel jlCusTitle = new JLabel("※회원정보 ※");
-		jlCusTitle.setForeground(Color.white);
+		//평점
+		Integer[] score= {1,2,3,4,5};
+		dcbmScore= new DefaultComboBoxModel<Integer>(score);
+		jcbScore= new JComboBox<Integer>(dcbmScore);
+		
 		JLabel jlPayTitle = new JLabel("※상품 및 결제정보 ※ ");
 		jlPayTitle.setForeground(Color.white);
 		JLabel jlDeliTitle = new JLabel("※배송정보 ※ ");
 		jlDeliTitle.setForeground(Color.white);
 		jlTitle.setFont(font);
-		
-		
-		JLabel jlOrderer = new JLabel("회원아이디:");//
-		jlTitle.setFont(fontCon);
-		
-		JLabel jlReceiver = new JLabel("받는이 :");//
-		jlReceiver.setFont(fontCon);
-		JLabel jlRecAddr = new JLabel("배송지 :");//
-		jlRecAddr.setFont(fontCon);
-		JLabel jlPhone = new JLabel("연락처 :");//
-		jlPhone.setFont(fontCon);
 
 		JLabel jlGoodsName = new JLabel("상품명 :");//
 		jlGoodsName.setFont(fontCon);
@@ -93,24 +83,6 @@ public class UserMyOrderDetailView extends JDialog implements ActionListener {
 		JLabel jlDeliverMsg = new JLabel("배송요청사항 :");//
 		jlDeliverMsg.setFont(fontCon);
 
-		// T.F
-//		jtfOrderer = new JTextField(10);
-//		jtfReceive = new JTextField(10);
-//		jtfRecAddr = new JTextField(10);
-//		jtfPhone = new JTextField(10);
-//		jtfGoodsName = new JTextField(10);
-//		jtfbuyNum = new JTextField(10);
-//		jtfbuyMethod = new JTextField(10);
-//		jtfTotalPrice = new JTextField(10);
-//		jtfOrderDate = new JTextField(10);
-//		jtfDeliveryFlag = new JTextField(10);
-//		jtfDeliverMsg = new JTextField(10);
-//		jtfScore=new JTextField(10);
-
-		jtfOrderer = new JLabel();
-		jtfReceive = new JLabel();
-		jtfRecAddr = new JLabel();
-		jtfPhone = new JLabel();
 		jtfGoodsName = new JLabel();
 		jtfbuyNum = new JLabel();
 		jtfbuyMethod = new JLabel();
@@ -118,78 +90,55 @@ public class UserMyOrderDetailView extends JDialog implements ActionListener {
 		jtfOrderDate = new JLabel();
 		jtfDeliveryFlag = new JLabel();
 		jtfDeliverMsg = new JLabel();
-		jtfScore = new JLabel();
 
+		jbtnScore = new JButton("평점주기");
 		jbtnClose = new JButton("확인");
 		// setText
-		jtfScore.setText(String.valueOf(odDTO.getO_score()));
-		jtfOrderer.setText(odDTO.getM_id());// 주문자
-		jtfReceive.setText(odDTO.getO_person());// 받는이
-		jtfRecAddr.setText(odDTO.getO_addr());
-		jtfPhone.setText(odDTO.getO_phone());
-		jtfGoodsName.setText(odDTO.getG_name() + "(" + odDTO.getO_code() + ")");
-		jtfbuyNum.setText(String.valueOf(odDTO.getO_quantity()));
-		jtfbuyMethod.setText(odDTO.getP_method());
-		jtfTotalPrice.setText(String.valueOf(odDTO.getO_buypay()));
-		jtfOrderDate.setText(odDTO.getO_date());
-		jtfDeliveryFlag.setText(odDTO.getO_delivery());
-		jtfDeliverMsg.setText(odDTO.getO_delmsg());
-
-		JPanel jpCuOrder = new JPanel();
-		jpCuOrder.setLayout(null);
-
-		jlOrderer.setBounds(15, 10, 80, 30);
-		jpCuOrder.add(jlOrderer);
-
-		jlReceiver.setBounds(200, 10, 60, 30);
-		jpCuOrder.add(jlReceiver);
-
-		jlRecAddr.setBounds(15, 40, 60, 30);
-		jpCuOrder.add(jlRecAddr);
-
-		jlPhone.setBounds(15, 70, 60, 30);
-		jpCuOrder.add(jlPhone);
-
-		jtfOrderer.setBounds(100, 10, 100, 30);
-		jpCuOrder.add(jtfOrderer);
-
-		jtfReceive.setBounds(260, 10, 100, 30);
-		jpCuOrder.add(jtfReceive);
-
-		jtfRecAddr.setBounds(80, 40, 250, 30);
-		jpCuOrder.add(jtfRecAddr);
-
-		jtfPhone.setBounds(80, 70, 230, 30);
-		jpCuOrder.add(jtfPhone);
+//		jtfScore.setText(String.valueOf(odDTO.getO_score()));
+//		jtfOrderer.setText(odDTO.getM_id());// 주문자
+//		jtfReceive.setText(odDTO.getO_person());// 받는이
+//		jtfRecAddr.setText(odDTO.getO_addr());
+//		jtfPhone.setText(odDTO.getO_phone());
+//		jtfGoodsName.setText(odDTO.getG_name() + "(" + odDTO.getO_code() + ")");
+//		jtfbuyNum.setText(String.valueOf(odDTO.getO_quantity()));
+//		jtfbuyMethod.setText(odDTO.getP_method());
+//		jtfTotalPrice.setText(String.valueOf(odDTO.getO_buypay()));
+//		jtfOrderDate.setText(odDTO.getO_date());
+//		jtfDeliveryFlag.setText(odDTO.getO_delivery());
+//		jtfDeliverMsg.setText(odDTO.getO_delmsg());
 
 		JPanel jpGoods = new JPanel();
 		jpGoods.setLayout(null);
 		jlGoodsName.setBounds(15, 10, 60, 30);
 		jpGoods.add(jlGoodsName);
-		jlbuyNum.setBounds(15, 40, 100, 30);//
+		jlbuyNum.setBounds(15, 60, 100, 30);//
 		jpGoods.add(jlbuyNum);//
-		jlbuyMethod.setBounds(15, 70, 100, 30);
+		jlbuyMethod.setBounds(15, 110, 100, 30);
 		jpGoods.add(jlbuyMethod);
-		jlTotalPrice.setBounds(15, 100, 110, 30);
+		jlTotalPrice.setBounds(15, 160, 110, 30);
 		jpGoods.add(jlTotalPrice);
-		jlOrderDate.setBounds(15, 130, 80, 30);
+		jlOrderDate.setBounds(15, 210, 80, 30);
 		jpGoods.add(jlOrderDate);
 		jtfGoodsName.setBounds(90, 10, 230, 30);
 		jpGoods.add(jtfGoodsName);
-		jtfbuyNum.setBounds(100, 40, 80, 30);//
+		jtfbuyNum.setBounds(100, 60, 80, 30);//
 		jpGoods.add(jtfbuyNum);//
-		jtfbuyMethod.setBounds(100, 70, 230, 30);
+		jtfbuyMethod.setBounds(100, 110, 230, 30);
 		jpGoods.add(jtfbuyMethod);
-		jtfTotalPrice.setBounds(140, 100, 230, 30);
+		jtfTotalPrice.setBounds(140, 160, 230, 30);
 		jpGoods.add(jtfTotalPrice);
-		jtfOrderDate.setBounds(90, 130, 230, 30);
+		jtfOrderDate.setBounds(90, 210, 230, 30);
 		jpGoods.add(jtfOrderDate);
 
-		jlscore.setBounds(180, 40, 70, 30);
+		//평점
+		jlscore.setBounds(15, 260, 70, 30);
 		jpGoods.add(jlscore);
 
-		jtfScore.setBounds(250, 40, 100, 30);
-		jpGoods.add(jtfScore);
+		jcbScore.setBounds(90, 260, 50, 30);
+		jpGoods.add(jcbScore);
+	
+		jbtnScore.setBounds(160, 260, 100, 30);
+		jpGoods.add(jbtnScore);
 
 		JPanel jpDelivery = new JPanel();
 		jpDelivery.setLayout(null);
@@ -202,47 +151,29 @@ public class UserMyOrderDetailView extends JDialog implements ActionListener {
 		jtfDeliverMsg.setBounds(120, 50, 450, 30);
 		jpDelivery.add(jtfDeliverMsg);
 
-//		// 수정못하게 막음
-//		jtfOrderer.setEditable(false);
-//		jtfReceive.setEditable(false);
-//		jtfRecAddr.setEditable(false);
-//		jtfPhone.setEditable(false);
-//		jtfGoodsName.setEditable(false);
-//		jtfbuyNum.setEditable(false);
-//		jtfbuyMethod.setEditable(false);
-//		jtfTotalPrice.setEditable(false);
-//		jtfOrderDate.setEditable(false);
-//		jtfbuyMethod.setEditable(false);
-//		jtfDeliveryFlag.setEditable(false);
-//		jtfDeliverMsg.setEditable(false);
+		// 수정못하게 막음
 		jlTitle.setEditable(false);
 
 		setLayout(null); // 수동
 		jlTitle.setBounds(50, 10, 200, 30);
-		jlImg.setBounds(10, 60, 270, 350);
+//		jlImg.setBounds(10, 60, 270, 350);
 		Font fontLabel = new Font("맑은 고딕", Font.BOLD, 17);
-		jlCusTitle.setFont(fontLabel);
 		jlPayTitle.setFont(fontLabel);
 		jlDeliTitle.setFont(fontLabel);
-		jlCusTitle.setBounds(300, 40, 200, 40);
-		jlPayTitle.setBounds(300, 190, 200, 40);
+		jlPayTitle.setBounds(300, 30, 200, 40);
 		jlDeliTitle.setBounds(40, 410, 200, 40);
 
-		jpCuOrder.setBounds(290, 80, 360, 110);
-		jpCuOrder.setBorder(new LineBorder(Color.lightGray));
-		jpGoods.setBounds(290, 240, 360, 170);
+		jpGoods.setBounds(290, 70, 360, 320);
 		jpGoods.setBorder(new LineBorder(Color.lightGray));
 		jpDelivery.setBounds(15, 450, 630, 100);
 		jpDelivery.setBorder(new LineBorder(Color.lightGray));
 		jbtnClose.setBounds(280, 570, 120, 30);
 		
 		add(jlTitle);
-		add(jlImg);
-		add(jpCuOrder);
+//		add(jlImg);
 		add(jpGoods);
 		add(jpDelivery);
 		add(jbtnClose);
-		add(jlCusTitle);
 		add(jlPayTitle);
 		add(jlDeliTitle);
 
@@ -254,6 +185,10 @@ public class UserMyOrderDetailView extends JDialog implements ActionListener {
 		setResizable(false);
 
 	}// AdOrderDetailView
+	
+	public static void main(String[] args) {
+		new UserMyOrderDetailView();
+	}//main
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
