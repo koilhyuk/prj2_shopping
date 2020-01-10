@@ -20,6 +20,7 @@ import user.dao.UserDAO;
 import user.view.content.PayView;
 import user.view.content.UserGoodsMainView;
 import user.view.content.ZipcodeSearchOrderView;
+import user.vo.content.BuyGoodsInformVO;
 import user.vo.content.SelectOrderChkCard;
 import user.vo.content.SellNextInformDTO;
 
@@ -33,19 +34,6 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 		this.pv = pv;
 		this.sniDTO = sniDTO;
 	}// PayFinishEvt
-
-	private void addrSearchSeq(String zipcode, String addr) {
-		int seq = 0;
-		SelectAddrDAO saDAO = SelectAddrDAO.getInstance();
-
-		try {
-			seq = saDAO.seqSearch(zipcode, addr);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} // end catch
-
-	}// addrSearchSeq
 
 	private void cardSelectInform(String selectCard) {
 		String cardNum = "";
@@ -162,7 +150,7 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 			UserDAO uDAO = UserDAO.getInstance();
 			SelectOrderChkCard socc = new SelectOrderChkCard(transCardNum, transCardCVC, cardMethod);
 			cardCode = uDAO.selectChkCard(socc);
-
+			System.err.println(cardCode);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
@@ -176,17 +164,65 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 		return cardCode;
 	}// chkInputCard
 
+	private int addrSearchSeq(String zipcode, String addr) {
+		int seq = 0;
+		SelectAddrDAO saDAO = SelectAddrDAO.getInstance();
+
+		try {
+			seq = saDAO.seqSearch(zipcode, addr);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end catch
+		return seq;
+	}// addrSearchSeq
+
+	private String paymentNewGoods(BuyGoodsInformVO bgiVO) {
+		String oCode = "";
+
+		UserDAO uDAO = UserDAO.getInstance();
+		try {
+			System.err.println(bgiVO);
+			uDAO.insertNewOrdering(bgiVO);
+			// 성공을 했다면 최근 oCode가져오기
+			uDAO.selectRecentOrdering(bgiVO.getmId());
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end catch
+
+		return oCode;
+	}// paymentNewGoods
+
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+
+		int zipSeq = 0;
+		String orderPhone = "";
+		String cardCode = "";
+		String orderCode = "";
 
 		if (ae.getSource() == pv.getJbtnPay() || ae.getSource() == pv.getJtfCardCVC()) {// 결제하기 버튼
 			if (!chkInputData()) {// 입력 값 부족
 				return;
 			} // end if
 
-			if ("".equals(chkInputCard()) || chkInputCard() == null) {
+			cardCode = chkInputCard();
+
+			if ("".equals(cardCode) || cardCode == null) {
+				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "입력한 카드정보가 일치하지 않습니다.");
 				return;
 			} // end if
+
+			zipSeq = addrSearchSeq(pv.getJtfzipcode().getText().trim(), pv.getJtfDelivery().getText().trim());
+			orderPhone = pv.getJcbPhoneNum().getSelectedItem().toString().trim() + "-"
+					+ pv.getJtfPhoneFront().getText().trim() + "-" + pv.getJtfPhoneBehind().getText().trim();
+
+			BuyGoodsInformVO bgiVO = new BuyGoodsInformVO(sniDTO.getgCode(), orderPhone, sniDTO.getmDetailAddr(),
+					pv.getJtfDetailDel().getText().trim(), pv.getJtfOrder().getText().trim(), sniDTO.getmId(),
+					sniDTO.getmQuantity(), sniDTO.getTotalMoney(), zipSeq);
+
+			orderCode = paymentNewGoods(bgiVO);
 
 		} // end if
 

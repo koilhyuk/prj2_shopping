@@ -82,16 +82,12 @@ public class PayView extends JDialog {
 		// JTextField
 		jtfProName = new JTextField(10);
 		jtfOrder = new JTextField(100);
-		jtfPhoneFront = new JTextField(4);
-		jtfPhoneBehind = new JTextField(4);
-		jtfDetailDel = new JTextField(5);
-		jtfDelivery = new JTextField(5);
+		jtfPhoneFront = new JTextField();
+		jtfPhoneBehind = new JTextField();
+		jtfDetailDel = new JTextField();
+		jtfDelivery = new JTextField();
 		jtfFinalPrice = new JTextField(100);
 		jtfDemand = new JTextField(100);
-//		jtfCardOne = new JPasswordField(4);
-//		jtfCardTwo = new JPasswordField(4);
-//		jtfCardThree = new JPasswordField();
-//		jtfCardFour = new JPasswordField(4);
 		
 		jtfCardOne = new JPasswordField();
 		jtfCardTwo = new JPasswordField();
@@ -183,6 +179,7 @@ public class PayView extends JDialog {
 		jtfProName.setText(sniDTO.getgName());
 		jtfFinalPrice.setText(String.valueOf(sniDTO.getTotalMoney()));
 		jtfOrder.setText(sniDTO.getmName());
+		System.err.println("PayView===="+sniDTO.getCardList().get(0).getCarNum());
 		jtfPhoneFront.setText(
 				sniDTO.getmPhone().substring(sniDTO.getmPhone().indexOf("-") + 1, sniDTO.getmPhone().indexOf("-") + 5));
 		jtfPhoneBehind.setText(sniDTO.getmPhone().substring(sniDTO.getmPhone().lastIndexOf("-") + 1,

@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import user.controller.content.UserGoodsMainEvt;
 import user.view.content.UserGoodsMainView;
+import user.vo.content.BuyGoodsInformVO;
 import user.vo.content.InsertNewCardVO;
 import user.vo.content.MemberCardInformVO;
 import user.vo.content.SelectAllGoodsVO;
@@ -801,7 +801,7 @@ public class UserDAO {
 
 	public String selectChkCard(SelectOrderChkCard socc) throws SQLException {
 		boolean successFlag = false;
-		String cardCode="";
+		String cardCode = "";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -809,16 +809,14 @@ public class UserDAO {
 		try {
 			con = getConnection();
 			StringBuilder selectMemCardChk = new StringBuilder();
-			selectMemCardChk
-			.append("	select p_code 	")
-			.append("	 from PAY	")
-			.append("	 where p_method=? and p_cardnum=? and p_cvc=? and m_id=?	");
+			selectMemCardChk.append("	select p_code 	").append("	 from PAY	")
+					.append("	 where p_method=? and p_cardnum=? and p_cvc=? and m_id=?	");
 
 			pstmt = con.prepareStatement(selectMemCardChk.toString());
-			pstmt.setString(1,socc.getCardMethod());
+			pstmt.setString(1, socc.getCardMethod());
 			pstmt.setString(2, socc.getTransCardNum());
 			pstmt.setString(3, socc.getTransCardCVC());
-			pstmt.setString(4,UserGoodsMainView.id);
+			pstmt.setString(4, UserGoodsMainView.id);
 
 			rs = pstmt.executeQuery();
 
@@ -837,8 +835,83 @@ public class UserDAO {
 				con.close();
 			}
 		} // end finally
-		
+
 		return cardCode;
 	}// selectChkCard
+
+	public void insertNewOrdering(BuyGoodsInformVO bgiVO) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = getConnection();
+			StringBuilder insertNewOrdering = new StringBuilder();
+			insertNewOrdering
+			.append("		insert into pay(O_CODE, G_CODE, O_PHONE, O_QUANTITY,O_ADDR, O_BUYPAY, O_DELMSG, O_PERSON, M_ID, Z_SEQ)	")
+			.append("		values(o_code, ?,?,?,?,?,?,?,?,?)	");
+
+			pstmt = con.prepareStatement(insertNewOrdering.toString());
+
+			pstmt.setString(1, bgiVO.getgCode());
+			pstmt.setString(2, bgiVO.getoPhone());
+			pstmt.setInt(3, bgiVO.getoQuantity());
+			pstmt.setString(4, bgiVO.getoAddr());
+			pstmt.setInt(5, bgiVO.getoBuypay());
+			pstmt.setString(6, bgiVO.getoDelmsg());
+			pstmt.setString(7, bgiVO.getoPerson());
+			pstmt.setString(8, bgiVO.getmId());
+			pstmt.setInt(9, bgiVO.getzSeq());
+			pstmt.execute();
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+	}//insertNewOrdering
+	
+	public String selectRecentOrdering(String mId) throws SQLException {
+		String orderingCode = "";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			StringBuilder selectRecentOCode = new StringBuilder();
+			selectRecentOCode
+			.append("	select o_code 	")
+			.append("	from(select o_code from ordering 	")
+			.append("	where m_id=? 	")
+			.append("	order by O_DATE     desc) 	")
+			.append("	 where rownum=1	");
+
+			pstmt = con.prepareStatement(selectRecentOCode.toString());
+			pstmt.setString(1, mId);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				orderingCode = rs.getString("o_code");
+			} // end while
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+
+		return orderingCode;
+	}// selectRecentOrdering
+	
 
 }// class
