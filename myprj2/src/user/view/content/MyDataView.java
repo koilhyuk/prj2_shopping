@@ -10,6 +10,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 import user.controller.content.MyDataEvt;
+import user.newtest.UserMyOrderView;
 
 @SuppressWarnings("serial")
 public class MyDataView extends JFrame{
@@ -20,7 +21,7 @@ public class MyDataView extends JFrame{
 	//카드등록, 찜하기, 주문내역, 내정보변경 
 	
 	private static String id;
-	
+	private UserMyOrderView umo;
 	public MyDataView(String id) {
 		super("마이페이지");
 		this.id=id;
@@ -46,6 +47,8 @@ public class MyDataView extends JFrame{
 		JLabel jtaImage= new JLabel("이미지"+iImage);
 		jtaImage.setBorder(new TitledBorder("이미지"));
 		//수동
+		
+		
 		setLayout(null);
 		jlMyPage.setBounds(10, 10, 100, 40);
 		jtaName.setBounds(40, 70, 400, 50);
@@ -67,7 +70,7 @@ public class MyDataView extends JFrame{
 		add(jbtLogOut);
 		add(jtaImage);
 		
-		MyDataEvt mde=new MyDataEvt(this);
+		MyDataEvt mde=new MyDataEvt(this,id);
 		jbtOrderList.addActionListener(mde);
 		jbtMyData.addActionListener(mde);
 		jbtWithdrawal.addActionListener(mde);
@@ -78,15 +81,9 @@ public class MyDataView extends JFrame{
 		//가시화
 		setVisible(true);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}//mypageView
-
-	
-	public static void main(String[] args) {
-		new MyDataView("hyebin");
-	}//main
-
 
 	public JLabel getJlMyPage() {
 		return jlMyPage;
@@ -121,5 +118,20 @@ public class MyDataView extends JFrame{
 	public JButton getJbtLogOut() {
 		return jbtLogOut;
 	}
+
+
+	public JButton getJbtJJim() {
+		return jbtJJim;
+	}
+
+
+	public static String getId() {
+		return id;
+	}
+
+	
+	public static void main(String[] args) {
+		new MyDataView("testㄴㄴ");
+	}//main
 
 }//class

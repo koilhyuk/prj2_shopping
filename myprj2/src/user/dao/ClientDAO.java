@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import user.newtest.SelectMyOrderVO;
 import user.vo.CalcVO;
 import user.vo.content.MyPageDetailVO;
 import user.vo.content.MyPageUpdateVO;
@@ -525,6 +526,35 @@ public class ClientDAO {
 		return updateFlag;
 	}// updateMemIp
 
-//	public String selectMyInform(selectMemVO smvo) throws SQLException {
-
+	public List<SelectMyOrderVO> selectAllOrderList(String id) throws SQLException{
+		List<SelectMyOrderVO> orderList=new ArrayList<SelectMyOrderVO>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		SelectMyOrderVO soVO=null;
+		try {
+			con=getConnection();
+			StringBuilder selectOrder = new StringBuilder();
+			selectOrder.append(" select o_code, o_delivery  , to_char(o_date, 'yyyy-mm-dd')o_date, g_name ,g_price, b_name	")
+			.append(" from ORDERING o, goods g, brand b	")
+			.append("	where (o.g_code=g.g_code) and (g.b_code=b.b_code) and m_id=?	");
+			
+			pstmt=con.prepareStatement(selectOrder.toString());
+			pstmt.setString(1, id);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				soVO = new SelectMyOrderVO(rs.getString("o_delivery"), rs.getString("o_date"), rs.getString("g_name")
+						,rs.getString("b_name"),rs.getInt("g_price"));
+				orderList.add(soVO);
+			}//end while
+		
+		}finally {
+			if(rs !=null) {rs.close();}//end if 
+			if(pstmt !=null) {pstmt.close();}//end if 
+			if(con !=null) {con.close();}//end if 
+		}//finally
+		
+		return orderList;
+	}//
 }// class

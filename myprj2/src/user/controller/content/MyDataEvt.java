@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import user.newtest.UserMyOrderView;
 import user.view.content.MyDataView;
@@ -12,15 +13,17 @@ import user.view.content.UserCardUploadView;
 
 public class MyDataEvt implements ActionListener{
 	private MyDataView mdv ;
-	
-	public MyDataEvt(MyDataView mdv) {
+	private static String id;
+	public MyDataEvt(MyDataView mdv, String id) {
 		this.mdv=mdv;
+		this.id=id;
 	}//myDataEvt
 
+	
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			if(ae.getSource()==mdv.getJbtOrderList()) {//주문내역
-				new UserMyOrderView("hyebin");
+				new UserMyOrderView(id);
 			}//end if
 			
 			if(ae.getSource()==mdv.getJbtMyData()) {//내정보변경
