@@ -27,7 +27,6 @@ public class UserGoodsListPanelEvt implements ActionListener {
 	private void insertRecent() {
 		boolean flag = false;
 		UserDAO uDAO = UserDAO.getInstance();
-
 		try {
 			flag = uDAO.insertRecentGoods(goodsCode);
 			if (flag == false) {

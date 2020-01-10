@@ -12,9 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import user.controller.content.PayCompleteEvt;
 import user.controller.content.UserGoodsMainEvt;
 import user.vo.content.CompleteOrderInformDTO;
 
+@SuppressWarnings("serial")
 public class PayCompleteView extends JDialog {
 
 	JButton btnOk;
@@ -71,10 +73,6 @@ public class PayCompleteView extends JDialog {
 		DecimalFormat priceFormat = new DecimalFormat("###,###");
 		JLabel jlTotalPrice = new JLabel(priceFormat.format(coiDTO.getoTotalMoney()) + " 원",JLabel.LEFT);
 		jlTotalPrice.setFont(priceFont);
-
-		// 시간
-//		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-//		Date date = new Date();
 
 		btnOk = new JButton("확인");
 		btnOk.setForeground(Color.white);
@@ -172,6 +170,9 @@ public class PayCompleteView extends JDialog {
 
 		btnOk.setBounds(230, 715, 70, 30);
 
+		PayCompleteEvt pcEvt = new PayCompleteEvt(this);
+		btnOk.addActionListener(pcEvt);
+		
 		// 배치
 		jpTitle.add(jlTitle);
 		add(jlImg);

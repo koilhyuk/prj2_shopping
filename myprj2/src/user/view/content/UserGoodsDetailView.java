@@ -2,6 +2,7 @@ package user.view.content;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.text.DecimalFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,7 +16,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 
 import user.controller.content.UserGoodsDetailEvt;
 import user.controller.content.UserGoodsMainEvt;
@@ -47,7 +47,8 @@ public class UserGoodsDetailView extends JDialog {
 		jlDetail.setForeground(Color.white);
 		jlGName = new JLabel(scgdDTO.getgName(), JLabel.LEFT);
 		jlGPrice = new JLabel(String.valueOf(scgdDTO.getgPrice()) + "원", JLabel.LEFT);
-		jlGTotalPrice = new JLabel(String.valueOf(scgdDTO.getgPrice()) + "원", JLabel.RIGHT);
+		DecimalFormat priceFormat = new DecimalFormat("###,###");
+		jlGTotalPrice = new JLabel(priceFormat.format(scgdDTO.getgPrice())  + "원", JLabel.RIGHT);
 
 		JLabel jlGoodsStarTag = new JLabel("-평점");
 		JLabel jlGoodsStar = new JLabel("-평점");
@@ -181,6 +182,7 @@ public class UserGoodsDetailView extends JDialog {
 		add(jpDetail);
 
 		setLayout(null);
+		setResizable(false);
 		UserGoodsDetailEvt uEvt = new UserGoodsDetailEvt(this, scgdDTO.getgCode());
 		jbtnBuy.addActionListener(uEvt);
 		jbtnMinus.addActionListener(uEvt);

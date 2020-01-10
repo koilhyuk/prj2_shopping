@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 import javax.swing.JOptionPane;
 
@@ -83,6 +84,7 @@ public class UserGoodsDetailEvt implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		int realPrice = Integer
 				.parseInt(ugdv.getJlGPrice().getText().substring(0, ugdv.getJlGPrice().getText().lastIndexOf("원")));
+		DecimalFormat priceFormat = new DecimalFormat("###,###");
 		if (ae.getSource() == ugdv.getJbtnBuy()) {
 			if (UserGoodsMainView.id != null && !UserGoodsMainView.id.isEmpty()) {// 회원
 				sellGoodsProcess();
@@ -98,7 +100,7 @@ public class UserGoodsDetailEvt implements ActionListener {
 			if (minus > 1) {
 				minus = minus - 1;
 				ugdv.getJtfSelectNum().setText(String.valueOf(minus));
-				ugdv.getJlGTotalPrice().setText(String.valueOf(minus * realPrice)+"원");
+				ugdv.getJlGTotalPrice().setText(priceFormat.format(minus * realPrice) +"원");
 			} // end if
 		} // end if
 
@@ -106,7 +108,7 @@ public class UserGoodsDetailEvt implements ActionListener {
 			int plus = Integer.parseInt(ugdv.getJtfSelectNum().getText());
 			plus = plus + 1;
 			ugdv.getJtfSelectNum().setText(String.valueOf(plus));
-			ugdv.getJlGTotalPrice().setText(String.valueOf(plus * realPrice)+"원");
+			ugdv.getJlGTotalPrice().setText(priceFormat.format(plus * realPrice) +"원");
 		} // end if
 	}// action
 

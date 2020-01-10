@@ -802,7 +802,6 @@ public class UserDAO {
 	}// selectCardNum
 
 	public String selectChkCard(SelectOrderChkCard socc) throws SQLException {
-		boolean successFlag = false;
 		String cardCode = "";
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -1040,7 +1039,5 @@ public class UserDAO {
 
 		return ucoiVO;
 	}// selectEmptyInform
-	
-	
-	
+
 }// class

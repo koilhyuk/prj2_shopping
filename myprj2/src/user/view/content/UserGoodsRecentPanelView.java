@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import admin.run.StaticCla;
+import user.controller.content.UserGoodsRecentPanelEvt;
 
 @SuppressWarnings("serial")
 public class UserGoodsRecentPanelView extends JPanel {
@@ -30,7 +31,8 @@ public class UserGoodsRecentPanelView extends JPanel {
 		setLayout(null);
 		setBorder(new LineBorder(Color.BLACK));
 
-//		UserGoodsListPanelEvt uglp = new UserGoodsListPanelEvt(this);
+		UserGoodsRecentPanelEvt ugrppe = new UserGoodsRecentPanelEvt(this);
+		jbtnGoodsDetail.addActionListener(ugrppe);
 
 		add(jbtnGoodsDetail);
 		add(jlGoodsName);
@@ -43,7 +45,6 @@ public class UserGoodsRecentPanelView extends JPanel {
 		
 		
 		setPreferredSize(new Dimension(170, 200));
-//		setBounds(200, 200, 170, 240);
 		setVisible(true);
 
 	}// TestGoodsJpanel
@@ -59,8 +60,4 @@ public class UserGoodsRecentPanelView extends JPanel {
 	public JLabel getJlGoodsName() {
 		return jlGoodsName;
 	}
-//
-//	public static void main(String[] args) {
-//		new UserGoodsRecentPanelView("", "goods3(g_00001)");
-//	}
 }// class
