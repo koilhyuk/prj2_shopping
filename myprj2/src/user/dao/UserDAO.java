@@ -1075,27 +1075,27 @@ public class UserDAO {
 
 		return likeResult;
 	}// selectGoodsLike
-	
+
 	public int selectGoodsLikeNum(String goodsCode) throws SQLException {
 		int likeNum = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			con = getConnection();
 			StringBuilder selectGoodsLike = new StringBuilder();
 			selectGoodsLike.append("	select count(*) cnt from GOODSLIKE	").append(" where	g_code=? 	");
-			
+
 			pstmt = con.prepareStatement(selectGoodsLike.toString());
 			pstmt.setString(1, goodsCode);
-			
+
 			rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				likeNum = rs.getInt("cnt");
 			} // end while
-			
+
 		} finally {
 			if (rs != null) {
 				rs.close();
@@ -1107,8 +1107,64 @@ public class UserDAO {
 				con.close();
 			}
 		} // end finally
-		
+
 		return likeNum;
 	}// selectGoodsLike
+
+	public boolean deleteGoodsLike(String memeId, String gCode) throws SQLException {
+		boolean deleteFlag = false;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+
+			con = getConnection();
+
+			String deleteLikeGoods = "	delete from goodslike where m_id=? and g_code=?	";
+
+			pstmt = con.prepareStatement(deleteLikeGoods);
+			pstmt.setString(1, memeId);
+			pstmt.setString(2, gCode.trim());
+			deleteFlag = pstmt.executeUpdate() == 1;
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+
+		return deleteFlag;
+	}// selectGoodsLike
+	
+	public void insertGoodsLike(String memeId, String gCode) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = getConnection();
+			StringBuilder insertLikeGoods = new StringBuilder();
+			insertLikeGoods
+			.append("	insert into goodslike(M_ID, G_CODE)	")
+			.append("	values(?,?)	");
+
+			pstmt = con.prepareStatement(insertLikeGoods.toString());
+			pstmt.setString(1, memeId);
+			pstmt.setString(2, gCode.trim());
+
+			pstmt.execute();
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+	}// insertOrderPay
 
 }// class

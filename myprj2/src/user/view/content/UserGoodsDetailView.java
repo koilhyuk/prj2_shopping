@@ -16,7 +16,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 
 import user.controller.content.UserGoodsDetailEvt;
 import user.controller.content.UserGoodsMainEvt;
@@ -116,13 +115,17 @@ public class UserGoodsDetailView extends JDialog {
 		jbtnPlus.setBackground(new Color(0x3F4040));
 
 		ImageIcon likeImg = null;
+		ImageIcon rolloverLikeImg = null;
+
 		//// ¬Ú«œ±‚
 		if (scgdDTO.isgLikeStatus()) {// ¬Ú«œ±‚ µ«æÓ¿÷¿Ω
 			likeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
+			rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
 		} else {// ¬Ú«œ±‚ µ«æÓ X
 			likeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
+			rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
 		}
-		
+
 		jbtnGoodsLike = new JButton(likeImg);
 
 		JPanel jpDetail = new JPanel();
@@ -134,10 +137,10 @@ public class UserGoodsDetailView extends JDialog {
 		jlDetail.setBounds(350, 30, 200, 50);
 
 		jlGName.setBounds(360, 20, 370, 50);
-		jlGName.setBorder(new TitledBorder("f"));
-		jbtnGoodsLike.setBounds(730, 30, 38, 40);
-		
-		
+		jbtnGoodsLike.setBounds(730, 25, 38, 40);
+		jbtnGoodsLike.setBorderPainted(false);
+		jbtnGoodsLike.setRolloverIcon(rolloverLikeImg);
+
 		jlBrandTag.setBounds(360, 70, 90, 50);
 		jlBrand.setBounds(470, 70, 300, 50);
 		jlPriceTag.setBounds(360, 110, 90, 50);
@@ -162,11 +165,11 @@ public class UserGoodsDetailView extends JDialog {
 		JPanel jpTotalMoney = new JPanel();
 
 		jpTotalMoney.setBorder(borderColor);
-		jpTotalMoney.setBounds(360, 320, 380, 60);
+		jpTotalMoney.setBounds(360, 320, 380, 55);
 		jpTotalMoney.setLayout(null);
 
-		jlTotalMoneyTag.setBounds(15, 0, 140, 60);
-		jlGTotalPrice.setBounds(150, 0, 220, 60);
+		jlTotalMoneyTag.setBounds(15, 0, 140, 55);
+		jlGTotalPrice.setBounds(150, 0, 220, 55);
 
 		jpTotalMoney.add(jlGTotalPrice);
 		jpTotalMoney.add(jlTotalMoneyTag);
@@ -201,10 +204,11 @@ public class UserGoodsDetailView extends JDialog {
 
 		setLayout(null);
 		setResizable(false);
-		UserGoodsDetailEvt uEvt = new UserGoodsDetailEvt(this, scgdDTO.getgCode());
+		UserGoodsDetailEvt uEvt = new UserGoodsDetailEvt(this, scgdDTO);
 		jbtnBuy.addActionListener(uEvt);
 		jbtnMinus.addActionListener(uEvt);
 		jbtnPlus.addActionListener(uEvt);
+		jbtnGoodsLike.addActionListener(uEvt);
 
 		setBounds(200, 20, 850, 800);
 		setVisible(true);
@@ -246,5 +250,10 @@ public class UserGoodsDetailView extends JDialog {
 	public JLabel getJlGTotalPrice() {
 		return jlGTotalPrice;
 	}
+
+	public JButton getJbtnGoodsLike() {
+		return jbtnGoodsLike;
+	}
+	
 
 }// class

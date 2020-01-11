@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import kr.co.sist.util.cipher.DataDecrypt;
@@ -18,16 +19,17 @@ import user.view.content.UserGoodsDetailView;
 import user.view.content.UserGoodsMainView;
 import user.view.login.LoginDialogView;
 import user.vo.selectZipcodeVO;
+import user.vo.content.SelectClickGoodsDetailDTO;
 import user.vo.content.SellNextInformDTO;
 
 public class UserGoodsDetailEvt implements ActionListener {
 
 	private UserGoodsDetailView ugdv;
-	private String gCode;
+	private SelectClickGoodsDetailDTO scgdDTO;
 
-	public UserGoodsDetailEvt(UserGoodsDetailView ugdv, String gCode) {
+	public UserGoodsDetailEvt(UserGoodsDetailView ugdv, SelectClickGoodsDetailDTO scgdDTO) {
 		this.ugdv = ugdv;
-		this.gCode = gCode;
+		this.scgdDTO = scgdDTO;
 	}// UserProductDetailEvt
 
 	private void sellGoodsProcess() {
@@ -39,7 +41,7 @@ public class UserGoodsDetailEvt implements ActionListener {
 		String gPrice = ugdv.getJlGPrice().getText().substring(0, ugdv.getJlGPrice().getText().lastIndexOf("원"));
 		String gSu = ugdv.getJtfSelectNum().getText();
 
-		sniDTO.setgCode(gCode);
+		sniDTO.setgCode(scgdDTO.getgCode());
 		sniDTO.setgName(gName);
 		sniDTO.setmQuantity(Integer.parseInt(gSu));
 		sniDTO.setTotalMoney(Integer.parseInt(gPrice) * Integer.parseInt(gSu));
@@ -78,7 +80,36 @@ public class UserGoodsDetailEvt implements ActionListener {
 			e.printStackTrace();
 		} // end catch
 
-	}// UserGoodsDetailView
+	}// sellGoodsProcess
+
+	private void goodsLikeChange(boolean likeStatus) {
+		UserDAO uDAO = UserDAO.getInstance();
+
+		ImageIcon changeLikeIcon = null;
+		ImageIcon rolloverLikeImg = null;
+		try {
+			if (likeStatus) {// 좋아요가 되어있을 때 -> 삭제
+				if (!uDAO.deleteGoodsLike(UserGoodsMainView.id, scgdDTO.getgCode())) {
+					JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "DBMS 문제 발생");
+					return;
+				} // end if
+					// 이미지 회색하트로 변경
+				changeLikeIcon = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
+				rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
+				scgdDTO.setgLikeStatus(false);
+			} else {// 좋아요가 되어 X 때 -> 추가
+				uDAO.insertGoodsLike(UserGoodsMainView.id, scgdDTO.getgCode());
+				changeLikeIcon = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
+				rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
+				scgdDTO.setgLikeStatus(true);
+			} // end else
+			ugdv.getJbtnGoodsLike().setIcon(changeLikeIcon);
+			ugdv.getJbtnGoodsLike().setRolloverIcon(rolloverLikeImg);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end catch
+	}// goodsLikeChange
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
@@ -100,7 +131,7 @@ public class UserGoodsDetailEvt implements ActionListener {
 			if (minus > 1) {
 				minus = minus - 1;
 				ugdv.getJtfSelectNum().setText(String.valueOf(minus));
-				ugdv.getJlGTotalPrice().setText(priceFormat.format(minus * realPrice) +"원");
+				ugdv.getJlGTotalPrice().setText(priceFormat.format(minus * realPrice) + "원");
 			} // end if
 		} // end if
 
@@ -108,8 +139,18 @@ public class UserGoodsDetailEvt implements ActionListener {
 			int plus = Integer.parseInt(ugdv.getJtfSelectNum().getText());
 			plus = plus + 1;
 			ugdv.getJtfSelectNum().setText(String.valueOf(plus));
-			ugdv.getJlGTotalPrice().setText(priceFormat.format(plus * realPrice) +"원");
+			ugdv.getJlGTotalPrice().setText(priceFormat.format(plus * realPrice) + "원");
 		} // end if
-	}// action
+
+		if (ae.getSource() == ugdv.getJbtnGoodsLike()) {// 좋아요 버튼 클릭 시
+			if (UserGoodsMainView.id != null && !UserGoodsMainView.id.isEmpty()) {// 회원
+				goodsLikeChange(scgdDTO.isgLikeStatus());
+			} else {// 비회원일 때 로그인 하게 하기
+				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "찜하기는 로그인 후 가능합니다. 로그인 해주세요.");
+				ugdv.dispose();// 현재창 닫기
+				new LoginDialogView(UserGoodsMainEvt.ugmv, UserGoodsMainEvt.rt);
+			} // end else
+		} // end if
+	}// actionPerformed
 
 }// class
