@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -29,9 +28,11 @@ import user.run.MemLoginState;
 @SuppressWarnings("serial")
 public class UserGoodsMainView extends JFrame {
 
-	private JButton btnOrderNe;
 	private MemLoginState mls;
+	private JButton btnOrderNe;
 	private JButton btnCardUpLoad;
+	/////////////////////////////// 20200112 찜하기 버튼 추가
+	private JButton btnGoodsLike;
 
 	//// 2019-09-24 종류 채널
 	private JLabel jlChannel;
@@ -187,10 +188,6 @@ public class UserGoodsMainView extends JFrame {
 		dtcr.setHorizontalAlignment(SwingConstants.CENTER);
 		jtDetail.getColumnModel().getColumn(0).setCellRenderer(dtcr);
 		jtDetail.getColumnModel().getColumn(1).setCellRenderer(dtcr);
-
-		JTextArea jtaInform = new JTextArea() {
-
-		};
 
 		btnBest = new JButton("Best");
 		btnOuter = new JButton("Outer");
@@ -416,6 +413,12 @@ public class UserGoodsMainView extends JFrame {
 			btnCardUpLoad.setBorder(new LineBorder(new Color(0x3F4040)));
 			btnCardUpLoad.addMouseListener(ugme);
 
+			/////////////////////////////// 20200112 찜하기 버튼 추가
+			btnGoodsLike = new JButton("찜한 상품");
+			btnGoodsLike.setBounds(210, 200, 90, 30);
+			btnGoodsLike.addActionListener(ugme);
+			jpContent.add(btnGoodsLike);
+
 			btnOrderNe = new JButton("마이페이지");
 			btnOrderNe.setBounds(10, 240, 195, 30);
 			btnOrderNe.setBackground(new Color(0x3F4040));
@@ -608,6 +611,11 @@ public class UserGoodsMainView extends JFrame {
 
 	public JButton getBtnOrderNe() {
 		return btnOrderNe;
+	}
+
+	/////////////////////////////// 20200112 찜하기 버튼 추가
+	public JButton getBtnGoodsLike() {
+		return btnGoodsLike;
 	}
 
 }// UserMainView

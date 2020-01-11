@@ -470,6 +470,14 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 			if (ae.getSource() == ugmv.getBtnOrderNe()) {
 				new UserMyPageView(UserGoodsMainView.id);
 			} // end if
+			/////////////////////////////// 20200112 찜하기 버튼 추가
+			if (ae.getSource() == ugmv.getBtnGoodsLike()) {
+
+				
+				
+				
+				
+			} // end if
 		} // end if
 
 		if (ae.getSource() == ugmv.getBtnLogout()) {// 로그아웃 - 회원 ///// 로그인 - 비회원
