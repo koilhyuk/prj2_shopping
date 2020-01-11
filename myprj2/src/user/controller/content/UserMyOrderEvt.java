@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import user.dao.ClientDAO;
-import user.view.content.MyDataView;
+import user.view.content.UserMyPageView;
 import user.view.content.UserMyOrderDetailView;
 import user.view.content.UserMyOrderView;
 import user.vo.content.SelectMyOrderDetailDTO;
@@ -53,6 +53,11 @@ public class UserMyOrderEvt extends MouseAdapter implements ActionListener{
 				rowData[0]=smVO.getG_name()+"("+smVO.getO_code()+")";
 				rowData[1]=smVO.getB_name();
 				rowData[2]=smVO.getO_delivery();
+				if(smVO.getO_delivery().equals("N")) {
+					rowData[2]="배송 준비중";
+				}else {
+					rowData[2]="배송 완료";
+				}//end if
 				rowData[3]=smVO.getG_price();
 				rowData[4]=smVO.getO_date();
 				dtmOrder.addRow(rowData);
@@ -94,9 +99,7 @@ public class UserMyOrderEvt extends MouseAdapter implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if(ae.getSource()==umo.getJbtBack()) {//마이페이지
-//			new MyDataView(id);
-		}//end if
+	
 	}//actionPerformed
 
 	@Override

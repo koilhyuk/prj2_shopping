@@ -8,16 +8,16 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import user.dao.ClientDAO;
-import user.view.content.MyDataView;
+import user.view.content.UserMyPageView;
 import user.view.content.UserCusDataView;
 import user.view.content.UserCardUploadView;
 import user.view.content.UserMyOrderView;
 import user.vo.content.SelectCusDataVO;
 
-public class MyDataEvt implements ActionListener{
-	private MyDataView mdv ;
+public class UserMyPageEvt implements ActionListener{
+	private UserMyPageView mdv ;
 	private static String id;
-	public MyDataEvt(MyDataView mdv, String id) {
+	public UserMyPageEvt(UserMyPageView mdv, String id) {
 		this.mdv=mdv;
 		this.id=id;
 	}//myDataEvt
@@ -34,8 +34,6 @@ public class MyDataEvt implements ActionListener{
 		}//end catch
 		
 	}//searchCusData
-
-	
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			if(ae.getSource()==mdv.getJbtOrderList()) {//주문내역

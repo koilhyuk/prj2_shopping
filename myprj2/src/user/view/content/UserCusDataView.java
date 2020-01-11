@@ -18,29 +18,26 @@ import user.vo.content.SelectCusDataVO;
 @SuppressWarnings("serial")
 public class UserCusDataView extends JFrame {
 
-	private JLabel jlTitle, jlId, jlPw, jlPwConfirm, jlName, jlBirth, jlPhoneNum1, jlPhoneNum2, JlPhoneNum, jlAddr,
+	private JLabel jlTitle, jlId, jlPw, jlName, jlBirth, jlPhoneNum1, jlPhoneNum2, JlPhoneNum, jlAddr,
 			jlEmail;
-	private JTextField jtfId, jtfName, jtfBirthYear, jtfBirthMonth, jtfBirthday, jtfPhoneNum1, jtfPhoneNum2, jtfAddr,
+	private JTextField jtfId, jtfName, jtfBirth,jtfPhoneNum1, jtfPhoneNum2, jtfAddr,
 			jtfEmail;
 	private DefaultComboBoxModel<String> dcbPhone;
 	private JComboBox<String> jcbPhoneNum;
-	private JButton jbtWithdrawal, jbtConfirm, jbtBack;
-	private JPasswordField jpfPw, jpfPwConfirm;
+	private JButton jbtWithdrawal, jbtConfirm, jbtBack, jbtnSearchAddr, jbtnPass;
 	private JTextField jtfZipcode, jtfAddress, jtfDetailAddr;
-	private JButton jbtnSearchAddr;
 
 	private static String id;
 	private SelectCusDataVO cdVO;
 	public UserCusDataView(String id, SelectCusDataVO cdVO) {
 		this.id=id;
 		this.cdVO=cdVO;
-		jpfPw = new JPasswordField();
-		jpfPwConfirm = new JPasswordField();
+//		jpfPw = new JPasswordField();
+//		jpfPwConfirm = new JPasswordField();
 
 		jlTitle = new JLabel("회원정보수정");
 		jlId = new JLabel("아이디");
 		jlPw = new JLabel("비밀번호");
-		jlPwConfirm = new JLabel("비밀번호 변경");
 		jlName = new JLabel("이름");
 		jlBirth = new JLabel("생년월일");
 		JlPhoneNum = new JLabel("전화번호");
@@ -55,12 +52,8 @@ public class UserCusDataView extends JFrame {
 		jlEmail = new JLabel("이메일");
 
 		jtfId = new JTextField();
-//		jtfPw = new JTextField();
-//		jtfPwConfirm = new JTextField();
 		jtfName = new JTextField();
-		jtfBirthYear = new JTextField();
-//		jtfBirthMonth = new JTextField();
-//		jtfBirthday = new JTextField();
+		jtfBirth = new JTextField();
 		String[] phone = { "010", "011", "017", "018", "019" };
 		dcbPhone = new DefaultComboBoxModel<String>(phone);
 		jcbPhoneNum = new JComboBox<String>(dcbPhone);
@@ -77,17 +70,17 @@ public class UserCusDataView extends JFrame {
 		jbtBack = new JButton("닫기");
 		jbtBack.setForeground(new Color(0x3F4040));
 
+		jbtnPass = new JButton("비밀번호 변경");
+		
 		jtfId.setEditable(false);
 		jtfName.setEditable(false);
-		jtfBirthYear.setEditable(false);
+		jtfBirth.setEditable(false);
 
 		// setText
-		
 		jtfId.setText(id);//
 		jtfEmail.setText(cdVO.getM_email());
 		jtfName.setText(cdVO.getM_name());
-		jpfPw.setText(cdVO.getM_pass());
-		jtfBirthYear.setText(cdVO.getM_birth());
+		jtfBirth.setText(cdVO.getM_birth());
 		jtfZipcode.setText(cdVO.getZ_zipcode());
 		jtfAddress.setText(cdVO.getZ_addr());
 		String phone1=cdVO.getM_phone().substring(4,cdVO.getM_phone().lastIndexOf("-"));
@@ -102,7 +95,6 @@ public class UserCusDataView extends JFrame {
 		add(jlTitle);
 		add(jlId);
 		add(jlPw);
-		add(jlPwConfirm);
 		add(jlName);
 		add(jlBirth);
 		add(JlPhoneNum);
@@ -111,12 +103,8 @@ public class UserCusDataView extends JFrame {
 		add(jlAddr);
 		add(jlEmail);
 		add(jtfId);
-		add(jpfPw);
-		add(jpfPwConfirm);
 		add(jtfName);
-		add(jtfBirthYear);
-//		add(jtfBirthMonth);
-//		add(jtfBirthday);
+		add(jtfBirth);
 		add(jcbPhoneNum);
 		add(jtfPhoneNum1);
 		add(jtfPhoneNum2);
@@ -125,25 +113,21 @@ public class UserCusDataView extends JFrame {
 		add(jbtWithdrawal);
 		add(jbtConfirm);
 		add(jbtBack);
+		add(jbtnPass);
 
 		jlTitle.setBounds(70, 10, 170, 30);
-		jlId.setBounds(70, 50, 60, 30);
-		jtfId.setBounds(170, 50, 180, 30);
+		jlId.setBounds(70, 100, 60, 30);
+		jtfId.setBounds(170, 100, 180, 30);
 
-		jbtWithdrawal.setBounds(370, 50, 100, 30);
-
-		jlPw.setBounds(70, 100, 100, 30);
-		jpfPw.setBounds(170, 100, 200, 30);
-		jlPwConfirm.setBounds(70, 150, 100, 30);
-		jpfPwConfirm.setBounds(170, 150, 200, 30);
+		jbtWithdrawal.setBounds(370, 100, 100, 30);
+		jlPw.setBounds(70, 150, 100, 30);
+		jbtnPass.setBounds(170, 150, 170, 35);
 
 		jlName.setBounds(70, 200, 60, 30);
 		jtfName.setBounds(170, 200, 200, 30);
 
 		jlBirth.setBounds(70, 250, 60, 30);
-		jtfBirthYear.setBounds(170, 250, 200, 30);
-//		jtfBirthMonth.setBounds(230, 250, 50, 30);
-//		jtfBirthday.setBounds(290, 250, 50, 30);
+		jtfBirth.setBounds(170, 250, 200, 30);
 		JlPhoneNum.setBounds(70, 300, 60, 30);
 		jcbPhoneNum.setBounds(170, 300, 55, 30);
 		jlPhoneNum1.setBounds(235, 300, 60, 30);
@@ -157,139 +141,109 @@ public class UserCusDataView extends JFrame {
 		jlAddr.setBounds(70, 400, 60, 30);
 		jtfZipcode.setBounds(170, 400, 120, 30);
 		jbtnSearchAddr.setBounds(300, 400, 90, 30);
-		jtfAddress.setBounds(170, 450, 250, 30);
-		jtfAddr.setBounds(170, 500, 250, 30);
+		jtfAddress.setBounds(170, 450, 300, 30);
+		jtfAddr.setBounds(170, 500, 300, 30);
 		jbtConfirm.setBounds(130, 600, 60, 30);
 		jbtBack.setBounds(250, 600, 60, 30);
 
-		UserCusDataEvt ucd = new UserCusDataEvt(this, id);
 
+		UserCusDataEvt ucd = new UserCusDataEvt(this, id);
+		jbtConfirm.addActionListener(ucd);
+		jbtBack.addActionListener(ucd);
+		jbtnPass.addActionListener(ucd);
+		jbtnSearchAddr.addActionListener(ucd);
+		jbtnPass.addActionListener(ucd);
+		
 		setBounds(100, 100, 520, 720);
 		setVisible(true);
 	}// MyPageView
-
+	
 	public JLabel getJlTitle() {
 		return jlTitle;
 	}
-
 	public JLabel getJlId() {
 		return jlId;
 	}
-
 	public JLabel getJlPw() {
 		return jlPw;
 	}
-
-	public JLabel getJlPwConfirm() {
-		return jlPwConfirm;
-	}
-
 	public JLabel getJlName() {
 		return jlName;
 	}
-
 	public JLabel getJlBirth() {
 		return jlBirth;
 	}
-
 	public JLabel getJlPhoneNum1() {
 		return jlPhoneNum1;
 	}
-
 	public JLabel getJlPhoneNum2() {
 		return jlPhoneNum2;
 	}
-
 	public JLabel getJlPhoneNum() {
 		return JlPhoneNum;
 	}
-
 	public JLabel getJlAddr() {
 		return jlAddr;
 	}
-
 	public JLabel getJlEmail() {
 		return jlEmail;
 	}
-
 	public JTextField getJtfId() {
 		return jtfId;
 	}
-
 	public JTextField getJtfName() {
 		return jtfName;
 	}
-
-	public JTextField getJtfBirthYear() {
-		return jtfBirthYear;
+	public JTextField getJtfBirth() {
+		return jtfBirth;
 	}
-
-	public JTextField getJtfBirthMonth() {
-		return jtfBirthMonth;
-	}
-
-	public JTextField getJtfBirthday() {
-		return jtfBirthday;
-	}
-
 	public JTextField getJtfPhoneNum1() {
 		return jtfPhoneNum1;
 	}
-
 	public JTextField getJtfPhoneNum2() {
 		return jtfPhoneNum2;
 	}
-
 	public JTextField getJtfAddr() {
 		return jtfAddr;
 	}
-
 	public JTextField getJtfEmail() {
 		return jtfEmail;
 	}
-
 	public DefaultComboBoxModel<String> getDcbPhone() {
 		return dcbPhone;
 	}
-
 	public JComboBox<String> getJcbPhoneNum() {
 		return jcbPhoneNum;
 	}
-
 	public JButton getJbtWithdrawal() {
 		return jbtWithdrawal;
 	}
-
 	public JButton getJbtConfirm() {
 		return jbtConfirm;
 	}
-
 	public JButton getJbtBack() {
 		return jbtBack;
 	}
-
-	public JPasswordField getJpfPw() {
-		return jpfPw;
+	public JButton getJbtnSearchAddr() {
+		return jbtnSearchAddr;
 	}
-
-	public JPasswordField getJpfPwConfirm() {
-		return jpfPwConfirm;
+	public JButton getJbtnPass() {
+		return jbtnPass;
 	}
-
 	public JTextField getJtfZipcode() {
 		return jtfZipcode;
 	}
-
 	public JTextField getJtfAddress() {
 		return jtfAddress;
 	}
-
 	public JTextField getJtfDetailAddr() {
 		return jtfDetailAddr;
 	}
-
-	public JButton getJbtnSearchAddr() {
-		return jbtnSearchAddr;
+	public static String getId() {
+		return id;
+	}
+	public SelectCusDataVO getCdVO() {
+		return cdVO;
 	}
 
 }// class

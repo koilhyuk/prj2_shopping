@@ -14,6 +14,7 @@ import user.vo.content.MyPageUpdateVO;
 import user.vo.content.SelectCusDataVO;
 import user.vo.content.SelectMyOrderDetailDTO;
 import user.vo.content.SelectMyOrderVO;
+import user.vo.content.UpdateGiveScoreVO;
 import user.vo.login.JoinDetailVO;
 import user.vo.login.LoginFoundIdVO;
 import user.vo.login.LoginFoundPwVO;
@@ -511,7 +512,8 @@ public class ClientDAO {
 			StringBuilder selectOrder = new StringBuilder();
 			selectOrder.append(" select o_code, o_delivery  , to_char(o_date, 'yyyy-mm-dd')o_date, g_name ,g_price, b_name	")
 			.append(" from ORDERING o, goods g, brand b	")
-			.append("	where (o.g_code=g.g_code) and (g.b_code=b.b_code) and m_id=?	");
+			.append("	where (o.g_code=g.g_code) and (g.b_code=b.b_code) and m_id=?	")
+			.append("	order by o_date desc	");
 			
 			pstmt=con.prepareStatement(selectOrder.toString());
 			pstmt.setString(1, id);
@@ -545,7 +547,7 @@ public class ClientDAO {
 		try {
 			con=getConnection();
 			StringBuilder selectDetailMyOrder= new StringBuilder();
-			selectDetailMyOrder.append(" select o.o_code, g.g_name,o_quantity, o_delivery, o_date, o_delmsg, p_method,o.o_buypay, g_img	")
+			selectDetailMyOrder.append(" select o.o_code, g.g_name,o_quantity, o_delivery, o_date, o_delmsg, p_method,o.o_buypay, g_img, g.g_code as g_code, o_score	")
 			.append(" from ordering o, goods g ,order_pay op, pay p	")
 			.append(" where (g.g_code=o.g_code) and (op.o_code=o.o_code) and (p.p_code=op.p_code) and o.o_code=?	");
 			
@@ -558,6 +560,8 @@ public class ClientDAO {
 				moDTO.setP_method(rs.getString("p_method"));
 				moDTO.setO_buypay(rs.getInt("o_buypay"));
 				moDTO.setG_img(rs.getString("g_img"));
+				moDTO.setG_code(rs.getString("g_code"));
+				moDTO.setO_score(rs.getInt("o_score"));
 			}//end if
 		}finally {
 			if(rs !=null) {rs.close();}//end if
@@ -567,6 +571,11 @@ public class ClientDAO {
 		
 	}//selectDetailMyOrder
 	
+	/**
+	 * 회원정보를 수정하기 위한 조회 
+	 * @param cdVO
+	 * @throws SQLException
+	 */
 	public void selectCusData(SelectCusDataVO cdVO) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -601,4 +610,59 @@ public class ClientDAO {
 			if(con != null) {con.close();}//end if
 		}//end finally
 	}//selectCusData
+	
+	/**
+	 * 사용자가 평점을 입력하여 점수변경
+	 * @param ugVO
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean updateGiveScore(UpdateGiveScoreVO ugVO)throws SQLException{
+		boolean updateFlag=false;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=getConnection();
+			StringBuilder updateScore=new StringBuilder();
+			updateScore.append(" update ordering  set o_score=? where o_code=? 	");
+			pstmt=con.prepareStatement(updateScore.toString());
+			pstmt.setInt(1, ugVO.getO_score());
+			pstmt.setString(2, ugVO.getO_code());
+			
+			updateFlag=pstmt.executeUpdate()==1;
+		}finally {
+			if(pstmt!=null) {pstmt.close();}//end if
+			if(con!=null) {con.close();}//end if
+		}//end finally
+		
+		return updateFlag;
+	}//updateGiveScore
+
+	public boolean updateGoodeScore(String gCode)throws SQLException{
+		boolean updateFlag=false;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=getConnection();
+			StringBuilder updateScore=new StringBuilder();
+			updateScore.append(" update goods 	")
+			.append("	set g_score=(select trunc((sum(o_score)/count(*)),0) score from ordering o, goods g where (o.g_code=g.g_code)and g.g_code=?)	")
+			.append("	where g_code=?	");
+			pstmt=con.prepareStatement(updateScore.toString());
+			pstmt.setString(1, gCode);
+			pstmt.setString(2, gCode);
+			
+			updateFlag=pstmt.executeUpdate()==1;
+		}finally {
+			if(pstmt!=null) {pstmt.close();}//end if
+			if(con!=null) {con.close();}//end if
+		}//end finally
+		
+		return updateFlag;
+	}//updateGoodeScore
+	
+
+	
 }// class

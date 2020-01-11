@@ -2,7 +2,7 @@ package user.vo.content;
 
 public class SelectMyOrderDetailDTO {
 
-	private String o_code, g_name, o_delivery, o_date, o_delmsg, p_method, b_name,g_img;
+	private String o_code, g_name, o_delivery, o_date, o_delmsg, p_method, b_name,g_img, g_code;
 	private int o_quantity,o_score, o_buypay;
 	public String getO_code() {
 		return o_code;
@@ -70,6 +70,13 @@ public class SelectMyOrderDetailDTO {
 	public void setO_buypay(int o_buypay) {
 		this.o_buypay = o_buypay;
 	}
+	public String getG_code() {
+		return g_code;
+	}
+	public void setG_code(String g_code) {
+		this.g_code = g_code;
+	}
+	
 	
 	
 }

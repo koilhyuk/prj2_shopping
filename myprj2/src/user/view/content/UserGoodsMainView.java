@@ -416,7 +416,7 @@ public class UserGoodsMainView extends JFrame {
 			btnCardUpLoad.setBorder(new LineBorder(new Color(0x3F4040)));
 			btnCardUpLoad.addMouseListener(ugme);
 
-			btnOrderNe = new JButton("주문내역");
+			btnOrderNe = new JButton("마이페이지");
 			btnOrderNe.setBounds(10, 240, 195, 30);
 			btnOrderNe.setBackground(new Color(0x3F4040));
 			btnOrderNe.setForeground(Color.white);

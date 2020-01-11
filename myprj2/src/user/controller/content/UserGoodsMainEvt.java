@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import user.dao.UserDAO;
 import user.helper.RecentThread;
 import user.run.PhotoUploading;
+import user.view.content.UserMyPageView;
 import user.view.content.UserCardUploadView;
 import user.view.content.UserGoodsListPanelView;
 import user.view.content.UserGoodsMainView;
@@ -467,6 +468,7 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 				new UserCardUploadView(ugmv);
 			} // end if
 			if (ae.getSource() == ugmv.getBtnOrderNe()) {
+				new UserMyPageView(UserGoodsMainView.id);
 			} // end if
 		} // end if
 

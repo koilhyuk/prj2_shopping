@@ -37,16 +37,13 @@ public class UserMyOrderView extends JFrame {
 	private JTable jtOrder;
 	private JScrollPane jspOrder;
 	private JTableHeader th;
-	private JButton jbtBack;
 
 	private static String id;
 	public UserMyOrderView(String id) {
 		this.id=id;
-		setBackground(Color.white);
 
-		JLabel jlTitle = new JLabel("'"+id+"'고객님의 주문내역");
+		JLabel jlTitle = new JLabel("▒  '"+id+"'회원님의 주문내역  ▒");
 		jlTitle.setForeground(Color.white);
-		jbtBack= new JButton("마이페이지로 가기");
 		// 폰트
 		Font font = new Font("맑은 고딕", Font.BOLD, 20); // 타이틀폰트
 		Font fontHh = new Font("맑은 고딕", Font.BOLD, 15); // 테이블헤더
@@ -79,7 +76,7 @@ public class UserMyOrderView extends JFrame {
 		jtOrder.setBorder(new LineBorder(new Color(0x3F4040)));
 		jtOrder.setSelectionForeground(new Color(0x3F4040));
 		jtOrder.setBackground(Color.white);
-		Font tableList = new Font("맑은 고딕", Font.PLAIN, 15);
+		Font tableList = new Font("맑은 고딕", Font.BOLD, 13);
 		jtOrder.setFont(tableList);
 
 		// 헤더 정렬
@@ -89,32 +86,31 @@ public class UserMyOrderView extends JFrame {
 		dtcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
 		TableColumnModel tcm = jtOrder.getColumnModel();// 정렬할 컬럼모델을 가져옴
 		tcm.getColumn(0).setCellRenderer(dtcrCenter);
+		tcm.getColumn(1).setCellRenderer(dtcrCenter);
 		tcm.getColumn(2).setCellRenderer(dtcrCenter);
-		tcm.getColumn(3).setCellRenderer(dtcrRight);
+		tcm.getColumn(3).setCellRenderer(dtcrCenter);
 		tcm.getColumn(4).setCellRenderer(dtcrRight);
 
 		jspOrder = new JScrollPane(jtOrder); // 스크롤
 		th.setPreferredSize(new Dimension(20, 30)); // header 높이 변경
 		jtOrder.setRowHeight(60);
-		jtOrder.getColumnModel().getColumn(0).setPreferredWidth(110);
-		jtOrder.getColumnModel().getColumn(1).setPreferredWidth(100);
-		jtOrder.getColumnModel().getColumn(2).setPreferredWidth(80);
-		jtOrder.getColumnModel().getColumn(3).setPreferredWidth(80);
+		jtOrder.getColumnModel().getColumn(0).setPreferredWidth(170);
+		jtOrder.getColumnModel().getColumn(1).setPreferredWidth(70);
+		jtOrder.getColumnModel().getColumn(2).setPreferredWidth(70);
+		jtOrder.getColumnModel().getColumn(3).setPreferredWidth(50);
 		jtOrder.getColumnModel().getColumn(4).setPreferredWidth(50);
 
 		JPanel jpLabel = new JPanel();
 		jpLabel.setLayout(null);
 		add(jlTitle);
-		add(jbtBack);
-		jlTitle.setBounds(150, 20, 400, 50);
-		jbtBack.setBounds(900, 30, 200, 30);
+		jlTitle.setBounds(80, 20, 400, 50);
 		jpLabel.setBackground(new Color(0x3F4040));
 		jpLabel.setBorder(new LineBorder(Color.black));
-		jpLabel.setBounds(-5, 0, 1700, 80);
+		jpLabel.setBounds(-5, 0, 1000, 80);
 		
 		setLayout(null); // 수동배치
 
-		jspOrder.setBounds(80, 120, 1000, 500);
+		jspOrder.setBounds(30, 120, 800, 380);
 		add(jspOrder);
 		add(jpLabel);
 //		jtOrder.setRowSorter(new TableRowSorter(dtmOrderList)); ////////// 열 정렬 (오름차순, 내림차순)/////////09-11추가
@@ -124,15 +120,16 @@ public class UserMyOrderView extends JFrame {
 
 		UserMyOrderEvt umo= new UserMyOrderEvt(this,id);
 		// action이벤트 처리
-		jbtBack.addActionListener(umo);
+		
 		// 마우스 이벤트 처리
 		jtOrder.addMouseListener(umo);
 
 		jtOrder.getTableHeader().setReorderingAllowed(false);// 컬럼이동방지
 		jtOrder.getTableHeader().setResizingAllowed(false);// 크기조절불가
+		this.getContentPane().setBackground(Color.white);
 
 		setVisible(true);
-		setBounds(100, 100, 1200, 700);
+		setBounds(100, 100, 900, 580);
 
 	}// AdGoodsManageView
 
@@ -154,11 +151,6 @@ public class UserMyOrderView extends JFrame {
 
 	public JTableHeader getTh() {
 		return th;
-	}
-
-
-	public JButton getJbtBack() {
-		return jbtBack;
 	}
 
 
