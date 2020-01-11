@@ -1040,4 +1040,75 @@ public class UserDAO {
 		return ucoiVO;
 	}// selectEmptyInform
 
+	public String selectGoodsLike(String goodsCode, String memberId) throws SQLException {
+		String likeResult = "";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			StringBuilder selectGoodsLike = new StringBuilder();
+			selectGoodsLike.append("	select g_code from GOODSLIKE	").append("	where m_id=? and g_code=?	");
+
+			pstmt = con.prepareStatement(selectGoodsLike.toString());
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, goodsCode);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				likeResult = rs.getString("g_code");
+			} // end while
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+
+		return likeResult;
+	}// selectGoodsLike
+	
+	public int selectGoodsLikeNum(String goodsCode) throws SQLException {
+		int likeNum = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+			StringBuilder selectGoodsLike = new StringBuilder();
+			selectGoodsLike.append("	select count(*) cnt from GOODSLIKE	").append(" where	g_code=? 	");
+			
+			pstmt = con.prepareStatement(selectGoodsLike.toString());
+			pstmt.setString(1, goodsCode);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				likeNum = rs.getInt("cnt");
+			} // end while
+			
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+		
+		return likeNum;
+	}// selectGoodsLike
+
 }// class
