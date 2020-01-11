@@ -14,6 +14,7 @@ import user.vo.content.MyPageUpdateVO;
 import user.vo.content.SelectCusDataVO;
 import user.vo.content.SelectMyOrderDetailDTO;
 import user.vo.content.SelectMyOrderVO;
+import user.vo.content.UpdateCusDataVO;
 import user.vo.content.UpdateGiveScoreVO;
 import user.vo.login.JoinDetailVO;
 import user.vo.login.LoginFoundIdVO;
@@ -653,6 +654,37 @@ public class ClientDAO {
 			pstmt=con.prepareStatement(updateScore.toString());
 			pstmt.setString(1, gCode);
 			pstmt.setString(2, gCode);
+			
+			updateFlag=pstmt.executeUpdate()==1;
+		}finally {
+			if(pstmt!=null) {pstmt.close();}//end if
+			if(con!=null) {con.close();}//end if
+		}//end finally
+		
+		return updateFlag;
+	}//updateGoodeScore
+	
+	public boolean updateCusData(UpdateCusDataVO ucVO)throws SQLException{
+		boolean updateFlag=false;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=getConnection();
+			StringBuilder updateScore=new StringBuilder();
+			updateScore.append(" update member	 	")
+			.append("	set m_phone=?,m_detail_addr=?,m_email=? , z_seq=( select z_seq	")
+			.append("	from (select concat(concat(concat(z_sido,' '||nvl(z_gugun,' ')),' '||z_dong),' '||z_bunji) z_addr,	")
+			.append("	z_seq, z_zipcode from address)	")
+			.append("	where z_zipcode like '%'||?||'%'  and z_addr like '%'||?||'%')	")
+			.append("	where m_id =?   	");
+			pstmt=con.prepareStatement(updateScore.toString());
+			pstmt.setString(1, ucVO.getM_phone());
+			pstmt.setString(2, ucVO.getM_detail_addr());
+			pstmt.setString(3, ucVO.getM_email());
+			pstmt.setString(4, ucVO.getZ_zipcode());
+			pstmt.setString(5, ucVO.getZ_addr());
+			pstmt.setString(6, ucVO.getM_id());
 			
 			updateFlag=pstmt.executeUpdate()==1;
 		}finally {

@@ -1,12 +1,15 @@
 package user.controller.content;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import user.dao.ClientDAO;
 import user.view.content.UserCusDataView;
 import user.view.content.UserCusPwResetView;
 import user.view.content.ZipcodeSearchCusView;
+import user.vo.content.UpdateCusDataVO;
 
 public class UserCusDataEvt implements ActionListener {
 	private UserCusDataView ucd;
@@ -18,36 +21,27 @@ public class UserCusDataEvt implements ActionListener {
 	}// UserCusDataEvt
 	
 	// 수정
+	//m_phone,m_detail_addr,m_email , z_seq, m_id,z_zipcode, z_addr
 	public void modifyMyPage() {
 		String id = ucd.getJtfId().getText().trim();
-//		String pass = ucd.getJpfPw().getPassword().toString();
-//		String newpass = ucd.getJpfPwConfirm().getPassword().toString();
 		String addr = ucd.getJtfAddr().getText().trim();
-		String birth = ucd.getJtfBirth().getText().trim();
-//		String phone = "-" + ucd.getJtfPhoneFront().getText() + "-" + ucd.getJtfPhoneBehind().getText();
 		String email = ucd.getJtfEmail().getText().trim();
-		String cipherText = "";// 암호화
-		String cipherText1 = "";// 암호화
-		
-//		try {
-//			cipherText = DataEncrypt.messageDigest("MD5", pass);
-//			cipherText1 = DataEncrypt.messageDigest("MD5", newpass);
-//		} catch (NoSuchAlgorithmException e1) {
-//			e1.printStackTrace();
-
-//			MyPageUpdateVO mpuVO = new MyPageUpdateVO(id, pass, newpass, addr, birth, phone, email, cipherText);
-//			ClientDAO cDAO = ClientDAO.getInstance();
-
-//			try {
-//				if (cDAO.updateMyPage(mpuVO)) {
-//					JOptionPane.showMessageDialog(ucd, "수정이 완료되었습니다");
-//					ucd.dispose();
-//				} // end if
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//				JOptionPane.showMessageDialog(ucd, "수정을 실패하였습니다");
-//			} // end catch
-//		} // end switch
+		String detail_addr=ucd.getJtfAddress().getText().trim();
+		String phone1=ucd.getJcbPhoneNum().getSelectedItem().toString();
+		String phone2= "-"+ucd.getJtfPhoneNum1().getText().trim();
+		String phone3="-"+ucd.getJtfPhoneNum2().getText().trim();
+		String phone=phone1+phone2+phone3;
+		String zipcode= ucd.getJtfZipcode().getText().trim();
+		UpdateCusDataVO ucVO= new UpdateCusDataVO(phone, detail_addr, email,id, zipcode, addr);
+			ClientDAO cDAO = ClientDAO.getInstance();
+			try {
+				if (cDAO.updateCusData(ucVO)) {
+					JOptionPane.showMessageDialog(ucd, "수정이 완료되었습니다");
+					ucd.dispose();
+				} // end if
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} // end catch
 	}// modifyMyPage
 
 	@Override
