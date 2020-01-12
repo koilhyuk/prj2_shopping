@@ -20,15 +20,12 @@ public class UserCusPwResetView extends JDialog{
 	private UserCusDataView ucd;
 	private static String id;
 	public UserCusPwResetView(UserCusDataView ucd,String id) {
-		super(ucd, "아이디/비밀번호 찾기", true);
+		super(ucd, "비밀번호 변경", true);
 		this.ucd=ucd;
 		this.id=id;
 		
 		jtfNewPw=new JPasswordField();
 		jtfNewPwConfirm=new JPasswordField();
-		
-		jtfNewPw.setBorder(null);
-		jtfNewPwConfirm.setBorder(null);
 		
 		jlTitle=new JLabel("비밀번호 재설정");
 		jlNewPw=new JLabel("신규 비밀번호");

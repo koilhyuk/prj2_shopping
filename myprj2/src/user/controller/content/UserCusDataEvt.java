@@ -27,12 +27,47 @@ public class UserCusDataEvt implements ActionListener {
 		String addr = ucd.getJtfAddr().getText().trim();
 		String email = ucd.getJtfEmail().getText().trim();
 		String detail_addr=ucd.getJtfAddress().getText().trim();
-//		System.out.println(detail_addr);
 		String phone1=ucd.getJcbPhoneNum().getSelectedItem().toString();
 		String phone2= "-"+ucd.getJtfPhoneNum1().getText().trim();
 		String phone3="-"+ucd.getJtfPhoneNum2().getText().trim();
 		String phone=phone1+phone2+phone3;
 		String zipcode= ucd.getJtfZipcode().getText().trim();
+		if(addr.isEmpty()) {
+			JOptionPane.showConfirmDialog(ucd, "주소를 입력해주세요");
+			ucd.getJtfAddr().setText("");
+			ucd.getJtfAddr().requestFocus();
+			return;
+		}//end if
+		if(zipcode.isEmpty()) {
+			JOptionPane.showConfirmDialog(ucd, "주소를 입력해주세요");
+			ucd.getJtfZipcode().setText("");
+			ucd.getJtfZipcode().requestFocus();
+			return;
+		}//end if
+		if(email.isEmpty()) {
+			if(!email.contains("@")&&!email.contains(".")) {
+				JOptionPane.showConfirmDialog(ucd, "이메일을 올바르게 입력해주세요");
+				ucd.getJtfEmail().setText("");
+				ucd.getJtfEmail().requestFocus();
+				return;
+			}//end if
+		}//end if
+		if(ucd.getJtfPhoneNum1().getText().trim().isEmpty()) {
+			if(ucd.getJtfPhoneNum1().getText().length()!=4) {
+				JOptionPane.showConfirmDialog(ucd, "전화번호4자리를 입력해주세요");
+				ucd.getJtfPhoneNum1().setText("");
+				ucd.getJtfPhoneNum1().requestFocus();
+				return;
+			}//end if
+		}//end if
+		if(ucd.getJtfPhoneNum2().getText().trim().isEmpty()) {
+			if(ucd.getJtfPhoneNum2().getText().length()!=4) {
+				JOptionPane.showConfirmDialog(ucd, "전화번호4자리를 입력해주세요");
+				ucd.getJtfPhoneNum2().setText("");
+				ucd.getJtfPhoneNum2().requestFocus();
+				return;
+			}//end if
+		}//end if
 		UpdateCusDataVO ucVO= new UpdateCusDataVO(phone, addr, email,id, zipcode, detail_addr);
 			ClientDAO cDAO = ClientDAO.getInstance();
 			try {
@@ -49,16 +84,12 @@ public class UserCusDataEvt implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == ucd.getJbtConfirm()) {// 수정 버튼 클릭
 			modifyMyPage();
-//			if (ucd.getJtfPassword().getText().equals(ucd.getJtfChangePass().getText())) {
-//				modifyMyPage();
-//			} else {
-//				JOptionPane.showMessageDialog(ucd, "입력된 비밀번호가 일치하지 않습니다");
-//			} // end if
 		} // end if
 
 		if (ae.getSource() == ucd.getJbtWithdrawal()) {// 탈퇴 버튼 클릭
 			switch (JOptionPane.showConfirmDialog(ucd, "회원 탈퇴를 하시겠습니까?")) {
 			case JOptionPane.OK_OPTION:
+				
 			}// end switch
 		} // end if
 		if (ae.getSource() == ucd.getJbtnPass()) {// 비밀번호 수정
