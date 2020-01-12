@@ -27,12 +27,13 @@ public class UserCusDataEvt implements ActionListener {
 		String addr = ucd.getJtfAddr().getText().trim();
 		String email = ucd.getJtfEmail().getText().trim();
 		String detail_addr=ucd.getJtfAddress().getText().trim();
+//		System.out.println(detail_addr);
 		String phone1=ucd.getJcbPhoneNum().getSelectedItem().toString();
 		String phone2= "-"+ucd.getJtfPhoneNum1().getText().trim();
 		String phone3="-"+ucd.getJtfPhoneNum2().getText().trim();
 		String phone=phone1+phone2+phone3;
 		String zipcode= ucd.getJtfZipcode().getText().trim();
-		UpdateCusDataVO ucVO= new UpdateCusDataVO(phone, detail_addr, email,id, zipcode, addr);
+		UpdateCusDataVO ucVO= new UpdateCusDataVO(phone, addr, email,id, zipcode, detail_addr);
 			ClientDAO cDAO = ClientDAO.getInstance();
 			try {
 				if (cDAO.updateCusData(ucVO)) {
@@ -58,7 +59,6 @@ public class UserCusDataEvt implements ActionListener {
 		if (ae.getSource() == ucd.getJbtWithdrawal()) {// 탈퇴 버튼 클릭
 			switch (JOptionPane.showConfirmDialog(ucd, "회원 탈퇴를 하시겠습니까?")) {
 			case JOptionPane.OK_OPTION:
-			
 			}// end switch
 		} // end if
 		if (ae.getSource() == ucd.getJbtnPass()) {// 비밀번호 수정

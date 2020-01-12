@@ -83,6 +83,8 @@ public class UserCusDataView extends JFrame {
 		jtfBirth.setText(cdVO.getM_birth());
 		jtfZipcode.setText(cdVO.getZ_zipcode());
 		jtfAddress.setText(cdVO.getZ_addr());
+		jtfAddr.setText(cdVO.getM_detail_addr());
+		
 		String phone1=cdVO.getM_phone().substring(4,cdVO.getM_phone().lastIndexOf("-"));
 		String phone2=cdVO.getM_phone().substring(cdVO.getM_phone().lastIndexOf("-")+1);
 		jtfPhoneNum1.setText(phone1);

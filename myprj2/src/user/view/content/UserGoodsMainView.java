@@ -393,7 +393,7 @@ public class UserGoodsMainView extends JFrame {
 		jpbanner.add(jladdr);
 		jpbanner.add(jljob);
 		jpbanner.add(jlinfo);
-		jpbanner.setBounds(0, 1950, 1600, 300);
+		jpbanner.setBounds(0, 1750, 1600, 300);
 		jpbanner.setLayout(null);
 		jpContent.add(jpbanner);
 		setResizable(false);
@@ -456,7 +456,7 @@ public class UserGoodsMainView extends JFrame {
 		jpBestGoods.setBackground(Color.white);
 		jpGoods.setBackground(Color.white);
 
-		setBounds(100, 0, 1600, 1000);
+		setBounds(100, 0, 1600, 800);
 		jspFull.setBounds(0, 0, getWidth() - 20, getHeight() - 37);// 고정 값
 		jpChannel.setBounds(0, 70, jspFull.getWidth() - 15, 100);
 		jpContent.setPreferredSize(new Dimension(jspFull.getWidth() - 20, jspFull.getHeight() + 1150));// 고정 값

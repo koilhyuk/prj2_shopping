@@ -39,5 +39,11 @@ public class UpdateCusDataVO {
 		return z_addr;
 	}
 
+	@Override
+	public String toString() {
+		return "UpdateCusDataVO [m_phone=" + m_phone + ", m_detail_addr=" + m_detail_addr + ", m_email=" + m_email
+				+ ", m_id=" + m_id + ", z_zipcode=" + z_zipcode + ", z_addr=" + z_addr + "]";
+	}
+
 	
 }

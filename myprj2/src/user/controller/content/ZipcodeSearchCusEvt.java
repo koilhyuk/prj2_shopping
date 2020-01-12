@@ -125,7 +125,7 @@ public class ZipcodeSearchCusEvt extends MouseAdapter implements ActionListener 
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == DOUBLE_CLICK) {
 			setAddr(zsov.getJtZipcode(), ucv.getJtfZipcode(), ucv.getJtfAddress());
-//			ucv.getJtfAddress().setText("");
+			ucv.getJtfAddr().setText("");
 		} // end if
 
 	}// mouseClicked

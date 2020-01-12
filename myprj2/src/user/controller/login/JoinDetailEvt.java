@@ -34,8 +34,10 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		String id = jdv.getJtfId().getText().trim();// 아이디
 
 		String tempGen = ""; // 성별
-		String addrSeq = (String) jdv.getJtfZipcode().getText();
-		String addrDetail= jdv.getJtfAddress().getText();
+//		String addrSeq = (String) jdv.getJtfZipcode().getText();
+		String addrDetail= jdv.getJtfAddress().getText();// 
+		String addr= jdv.getJtfAddr().getText();//상세
+		
 		String zipcode= jdv.getJtfZipcode().getText();
 		String inputPw = new String(jdv.getJpfPw().getPassword());// 비밀번호 보호
 		String inputPw2= new String(jdv.getJpfPwConfirm().getPassword());
@@ -121,7 +123,7 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 			e1.printStackTrace();
 		}//end catch
 		
-		jdVO = new JoinDetailVO(id, cipherText,name, birth, tempGen, phone, addrDetail,email, zeq);
+		jdVO = new JoinDetailVO(id, cipherText,name, birth, tempGen, phone, addr,email, zeq);
 //		if (jdv.getJtfId().getText().isEmpty()) {
 //			JOptionPane.showMessageDialog(jdv, "아이디를 입력해주세요");
 //		} else if (jdv.getJpfPw().getText().isEmpty()) {

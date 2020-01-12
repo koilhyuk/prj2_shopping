@@ -649,7 +649,7 @@ public class ClientDAO {
 			con=getConnection();
 			StringBuilder updateScore=new StringBuilder();
 			updateScore.append(" update goods 	")
-			.append("	set g_score=(select trunc((sum(o_score)/count(*)),0) score from ordering o, goods g where (o.g_code=g.g_code)and g.g_code=?)	")
+			.append("	set g_score=(select trunc((sum(o_score)/count(*)),1) score from ordering o, goods g where (o.g_code=g.g_code)and g.g_code=?)	")
 			.append("	where g_code=?	");
 			pstmt=con.prepareStatement(updateScore.toString());
 			pstmt.setString(1, gCode);

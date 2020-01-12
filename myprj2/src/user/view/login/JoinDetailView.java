@@ -25,7 +25,7 @@ public class JoinDetailView extends JFrame {
 	private JRadioButton jrbM, jrbF;
 	private JButton jbtIdConfirm, jbtConfirm, jbtClose;
 	private JPasswordField jpfPw, jpfPwConfirm;
-	private JTextField jtfZipcode, jtfAddress, jtfDetailAddr;
+	private JTextField jtfZipcode, jtfAddress;
 	private JButton jbtnSearchAddr;
 
 	public JoinDetailView() {
@@ -121,9 +121,9 @@ public class JoinDetailView extends JFrame {
 		jtfZipcode.setBorder(null);
 
 		setLayout(null);
-		add(jtfZipcode);
+		add(jtfZipcode);//
 		add(jbtnSearchAddr);
-		add(jtfAddress);
+		add(jtfAddress);//
 		add(jlTitle);
 		add(jlId);
 		add(jlPw);
@@ -148,7 +148,7 @@ public class JoinDetailView extends JFrame {
 		add(jtfPhoneNum);
 		add(jtfPhoneNum1);
 		add(jtfPhoneNum2);
-		add(jtfAddr);
+		add(jtfAddr);//
 		add(jtfEmail);
 		add(jbtIdConfirm);
 		add(jbtConfirm);
@@ -361,10 +361,6 @@ public class JoinDetailView extends JFrame {
 
 	public JTextField getJtfAddress() {
 		return jtfAddress;
-	}
-
-	public JTextField getJtfDetailAddr() {
-		return jtfDetailAddr;
 	}
 
 	public JButton getJbtnSearchAddr() {
