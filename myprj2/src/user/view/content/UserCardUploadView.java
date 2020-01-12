@@ -18,9 +18,9 @@ public class UserCardUploadView extends JDialog {
 	private JTextField jtfCard1, jtfCard2, jtfCard3, jtfCard4, jtfCVC;
 	private JComboBox<String> jcbCardName;
 	private DefaultComboBoxModel<String> dcbmCard;
-	private UserGoodsMainView ugmv;
+	private UserMyPageView ugmv;
 
-	public UserCardUploadView(UserGoodsMainView ugmv) {
+	public UserCardUploadView(UserMyPageView ugmv) {
 		super(ugmv, "카드등록", true);
 		this.ugmv = ugmv;
 

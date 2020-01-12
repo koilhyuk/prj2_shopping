@@ -45,7 +45,7 @@ public class UserMyPageEvt implements ActionListener{
 			}//end if
 			
 			if(ae.getSource()==mdv.getJbtWithdrawal()) {//카드등록
-//				new UserCardUploadView();
+				new UserCardUploadView(mdv);
 			}//end if
 			
 			if(ae.getSource()==mdv.getJbtOk()) {//확인

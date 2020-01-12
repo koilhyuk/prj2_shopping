@@ -464,9 +464,9 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 		JTabbedPane jttpCate = ugmv.getJttpCate();
 
 		if (UserGoodsMainView.id != null && !UserGoodsMainView.id.isEmpty()) {// 회원일때만
-			if (ae.getSource() == ugmv.getBtnCardUpLoad()) {
-				new UserCardUploadView(ugmv);
-			} // end if
+//			if (ae.getSource() == ugmv.getBtnCardUpLoad()) {
+//				new UserCardUploadView(ugmv);
+//			} // end if
 			if (ae.getSource() == ugmv.getBtnOrderNe()) {
 				new UserMyPageView(UserGoodsMainView.id);
 			} // end if
@@ -767,10 +767,10 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 			ugmv.getBtnLogout().setForeground(Color.RED);
 			ugmv.getBtnLogout().setBorder(new LineBorder(Color.red));
 		}
-		if (me.getSource() == ugmv.getBtnCardUpLoad()) {
-			ugmv.getBtnCardUpLoad().setForeground(Color.RED);
-			ugmv.getBtnCardUpLoad().setBorder(new LineBorder(Color.red));
-		}
+//		if (me.getSource() == ugmv.getBtnCardUpLoad()) {
+//			ugmv.getBtnCardUpLoad().setForeground(Color.RED);
+//			ugmv.getBtnCardUpLoad().setBorder(new LineBorder(Color.red));
+//		}
 		if (me.getSource() == ugmv.getBtnType()) {
 			ugmv.getBtnType().setForeground(Color.RED);
 			ugmv.getBtnType().setBackground(new Color(0x3F4040));
@@ -821,10 +821,10 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 			ugmv.getBtnLogout().setForeground(Color.white);
 			ugmv.getBtnLogout().setBorder(new LineBorder(new Color(0x3F4040)));
 		}
-		if (me.getSource() == ugmv.getBtnCardUpLoad()) {
-			ugmv.getBtnCardUpLoad().setForeground(Color.white);
-			ugmv.getBtnCardUpLoad().setBorder(new LineBorder(new Color(0x3F4040)));
-		}
+//		if (me.getSource() == ugmv.getBtnCardUpLoad()) {
+//			ugmv.getBtnCardUpLoad().setForeground(Color.white);
+//			ugmv.getBtnCardUpLoad().setBorder(new LineBorder(new Color(0x3F4040)));
+//		}
 		if (me.getSource() == ugmv.getBtnType()) {
 			ugmv.getBtnType().setForeground(new Color(0x3F4040));
 			ugmv.getBtnType().setBackground(Color.white);

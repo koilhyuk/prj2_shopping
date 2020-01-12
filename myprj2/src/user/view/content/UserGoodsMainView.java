@@ -30,7 +30,6 @@ public class UserGoodsMainView extends JFrame {
 
 	private MemLoginState mls;
 	private JButton btnOrderNe;
-	private JButton btnCardUpLoad;
 	/////////////////////////////// 20200112 찜하기 버튼 추가
 	private JButton btnGoodsLike;
 
@@ -404,14 +403,14 @@ public class UserGoodsMainView extends JFrame {
 		if (UserGoodsMainView.id != null && !UserGoodsMainView.id.isEmpty()) {// 회원일때만
 			mls = new MemLoginState(id);
 			mls.start();
-			btnCardUpLoad = new JButton("카드등록");
-			btnCardUpLoad.setBounds(115, 200, 90, 30);
-			btnCardUpLoad.addActionListener(ugme);
-			jpContent.add(btnCardUpLoad);
-			btnCardUpLoad.setBackground(new Color(0x3F4040));
-			btnCardUpLoad.setForeground(Color.white);
-			btnCardUpLoad.setBorder(new LineBorder(new Color(0x3F4040)));
-			btnCardUpLoad.addMouseListener(ugme);
+//			btnCardUpLoad = new JButton("카드등록");
+//			btnCardUpLoad.setBounds(115, 200, 90, 30);
+//			btnCardUpLoad.addActionListener(ugme);
+//			jpContent.add(btnCardUpLoad);
+//			btnCardUpLoad.setBackground(new Color(0x3F4040));
+//			btnCardUpLoad.setForeground(Color.white);
+//			btnCardUpLoad.setBorder(new LineBorder(new Color(0x3F4040)));
+//			btnCardUpLoad.addMouseListener(ugme);
 
 			/////////////////////////////// 20200112 찜하기 버튼 추가
 			btnGoodsLike = new JButton("찜한 상품");
@@ -420,7 +419,8 @@ public class UserGoodsMainView extends JFrame {
 			jpContent.add(btnGoodsLike);
 
 			btnOrderNe = new JButton("마이페이지");
-			btnOrderNe.setBounds(10, 240, 195, 30);
+//			btnOrderNe.setBounds(10, 240, 195, 30);
+			btnOrderNe.setBounds(115, 200, 90, 30);
 			btnOrderNe.setBackground(new Color(0x3F4040));
 			btnOrderNe.setForeground(Color.white);
 			btnOrderNe.setBorder(new LineBorder(new Color(0x3F4040)));
@@ -456,7 +456,7 @@ public class UserGoodsMainView extends JFrame {
 		jpBestGoods.setBackground(Color.white);
 		jpGoods.setBackground(Color.white);
 
-		setBounds(100, 0, 1600, 800);
+		setBounds(10, 0, 1600, 800);
 		jspFull.setBounds(0, 0, getWidth() - 20, getHeight() - 37);// 고정 값
 		jpChannel.setBounds(0, 70, jspFull.getWidth() - 15, 100);
 		jpContent.setPreferredSize(new Dimension(jspFull.getWidth() - 20, jspFull.getHeight() + 1150));// 고정 값
@@ -605,9 +605,9 @@ public class UserGoodsMainView extends JFrame {
 		return mls;
 	}
 
-	public JButton getBtnCardUpLoad() {
-		return btnCardUpLoad;
-	}
+//	public JButton getBtnCardUpLoad() {
+//		return btnCardUpLoad;
+//	}
 
 	public JButton getBtnOrderNe() {
 		return btnOrderNe;
