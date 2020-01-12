@@ -93,7 +93,6 @@ public class UserGoodsListPanelEvt implements ActionListener {
 				insertNmRecent();
 			} // end if
 				//////////////////////////////////////////// 2019-12-30 상품 조회
-
 			searchGoodsDetail(goodsCode, goodsLikeStatus(goodsCode));
 		} // end if
 	}// actionPerformed

@@ -26,7 +26,7 @@ public class UserGoodsDetailView extends JDialog {
 
 	private JButton jbtnBuy, jbtnPlus, jbtnMinus, jbtnGoodsLike;
 	private JTable jtProduct;
-	private JLabel jlGName, jlGPrice, jlGTotalPrice;
+	private JLabel jlGName, jlGPrice, jlGTotalPrice,jlLike;
 	private JTextArea jtaStrong;
 	private JTextField jtfSelectNum;
 
@@ -42,7 +42,7 @@ public class UserGoodsDetailView extends JDialog {
 		JLabel jlSellTag = new JLabel("-누적 판매");
 		JLabel jlSell = new JLabel(String.valueOf(scgdDTO.getgSaleNum()) + " 개", JLabel.LEFT);
 		JLabel jlLikeTag = new JLabel("-♥찜");
-		JLabel jlLike = new JLabel(scgdDTO.getgLikeNum() + " 개");
+		jlLike = new JLabel(scgdDTO.getgLikeNum() + " 개");
 		JLabel jlTotalMoneyTag = new JLabel("총 상품 금액");
 
 		jlDetail.setForeground(Color.white);
@@ -253,6 +253,10 @@ public class UserGoodsDetailView extends JDialog {
 
 	public JButton getJbtnGoodsLike() {
 		return jbtnGoodsLike;
+	}
+
+	public JLabel getJlLike() {
+		return jlLike;
 	}
 	
 

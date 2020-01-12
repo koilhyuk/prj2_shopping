@@ -96,16 +96,18 @@ public class UserGoodsDetailEvt implements ActionListener {
 					// 이미지 회색하트로 변경
 				changeLikeIcon = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
 				rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
+				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "\""+scgdDTO.getgName()+"\" 찜하기 해제되었습니다.");
 				scgdDTO.setgLikeStatus(false);
 			} else {// 좋아요가 되어 X 때 -> 추가
 				uDAO.insertGoodsLike(UserGoodsMainView.id, scgdDTO.getgCode());
 				changeLikeIcon = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
 				rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
+				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "\""+scgdDTO.getgName()+"\" 찜하기 되었습니다.");
 				scgdDTO.setgLikeStatus(true);
 			} // end else
 			ugdv.getJbtnGoodsLike().setIcon(changeLikeIcon);
 			ugdv.getJbtnGoodsLike().setRolloverIcon(rolloverLikeImg);
-
+			ugdv.getJlLike().setText(uDAO.selectGoodsLikeNum(scgdDTO.getgCode())+" 개");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end catch
