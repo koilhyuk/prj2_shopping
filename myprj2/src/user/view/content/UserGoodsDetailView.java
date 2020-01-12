@@ -26,7 +26,7 @@ public class UserGoodsDetailView extends JDialog {
 
 	private JButton jbtnBuy, jbtnPlus, jbtnMinus, jbtnGoodsLike;
 	private JTable jtProduct;
-	private JLabel jlGName, jlGPrice, jlGTotalPrice,jlLike;
+	private JLabel jlGName, jlGPrice, jlGTotalPrice, jlLike;
 	private JTextArea jtaStrong;
 	private JTextField jtfSelectNum;
 
@@ -52,7 +52,7 @@ public class UserGoodsDetailView extends JDialog {
 		jlGTotalPrice = new JLabel(priceFormat.format(scgdDTO.getgPrice()) + "원", JLabel.RIGHT);
 
 		JLabel jlGoodsStarTag = new JLabel("-평점");
-		JLabel jlGoodsStar = new JLabel("-평점");
+		JLabel jlGoodsStar = null;
 		switch (scgdDTO.getgScore()) {
 		case 5:
 			jlGoodsStar = new JLabel("★★★★★", JLabel.LEFT);
@@ -258,6 +258,5 @@ public class UserGoodsDetailView extends JDialog {
 	public JLabel getJlLike() {
 		return jlLike;
 	}
-	
 
 }// class

@@ -417,6 +417,7 @@ public class UserGoodsMainView extends JFrame {
 			btnGoodsLike.setBounds(210, 200, 90, 30);
 			btnGoodsLike.addActionListener(ugme);
 			jpContent.add(btnGoodsLike);
+			btnGoodsLike.addActionListener(ugme);
 
 			btnOrderNe = new JButton("마이페이지");
 //			btnOrderNe.setBounds(10, 240, 195, 30);

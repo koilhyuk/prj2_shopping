@@ -30,6 +30,7 @@ import user.helper.RecentThread;
 import user.run.PhotoUploading;
 import user.view.content.UserMyPageView;
 import user.view.content.UserCardUploadView;
+import user.view.content.UserGoodsLikeView;
 import user.view.content.UserGoodsListPanelView;
 import user.view.content.UserGoodsMainView;
 import user.view.content.UserGoodsNotPanelView;
@@ -683,6 +684,12 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 			photoUploading();
 			searchBrandList();
 		} // end if
+		
+		
+		///////////2020 ÂòÇÏ±â
+		if(ae.getSource()==ugmv.getBtnGoodsLike()) {
+			new UserGoodsLikeView();
+		}// end if
 
 	}// actionPerformed
 

@@ -35,8 +35,7 @@ public class UserGoodsLikeEvt implements ActionListener {
 
 		UserDAO uDAO = UserDAO.getInstance();
 		try {
-//			List<SelectAllGoodsVO> list = uDAO.selectLikeAllGoods(UserGoodsMainView.id);
-			List<SelectAllGoodsVO> list = uDAO.selectLikeAllGoods("test0");
+			List<SelectAllGoodsVO> list = uDAO.selectLikeAllGoods(UserGoodsMainView.id);
 
 			if (list.isEmpty()) {
 				jpGoodsReset();
@@ -70,17 +69,6 @@ public class UserGoodsLikeEvt implements ActionListener {
 		} // end catch
 	}// selectAllGoodsList
 
-//	private void photoUploading() {
-//		PhotoUploading pu = new PhotoUploading();
-//		try {
-//			pu.sendFiles();
-//		} catch (UnknownHostException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	private void jpGoodsReset() {
 		jpGoods.setVisible(false);
 		jpGoods.removeAll();
@@ -91,7 +79,9 @@ public class UserGoodsLikeEvt implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {// 카테고리 버튼 클릭 시 회원 비회원 나누기
 
 		if (UserGoodsMainView.id != null && !UserGoodsMainView.id.isEmpty()) {// 회원일때만
-
+			if(ae.getSource()==uglv.getJbtnComfirm()) {
+				uglv.dispose();
+			}
 		} // end if
 	}
 
