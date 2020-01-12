@@ -163,7 +163,7 @@ public class UserDAO {
 			}
 		} // end finally
 		return list;
-	}// selectBestGoods
+	}// selectAllGoods
 
 	/////////////// 2019-09-23
 	public List<SelectBestFiveGoodsVO> selectFiveGoods(SelectFiveCheckVO sfchkVO) throws SQLException {
@@ -1113,7 +1113,7 @@ public class UserDAO {
 
 	public boolean deleteGoodsLike(String memeId, String gCode) throws SQLException {
 		boolean deleteFlag = false;
-		
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -1138,7 +1138,7 @@ public class UserDAO {
 
 		return deleteFlag;
 	}// selectGoodsLike
-	
+
 	public void insertGoodsLike(String memeId, String gCode) throws SQLException {
 
 		Connection con = null;
@@ -1147,9 +1147,7 @@ public class UserDAO {
 		try {
 			con = getConnection();
 			StringBuilder insertLikeGoods = new StringBuilder();
-			insertLikeGoods
-			.append("	insert into goodslike(M_ID, G_CODE)	")
-			.append("	values(?,?)	");
+			insertLikeGoods.append("	insert into goodslike(M_ID, G_CODE)	").append("	values(?,?)	");
 
 			pstmt = con.prepareStatement(insertLikeGoods.toString());
 			pstmt.setString(1, memeId);
@@ -1166,5 +1164,46 @@ public class UserDAO {
 			}
 		} // end finally
 	}// insertOrderPay
+
+	public List<SelectAllGoodsVO> selectLikeAllGoods(String memId) throws SQLException {
+		List<SelectAllGoodsVO> list = new ArrayList<SelectAllGoodsVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			StringBuilder selectGoodsLikeMem = new StringBuilder();
+			selectGoodsLikeMem
+					.append("	select  gl.g_code, g_name, g_price, g_salenum, g_score, g_inventory, g_img, b_name	")
+					.append("	from goods g, detail_clothestype d	, brand b, goodslike gl	")
+					.append("	where (g.d_code=d.d_code and g.b_code=b.b_code and gl.g_code=g.g_code)	and  d.d_code !='DEL' and b.b_code !='DEL' and g_inventory !=0 and gl.m_id=?		")
+					.append("	order by like_date desc	");
+
+			pstmt = con.prepareStatement(selectGoodsLikeMem.toString());
+			pstmt.setString(1, memId);
+
+			rs = pstmt.executeQuery();
+
+			SelectAllGoodsVO sagVO = null;
+			while (rs.next()) {
+				sagVO = new SelectAllGoodsVO(rs.getString("g_code"), rs.getString("g_name"), rs.getString("g_img"),
+						rs.getString("b_name"), rs.getInt("g_price"), rs.getInt("g_salenum"), rs.getInt("g_score"),
+						rs.getInt("g_inventory"));
+				list.add(sagVO);
+			} // end while
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+		return list;
+	}// selectAllGoods
 
 }// class
