@@ -6,7 +6,6 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -64,18 +63,18 @@ public class UserGoodsLikeView extends JDialog {
 		jpContent.add(jpHeader);
 		jpContent.add(jspGoods);
 		jpContent.add(jbtnComfirm);
-		setResizable(false);
 
-		add(jpContent);
 		jpContent.setBounds(0, 0, 750, 775);// 고정 값
 		jpContent.setBackground(Color.white);
 		jpGoods.setBackground(Color.white);
-
 		// 이벤트
 		UserGoodsLikeEvt ugle = new UserGoodsLikeEvt(this);
 		jbtnComfirm.addActionListener(ugle);
 
+		add(jpContent);
 		setBounds(350, 20, 750, 775);
+
+		setResizable(false);
 		setVisible(true);
 
 	}// HomeMainView
@@ -96,7 +95,4 @@ public class UserGoodsLikeView extends JDialog {
 		return jbtnComfirm;
 	}
 
-	public static void main(String[] args) {
-		new UserGoodsLikeView();
-	}
-}// UserMainView
+}// class

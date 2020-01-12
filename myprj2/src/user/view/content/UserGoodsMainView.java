@@ -415,7 +415,6 @@ public class UserGoodsMainView extends JFrame {
 			/////////////////////////////// 20200112 찜하기 버튼 추가
 			btnGoodsLike = new JButton("찜한 상품");
 			btnGoodsLike.setBounds(210, 200, 90, 30);
-			btnGoodsLike.addActionListener(ugme);
 			jpContent.add(btnGoodsLike);
 			btnGoodsLike.addActionListener(ugme);
 

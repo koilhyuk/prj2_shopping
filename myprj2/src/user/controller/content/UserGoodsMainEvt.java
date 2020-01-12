@@ -28,12 +28,11 @@ import javax.swing.table.DefaultTableModel;
 import user.dao.UserDAO;
 import user.helper.RecentThread;
 import user.run.PhotoUploading;
-import user.view.content.UserMyPageView;
-import user.view.content.UserCardUploadView;
 import user.view.content.UserGoodsLikeView;
 import user.view.content.UserGoodsListPanelView;
 import user.view.content.UserGoodsMainView;
 import user.view.content.UserGoodsNotPanelView;
+import user.view.content.UserMyPageView;
 import user.view.login.ClientLoginView;
 import user.view.login.LoginDialogView;
 import user.vo.content.SelectAllGoodsVO;
@@ -473,11 +472,7 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 			} // end if
 			/////////////////////////////// 20200112 찜하기 버튼 추가
 			if (ae.getSource() == ugmv.getBtnGoodsLike()) {
-
-				
-				
-				
-				
+				new UserGoodsLikeView();
 			} // end if
 		} // end if
 
@@ -685,11 +680,6 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 			searchBrandList();
 		} // end if
 		
-		
-		///////////2020 찜하기
-		if(ae.getSource()==ugmv.getBtnGoodsLike()) {
-			new UserGoodsLikeView();
-		}// end if
 
 	}// actionPerformed
 
