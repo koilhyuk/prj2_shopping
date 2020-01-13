@@ -75,6 +75,8 @@ public class UserCusDataView extends JFrame {
 		jtfId.setEditable(false);
 		jtfName.setEditable(false);
 		jtfBirth.setEditable(false);
+		jtfAddress.setEditable(false);
+		jtfZipcode.setEditable(false);
 
 		// setText
 		jtfId.setText(id);//

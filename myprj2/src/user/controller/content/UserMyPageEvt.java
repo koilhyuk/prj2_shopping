@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import user.dao.ClientDAO;
 import user.view.content.UserMyPageView;
 import user.view.content.UserCusDataView;
+import user.view.content.UserGoodsLikeView;
 import user.view.content.UserCardUploadView;
 import user.view.content.UserMyOrderView;
 import user.vo.content.SelectCusDataVO;
@@ -47,6 +48,10 @@ public class UserMyPageEvt implements ActionListener{
 			if(ae.getSource()==mdv.getJbtWithdrawal()) {//카드등록
 				new UserCardUploadView(mdv);
 			}//end if
+			if(ae.getSource()==mdv.getJbtJJim()) {//카드등록
+				new UserGoodsLikeView();
+			}//end if
+			
 			
 			if(ae.getSource()==mdv.getJbtOk()) {//확인
 				switch (JOptionPane.showConfirmDialog(mdv, "마이페이지 창을 종료하시겠습니까?")) {

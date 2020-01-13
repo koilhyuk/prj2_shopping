@@ -30,6 +30,8 @@ public class UserMyOrderDetailEvt implements ActionListener {
 			if(cDAO.updateGiveScore(ugVO)) {
 				if(cDAO.updateGoodeScore(gCode)) {
 				JOptionPane.showMessageDialog(umv, "선택한 상품에 평점을 성공적으로 입력했습니다.");
+				umv.getJbtnScore().setEnabled(false);
+				umv.getJcbScore().setEnabled(false);
 				}//end if
 			}//end if
 		} catch (SQLException e) {

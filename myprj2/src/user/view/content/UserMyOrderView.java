@@ -89,7 +89,7 @@ public class UserMyOrderView extends JFrame {
 		tcm.getColumn(1).setCellRenderer(dtcrCenter);
 		tcm.getColumn(2).setCellRenderer(dtcrCenter);
 		tcm.getColumn(3).setCellRenderer(dtcrCenter);
-		tcm.getColumn(4).setCellRenderer(dtcrRight);
+		tcm.getColumn(4).setCellRenderer(dtcrCenter);
 
 		jspOrder = new JScrollPane(jtOrder); // 스크롤
 		th.setPreferredSize(new Dimension(20, 30)); // header 높이 변경

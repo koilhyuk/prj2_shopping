@@ -32,7 +32,7 @@ public class UserMyOrderDetailView extends JDialog  {
 //	private JTextField jtfOrderer, jtfReceive, jtfRecAddr, jtfPhone, jtfGoodsName, jtfbuyNum, jtfbuyMethod,
 
 	private JLabel jtfGoodsName, jtfbuyNum, jtfbuyMethod, jtfTotalPrice,jtfOrderDate, 
-	jtfDeliveryFlag, jtfDeliverMsg, jtfOrderCode,jtfGoodsCode;
+	jtfDeliveryFlag, jtfDeliverMsg, jtfOrderCode,jtfGoodsCode,jlScore;
 	private DefaultComboBoxModel<Integer> dcbmScore;
 	private JComboBox<Integer> jcbScore;
 	private JButton jbtnClose, jbtnScore;
@@ -105,7 +105,6 @@ public class UserMyOrderDetailView extends JDialog  {
 		jtfDeliverMsg = new JLabel();
 		jtfOrderCode = new JLabel();
 		jtfGoodsCode = new JLabel();
-		JLabel jlScore = new JLabel("이미 평점을 준 상품입니다.");
 
 		jbtnScore = new JButton("평점주기");
 		jbtnClose = new JButton("확인");
@@ -122,6 +121,7 @@ public class UserMyOrderDetailView extends JDialog  {
 		if(moDTO.getO_delmsg()==null || "".equals(moDTO.getO_delmsg())) {
 			jtfDeliverMsg.setText("배송 요청사항이 없습니다.");
 		}//end if
+	
 	
 		JPanel jpGoods = new JPanel();
 		jpGoods.setLayout(null);
@@ -150,16 +150,45 @@ public class UserMyOrderDetailView extends JDialog  {
 		jlscore.setBounds(15, 260, 70, 30);
 		jpGoods.add(jlscore);
 
-		
+//		jlScore.setText(String.valueOf(moDTO.getO_score()));
 		if(moDTO.getO_score()==0) {
 			jcbScore.setBounds(90, 260, 50, 30);
 			jbtnScore.setBounds(160, 260, 100, 30);
 			jpGoods.add(jcbScore);
 			jpGoods.add(jbtnScore);
 		}else {
-			jlScore.setBounds(90, 260, 200, 30);
-			jpGoods.add(jlScore);
-		}
+			switch (moDTO.getO_score()) {
+			case 5:
+				jlScore = new JLabel("★★★★★");
+				jlScore.setBounds(90, 260, 200, 30);
+				jpGoods.add(jlScore);
+				break;
+			case 4:
+				jlScore = new JLabel("★★★★☆");
+				jlScore.setBounds(90, 260, 200, 30);
+				jpGoods.add(jlScore);
+				break;
+			case 3:
+				jlScore = new JLabel("★★★☆☆");
+				jlScore.setBounds(90, 260, 200, 30);
+				jpGoods.add(jlScore);
+				break;
+			case 2:
+				jlScore = new JLabel("★★☆☆☆");
+				jlScore.setBounds(90, 260, 200, 30);
+				jpGoods.add(jlScore);
+				break;
+			case 1:
+				jlScore = new JLabel("★☆☆☆☆");
+				jlScore.setBounds(90, 260, 200, 30);
+				jpGoods.add(jlScore);
+				break;
+			default:
+				jlScore = new JLabel("");
+				break;
+			}// switch
+		}//end else
+
 		JPanel jpDelivery = new JPanel();
 		jpDelivery.setLayout(null);
 		jlDeliveryFlag.setBounds(10, 10, 150, 30);

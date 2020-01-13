@@ -73,8 +73,7 @@ public class UserMyPageView extends JFrame{
 		jbtMyData.setBounds(40, 200, 250, 50);//내정보변경
 		jbtWithdrawal.setBounds(40, 260, 250, 50); //카드등록
 		jbtJJim.setBounds(40,320,250,50);//찜하기
-		jbtOk.setBounds(50,390,100,30);
-		jbtLogOut.setBounds(180,390,100,30);
+		jbtOk.setBounds(100,390,100,30);
 		jtaImage.setBounds(315, 130, 160, 280);
 		
 		add(jlMyPage);
@@ -84,7 +83,6 @@ public class UserMyPageView extends JFrame{
 		add(jbtWithdrawal);
 		add(jbtJJim);
 		add(jbtOk);
-		add(jbtLogOut);
 		add(jtaImage);
 		
 		UserMyPageEvt mde=new UserMyPageEvt(this,id);
@@ -93,6 +91,7 @@ public class UserMyPageView extends JFrame{
 		jbtWithdrawal.addActionListener(mde);
 		jbtOk.addActionListener(mde);
 		jbtLogOut.addActionListener(mde);
+		jbtJJim.addActionListener(mde);
 		
 		this.getContentPane().setBackground(Color.white);
 		setBounds(100, 100, 500, 500);

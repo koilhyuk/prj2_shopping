@@ -412,11 +412,11 @@ public class UserGoodsMainView extends JFrame {
 //			btnCardUpLoad.setBorder(new LineBorder(new Color(0x3F4040)));
 //			btnCardUpLoad.addMouseListener(ugme);
 
-			/////////////////////////////// 20200112 찜하기 버튼 추가
-			btnGoodsLike = new JButton("찜한 상품");
-			btnGoodsLike.setBounds(210, 200, 90, 30);
-			jpContent.add(btnGoodsLike);
-			btnGoodsLike.addActionListener(ugme);
+//			/////////////////////////////// 20200112 찜하기 버튼 추가
+//			btnGoodsLike = new JButton("찜한 상품");
+//			btnGoodsLike.setBounds(210, 200, 90, 30);
+//			jpContent.add(btnGoodsLike);
+//			btnGoodsLike.addActionListener(ugme);
 
 			btnOrderNe = new JButton("마이페이지");
 //			btnOrderNe.setBounds(10, 240, 195, 30);

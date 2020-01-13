@@ -30,48 +30,62 @@ public class UserCusDataEvt implements ActionListener {
 		String phone1=ucd.getJcbPhoneNum().getSelectedItem().toString();
 		String phone2= "-"+ucd.getJtfPhoneNum1().getText().trim();
 		String phone3="-"+ucd.getJtfPhoneNum2().getText().trim();
-		String phone=phone1+phone2+phone3;
 		String zipcode= ucd.getJtfZipcode().getText().trim();
+		String strPhone2=phone2.substring(1);
+		String strPhone3=phone3.substring(1);
+		
 		if(addr.isEmpty()) {
-			JOptionPane.showConfirmDialog(ucd, "주소를 입력해주세요");
+			JOptionPane.showMessageDialog(ucd, "주소를 입력해주세요");
 			ucd.getJtfAddr().setText("");
 			ucd.getJtfAddr().requestFocus();
 			return;
 		}//end if
 		if(zipcode.isEmpty()) {
-			JOptionPane.showConfirmDialog(ucd, "주소를 입력해주세요");
+			JOptionPane.showMessageDialog(ucd, "주소를 입력해주세요");
 			ucd.getJtfZipcode().setText("");
 			ucd.getJtfZipcode().requestFocus();
 			return;
 		}//end if
 		if(email.isEmpty()) {
-			if(!email.contains("@")&&!email.contains(".")) {
-				JOptionPane.showConfirmDialog(ucd, "이메일을 올바르게 입력해주세요");
-				ucd.getJtfEmail().setText("");
-				ucd.getJtfEmail().requestFocus();
-				return;
-			}//end if
+			JOptionPane.showMessageDialog(ucd, "이메일을 올바르게 입력해주세요");
+			ucd.getJtfEmail().setText("");
+			ucd.getJtfEmail().requestFocus();
+			return;
+		}else if(!email.contains("@")||!email.contains(".")) {
+			JOptionPane.showMessageDialog(ucd, "이메일을 올바르게 입력해주세요");
+			ucd.getJtfEmail().setText("");
+			ucd.getJtfEmail().requestFocus();
+			return;
 		}//end if
-		if(ucd.getJtfPhoneNum1().getText().trim().isEmpty()) {
-			if(ucd.getJtfPhoneNum1().getText().length()!=4) {
-				JOptionPane.showConfirmDialog(ucd, "전화번호4자리를 입력해주세요");
-				ucd.getJtfPhoneNum1().setText("");
-				ucd.getJtfPhoneNum1().requestFocus();
-				return;
-			}//end if
+		if(strPhone2.isEmpty()) {
+			JOptionPane.showMessageDialog(ucd, "전화번호4자리를 입력해주세요");
+			ucd.getJtfPhoneNum1().setText("");
+			ucd.getJtfPhoneNum1().requestFocus();
+			return;
+		}else if(strPhone2.length()<4||strPhone2.length()>4) {
+			JOptionPane.showMessageDialog(ucd, "전화번호4자리를 입력해주세요");
+			ucd.getJtfPhoneNum1().setText("");
+			ucd.getJtfPhoneNum1().requestFocus();
+			return;
 		}//end if
-		if(ucd.getJtfPhoneNum2().getText().trim().isEmpty()) {
-			if(ucd.getJtfPhoneNum2().getText().length()!=4) {
-				JOptionPane.showConfirmDialog(ucd, "전화번호4자리를 입력해주세요");
-				ucd.getJtfPhoneNum2().setText("");
-				ucd.getJtfPhoneNum2().requestFocus();
-				return;
-			}//end if
+		if(strPhone3.isEmpty()) {
+			JOptionPane.showMessageDialog(ucd, "전화번호4자리를 입력해주세요");
+			ucd.getJtfPhoneNum2().setText("");
+			ucd.getJtfPhoneNum2().requestFocus();
+			return;
+			
+		}else if(strPhone3.length()<4||strPhone3.length()>4) {
+			JOptionPane.showMessageDialog(ucd, "전화번호4자리를 입력해주세요");
+			ucd.getJtfPhoneNum2().setText("");
+			ucd.getJtfPhoneNum2().requestFocus();
+			return;
 		}//end if
+		String phone=phone1+phone2+phone3;
 		UpdateCusDataVO ucVO= new UpdateCusDataVO(phone, addr, email,id, zipcode, detail_addr);
 			ClientDAO cDAO = ClientDAO.getInstance();
 			try {
 				if (cDAO.updateCusData(ucVO)) {
+					
 					JOptionPane.showMessageDialog(ucd, "수정이 완료되었습니다");
 					ucd.dispose();
 				} // end if
@@ -79,11 +93,21 @@ public class UserCusDataEvt implements ActionListener {
 				e.printStackTrace();
 			} // end catch
 	}// modifyMyPage
+	
+	/**
+	 * 회원탈퇴
+	 */
+	public void cusWithdrawal() {
+		
+	}//cusWithdrawal
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == ucd.getJbtConfirm()) {// 수정 버튼 클릭
 			modifyMyPage();
+		} // end if
+		if (ae.getSource() == ucd.getJbtBack()) {// 확인 버튼 클릭
+			ucd.dispose();
 		} // end if
 
 		if (ae.getSource() == ucd.getJbtWithdrawal()) {// 탈퇴 버튼 클릭
