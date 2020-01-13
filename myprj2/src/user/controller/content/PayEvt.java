@@ -249,6 +249,19 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 		return ucoiVO;
 	}// completeBuyGoods
 
+	private boolean useMoneyUpdate(String memId, int useMoney) {
+		boolean updateFlag = false;
+		UserDAO uDAO = UserDAO.getInstance();
+		try {
+
+			updateFlag = uDAO.updateUseMoney(memId, useMoney);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end catch
+
+		return updateFlag;
+	}// useMoneyUpdate
+
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 
@@ -308,6 +321,11 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 				} // end if
 
 				insertNewOrderPay(orderCode, cardCode);// 결제 수단, 주문 코드 테이블에 등록
+				// 사용 금액 업데이트
+				if (!useMoneyUpdate(UserGoodsMainView.id, sniDTO.getTotalMoney())) {
+					JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "사용 금액 업데이트 문제발생");
+					return;
+				} // end if
 
 				// 상품 사진, 구매자, 주문 일자
 				ucoiVO = completeBuyGoods(orderCode);
@@ -325,13 +343,7 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 				coiDTO.setoQuantity(sniDTO.getmQuantity());
 				coiDTO.setoTotalMoney(sniDTO.getTotalMoney());
 				coiDTO.setpMethod(cardMethod);
-				System.err.println(coiDTO);
 
-				// 상품 명(sniDTO gName), 수량(sniDTO mQuantity), 주문번호(orderCode), 연락처(orderPhone),
-				// 수취인(sniDTO mName),
-				// 배송지(delivery + sniDTO.getmDetailAddr() + (zipcode),
-				// 요청사항(deliveryDemand) 주문 수단(cardMethod), , 총 결제
-				// 금액(sniDTO totalMoney)
 				pv.dispose();
 
 				new PayCompleteView(coiDTO);

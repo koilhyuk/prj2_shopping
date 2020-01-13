@@ -1206,4 +1206,35 @@ public class UserDAO {
 		return list;
 	}// selectAllGoods
 
+	public boolean updateUseMoney(String memId, int useMoney) throws SQLException {
+		boolean updateChk = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = getConnection();
+			StringBuilder updateMemUse = new StringBuilder();
+			updateMemUse.append("	update member   	")
+					.append("	 set M_TOTALMONEY=(select  M_TOTALMONEY from member where m_id=?)+? 	")
+					.append("	where m_id=?  	");
+
+			pstmt = con.prepareStatement(updateMemUse.toString());
+			pstmt.setString(1, memId);
+			pstmt.setInt(2, useMoney);
+			pstmt.setString(3, memId);
+
+			updateChk = pstmt.executeUpdate() == 1;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+		return updateChk;
+	}// updateUseMoney
+	
+	
+	
 }// class
