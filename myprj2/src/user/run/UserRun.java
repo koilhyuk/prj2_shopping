@@ -17,5 +17,6 @@ public class UserRun {
 			e.printStackTrace();
 		}
 		new ClientLoginView();
+		
 	}// main
 }// class
