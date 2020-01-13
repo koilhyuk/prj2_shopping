@@ -695,6 +695,30 @@ public class ClientDAO {
 		return updateFlag;
 	}//updateGoodeScore
 	
+	public boolean deleteCus(String id)throws SQLException{
+		boolean deleteFlag=false;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=getConnection();
+			StringBuilder deleteCus= new StringBuilder();
+			deleteCus.append("	update member set  m_stop_flag='N' where m_id=?		");
+			pstmt=con.prepareStatement(deleteCus.toString());
+			pstmt.setString(1,id);
+			
+			deleteFlag=pstmt.executeUpdate()==1;
+			
+		}finally {
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
+		}//end finally
+		
+		return deleteFlag;
+	}//deleteCus
 
 	
 }// class

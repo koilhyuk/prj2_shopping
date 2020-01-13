@@ -8,7 +8,10 @@ import javax.swing.JOptionPane;
 import user.dao.ClientDAO;
 import user.view.content.UserCusDataView;
 import user.view.content.UserCusPwResetView;
+import user.view.content.UserGoodsMainView;
+import user.view.content.UserMyPageView;
 import user.view.content.ZipcodeSearchCusView;
+import user.view.login.ClientLoginView;
 import user.vo.content.UpdateCusDataVO;
 
 public class UserCusDataEvt implements ActionListener {
@@ -98,7 +101,14 @@ public class UserCusDataEvt implements ActionListener {
 	 * 회원탈퇴
 	 */
 	public void cusWithdrawal() {
-		
+		ClientDAO cDAO= ClientDAO.getInstance();
+		try {
+			if(cDAO.deleteCus(id)) {
+				JOptionPane.showMessageDialog(ucd, "성공적으로 회원탈퇴 되었습니다.");
+			}//end if
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//end catch
 	}//cusWithdrawal
 
 	@Override
@@ -111,9 +121,13 @@ public class UserCusDataEvt implements ActionListener {
 		} // end if
 
 		if (ae.getSource() == ucd.getJbtWithdrawal()) {// 탈퇴 버튼 클릭
-			switch (JOptionPane.showConfirmDialog(ucd, "회원 탈퇴를 하시겠습니까?")) {
+			switch (JOptionPane.showConfirmDialog(ucd, "회원 탈퇴를 하시겠습니까? \n ※회원탈퇴시 회원님의 모든 정보는 소멸됩니다.")) {
 			case JOptionPane.OK_OPTION:
-				
+				cusWithdrawal();
+				ucd.dispose();
+				UserMyPageEvt.mdv.dispose();
+				UserGoodsMainEvt.ugmv.dispose();
+				new ClientLoginView();
 			}// end switch
 		} // end if
 		if (ae.getSource() == ucd.getJbtnPass()) {// 비밀번호 수정

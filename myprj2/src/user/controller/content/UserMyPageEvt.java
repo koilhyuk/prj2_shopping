@@ -16,7 +16,7 @@ import user.view.content.UserMyOrderView;
 import user.vo.content.SelectCusDataVO;
 
 public class UserMyPageEvt implements ActionListener{
-	private UserMyPageView mdv ;
+	static UserMyPageView mdv ;
 	private static String id;
 	public UserMyPageEvt(UserMyPageView mdv, String id) {
 		this.mdv=mdv;

@@ -157,6 +157,7 @@ public class UserCusDataView extends JFrame {
 		jbtnPass.addActionListener(ucd);
 		jbtnSearchAddr.addActionListener(ucd);
 		jbtnPass.addActionListener(ucd);
+		jbtWithdrawal.addActionListener(ucd);
 		
 		setBounds(100, 100, 520, 720);
 		setVisible(true);
