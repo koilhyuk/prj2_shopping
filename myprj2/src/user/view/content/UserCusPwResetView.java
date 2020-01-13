@@ -1,5 +1,7 @@
 package user.view.content;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -17,12 +19,8 @@ public class UserCusPwResetView extends JDialog{
 	private JTextField jtfNewPw, jtfNewPwConfirm;
 	private JButton jbtConfirm, jbtCancle;
 	
-	private UserCusDataView ucd;
-	private static String id;
 	public UserCusPwResetView(UserCusDataView ucd,String id) {
 		super(ucd, "비밀번호 변경", true);
-		this.ucd=ucd;
-		this.id=id;
 		
 		jtfNewPw=new JPasswordField();
 		jtfNewPwConfirm=new JPasswordField();
@@ -54,9 +52,13 @@ public class UserCusPwResetView extends JDialog{
 		add(jbtCancle);
 		add(jp);
 		
+		jbtConfirm.setForeground(Color.white);
+		jbtConfirm.setBackground(new Color(0x3F4040));
+		jbtCancle.setForeground(Color.white);
+		jbtCancle.setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(Color.white);
+		
 		UserCusPwResetEvt lpre=new UserCusPwResetEvt(this,id);
-		jtfNewPw.addActionListener(lpre);
-		jtfNewPwConfirm.addActionListener(lpre);
 		jbtConfirm.addActionListener(lpre);
 		jbtCancle.addActionListener(lpre);
 		

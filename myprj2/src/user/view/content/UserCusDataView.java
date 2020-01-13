@@ -1,6 +1,7 @@
 package user.view.content;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -30,12 +31,14 @@ public class UserCusDataView extends JFrame {
 	private static String id;
 	private SelectCusDataVO cdVO;
 	public UserCusDataView(String id, SelectCusDataVO cdVO) {
+		super(id+"님의 회원정보");
 		this.id=id;
 		this.cdVO=cdVO;
 //		jpfPw = new JPasswordField();
 //		jpfPwConfirm = new JPasswordField();
-
-		jlTitle = new JLabel("회원정보수정");
+		Font mFont= new Font("맑은고딕", Font.BOLD, 20);
+		jlTitle = new JLabel("♥회원정보수정♥");
+		jlTitle.setFont(mFont);
 		jlId = new JLabel("아이디");
 		jlPw = new JLabel("비밀번호");
 		jlName = new JLabel("이름");
@@ -119,7 +122,7 @@ public class UserCusDataView extends JFrame {
 		add(jbtBack);
 		add(jbtnPass);
 
-		jlTitle.setBounds(70, 10, 170, 30);
+		jlTitle.setBounds(70, 40, 170, 30);
 		jlId.setBounds(70, 100, 60, 30);
 		jtfId.setBounds(170, 100, 180, 30);
 
@@ -147,19 +150,29 @@ public class UserCusDataView extends JFrame {
 		jbtnSearchAddr.setBounds(300, 400, 90, 30);
 		jtfAddress.setBounds(170, 450, 300, 30);
 		jtfAddr.setBounds(170, 500, 300, 30);
-		jbtConfirm.setBounds(130, 600, 60, 30);
-		jbtBack.setBounds(250, 600, 60, 30);
-
+		jbtConfirm.setBounds(130, 560, 70, 30);
+		jbtBack.setBounds(250, 560, 70, 30);
+		
+		jbtBack.setForeground(Color.white);
+		jbtBack.setBackground(new Color(0x3F4040));
+		jbtConfirm.setForeground(Color.white);
+		jbtConfirm.setBackground(new Color(0x3F4040));
+		
+		jbtnSearchAddr.setForeground(Color.white);
+		jbtnSearchAddr.setBackground(new Color(0x3F4040));
+		jbtnPass.setForeground(Color.white);
+		jbtnPass.setBackground(new Color(0x3F4040));
+		jbtWithdrawal.setForeground(Color.white);
+		jbtWithdrawal.setBackground(new Color(0x3F4040));
 
 		UserCusDataEvt ucd = new UserCusDataEvt(this, id);
 		jbtConfirm.addActionListener(ucd);
 		jbtBack.addActionListener(ucd);
 		jbtnPass.addActionListener(ucd);
 		jbtnSearchAddr.addActionListener(ucd);
-		jbtnPass.addActionListener(ucd);
 		jbtWithdrawal.addActionListener(ucd);
-		
-		setBounds(100, 100, 520, 720);
+		this.getContentPane().setBackground(Color.white);
+		setBounds(100, 100, 520, 680);
 		setVisible(true);
 	}// MyPageView
 	

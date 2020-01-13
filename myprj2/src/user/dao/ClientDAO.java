@@ -577,7 +577,7 @@ public class ClientDAO {
 	 * @param cdVO
 	 * @throws SQLException
 	 */
-	public void selectCusData(SelectCusDataVO cdVO) throws SQLException{
+	public SelectCusDataVO selectCusData(SelectCusDataVO cdVO) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -610,6 +610,7 @@ public class ClientDAO {
 			if(pstmt != null) {pstmt.close();}//end if
 			if(con != null) {con.close();}//end if
 		}//end finally
+		return cdVO;
 	}//selectCusData
 	
 	/**

@@ -40,6 +40,7 @@ public class UserMyOrderView extends JFrame {
 
 	private static String id;
 	public UserMyOrderView(String id) {
+		super(id+"님의 주문내역");
 		this.id=id;
 
 		JLabel jlTitle = new JLabel("▒  '"+id+"'회원님의 주문내역  ▒");
