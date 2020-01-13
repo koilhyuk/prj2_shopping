@@ -62,9 +62,9 @@ public class UserMyPageView extends JFrame{
 		jbtLogOut.setForeground(Color.white);
 		jbtLogOut.setBackground(new Color(0x3F4040));
 		//이미지 // 광고 
-		ImageIcon iImage= new ImageIcon("C:\\dev\\workspace\\myproject2\\src\\clientView\\예시.PNG");
-		JLabel jtaImage= new JLabel("이미지"+iImage);
-		jtaImage.setBorder(new TitledBorder("이미지"));
+		ImageIcon iImage= new ImageIcon("C:/Users/hyebin/git/prj2_shopping/myprj2/src/user/img/ad.jpg");
+		JLabel jtaImage= new JLabel(iImage);
+//		jtaImage.setBorder(new TitledBorder("이미지"));
 		//수동
 		setLayout(null);
 		jlMyPage.setBounds(30, 15, 200, 40);
@@ -74,7 +74,7 @@ public class UserMyPageView extends JFrame{
 		jbtWithdrawal.setBounds(40, 260, 250, 50); //카드등록
 		jbtJJim.setBounds(40,320,250,50);//찜하기
 		jbtOk.setBounds(100,390,100,30);
-		jtaImage.setBounds(315, 130, 160, 280);
+		jtaImage.setBounds(315, 140, 220, 220);
 		
 		add(jlMyPage);
 		add(jtaName);
@@ -94,7 +94,7 @@ public class UserMyPageView extends JFrame{
 		jbtJJim.addActionListener(mde);
 		
 		this.getContentPane().setBackground(Color.white);
-		setBounds(100, 100, 500, 500);
+		setBounds(100, 100, 560, 500);
 		//가시화
 		setVisible(true);
 		setResizable(false);
