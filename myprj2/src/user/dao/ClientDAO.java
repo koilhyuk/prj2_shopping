@@ -514,7 +514,7 @@ public class ClientDAO {
 			selectOrder.append(" select o_code, o_delivery  , to_char(o_date, 'yyyy-mm-dd')o_date, g_name ,g_price, b_name	")
 			.append(" from ORDERING o, goods g, brand b	")
 			.append("	where (o.g_code=g.g_code) and (g.b_code=b.b_code) and m_id=?	")
-			.append("	order by o_date desc	");
+			.append("	order by o_date desc, o_code desc	");
 			
 			pstmt=con.prepareStatement(selectOrder.toString());
 			pstmt.setString(1, id);
