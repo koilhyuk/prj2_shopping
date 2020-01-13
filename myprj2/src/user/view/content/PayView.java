@@ -229,6 +229,7 @@ public class PayView extends JDialog {
 		add(jbtnPay);
 		add(jbtnCancel);
 		add(jbtnaddr);
+		setBackground(Color.white);
 
 		////// 이벤트 처리
 		PayEvt pfEvt = new PayEvt(this, sniDTO);
@@ -246,6 +247,10 @@ public class PayView extends JDialog {
 		jtfPhoneFront.addKeyListener(pfEvt);
 		jtfPhoneBehind.addKeyListener(pfEvt);
 		jtfDemand.addKeyListener(pfEvt);
+
+		jp.setBackground(Color.white);
+		jpCard.setBackground(Color.white);
+		this.getContentPane().setBackground(Color.white);
 
 		// 가시화
 		setBounds(100, 100, 530, 730);

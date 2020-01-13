@@ -71,7 +71,7 @@ public class PayCompleteView extends JDialog {
 		JLabel jlOrderCard = new JLabel(coiDTO.getpMethod(), JLabel.LEFT);
 		JLabel jlOrderDate = new JLabel(coiDTO.getoDate(), JLabel.LEFT);
 		DecimalFormat priceFormat = new DecimalFormat("###,###");
-		JLabel jlTotalPrice = new JLabel(priceFormat.format(coiDTO.getoTotalMoney()) + " 원",JLabel.LEFT);
+		JLabel jlTotalPrice = new JLabel(priceFormat.format(coiDTO.getoTotalMoney()) + " 원", JLabel.LEFT);
 		jlTotalPrice.setFont(priceFont);
 
 		btnOk = new JButton("확인");
@@ -172,7 +172,7 @@ public class PayCompleteView extends JDialog {
 
 		PayCompleteEvt pcEvt = new PayCompleteEvt(this);
 		btnOk.addActionListener(pcEvt);
-		
+
 		// 배치
 		jpTitle.add(jlTitle);
 		add(jlImg);
@@ -183,6 +183,10 @@ public class PayCompleteView extends JDialog {
 		add(jpGoodsInform);
 		add(btnOk);
 		setBounds(500, 50, 550, 800);
+		jpDeliData.setBackground(Color.white);
+		jpPayData.setBackground(Color.white);
+		jpGoodsInform.setBackground(Color.white);
+		this.getContentPane().setBackground(Color.white);
 		setVisible(true);
 		setResizable(false);
 
