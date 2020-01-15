@@ -173,6 +173,7 @@ public class UserCusDataView extends JFrame {
 		jbtWithdrawal.addActionListener(ucd);
 		this.getContentPane().setBackground(Color.white);
 		setBounds(100, 100, 520, 680);
+		setResizable(false);
 		setVisible(true);
 	}// MyPageView
 	

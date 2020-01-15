@@ -98,6 +98,7 @@ public class UserCardUploadView extends JDialog {
 		this.getContentPane().setBackground(new Color(0x3F4040));
 
 		setBounds(400, 300, 500, 270);
+		setResizable(false);
 		setVisible(true);
 
 	}// UserCardUploadView

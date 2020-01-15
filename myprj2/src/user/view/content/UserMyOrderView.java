@@ -8,6 +8,7 @@ import java.sql.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -28,10 +29,11 @@ import javax.swing.table.TableRowSorter;
 
 import admin.controller.AdGoodsManageEvt;
 import admin.run.StaticCla;
+import user.controller.content.UserGoodsMainEvt;
 import user.controller.content.UserMyOrderEvt;
 
 @SuppressWarnings("serial")
-public class UserMyOrderView extends JFrame {
+public class UserMyOrderView extends JDialog {
 
 	private DefaultTableModel dtmOrderList;
 	private JTable jtOrder;
@@ -40,7 +42,7 @@ public class UserMyOrderView extends JFrame {
 
 	private static String id;
 	public UserMyOrderView(String id) {
-		super(id+"님의 주문내역");
+		super(UserGoodsMainEvt.ugmv,id+"님의 주문내역",false);
 		this.id=id;
 
 		JLabel jlTitle = new JLabel("▒  '"+id+"'회원님의 주문내역  ▒");
@@ -130,6 +132,8 @@ public class UserMyOrderView extends JFrame {
 		this.getContentPane().setBackground(Color.white);
 
 		setVisible(true);
+		setResizable(false);
+
 		setBounds(100, 100, 900, 580);
 
 	}// AdGoodsManageView

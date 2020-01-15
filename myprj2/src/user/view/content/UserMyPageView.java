@@ -5,14 +5,16 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
+import user.controller.content.UserGoodsMainEvt;
 import user.controller.content.UserMyPageEvt;
 
 @SuppressWarnings("serial")
-public class UserMyPageView extends JFrame{
+public class UserMyPageView extends JDialog{
 	
 	private JLabel jlMyPage;
 	private JTextArea jtaName;
@@ -22,7 +24,7 @@ public class UserMyPageView extends JFrame{
 	private static String id;
 	private UserMyOrderView umo;
 	public UserMyPageView(String id) {
-		super("마이페이지");
+		super(UserGoodsMainEvt.ugmv, "마이페이지", false);
 		this.id=id;
 		
 		Font mFont= new Font("맑은고딕", Font.BOLD, 15);
