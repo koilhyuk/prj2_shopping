@@ -11,7 +11,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -25,7 +24,6 @@ import user.vo.content.SelectClickGoodsDetailDTO;
 public class UserGoodsDetailView extends JDialog {
 
 	private JButton jbtnBuy, jbtnPlus, jbtnMinus, jbtnGoodsLike;
-	private JTable jtProduct;
 	private JLabel jlGName, jlGPrice, jlGTotalPrice, jlLike;
 	private JTextArea jtaStrong;
 	private JTextField jtfSelectNum;
@@ -227,9 +225,6 @@ public class UserGoodsDetailView extends JDialog {
 		return jbtnMinus;
 	}
 
-	public JTable getJtProduct() {
-		return jtProduct;
-	}
 
 	public JLabel getJlGName() {
 		return jlGName;

@@ -32,8 +32,6 @@ public class MainView extends JFrame {
 	private JTabbedPane jtpMain;
 	private JButton jbtnSett, jbtnLogout;
 
-	private AdOrderManageView ov;
-
 	public MainView(String id, String ip) {
 		super(id + "님 접속 메인 뷰");
 
@@ -48,7 +46,6 @@ public class MainView extends JFrame {
 		jpNorth.setLayout(new BorderLayout());
 		jpNorth.setLayout(null);
 
-//		jbtnLogo = new JButton("로고버튼");
 		jbtnSett = new JButton("비밀번호 재설정");
 		jbtnSett.setBackground(Color.white);
 		jbtnSett.setForeground(new Color(0x3F4040));
@@ -67,7 +64,6 @@ public class MainView extends JFrame {
 		jpNorth.setPreferredSize(new Dimension(1500, 30));
 
 		jtpMain = new JTabbedPane();
-//		AdCashCalcView accv = new AdCashCalcView();
 		AdCusManageView acmv = new AdCusManageView();
 		jtpMain.addTab("상품보기", new AdGoodsMainView());
 		jtpMain.addTab("회원관리", acmv);
@@ -129,7 +125,7 @@ public class MainView extends JFrame {
 
 		JPanel jpbanner = new JPanel();
 		jpbanner.setBackground(new Color(0x3F4040));
-		jpbanner.setBounds(00, 50, 1600, 140);
+		jpbanner.setBounds(0, 50, 1600, 140);
 		JPanel jpline = new JPanel();
 		jpline.setBackground(Color.white);
 		jpline.setBounds(330, 13, 3, 130);
@@ -150,10 +146,9 @@ public class MainView extends JFrame {
 		add("North", jpNorth);
 		add("Center", jpCenter);
 		add("South", jpbanner);
-//		jtpMain.setBackground(Color.white);
 		
 		this.getContentPane().setBackground(Color.white);
-		setBounds(150, 0, 1600, 1000);
+		setBounds(0, 5, 1600, 1000);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

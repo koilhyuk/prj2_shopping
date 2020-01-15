@@ -97,6 +97,7 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 		JScrollPane jspGoods = agmv.getJspGoods();
 		jpGoods = agmv.getJpGoods();
 		jspGoods.getVerticalScrollBar().setValue(0);
+		jspGoods.setVisible(false);
 		jpGoods.removeAll();
 		setSearchLabel();
 
@@ -136,6 +137,7 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 			}
 			jpGoods.setPreferredSize(new Dimension(1000, 285 * ((goodsNum / 6) + plusCnt)));
 			agmv.setVisible(true);
+			jspGoods.setVisible(true);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(agmv, "서비스가 원활하지 않습니다. 죄송합니다.");
 			e.printStackTrace();

@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -29,11 +28,6 @@ public class AdGoodsMainView extends JPanel {
 
 	//// 2019-09-24 종류 채널
 	private JLabel jlChannel;
-
-	/// 2019-09-23
-	// 광고 배너 추가// 최근 본 상품
-//	private JPanel jpRecent;
-//	private JScrollPane jspRecent;
 
 	// 2019-09-22
 	private JButton btnSearchBrand;
@@ -105,13 +99,6 @@ public class AdGoodsMainView extends JPanel {
 		jpChannel.add(btnType);
 		jpChannel.add(jlChannel);
 
-		////////// 2019-09-23
-//		jpRecent = new JPanel();
-//		jpRecent.setLayout(new FlowLayout());
-//		jpRecent.setPreferredSize(new Dimension(170, 600));
-//		jspRecent = new JScrollPane(jpRecent);
-//
-//		jspRecent.setBorder(new TitledBorder("최근 본 상품"));
 
 		JLabel jlBest = new JLabel("판매 랭킹");
 		///////////// full 화면
@@ -163,9 +150,6 @@ public class AdGoodsMainView extends JPanel {
 		jtDetail.getColumnModel().getColumn(0).setCellRenderer(dtcr);
 		jtDetail.getColumnModel().getColumn(1).setCellRenderer(dtcr);
 
-		JTextArea jtaInform = new JTextArea() {
-
-		};
 
 		btnBest = new JButton("Best");
 		btnOuter = new JButton("Outer");
@@ -276,9 +260,6 @@ public class AdGoodsMainView extends JPanel {
 		jpBrandKind.setBackground(new Color(0x3F4040));
 
 		jttpCate.setBounds(10, 300, 200, btnAcc.getY() + 70);
-//		jspRecent.setBounds(10, jttpCate.getY() + jttpCate.getHeight() + 10, 200, 440);
-//
-//		jpContent.add(jspRecent);
 		jpContent.add(jttpCate);
 		jpContent.add(jpChannel);
 ///////////////////////////////////////////
@@ -321,10 +302,9 @@ public class AdGoodsMainView extends JPanel {
 		btnBottom.addMouseListener(agme);
 		btnDress.addMouseListener(agme);
 
-		
 		btnType.addMouseListener(agme);
 		btnSearch.addMouseListener(agme);
-		
+
 		/////////// 2019-09-22
 		btnAcc.addMouseListener(agme);
 		btnBag.addMouseListener(agme);
@@ -341,19 +321,17 @@ public class AdGoodsMainView extends JPanel {
 		jpContent.add(btnSearch);
 		jpContent.add(jtfSearch);
 		jpContent.add(jcbSearch);
-//		jpContent.add(btnType);
 
 		add(jspFull);
 		jpChannel.setBackground(new Color(0x3F4040));
 		jpContent.setBackground(Color.white);
 
 		setBackground(Color.white);
-		
+
 		setBounds(0, 0, 1600, 800);
 		jspFull.setBounds(0, 0, getWidth() - 20, getHeight() - 20);// 고정 값
 		jpChannel.setBounds(0, 70, jspFull.getWidth() - 15, 100);
 		jpContent.setPreferredSize(new Dimension(jspFull.getWidth() - 20, jspFull.getHeight() + 1050));// 고정 값
-//		jpContent.setBorder(new LineBorder(Color.black));
 		setVisible(true);
 
 	}// HomeMainView

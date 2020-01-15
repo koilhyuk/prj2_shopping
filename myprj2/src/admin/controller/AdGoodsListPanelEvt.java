@@ -2,8 +2,12 @@ package admin.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
+import admin.dao.AdminDAO;
 import admin.view.AdGoodsListPanelView;
+import admin.view.AdGoodsPanelDetailView;
+import admin.vo.SelectClickGoodsDetailDTO;
 
 public class AdGoodsListPanelEvt implements ActionListener {
 
@@ -13,30 +17,28 @@ public class AdGoodsListPanelEvt implements ActionListener {
 	public AdGoodsListPanelEvt(AdGoodsListPanelView gpv) {
 		this.gpv = gpv;
 		String tempName = gpv.getJlGoodsName().getText().trim();
-		goodsCode = tempName.substring(tempName.indexOf("(") + 1, tempName.indexOf(")")).toString().trim();
+		goodsCode = tempName.substring(tempName.lastIndexOf("(") + 1, tempName.lastIndexOf(")")).toString().trim();
 
 	}// GoodsPanelViewEvt
 
-//	private void insertNmRecent() {
-//		boolean flag = false;
-//
-//		AdDAO aDAO = AdDAO.getInstance();
-//		try {
-//			flag = aDAO.insertNmRecentGoods(goodsCode);
-//			if (flag == false) {
-//				return;
-//			} // end if
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}// insertRecent
+	private void searchGoodsDetail(String goodsCodes) {
+		SelectClickGoodsDetailDTO scgdDTO = new SelectClickGoodsDetailDTO();
+		AdminDAO aDAO = AdminDAO.getInstance();
+
+		try {
+			scgdDTO = aDAO.searchClickGoodsDetail(goodsCodes);
+			scgdDTO.setgLikeNum(aDAO.selectGoodsLikeNum(goodsCodes));
+			new AdGoodsPanelDetailView(scgdDTO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}// searchGoodsDetail
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == gpv.getJbtnGoodsDetail()) {
-//			insertNmRecent();
-		}
-
+			searchGoodsDetail(goodsCode);
+		} // end if
 	}// actionPerformed
 
 }// class

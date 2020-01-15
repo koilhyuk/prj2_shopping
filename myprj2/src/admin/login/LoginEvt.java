@@ -19,7 +19,6 @@ public class LoginEvt implements ActionListener {
 
 	public LoginEvt(LoginView lv) {
 		this.lv = lv;
-
 	}// loginEvt
 
 	private void checkAdmin() {
@@ -34,13 +33,11 @@ public class LoginEvt implements ActionListener {
 		} // end catch
 
 		LoginVO lVO = new LoginVO(inputId, encPw);
-
 		LoginDAO lDAO = LoginDAO.getInstance();
 
 		try {
 			String name = lDAO.selectAdminId(lVO);
 			if (!name.isEmpty()) {
-
 				try {
 					curIp = InetAddress.getLocalHost().getHostAddress();
 				} catch (UnknownHostException e) {

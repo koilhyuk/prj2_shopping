@@ -12,6 +12,7 @@ import admin.vo.InsertBrandVO;
 import admin.vo.InsertGoodsAddVO;
 import admin.vo.InsertGoodsTypeVO;
 import admin.vo.SelectBrandListVO;
+import admin.vo.SelectClickGoodsDetailDTO;
 import admin.vo.SelectCusDetailDTO;
 import admin.vo.SelectGoodsDetailDTO;
 import admin.vo.SelectGoodsListVO;
@@ -197,8 +198,8 @@ public class AdminDAO {
 	}// updateDetailGoods
 
 	/**
-	 * DTO 이용하여 상세정보창에 이미지, 특장점, 타입, 브랜드이름을 설정
-	 * 값 변경이 가능 
+	 * DTO 이용하여 상세정보창에 이미지, 특장점, 타입, 브랜드이름을 설정 값 변경이 가능
+	 * 
 	 * @param dgDTO
 	 * @throws SQLException
 	 */
@@ -253,9 +254,8 @@ public class AdminDAO {
 			StringBuilder insertGoods = new StringBuilder();
 			insertGoods.append(
 					"insert into goods(g_code,g_img, b_code,d_code,g_name,g_price, g_inventory, g_strong, g_inputdate) ")
-			.append("		values(g_code,?,(select b_code from brand where b_name=?),(select d_code from detail_clothestype where d_type=?),?,?,?,?, sysdate) ");
+					.append("		values(g_code,?,(select b_code from brand where b_name=?),(select d_code from detail_clothestype where d_type=?),?,?,?,?, sysdate) ");
 
-			
 			pstmt = con.prepareStatement(insertGoods.toString());
 			pstmt.setString(1, upVO.getG_img());
 			pstmt.setString(2, upVO.getB_name());
@@ -278,7 +278,7 @@ public class AdminDAO {
 	}// insertGoods
 
 	/**
-	 * 선택한 상품 삭제 삭제결과 true : 삭제성공, false :삭제실패 
+	 * 선택한 상품 삭제 삭제결과 true : 삭제성공, false :삭제실패
 	 * 
 	 * @param code
 	 * @return
@@ -323,14 +323,13 @@ public class AdminDAO {
 		try {
 			con = getConn();
 			StringBuilder selectBrand = new StringBuilder();
-			selectBrand.append(" select b_name, b_code 	").append(" from brand 	")
-			.append(" where  b_code!='DEL'	")
-			.append(" order by b_name 	");
+			selectBrand.append(" select b_name, b_code 	").append(" from brand 	").append(" where  b_code!='DEL'	")
+					.append(" order by b_name 	");
 
 			pstmt = con.prepareStatement(selectBrand.toString());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-					list.add(rs.getString("b_name"));
+				list.add(rs.getString("b_name"));
 			} // end while
 		} finally {
 			if (rs != null) {
@@ -361,14 +360,13 @@ public class AdminDAO {
 		try {
 			con = getConn();
 			StringBuilder selectType = new StringBuilder();
-			selectType.append(" select c_type 	").append(" from clothestype 	")
-			.append(" where  c_code!='DEL'	")
-			.append(" order by c_type 	");
+			selectType.append(" select c_type 	").append(" from clothestype 	").append(" where  c_code!='DEL'	")
+					.append(" order by c_type 	");
 			pstmt = con.prepareStatement(selectType.toString());
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-					list.add(rs.getString("c_type"));
+				list.add(rs.getString("c_type"));
 			} // end while
 		} finally {
 			if (rs != null) {
@@ -407,7 +405,7 @@ public class AdminDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-					list.add(rs.getString("d_type"));
+				list.add(rs.getString("d_type"));
 			} // end while
 		} finally {
 			if (rs != null) {
@@ -531,7 +529,7 @@ public class AdminDAO {
 				pstmt.setString(1, searchData);
 
 			} // end if
-			
+
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				oVO = new SelectOrderListVO(rs.getString("o_code"), rs.getString("m_id"), rs.getString("o_person"),
@@ -689,12 +687,12 @@ public class AdminDAO {
 			con = getConn();
 			StringBuilder updateBrand = new StringBuilder();
 			updateBrand.append("  update brand	").append("  set  b_img=?, b_name=?	")
-			.append("  where b_code =(select b_code from brand where b_name=?) 	");
+					.append("  where b_code =(select b_code from brand where b_name=?) 	");
 
 			pstmt = con.prepareStatement(updateBrand.toString());
 			pstmt.setString(1, ubVO.getB_img());
 			pstmt.setString(2, ubVO.getB_name());
-			pstmt.setString(3, ubVO.getB_code());//선택한 브랜드의 이름
+			pstmt.setString(3, ubVO.getB_code());// 선택한 브랜드의 이름
 
 			updateFlag = pstmt.executeUpdate() == 1;
 
@@ -712,24 +710,25 @@ public class AdminDAO {
 		} // end finally
 		return updateFlag;
 	}// updateBrand
-	
+
 	public String selectBrandImg(String name) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String img="";
+		String img = "";
 		try {
 			con = getConn();
 			StringBuilder selectBrand = new StringBuilder();
-			selectBrand.append(" 	select  b_img ").append("	from brand 	").append(" 	where b_name=? and  b_name!='DEL' 	");
+			selectBrand.append(" 	select  b_img ").append("	from brand 	")
+					.append(" 	where b_name=? and  b_name!='DEL' 	");
 
 			pstmt = con.prepareStatement(selectBrand.toString());
 			pstmt.setString(1, name);
-			
+
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				img=rs.getString("b_img");
+				img = rs.getString("b_img");
 			} // end if
 
 		} finally {
@@ -750,20 +749,22 @@ public class AdminDAO {
 		boolean flag = false;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			con = getConn();
 			StringBuilder updateDEL = new StringBuilder();
 			switch (slVO.getIndex()) {
 			case 1:
-				updateDEL.append(" 	update goods set d_code='DEL' where d_code = (select d_code from detail_clothestype where d_type=?) ");
+				updateDEL.append(
+						" 	update goods set d_code='DEL' where d_code = (select d_code from detail_clothestype where d_type=?) ");
 				break;
 			case 2:
-				updateDEL.append(" 	update goods set b_code='DEL' where b_code = (select b_code from brand where b_name=?) ");
+				updateDEL.append(
+						" 	update goods set b_code='DEL' where b_code = (select b_code from brand where b_name=?) ");
 
-			}//end switch
+			}// end switch
 			pstmt = con.prepareStatement(updateDEL.toString());
-			
+
 			pstmt.setString(1, slVO.getJtfData());
 			flag = pstmt.executeUpdate() == 1;
 		} finally {
@@ -776,7 +777,7 @@ public class AdminDAO {
 		} // finally
 		return flag;
 	}// updateTypeDEL
-	
+
 	public boolean deleteType(String code) throws SQLException {
 		boolean flag = false;
 		Connection con = null;
@@ -785,7 +786,8 @@ public class AdminDAO {
 		try {
 			con = getConn();
 			StringBuilder deleteType = new StringBuilder();
-			deleteType.append(" 	delete from DETAIL_CLOTHESTYPE  where d_code=(select d_code from detail_clothestype where d_type=?)	");
+			deleteType.append(
+					" 	delete from DETAIL_CLOTHESTYPE  where d_code=(select d_code from detail_clothestype where d_type=?)	");
 			pstmt = con.prepareStatement(deleteType.toString());
 
 			pstmt.setString(1, code);
@@ -810,9 +812,8 @@ public class AdminDAO {
 		try {
 			con = getConn();
 			StringBuilder selectBrand = new StringBuilder();
-			selectBrand.append(" select b_name,b_code 	").append(" from brand 	")
-			.append(" where b_code!='DEL' 	")
-			.append(" order by b_code 	");
+			selectBrand.append(" select b_name,b_code 	").append(" from brand 	").append(" where b_code!='DEL' 	")
+					.append(" order by b_code 	");
 
 			pstmt = con.prepareStatement(selectBrand.toString());
 			rs = pstmt.executeQuery();
@@ -847,7 +848,7 @@ public class AdminDAO {
 
 			pstmt = con.prepareStatement(updateType.toString());
 			pstmt.setString(1, utVO.getnewType());// 변경할 소분류명 newcode
-			pstmt.setString(2, utVO.getD_type()); //선택한 소분류명 
+			pstmt.setString(2, utVO.getD_type()); // 선택한 소분류명
 
 			updateFlag = pstmt.executeUpdate() == 1;
 
@@ -863,7 +864,9 @@ public class AdminDAO {
 		return updateFlag;
 	}// updateType
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/////////////////////////////////////////////////////9월 25일 회원상세 ///////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////// 9월 25일 회원상세
+	///////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////
+
 	public void selectDetailCus(SelectCusDetailDTO sdDTO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -871,8 +874,8 @@ public class AdminDAO {
 		try {
 			con = getConn();
 			StringBuilder selectDetailCus = new StringBuilder();
-			selectDetailCus
-			.append(" 	select m_ip,m_birth, m_gender,m_detail_addr,m_email,m_img , concat(concat(concat(z_sido,' '||nvl(z_gugun,' ')),' '||z_dong),' '||z_bunji) z_addr, z_zipcode, m_stop_reason	 ")
+			selectDetailCus.append(
+					" 	select m_ip,m_birth, m_gender,m_detail_addr,m_email,m_img , concat(concat(concat(z_sido,' '||nvl(z_gugun,' ')),' '||z_dong),' '||z_bunji) z_addr, z_zipcode, m_stop_reason	 ")
 					.append("		from   member m, address a 	")
 					.append("		where (m.z_seq=a.z_seq) and m_code=?	 ");
 
@@ -902,7 +905,7 @@ public class AdminDAO {
 		} // end finally
 
 	}// selectDetailOrder
-	
+
 	public boolean updateDetailCus(UpdateCustomerVO ucVO) throws SQLException {
 		boolean updateFlag = false;
 		Connection con = null;
@@ -912,14 +915,12 @@ public class AdminDAO {
 		try {
 			con = getConn();
 			StringBuilder update = new StringBuilder();
-			update
-			.append("	update member	")
-			.append(" 	set  m_name=?,m_birth=?,m_gender=?,m_phone=?,	")
-			.append("	 m_detail_addr=? ,m_img=? ,m_email=? , z_seq=( select z_seq	")
-			.append("	from (select concat(concat(concat(z_sido,' '||nvl(z_gugun,' ')),' '||z_dong),' '||z_bunji) z_addr,	")
-			.append("	 z_seq, z_zipcode from address)	")
-			.append("	where z_zipcode like '%'||?||'%'  and z_addr like '%'||?||'%')	")
-			.append("	where m_id =?            	");
+			update.append("	update member	").append(" 	set  m_name=?,m_birth=?,m_gender=?,m_phone=?,	")
+					.append("	 m_detail_addr=? ,m_img=? ,m_email=? , z_seq=( select z_seq	")
+					.append("	from (select concat(concat(concat(z_sido,' '||nvl(z_gugun,' ')),' '||z_dong),' '||z_bunji) z_addr,	")
+					.append("	 z_seq, z_zipcode from address)	")
+					.append("	where z_zipcode like '%'||?||'%'  and z_addr like '%'||?||'%')	")
+					.append("	where m_id =?            	");
 			pstmt = con.prepareStatement(update.toString());
 			pstmt.setString(1, ucVO.getM_name());
 			pstmt.setString(2, ucVO.getM_birth());
@@ -947,13 +948,12 @@ public class AdminDAO {
 		} // end finally
 		return updateFlag;
 	}// updateDetailCus
-	
-	
+
 	public boolean updateStopFlag(updateStopVO usVO) throws SQLException {
 		boolean flag = false;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			con = getConn();
 			StringBuilder updateStopFlag = new StringBuilder();
@@ -974,8 +974,88 @@ public class AdminDAO {
 		return flag;
 	}// updateStopFlag
 
+	public SelectClickGoodsDetailDTO searchClickGoodsDetail(String goodsCode) throws SQLException {
+		SelectClickGoodsDetailDTO scgdDTO = new SelectClickGoodsDetailDTO();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			scgdDTO.setgCode(goodsCode);
+
+			con = getConn();
+
+			StringBuilder selectClickGoods = new StringBuilder();
+			selectClickGoods.append(
+					"	select  g_price, g_inventory, g_code, g_name, g_score, g_strong, g_img , b_name, d_type, c_type,   g_salenum 	")
+					.append("	from GOODS g, Brand b , DETAIL_CLOTHESTYPE dc	")
+					.append("	where (g.b_code=b.b_code and g.d_code = dc.d_code) and g_code=?	");
+
+			pstmt = con.prepareStatement(selectClickGoods.toString());
+			pstmt.setString(1, goodsCode);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				scgdDTO.setbName(rs.getString("b_name"));
+				scgdDTO.setcName(rs.getString("c_type"));
+				scgdDTO.setdName(rs.getString("d_type"));
+				scgdDTO.setgImg(rs.getString("g_img"));
+				scgdDTO.setgInventory(rs.getInt("g_inventory"));
+				scgdDTO.setgName(rs.getString("g_name"));
+				scgdDTO.setgPrice(rs.getInt("g_price"));
+				scgdDTO.setgScore(rs.getInt("g_score"));
+				scgdDTO.setgStrong(rs.getString("g_strong"));
+				scgdDTO.setgSaleNum(rs.getInt("g_salenum"));
+			} // end if
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+		return scgdDTO;
+	}// searchClickGoodsDetail
 	
+	public int selectGoodsLikeNum(String goodsCode) throws SQLException {
+		int likeNum = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConn();
+			StringBuilder selectGoodsLike = new StringBuilder();
+			selectGoodsLike.append("	select count(*) cnt from GOODSLIKE	").append(" where	g_code=? 	");
+
+			pstmt = con.prepareStatement(selectGoodsLike.toString());
+			pstmt.setString(1, goodsCode);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				likeNum = rs.getInt("cnt");
+			} // end while
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} // end finally
+
+		return likeNum;
+	}// selectGoodsLike
+
 }// class
-
-
-
