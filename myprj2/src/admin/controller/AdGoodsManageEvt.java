@@ -55,7 +55,7 @@ public class AdGoodsManageEvt extends MouseAdapter implements ActionListener {
 		SelectGoodsDetailDTO dgDTO = new SelectGoodsDetailDTO();
 		// 상품리스트에서 얻을수 있는 값, 선택한 행의 상품의 값을 얻는다
 		String goodsName = (String) jtGoods.getValueAt(jtGoods.getSelectedRow(), 0); // 상품명
-		String goodsCode = goodsName.substring(goodsName.indexOf("(") + 1, goodsName.lastIndexOf(")")); // 상품코드
+		String goodsCode = goodsName.substring(goodsName.lastIndexOf("(") + 1, goodsName.lastIndexOf(")")); // 상품코드
 		String brand = jtGoods.getValueAt(jtGoods.getSelectedRow(), 1).toString(); // 브랜드
 		String detailType = (String) jtGoods.getValueAt(jtGoods.getSelectedRow(), 2);// 소분류
 		// 선택한 상품금액의 값을 ,로 나눠서 배열에 넣음

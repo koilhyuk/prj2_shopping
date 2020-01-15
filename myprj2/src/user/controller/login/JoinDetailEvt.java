@@ -67,6 +67,7 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		try {
 			///////////////////// 비밀번호 /////////////////////////////
 			cipherText = DataEncrypt.messageDigest("MD5", inputPw);
+			
 		} catch (NoSuchAlgorithmException e1) {
 			e1.printStackTrace();
 		} // end catch
