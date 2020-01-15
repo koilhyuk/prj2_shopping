@@ -158,6 +158,7 @@ public class AdGoodsCateAddView extends JDialog{
 
 		setBounds(100, 100, 550, 310);
 		setVisible(true);
+		setResizable(false);
 
 	}//ModifyCategoryView
 

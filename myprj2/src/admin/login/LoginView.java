@@ -18,7 +18,7 @@ public class LoginView extends JFrame {
 	private JButton jbtLogin;
 
 	public LoginView() {
-		super("로그인");
+		super("관리자 로그인");
 		jtfId = new JTextField();
 		jpfPw = new JPasswordField();
 

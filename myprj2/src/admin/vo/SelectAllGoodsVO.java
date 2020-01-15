@@ -50,4 +50,12 @@ public class SelectAllGoodsVO {
 		return g_inventory;
 	}
 
+	@Override
+	public String toString() {
+		return "SelectAllGoodsVO [g_code=" + g_code + ", g_name=" + g_name + ", g_img=" + g_img + ", b_name=" + b_name
+				+ ", g_price=" + g_price + ", g_salenum=" + g_salenum + ", g_score=" + g_score + ", g_inventory="
+				+ g_inventory + "]";
+	}
+	
+
 }

@@ -2,7 +2,6 @@ package admin.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,17 +31,12 @@ public class AdCusDetailView extends JDialog {
 	private JLabel jlImg, jtfStop, jlreason;
 
 	private SelectCusDetailDTO scDTO;
-
 	public AdCusDetailView(SelectCusDetailDTO scDTO) {
-		super(StaticCla.mv, "회원", true);
+		super(StaticCla.mv, "회원정보", true);
 		this.scDTO = scDTO;
 		// 회원이미지
-		ImageIcon iiImage = new ImageIcon("C:/Users/hyebin/git/MyPrj2/myprj2/src/admin/img/model.png");
-		Image oriimg = iiImage.getImage();
-		Image chgimg = oriimg.getScaledInstance(250, 200, Image.SCALE_SMOOTH);// 이미지 사이즈변경
-		ImageIcon newImg = new ImageIcon(chgimg);
-		jlImg = new JLabel(newImg);
-//		jlImg = new JLabel("C:/Users/hyebin/git/MyPrj2/myprj2/src/admin/img/model.png");
+		ImageIcon iiImage = new ImageIcon(StaticCla.FILE_PATH+"/model.jpg");
+		jlImg = new JLabel(iiImage);
 		jlImg.setBorder(new EtchedBorder(EtchedBorder.RAISED)); // border돌출
 		Font titleFont = new Font("맑은 고딕", Font.BOLD, 20);
 		Font font = new Font("맑은 고딕", Font.BOLD, 15);
@@ -101,20 +95,6 @@ public class AdCusDetailView extends JDialog {
 		jtfCusbunzi = new JTextField(10);
 		jtfCusAddr2 = new JTextField(10);
 
-//		jtfCusNum.setFont(font);
-//		jtfCusIP.setFont(font);
-//		jtfID.setFont(font);
-//		jtfCusName.setFont(font);
-//		jtfBirth.setFont(font);
-//		jtfGender.setFont(font);
-//		jtfPhone.setFont(font);
-//		jtfCusAddr.setFont(font);
-//		jtfEmail.setFont(font);
-//		jtfDate.setFont(font);
-//		jtfTotalPrice.setFont(font);
-//		jtfCusbunzi.setFont(font);
-//		jtfCusAddr2.setFont(font);
-
 		jbtnClose = new JButton("닫기");
 		jbtnModify = new JButton("수정");
 		jbtnStop = new JButton("정지");
@@ -132,12 +112,12 @@ public class AdCusDetailView extends JDialog {
 		jlTotalPrice.setBounds(10, 150, 140, 30);
 		jlInputDate.setBounds(10, 190, 140, 30);
 		jtfCusNum.setBounds(100, 30, 220, 30);
-		jtfCusIP.setBounds(100, 70, 220, 30);
+		jtfCusIP.setBounds(90, 70, 220, 30);
 		jtfID.setBounds(100, 110, 220, 30);
 		jtfTotalPrice.setBounds(100, 150, 220, 30);
 		jtfDate.setBounds(100, 190, 220, 30);
 		jlStop.setBounds(10, 230, 100, 30);
-		jtfStop.setBounds(100, 230, 50, 30);
+		jtfStop.setBounds(100, 230, 100, 30);
 		jlreason.setBounds(10, 255, 300, 30);
 		jpCus.add(jlImg);
 		jpCus.add(jlCusNum);
@@ -208,10 +188,14 @@ public class AdCusDetailView extends JDialog {
 		jtfCusAddr2.setText(scDTO.getM_detail_addr());
 		jtfEmail.setText(scDTO.getM_email());
 		jtfDate.setText(scDTO.getM_joindate());
-		jtfTotalPrice.setText(String.valueOf(scDTO.getM_totalmoney()) + "원");
+		jtfTotalPrice.setText(String.valueOf(scDTO.getM_totalmoney()) + "  원");
 		jtfCusAddr.setText(scDTO.getZ_addr());
 		jtfCusbunzi.setText(scDTO.getZ_zipcode());
-		jtfStop.setText(scDTO.getM_stopflag());
+		if(scDTO.getM_stopflag().equals("Y")) {
+			jtfStop.setText("활성화계정");
+		}else {
+			jtfStop.setText("비활성화계정");
+		}
 		jlreason.setText(scDTO.getM_stop_reason());
 		jlTitle.setBounds(10, 10, 200, 30);
 

@@ -16,7 +16,6 @@ import admin.vo.updateStopVO;
 
 /**
  * 닫기 , 수정, 정지
- * 
  * @author owner
  */
 public class AdCusDetailEvt implements ActionListener {
@@ -28,7 +27,7 @@ public class AdCusDetailEvt implements ActionListener {
 	}// AdCusDetailEvt
 
 	/**
-	 * 수정
+	 * 회원정보를 수정
 	 */
 	public void modifyCus() {
 		String name = sdv.getJtfCusName().getText().trim(); // 회원이름
@@ -55,11 +54,12 @@ public class AdCusDetailEvt implements ActionListener {
 
 				JOptionPane.showMessageDialog(sdv, "수정하실 항목을 올바르게 입력해주세요");
 			} // end catch
-
 		}// end switch
-
 	}// modifyCus
 
+	/**
+	 * 회원 정지에 대한 method
+	 */
 	public void stopCustomer() {
 
 		String status = sdv.getJtfStop().getText().trim();
@@ -85,7 +85,11 @@ public class AdCusDetailEvt implements ActionListener {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				} // end catch
+			case JOptionPane.CANCEL_OPTION:
+				JOptionPane.showMessageDialog(sdv, code + "님의 정지를 취소하셨습니다.");
+				return;
 			}// end switch
+		
 		} else {// 정지를 풀때
 			switch (JOptionPane.showConfirmDialog(sdv, code + "번의 회원님의 정지를 해체하시겠습니까?")) {
 			case JOptionPane.OK_OPTION:

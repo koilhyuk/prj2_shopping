@@ -102,7 +102,7 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 
 		AdDAO aDAO = AdDAO.getInstance();
 		try {
-			sgck = new SelectGoodsCheckVO(brandCheck, clothesType, detailType, searchData, selectCombo);
+			sgck = new SelectGoodsCheckVO(brandCheck, clothesType, detailType, searchData.toUpperCase(), selectCombo);
 			List<SelectAllGoodsVO> list = aDAO.selectAllGoods(sgck);
 
 			if (list.isEmpty()) {
@@ -156,7 +156,7 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 		AdDAO aDAO = AdDAO.getInstance();
 
 		try {
-			sfchkVO = new SelectFiveCheckVO(brandCheck, clothesType, detailType, searchData, selectCombo, tempNum);
+			sfchkVO = new SelectFiveCheckVO(brandCheck, clothesType, detailType, searchData.toUpperCase(), selectCombo, tempNum);
 			List<SelectBestFiveGoodsVO> fiveBestList = aDAO.selectFiveGoods(sfchkVO);
 			if (fiveBestList.isEmpty()) {
 				jpGoodsReset();
@@ -343,7 +343,7 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 			selectSearch.append(" > " + detailType);
 		}
 		if (!searchData.isEmpty()) {
-			selectSearch.append(" > " + selectCombo).append(" > \"" + searchData + "\"");
+			selectSearch.append(" > " + selectCombo).append(" > \"" + searchData.toUpperCase() + "\"");
 		}
 		jlSelect.setText(selectSearch.toString());
 	}// setLabel

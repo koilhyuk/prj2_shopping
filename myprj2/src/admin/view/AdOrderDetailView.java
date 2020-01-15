@@ -100,20 +100,6 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		JLabel jlDeliverMsg = new JLabel("배송요청사항 :");//
 		jlDeliverMsg.setFont(fontCon);
 
-		// T.F
-//		jtfOrderer = new JTextField(10);
-//		jtfReceive = new JTextField(10);
-//		jtfRecAddr = new JTextField(10);
-//		jtfPhone = new JTextField(10);
-//		jtfGoodsName = new JTextField(10);
-//		jtfbuyNum = new JTextField(10);
-//		jtfbuyMethod = new JTextField(10);
-//		jtfTotalPrice = new JTextField(10);
-//		jtfOrderDate = new JTextField(10);
-//		jtfDeliveryFlag = new JTextField(10);
-//		jtfDeliverMsg = new JTextField(10);
-//		jtfScore=new JTextField(10);
-
 		jtfOrderer = new JLabel();
 		jtfReceive = new JLabel();
 		jtfRecAddr = new JLabel();
@@ -209,19 +195,6 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		jtfDeliverMsg.setBounds(120, 50, 450, 30);
 		jpDelivery.add(jtfDeliverMsg);
 
-//		// 수정못하게 막음
-//		jtfOrderer.setEditable(false);
-//		jtfReceive.setEditable(false);
-//		jtfRecAddr.setEditable(false);
-//		jtfPhone.setEditable(false);
-//		jtfGoodsName.setEditable(false);
-//		jtfbuyNum.setEditable(false);
-//		jtfbuyMethod.setEditable(false);
-//		jtfTotalPrice.setEditable(false);
-//		jtfOrderDate.setEditable(false);
-//		jtfbuyMethod.setEditable(false);
-//		jtfDeliveryFlag.setEditable(false);
-//		jtfDeliverMsg.setEditable(false);
 		jlTitle.setEditable(false);
 
 		setLayout(null); // 수동
@@ -242,6 +215,8 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		jpDelivery.setBounds(15, 450, 630, 100);
 		jpDelivery.setBorder(new LineBorder(Color.lightGray));
 		jbtnClose.setBounds(280, 570, 120, 30);
+		jbtnClose.setBackground(new Color(0x3F4040));
+		jbtnClose.setForeground(Color.white);
 		
 		add(jlTitle);
 		add(jlImg);

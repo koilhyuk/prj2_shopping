@@ -118,6 +118,7 @@ public class AdGoodsCateManageView extends JDialog {
 
 		setBounds(100, 100, 700, 480);
 		setVisible(true);
+		setResizable(false);
 	}// AdGoodsCateManageView
 
 	public DefaultListModel<String> getDlmType() {

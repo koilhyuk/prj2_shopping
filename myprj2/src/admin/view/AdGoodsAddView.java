@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 import admin.controller.AdGoodsAddEvt;
 import admin.controller.AdGoodsManageEvt;
@@ -44,7 +45,6 @@ public class AdGoodsAddView extends JDialog {
 		this.gle = gle;
 
 		// 이미지
-//		ImageIcon img= new ImageIcon("C:/dev/workspace/myprj2/src/admin/img/No.gif");
 		img= new ImageIcon("");
 		Image orimg= img.getImage();
 		Image chgimg = orimg.getScaledInstance(250, 350, Image.SCALE_SMOOTH);// 이미지 사이즈변경
@@ -120,11 +120,10 @@ public class AdGoodsAddView extends JDialog {
 		jtfInventory.setBounds(370, 250, 290, 30);
 		jsp.setBounds(370, 300, 290, 270);
 
-		jbtnGoodsAdd.setBounds(220, 600, 130, 30);
-		jbtnClose.setBounds(370, 600, 130, 30);
-		jbtnImg.setBounds(60, 600, 130, 30);
+		jbtnGoodsAdd.setBounds(380, 580, 120, 30);
+		jbtnClose.setBounds(530, 580, 120, 30);
+		jbtnImg.setBounds(10, 420, 270, 20);
 		
-
 		jcbBrand.setBorder(null);
 		jtfGoodsName.setBorder(null);
 		jtfPrice.setBorder(null);
@@ -150,6 +149,13 @@ public class AdGoodsAddView extends JDialog {
 		add(jbtnGoodsAdd);
 		add(jcbDetailType);
 		add(jlDetailtype);
+		
+		jbtnClose.setBackground(Color.white);
+		jbtnClose.setBorder(new LineBorder(Color.white));	
+		jbtnImg.setBackground(Color.white);
+		jbtnImg.setBorder(new LineBorder(Color.white));	
+		jbtnGoodsAdd.setBackground(Color.white);
+		jbtnGoodsAdd.setBorder(new LineBorder(Color.white));	
 		
 		this.getContentPane().setBackground(new Color(0x3F4040)); //JDialog 배경색 변경 
 		AdGoodsAddEvt pue = new AdGoodsAddEvt(this,gle);

@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 import admin.controller.AdGoodsDetailEvt;
 import admin.controller.AdGoodsManageEvt;
@@ -39,7 +40,6 @@ public class AdGoodsDetailView extends JDialog {
 		this.gle = gle;
 		// 이미지
 		ImageIcon iiImage = new ImageIcon(StaticCla.FILE_PATH + "/gd_" + dgDTO.getG_img());// 이미지 설정 (rs_)
-//		jlImg = new JLabel("상품 이미지가 등록되지 않았습니다.", iiImage,JLabel.CENTER);
 		jlImg = new JLabel(iiImage, JLabel.CENTER);
 		jlImg.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		Font fontLabel = new Font("맑은 고딕", Font.BOLD, 15);
@@ -166,8 +166,14 @@ public class AdGoodsDetailView extends JDialog {
 		jspStrong.setBounds(300, 370, 360, 200);
 
 		jbtnImg.setBounds(10, 420, 270, 20);
+		jbtnImg.setBackground(Color.white);
+		jbtnImg.setBorder(new LineBorder(Color.white));		
 		jbtnUpload.setBounds(380, 580, 120, 30);
+		jbtnUpload.setBackground(Color.white);
+		jbtnUpload.setBorder(new LineBorder(Color.white));		
 		jbtnClose.setBounds(530, 580, 120, 30);
+		jbtnClose.setBackground(Color.white);
+		jbtnClose.setBorder(new LineBorder(Color.white));		
 
 		add(jlTitle);
 		add(jlImg);

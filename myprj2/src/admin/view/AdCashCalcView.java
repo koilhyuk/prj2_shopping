@@ -178,6 +178,8 @@ public class AdCashCalcView extends JDialog {
 		jp.setBackground(new Color(0x3F4040 ));
 
 		jbtClose = new JButton("´Ý±â");
+		jbtClose.setBackground(new Color(0x3F4040));
+		jbtClose.setForeground(Color.white);
 		
 		jbtClose.setBounds(160, 620, 70, 30);
 		jtf.setBounds(15, 5, 370, 30);

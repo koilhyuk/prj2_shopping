@@ -130,7 +130,7 @@ public class UserDAO {
 				cnt++;
 				switch (sgck.getSelectCombo()) {
 				case "ªÛ«∞∏Ì":
-					searchDataUpper = sgck.getSearchData();
+					searchDataUpper = sgck.getSearchData().toUpperCase();
 					pstmt.setString(cnt, searchDataUpper);
 					break;
 

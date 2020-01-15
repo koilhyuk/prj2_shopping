@@ -104,7 +104,7 @@ public class AdminDAO {
 				selectAllGoods.append(" 	and b.b_name like '%' ||? ||'%' 	");
 				break;
 			case 3: // 상품명
-				searchData = slVO.getJtfData();
+				searchData = slVO.getJtfData().toUpperCase();
 				selectAllGoods.append(" 	and g_name like '%'||?||'%' 	");
 				break;
 
@@ -504,11 +504,11 @@ public class AdminDAO {
 //					.append(" and to_char(sysdate,'yyyymmdd') =to_char(o_date,'yyyymmdd')		");
 			switch (slVO.getIndex()) {
 			case 1:// 주문번호
-				searchData = slVO.getJtfData();
+				searchData = slVO.getJtfData().toLowerCase();
 				selectAllOrder.append("  and o_code like '%'||?||'%' 	");
 				break;
 			case 2:// 회원아이디
-				searchData = slVO.getJtfData();
+				searchData = slVO.getJtfData().toLowerCase();
 				selectAllOrder.append("  and m_id like '%'||?||'%'	");
 				break;
 			case 3:// 받는이
@@ -516,7 +516,7 @@ public class AdminDAO {
 				selectAllOrder.append(" and o_person like '%'||?||'%' 	");
 				break;
 			case 4:// 제품명
-				searchData = slVO.getJtfData();
+				searchData = slVO.getJtfData().toUpperCase();
 				selectAllOrder.append(" and g_name like '%'||?||'%' 	");
 				break;
 			case 5:// 주문일자
