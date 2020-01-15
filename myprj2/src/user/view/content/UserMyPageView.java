@@ -62,6 +62,8 @@ public class UserMyPageView extends JDialog{
 		jbtLogOut= new JButton("·Î±×¾Æ¿ô");
 		jbtLogOut.setForeground(Color.white);
 		jbtLogOut.setBackground(new Color(0x3F4040));
+		
+		
 		//ÀÌ¹ÌÁö // ±¤°í 
 		ImageIcon iImage= new ImageIcon(UserGoodsMainView.USER_FILE_PATH+"/mypagebanner.jpg");
 		JLabel jtaImage= new JLabel(iImage);

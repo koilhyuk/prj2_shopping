@@ -61,7 +61,7 @@ public class UserMyOrderDetailView extends JDialog  {
 		jlTitle.setHorizontalAlignment(JTextField.CENTER);
 		
 		//평점
-		Integer[] score= {1,2,3,4,5};
+		Integer[] score= {5,4,3,2,1};
 		dcbmScore= new DefaultComboBoxModel<Integer>(score);
 		jcbScore= new JComboBox<Integer>(dcbmScore);
 		
@@ -107,6 +107,7 @@ public class UserMyOrderDetailView extends JDialog  {
 		jtfGoodsCode = new JLabel();
 
 		jbtnScore = new JButton("평점주기");
+
 		jbtnClose = new JButton("확인");
 		// setText
 		jtfGoodsCode.setText(moDTO.getG_code());
@@ -217,6 +218,11 @@ public class UserMyOrderDetailView extends JDialog  {
 		jpDelivery.setBounds(15, 450, 630, 100);
 		jpDelivery.setBorder(new LineBorder(Color.lightGray));
 		jbtnClose.setBounds(280, 570, 120, 30);
+		
+		jbtnScore.setForeground(Color.white);
+		jbtnScore.setBackground(new Color(0x3F4040));
+		jbtnClose.setForeground(Color.white);
+		jbtnClose.setBackground(new Color(0x3F4040));
 		
 		add(jlTitle);
 		add(jlImg);
