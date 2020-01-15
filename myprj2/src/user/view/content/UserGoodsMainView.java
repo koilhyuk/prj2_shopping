@@ -403,23 +403,8 @@ public class UserGoodsMainView extends JFrame {
 		if (UserGoodsMainView.id != null && !UserGoodsMainView.id.isEmpty()) {// 회원일때만
 			mls = new MemLoginState(id);
 			mls.start();
-//			btnCardUpLoad = new JButton("카드등록");
-//			btnCardUpLoad.setBounds(115, 200, 90, 30);
-//			btnCardUpLoad.addActionListener(ugme);
-//			jpContent.add(btnCardUpLoad);
-//			btnCardUpLoad.setBackground(new Color(0x3F4040));
-//			btnCardUpLoad.setForeground(Color.white);
-//			btnCardUpLoad.setBorder(new LineBorder(new Color(0x3F4040)));
-//			btnCardUpLoad.addMouseListener(ugme);
-
-//			/////////////////////////////// 20200112 찜하기 버튼 추가
-//			btnGoodsLike = new JButton("찜한 상품");
-//			btnGoodsLike.setBounds(210, 200, 90, 30);
-//			jpContent.add(btnGoodsLike);
-//			btnGoodsLike.addActionListener(ugme);
 
 			btnOrderNe = new JButton("마이페이지");
-//			btnOrderNe.setBounds(10, 240, 195, 30);
 			btnOrderNe.setBounds(115, 200, 90, 30);
 			btnOrderNe.setBackground(new Color(0x3F4040));
 			btnOrderNe.setForeground(Color.white);
@@ -427,7 +412,6 @@ public class UserGoodsMainView extends JFrame {
 			jpContent.add(btnOrderNe);
 			btnOrderNe.addMouseListener(ugme);
 			btnOrderNe.addActionListener(ugme);
-
 			btnLogout.setText("로그아웃");
 		} else {// 비회원
 			btnLogout.setText("로그인");
@@ -604,10 +588,6 @@ public class UserGoodsMainView extends JFrame {
 	public MemLoginState getMls() {
 		return mls;
 	}
-
-//	public JButton getBtnCardUpLoad() {
-//		return btnCardUpLoad;
-//	}
 
 	public JButton getBtnOrderNe() {
 		return btnOrderNe;

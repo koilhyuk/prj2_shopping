@@ -131,15 +131,15 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 		JScrollPane jspGoods = ugmv.getJspGoods();
 		jpGoods = ugmv.getJpGoods();
 		jspGoods.getVerticalScrollBar().setValue(0);
+		jspGoods.setVisible(false);
 		jpGoods.removeAll();
 		setSearchLabel();
 
 		UserDAO uDAO = UserDAO.getInstance();
 		try {
 			sgck = new SelectGoodsCheckVO(brandCheck, clothesType, detailType, searchData, selectCombo);
-			System.err.println(sgck);
 			List<SelectAllGoodsVO> list = uDAO.selectAllGoods(sgck);
-
+			System.err.println(list.size());
 			if (list.isEmpty()) {
 				ugmv.getJtfSearch().setText("");
 				searchData = "";
@@ -157,8 +157,7 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 					tempInven = " (※ 품절임박 ※)";
 				} else {
 					tempInven = "";
-
-				}
+				}// end else
 				jpGoods.add(new UserGoodsListPanelView(sagVO.getG_img(),
 						sagVO.getG_name() + "(" + sagVO.getG_code() + ")", sagVO.getB_name(), sagVO.getG_price(),
 						sagVO.getG_salenum() + tempInven, sagVO.getG_score()));
@@ -171,6 +170,7 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 			}
 			jpGoods.setPreferredSize(new Dimension(1000, 285 * ((goodsNum / 6) + plusCnt)));
 			ugmv.setVisible(true);
+			jspGoods.setVisible(true);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(ugmv, "서비스가 원활하지 않습니다. 죄송합니다.");
 			e.printStackTrace();
