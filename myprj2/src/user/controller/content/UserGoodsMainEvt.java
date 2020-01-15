@@ -28,7 +28,6 @@ import javax.swing.table.DefaultTableModel;
 import user.dao.UserDAO;
 import user.helper.RecentThread;
 import user.run.PhotoUploading;
-import user.view.content.UserGoodsLikeView;
 import user.view.content.UserGoodsListPanelView;
 import user.view.content.UserGoodsMainView;
 import user.view.content.UserGoodsNotPanelView;
@@ -138,6 +137,7 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 		UserDAO uDAO = UserDAO.getInstance();
 		try {
 			sgck = new SelectGoodsCheckVO(brandCheck, clothesType, detailType, searchData, selectCombo);
+			System.err.println(sgck);
 			List<SelectAllGoodsVO> list = uDAO.selectAllGoods(sgck);
 
 			if (list.isEmpty()) {
@@ -239,7 +239,6 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 ///////////////// 2019-09-22
 			if (detailTypeList.isEmpty()) {
 				JOptionPane.showMessageDialog(ugmv, "조회결과 없음");
-//				return;
 			}
 
 			if (detailTypeList.size() % 2 == 0) {// 갯수가 짝수라면
@@ -487,7 +486,6 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 						if (ugmv.getMls().getClient() != null) {
 							ugmv.getMls().getClient().close();
 						}
-
 						ugmv.dispose();// 뷰 종료
 						new ClientLoginView();
 					} catch (IOException e1) {
@@ -634,7 +632,6 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 
 				////////////////// 2019-09-22
 				if (originBtn != null) {
-
 					for (int j = temp + 1; j < btnList.length; j++) {
 						btnList[j].setBounds(0, btnList[j].getY() - tableHeight, originBtn.getWidth(),
 								originBtn.getHeight());
@@ -676,8 +673,6 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 			photoUploading();
 			searchBrandList();
 		} // end if
-		
-
 	}// actionPerformed
 
 	@Override

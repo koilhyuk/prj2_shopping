@@ -105,9 +105,9 @@ public class UserDAO {
 			}// end switch
 
 			if (!sgck.getClothesType().equals("BEST")) {
-				selectBest.append("	order by g_score desc,g_salenum desc	");
+				selectBest.append("	order by g_score desc, g_salenum desc	");
 			} else {
-				selectBest.append("	order by g_salenum desc,g_score desc	");
+				selectBest.append("	order by g_salenum desc, g_score desc	");
 			}
 
 			pstmt = con.prepareStatement(selectBest.toString());
@@ -116,7 +116,7 @@ public class UserDAO {
 				cnt++;
 				if (!sgck.getClothesType().equals("BEST")) {// Best가 아닐 때
 					pstmt.setString(cnt, sgck.getClothesType());
-				} else {
+				} else {// BEST일 때
 					pstmt.setString(cnt, "");
 				} // end if
 
@@ -1234,7 +1234,5 @@ public class UserDAO {
 		} // end finally
 		return updateChk;
 	}// updateUseMoney
-	
-	
 	
 }// class

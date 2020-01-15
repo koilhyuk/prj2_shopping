@@ -1,7 +1,7 @@
 package user.vo.content;
 
 public class SelectGoodsCheckVO {
-	private String brandCheck, clothesType, detailType, searchData,selectCombo;
+	private String brandCheck, clothesType, detailType, searchData, selectCombo;
 
 	public SelectGoodsCheckVO(String brandCheck, String clothesType, String detailType, String searchData,
 			String selectCombo) {
@@ -33,5 +33,10 @@ public class SelectGoodsCheckVO {
 		return selectCombo;
 	}
 
+	@Override
+	public String toString() {
+		return "SelectGoodsCheckVO [brandCheck=" + brandCheck + ", clothesType=" + clothesType + ", detailType="
+				+ detailType + ", searchData=" + searchData + ", selectCombo=" + selectCombo + "]";
+	}
 
 }
