@@ -99,6 +99,9 @@ public class UserMyOrderEvt extends MouseAdapter implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource()==umo.getJbtClose()) {
+			umo.dispose();
+		}
 	
 	}//actionPerformed
 

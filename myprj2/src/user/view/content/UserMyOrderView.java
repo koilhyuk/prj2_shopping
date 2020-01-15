@@ -39,6 +39,7 @@ public class UserMyOrderView extends JDialog {
 	private JTable jtOrder;
 	private JScrollPane jspOrder;
 	private JTableHeader th;
+	private JButton jbtClose;
 
 	private static String id;
 	public UserMyOrderView(String id) {
@@ -51,6 +52,8 @@ public class UserMyOrderView extends JDialog {
 		Font font = new Font("맑은 고딕", Font.BOLD, 20); // 타이틀폰트
 		Font fontHh = new Font("맑은 고딕", Font.BOLD, 15); // 테이블헤더
 		jlTitle.setFont(font);
+		
+		jbtClose= new JButton("닫기");
 		// 번호추가
 		String[] columnName = { "상품명", "브랜드", "배송여부", "가격", "주문일" };
 
@@ -114,6 +117,12 @@ public class UserMyOrderView extends JDialog {
 		setLayout(null); // 수동배치
 
 		jspOrder.setBounds(30, 120, 800, 380);
+		jbtClose.setBounds(360, 510, 100, 30);
+		
+		jbtClose.setForeground(Color.white);
+		jbtClose.setBackground(new Color(0x3F4040));
+		
+		add(jbtClose);
 		add(jspOrder);
 		add(jpLabel);
 //		jtOrder.setRowSorter(new TableRowSorter(dtmOrderList)); ////////// 열 정렬 (오름차순, 내림차순)/////////09-11추가
@@ -126,6 +135,7 @@ public class UserMyOrderView extends JDialog {
 		
 		// 마우스 이벤트 처리
 		jtOrder.addMouseListener(umo);
+		jbtClose.addActionListener(umo);
 
 		jtOrder.getTableHeader().setReorderingAllowed(false);// 컬럼이동방지
 		jtOrder.getTableHeader().setResizingAllowed(false);// 크기조절불가
@@ -134,7 +144,7 @@ public class UserMyOrderView extends JDialog {
 		setVisible(true);
 		setResizable(false);
 
-		setBounds(100, 100, 900, 580);
+		setBounds(100, 100, 900, 590);
 
 	}// AdGoodsManageView
 
@@ -162,5 +172,11 @@ public class UserMyOrderView extends JDialog {
 	public static String getId() {
 		return id;
 	}
+
+
+	public JButton getJbtClose() {
+		return jbtClose;
+	}
+	
 
 }// class
