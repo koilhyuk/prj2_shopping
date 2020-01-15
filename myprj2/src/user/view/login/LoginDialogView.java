@@ -72,7 +72,6 @@ public class LoginDialogView extends JDialog {
 
 		setBounds(200, 200, 500, 300);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}// AdminLoginView
 
 	public JTextField getJtfId() {

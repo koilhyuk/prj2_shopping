@@ -38,7 +38,7 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 	private SelectOrderDetailDTO odDTO;
 
 	public AdOrderDetailView(SelectOrderDetailDTO odDTO) {
-		super(StaticCla.mv, "상품관리-상세보기", true);
+		super(StaticCla.mv, "주문관리", true);
 		this.odDTO = odDTO;
 		// 이미지
 		ImageIcon iiImage = new ImageIcon(StaticCla.FILE_PATH+"/gd_" + odDTO.getG_img());

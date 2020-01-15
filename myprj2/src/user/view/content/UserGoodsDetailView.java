@@ -31,7 +31,7 @@ public class UserGoodsDetailView extends JDialog {
 	private JTextField jtfSelectNum;
 
 	public UserGoodsDetailView(SelectClickGoodsDetailDTO scgdDTO) {
-		super(UserGoodsMainEvt.ugmv, "카드등록", true);
+		super(UserGoodsMainEvt.ugmv, "상품상세", true);
 
 		JLabel jlImg = new JLabel(new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/rs_gd_" + scgdDTO.getgImg()));
 		JLabel jlDetail = new JLabel("상품상세보기");

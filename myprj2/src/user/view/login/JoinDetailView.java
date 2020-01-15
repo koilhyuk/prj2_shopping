@@ -29,7 +29,7 @@ public class JoinDetailView extends JFrame {
 	private JButton jbtnSearchAddr;
 
 	public JoinDetailView() {
-
+		super("회원가입");
 		this.getContentPane().setBackground(new Color(0x3F4040));
 		jpfPw = new JPasswordField();
 		jpfPwConfirm = new JPasswordField();
@@ -220,7 +220,6 @@ public class JoinDetailView extends JFrame {
 
 		setBounds(100, 100, 450, 750);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}// JoinDetail
 
 	public JLabel getJlTitle() {

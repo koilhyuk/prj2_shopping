@@ -34,7 +34,7 @@ public class AdCusDetailView extends JDialog {
 	private SelectCusDetailDTO scDTO;
 
 	public AdCusDetailView(SelectCusDetailDTO scDTO) {
-		super(StaticCla.mv, "회원관리-상세보기", true);
+		super(StaticCla.mv, "회원", true);
 		this.scDTO = scDTO;
 		// 회원이미지
 		ImageIcon iiImage = new ImageIcon("C:/Users/hyebin/git/MyPrj2/myprj2/src/admin/img/model.png");

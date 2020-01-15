@@ -60,7 +60,6 @@ public class LoginPwReset extends JFrame{
 		
 		setBounds(100, 100, 400, 290);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}//AdminLoginFound
 	
 	public JLabel getJlTitle() {

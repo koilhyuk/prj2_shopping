@@ -35,7 +35,7 @@ public class AdGoodsDetailView extends JDialog {
 	private SelectGoodsDetailDTO dgDTO; // 상세창에 정보를 설정해야하므로 필요
 
 	public AdGoodsDetailView(AdGoodsManageEvt gle, SelectGoodsDetailDTO dgDTO) {
-		super(StaticCla.mv, "상품관리-상세보기", true);
+		super(StaticCla.mv, "상품관리", true);
 		this.gle = gle;
 		// 이미지
 		ImageIcon iiImage = new ImageIcon(StaticCla.FILE_PATH + "/gd_" + dgDTO.getG_img());// 이미지 설정 (rs_)

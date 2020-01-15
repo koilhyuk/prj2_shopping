@@ -97,7 +97,6 @@ public class ZipcodeSearchView extends JDialog {
 		setBounds(100, 100, 700, 600);
 		setVisible(true);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}// ZipcodeSearchView
 

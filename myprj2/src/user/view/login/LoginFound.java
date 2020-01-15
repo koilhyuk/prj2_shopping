@@ -19,7 +19,7 @@ public class LoginFound extends JFrame {
 	private JTabbedPane jtpFound;
 	
 	public LoginFound() {
-//		super("아이디/비밀번호 찾기");
+		super("아이디/비밀번호 찾기");
 
 		jlTitle=new JLabel("●아이디찾기");
 		jlTitle2=new JLabel("●비밀번호찾기");
@@ -130,6 +130,7 @@ public class LoginFound extends JFrame {
 		LoginFoundEvt lfe=new LoginFoundEvt(this);
 		jbtConfirm.addActionListener(lfe);
 		jbtCancle.addActionListener(lfe);
+		
 		LoginFoundEvt2 lfe2=new LoginFoundEvt2(this);
 		jbtConfirm2.addActionListener(lfe2);
 		jbtCancle2.addActionListener(lfe2);
@@ -142,7 +143,6 @@ public class LoginFound extends JFrame {
 
 		setBounds(100, 100, 400, 290);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}//LoginFound1
 	public JLabel getJlTitle() {

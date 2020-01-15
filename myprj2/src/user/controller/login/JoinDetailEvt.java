@@ -169,7 +169,6 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		String id = jdv.getJtfId().getText().trim(); // 아이디
 		ClientDAO cDAO = ClientDAO.getInstance();
 
-
 		try {
 			if (jdv.getJtfId() == null) { // 공백이면
 				JOptionPane.showMessageDialog(jdv, "아이디를 입력해주세요");
