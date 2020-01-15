@@ -19,7 +19,7 @@ public class UserGoodsListPanelEvt implements ActionListener {
 	public UserGoodsListPanelEvt(UserGoodsListPanelView uglpv) {
 		this.uglpv = uglpv;
 		String tempName = uglpv.getJlGoodsName().getText().trim();
-		goodsCode = tempName.substring(tempName.indexOf("(") + 1, tempName.indexOf(")")).toString().trim();
+		goodsCode = tempName.substring(tempName.lastIndexOf("(") + 1, tempName.lastIndexOf(")")).toString().trim();
 
 	}// GoodsPanelViewEvt
 
