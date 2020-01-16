@@ -39,7 +39,8 @@ public class AdCusDetailView extends JDialog {
 		jlImg = new JLabel(iiImage);
 		jlImg.setBorder(new EtchedBorder(EtchedBorder.RAISED)); // border돌출
 		Font titleFont = new Font("맑은 고딕", Font.BOLD, 20);
-		Font font = new Font("맑은 고딕", Font.BOLD, 15);
+		Font font1 = new Font("맑은 고딕", Font.BOLD, 15);
+		Font font = new Font("맑은 고딕", Font.PLAIN, 13);
 		// 라벨
 		JTextField jlTitle = new JTextField(" 회원정보  ");
 		jlTitle.setFont(titleFont);
@@ -48,33 +49,33 @@ public class AdCusDetailView extends JDialog {
 		jlTitle.setHorizontalAlignment(JTextField.CENTER);
 		
 		JLabel jlCusNum = new JLabel("회원번호 :");//
-		jlCusNum.setFont(font);
-		JLabel jlCusIP = new JLabel("회원IP:");//
-		jlCusIP.setFont(font);
+		jlCusNum.setFont(font1);
+		JLabel jlCusIP = new JLabel("회원 IP:");//
+		jlCusIP.setFont(font1);
 		JLabel jlOrderer = new JLabel("회원아이디:");//
-		jlOrderer.setFont(font);
+		jlOrderer.setFont(font1);
 		JLabel jlCusName = new JLabel("회원이름:");//
-		jlCusName.setFont(font);
+		jlCusName.setFont(font1);
 		JLabel jlBirth = new JLabel("생년월일:");//
-		jlBirth.setFont(font);
+		jlBirth.setFont(font1);
 		JLabel jlGender = new JLabel("성별:");//
-		jlGender.setFont(font);
+		jlGender.setFont(font1);
 		JLabel jlPhone = new JLabel("연락처 :");//
-		jlPhone.setFont(font);
+		jlPhone.setFont(font1);
 		JLabel jlCusbunzi = new JLabel("우편번호 :");//
-		jlCusbunzi.setFont(font);
+		jlCusbunzi.setFont(font1);
 		JLabel jlCusAddr = new JLabel("주소 :");//
-		jlCusAddr.setFont(font);
+		jlCusAddr.setFont(font1);
 		JLabel jlCusAddr2 = new JLabel("상세주소 :");//
-		jlCusAddr2.setFont(font);
+		jlCusAddr2.setFont(font1);
 		JLabel jlEmail = new JLabel("이메일:");//
-		jlEmail.setFont(font);
+		jlEmail.setFont(font1);
 		JLabel jlInputDate = new JLabel("가입일:");//
-		jlInputDate.setFont(font);
+		jlInputDate.setFont(font1);
 		JLabel jlTotalPrice = new JLabel("총사용금액:");//
-		jlTotalPrice.setFont(font);
+		jlTotalPrice.setFont(font1);
 		JLabel jlStop = new JLabel("정지상태 :");//
-		jlStop.setFont(font);
+		jlStop.setFont(font1);
 		jtfStop = new JLabel();//
 		jlreason = new JLabel("");//
 
@@ -111,11 +112,11 @@ public class AdCusDetailView extends JDialog {
 		jlOrderer.setBounds(10, 110, 100, 30);
 		jlTotalPrice.setBounds(10, 150, 140, 30);
 		jlInputDate.setBounds(10, 190, 140, 30);
-		jtfCusNum.setBounds(100, 30, 220, 30);
-		jtfCusIP.setBounds(90, 70, 220, 30);
+		jtfCusNum.setBounds(85, 30, 220, 30);
+		jtfCusIP.setBounds(75, 73, 220, 30);
 		jtfID.setBounds(100, 110, 220, 30);
-		jtfTotalPrice.setBounds(100, 150, 220, 30);
-		jtfDate.setBounds(100, 190, 220, 30);
+		jtfTotalPrice.setBounds(105, 150, 220, 30);
+		jtfDate.setBounds(75, 190, 220, 30);
 		jlStop.setBounds(10, 230, 100, 30);
 		jtfStop.setBounds(100, 230, 100, 30);
 		jlreason.setBounds(10, 255, 300, 30);
@@ -179,24 +180,43 @@ public class AdCusDetailView extends JDialog {
 
 		// setText
 		jtfCusNum.setText(scDTO.getM_code());
+		jtfCusNum.setFont(font);
 		jtfCusIP.setText(scDTO.getM_ip());
+		jtfCusIP.setFont(font);
 		jtfID.setText(scDTO.getM_id());
+		jtfID.setFont(font);
 		jtfCusName.setText(scDTO.getM_name());
+		jtfCusName.setFont(font);
 		jtfBirth.setText(scDTO.getM_birth());
-		jtfGender.setText(scDTO.getM_gender());
+		jtfBirth.setFont(font);
+		if(scDTO.getM_gender().equals("F")) {
+			jtfGender.setText("여자");
+		}else {
+			jtfGender.setText("남자");
+		}//end if
+		jtfGender.setFont(font);
 		jtfPhone.setText(scDTO.getM_phone());
+		jtfPhone.setFont(font);
 		jtfCusAddr2.setText(scDTO.getM_detail_addr());
+		jtfCusAddr2.setFont(font);
 		jtfEmail.setText(scDTO.getM_email());
+		jtfEmail.setFont(font);
 		jtfDate.setText(scDTO.getM_joindate());
+		jtfDate.setFont(font);
 		jtfTotalPrice.setText(String.valueOf(scDTO.getM_totalmoney()) + "  원");
+		jtfTotalPrice.setFont(font);
 		jtfCusAddr.setText(scDTO.getZ_addr());
+		jtfCusAddr.setFont(font);
 		jtfCusbunzi.setText(scDTO.getZ_zipcode());
+		jtfCusbunzi.setFont(font);
 		if(scDTO.getM_stopflag().equals("Y")) {
 			jtfStop.setText("활성화계정");
 		}else {
 			jtfStop.setText("비활성화계정");
 		}
+		jtfStop.setFont(font);
 		jlreason.setText(scDTO.getM_stop_reason());
+		jlreason.setFont(font);
 		jlTitle.setBounds(10, 10, 200, 30);
 
 		jlImg.setBorder(new LineBorder(Color.GRAY,0));
@@ -328,3 +348,4 @@ public class AdCusDetailView extends JDialog {
 	
 
 }// class
+

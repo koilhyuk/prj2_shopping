@@ -37,6 +37,11 @@ public class AdCusDetailEvt implements ActionListener {
 //			String name=sdv.getJtfCusName().getText().trim();
 			String birth = sdv.getJtfBirth().getText().trim();
 			String gender = sdv.getJtfGender().getText().trim();
+			if(gender.equals("³²ÀÚ")) {
+				gender="M";
+			}else {
+				gender="F";
+			}//end if
 			String phone = sdv.getJtfPhone().getText().trim();
 			String detail_addr = sdv.getJtfCusAddr2().getText().trim();
 			String img = new File(sdv.getJlImg().getIcon().toString()).getName();
