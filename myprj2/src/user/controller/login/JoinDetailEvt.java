@@ -85,6 +85,7 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 			jdv.getJtfName().requestFocus();
 			return;
 		} // end if
+		
 		if(jdv.getBgGender().getSelection()==null|| jdv.getBgGender().isSelected(null)) {// 성별을 선택하지 않았을때
 			JOptionPane.showMessageDialog(jdv, "※성별을 선택해주세요.");
 			return;

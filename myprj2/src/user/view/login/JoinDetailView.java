@@ -1,6 +1,7 @@
 package user.view.login;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -38,7 +39,9 @@ public class JoinDetailView extends JDialog {
 		jpfPw = new JPasswordField();
 		jpfPwConfirm = new JPasswordField();
 
-		JLabel jlTitle = new JLabel("※회원가입");
+		Font f = new Font("고딕", Font.BOLD, 15);
+		JLabel jlTitle = new JLabel("♡ 회 원 가 입 ♡");
+		jlTitle.setFont(f);
 		jlTitle.setForeground(Color.white);
 		JLabel jlId = new JLabel("아이디");
 		jlId.setForeground(Color.white);
