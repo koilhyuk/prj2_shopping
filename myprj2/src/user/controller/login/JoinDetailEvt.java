@@ -23,7 +23,6 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		this.jdv = jdv;
 	}// JoinDetailEvt
 
-
 	private void joinConfirm() { // 회원가입 확인
 		JoinDetailVO jdVO = null;
 		String id = jdv.getJtfId().getText().trim();// 아이디
@@ -53,72 +52,72 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		int zeq = 0;
 		//유효성 
 		if (inputPw.trim().isEmpty()|| "".equals(inputPw.trim())) {//비밀번호가 빈칸일 때
-			JOptionPane.showMessageDialog(jdv, "비밀번호를 입력해주세요.");
+			JOptionPane.showMessageDialog(jdv, "※비밀번호를 입력해주세요.");
 			jdv.getJpfPw().setText("");
 			jdv.getJpfPw().requestFocus();
 			return;
-		}else if (inputPw.trim().length() < 5) {//비밀번호는 5자리 이상으로 입력 
-			JOptionPane.showMessageDialog(jdv, "비밀번호는 5자리 이상으로 입력해주세요");
+		}else if (inputPw.trim().length() < 5||inputPw.trim().length() > 20) {//비밀번호는 5자리 이상으로 입력 
+			JOptionPane.showMessageDialog(jdv, "※비밀번호는 5~20자 사이로 입력해주세요");
 			jdv.getJpfPw().setText("");
 			jdv.getJpfPw().requestFocus();
 			return;
 		}//end if
 		if (inputPw2.isEmpty()||"".equals(inputPw2)) {//비밀번호 확인란이 빈칸일때
-			JOptionPane.showMessageDialog(jdv, "비밀번호를 입력해주세요.");
+			JOptionPane.showMessageDialog(jdv, "※비밀번호를 한번 더 입력해주세요.");
 			jdv.getJpfPwConfirm().setText("");
 			jdv.getJpfPwConfirm().requestFocus();
 			return;
 		}//end if 
 		if (!inputPw2.equals(inputPw)) {// 동일하지 않으면
-			JOptionPane.showMessageDialog(jdv, "비밀번호와 비밀번호 확인이 일치하지 않습니다. ");
+			JOptionPane.showMessageDialog(jdv, "※비밀번호와 비밀번호 확인이 일치하지 않습니다. ");
 			jdv.getJpfPwConfirm().setText("");
 			jdv.getJpfPwConfirm().requestFocus();
 			return;
 		} // end if
 		if(name.isEmpty()||"".equals(name)) {//이름이 빈칸일때
-			JOptionPane.showMessageDialog(jdv, "이름을 입력해주세요.");
+			JOptionPane.showMessageDialog(jdv, "※이름을 입력해주세요.");
 			jdv.getJtfName().setText("");
 			jdv.getJtfName().requestFocus();
 			return;
 		}else if (name.length() > 5) {//이름의 길이 
-			JOptionPane.showMessageDialog(jdv, "이름은 5자 이내로 작성해주세요.");
+			JOptionPane.showMessageDialog(jdv, "※이름은 5자 이내로 작성해주세요.");
 			jdv.getJtfName().setText("");
 			jdv.getJtfName().requestFocus();
 			return;
 		} // end if
 		if(jdv.getBgGender().getSelection()==null|| jdv.getBgGender().isSelected(null)) {// 성별을 선택하지 않았을때
-			JOptionPane.showMessageDialog(jdv, "성별을 선택해주세요.");
+			JOptionPane.showMessageDialog(jdv, "※성별을 선택해주세요.");
 			return;
 		}//end if
 
 		if (addrDetail.isEmpty()||"".equals(addrDetail)) {//상세주소가 null일때
-			JOptionPane.showMessageDialog(jdv, "상세 주소를 입력해주세요");
+			JOptionPane.showMessageDialog(jdv, "※상세 주소를 입력해주세요");
 			jdv.getJtfAddr().requestFocus();
 			return;
 		} // end if
 
 		if (!email.contains("@") || !email.contains(".")) {
-			JOptionPane.showMessageDialog(jdv, "올바른 이메일 형식으로 입력해주세요");
+			JOptionPane.showMessageDialog(jdv, "※올바른 이메일 형식으로 입력해주세요");
 			jdv.getJtfEmail().setText("");
 			jdv.getJtfEmail().requestFocus();
 			return;
 		}else if (email.isEmpty()|| "".equals(email)) {
-			JOptionPane.showMessageDialog(jdv, "이메일을 입력해주세요");
+			JOptionPane.showMessageDialog(jdv, "※이메일을 입력해주세요");
 			jdv.getJtfEmail().requestFocus();
 			return;
 		} // end if
 		
 		if(jdv.getJtfPhoneNum1().getText().trim().isEmpty()||"".equals(jdv.getJtfPhoneNum1().getText().trim())) {
-			JOptionPane.showMessageDialog(jdv, "전화번호를 입력해주세요");
+			JOptionPane.showMessageDialog(jdv, "※전화번호 4자리를 입력해주세요");
 			jdv.getJtfPhoneNum1().requestFocus();
 			return;
 		}else if(jdv.getJtfPhoneNum2().getText().trim().isEmpty()||"".equals(jdv.getJtfPhoneNum2().getText().trim())) {
-			JOptionPane.showMessageDialog(jdv, "전화번호를 입력해주세요");
+			JOptionPane.showMessageDialog(jdv, "※전화번호 4자리를 입입력해주세요");
 			jdv.getJtfPhoneNum2().requestFocus();
 			return;
 		}//end if 
 		if (jdv.getJtfPhoneNum1().getText().trim().length() < 4) {
-			JOptionPane.showMessageDialog(jdv, "전화번호 4자리를 입력해주세요.");
+			JOptionPane.showMessageDialog(jdv, "※전화번호 4자리를 입력해주세요.");
 			jdv.getJtfPhoneNum1().setText("");
 			jdv.getJtfPhoneNum1().requestFocus();
 			return;
@@ -151,11 +150,11 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 			zeq = cDAO.seqSearch(zipcode, addr);
 			jdVO = new JoinDetailVO(id, cipherText, name, birth, tempGen, phone, addrDetail, email, zeq);
 			if(cDAO.insertMemJoin(jdVO)) {
-				JOptionPane.showMessageDialog(jdv, "축하합니다 회원가입이 완료되었습니다");
+				JOptionPane.showMessageDialog(jdv, "♡ 축하합니다 회원가입이 완료되었습니다 ♡");
 				jdv.dispose();
 			}//end if 
 		} catch (SQLException e1) {
-			JOptionPane.showMessageDialog(jdv, "회원가입에 실패하셨습니다.");
+			JOptionPane.showMessageDialog(jdv, "※회원가입에 실패하셨습니다.");
 			e1.printStackTrace();
 		}catch (NoSuchAlgorithmException e1) {
 			e1.printStackTrace();
@@ -168,19 +167,19 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		ClientDAO cDAO = ClientDAO.getInstance();
 		try {
 			if (id.isEmpty()|| "".equals(id)) { // 공백이면
-				JOptionPane.showMessageDialog(jdv, "아이디를 입력해주세요");
+				JOptionPane.showMessageDialog(jdv, "※아이디는 5~20자사이로 입력해주세요");
 				jdv.getJtfId().setText("");
 				jdv.getJtfId().requestFocus();
 				return;
 			} // end if
 			if (id.length()< 5|| id.length()>20) { 
-				JOptionPane.showMessageDialog(jdv, "아이디는 5~20자사이로 입력해주세요.");
+				JOptionPane.showMessageDialog(jdv, "※아이디는 5~20자사이로 입력해주세요.");
 				jdv.getJtfId().setText("");
 				jdv.getJtfId().requestFocus();
 				return;
 			} // end if
 			if (cDAO.idConfrim(id)) {// 조회된 아이디가 있으면
-				JOptionPane.showMessageDialog(jdv, "사용불가능한 아이디입니다");
+				JOptionPane.showMessageDialog(jdv, "※사용불가능한 아이디입니다");
 				jdv.getJtfId().setText("");
 				jdv.getJtfId().requestFocus();;
 			} else {
@@ -205,13 +204,13 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		if (ae.getSource() == jdv.getJbtConfirm()) {// 확인
 			if (flag==true) {
 				if(jdv.getJtfZipcode().getText().trim().isEmpty()||"".equals(jdv.getJtfZipcode().getText().trim())) {
-					JOptionPane.showMessageDialog(jdv, "주소를 입력해주세요.");
+					JOptionPane.showMessageDialog(jdv, "※주소를 입력해주세요.");
 					return;
 				}else {
 					joinConfirm();
 				}//end if 
 			} else {
-				JOptionPane.showMessageDialog(jdv, "아이디 중복체크를 해주세요.");
+				JOptionPane.showMessageDialog(jdv, "※아이디 중복체크를 해주세요.");
 				return;
 			} // end if
 		} // end if
