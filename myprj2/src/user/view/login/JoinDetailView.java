@@ -1,8 +1,13 @@
 package user.view.login;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -16,9 +21,10 @@ import user.controller.login.JoinDetailEvt;
 @SuppressWarnings("serial")
 public class JoinDetailView extends JDialog {
 
-	private JTextField jtfId, jtfName, jtfBirthYear, jtfBirthMonth, jtfBirthday, jtfPhoneNum, jtfPhoneNum1,
-			jtfPhoneNum2, jtfAddr, jtfEmail;
-	private JComboBox<String> jcbPhoneNum;
+	private JTextField jtfId, jtfName,jtfPhoneNum1,jtfPhoneNum2, jtfAddr, jtfEmail;
+	private JComboBox<String> jcbPhoneNum,  jcbBirthMonth, jcbBirthDay,jcbBirthYear;
+	private DefaultComboBoxModel<String> dcbmYear,dcbmMonth, dcbmDay, dcmbPhone;
+	
 	private ButtonGroup bgGender;
 	private JRadioButton jrbM, jrbF;
 	private JButton jbtIdConfirm, jbtConfirm, jbtClose;
@@ -38,16 +44,12 @@ public class JoinDetailView extends JDialog {
 		jlId.setForeground(Color.white);
 		JLabel jlPw = new JLabel("비밀번호");
 		jlPw.setForeground(Color.white);
-		JLabel jlPwConfirm = new JLabel("비밀번호 재확인");
+		JLabel jlPwConfirm = new JLabel("비밀번호 확인");
 		jlPwConfirm.setForeground(Color.white);
 		JLabel jlName = new JLabel("이름");
 		jlName.setForeground(Color.white);
 		JLabel jlBirth = new JLabel("생년월일");
 		jlBirth.setForeground(Color.white);
-		JLabel jlBirth1 = new JLabel("-");
-		jlBirth1.setForeground(Color.white);
-		JLabel jlBirth2 = new JLabel("-");
-		jlBirth2.setForeground(Color.white);
 		JLabel jlGender = new JLabel("성별");
 		jlGender.setForeground(Color.white);
 		JLabel JlPhoneNum = new JLabel("전화번호");
@@ -62,7 +64,8 @@ public class JoinDetailView extends JDialog {
 		jbtnSearchAddr.setBackground(Color.white);
 		jtfZipcode = new JTextField();
 		jtfAddress = new JTextField();
-
+		jtfAddr = new JTextField();// 상세
+		
 		JLabel jlAddr = new JLabel("주소");
 		jlAddr.setForeground(Color.white);
 		JLabel jlEmail = new JLabel("이메일");
@@ -70,19 +73,51 @@ public class JoinDetailView extends JDialog {
 
 		jtfId = new JTextField();
 		jtfName = new JTextField();
-		jtfBirthYear = new JTextField();
-		jtfBirthMonth = new JTextField();
-		jtfBirthday = new JTextField();
-		jtfPhoneNum = new JTextField("010");
+		
+		//생년
+		Calendar cal = new GregorianCalendar();
+		int fYear=1940;
+		int nowYear=cal.get(Calendar.YEAR);
+		List<String> tempArr=new ArrayList<String>();
+		for(int i=(nowYear-fYear); i>=0; i--) {
+			tempArr.add(String.valueOf(fYear+i));
+		}//end for
+		String[] temp=new String[tempArr.size()];
+		for(int j=0; j<temp.length; j++) {
+			temp[j]=tempArr.get(j);
+		}//end for
+		dcbmYear= new DefaultComboBoxModel<String>(temp);
+		jcbBirthYear= new JComboBox<String>(dcbmYear);
+		
+		//월
+		String month[]= new String[12];
+		for(int i=0;i<12; i++) {
+			month[i]=String.valueOf(i+1);
+		}//end for
+		dcbmMonth= new DefaultComboBoxModel<String>(month);
+		jcbBirthMonth= new JComboBox<String>(dcbmMonth);
+		
+		//일 
+		String day[]=new String[31];
+		for(int i=0; i<31; i++) {
+			day[i]=String.valueOf(i+1);
+		}//end for
+		dcbmDay = new DefaultComboBoxModel<String>(day);
+		jcbBirthDay= new JComboBox<String>(dcbmDay);
+		
+		//핸드폰
+		String[] phone= {"010","011","017","018","019"};
+		dcmbPhone= new DefaultComboBoxModel<String>(phone);
+		jcbPhoneNum = new JComboBox<String>(dcmbPhone);
+		
 		jtfPhoneNum1 = new JTextField(4);
 		jtfPhoneNum2 = new JTextField(4);
-		jtfAddr = new JTextField();// 3
 		jtfEmail = new JTextField();
 
 		jbtIdConfirm = new JButton("중복");
 		jbtIdConfirm.setForeground(new Color(0x3F4040));
 		jbtIdConfirm.setBackground(Color.white);
-		jbtConfirm = new JButton("확인");
+		jbtConfirm = new JButton("가입");
 		jbtConfirm.setForeground(new Color(0x3F4040));
 		jbtConfirm.setBackground(Color.white);
 
@@ -105,9 +140,6 @@ public class JoinDetailView extends JDialog {
 		jpfPwConfirm.setBorder(null);//
 		jpfPw.setBorder(null);
 		jtfName.setBorder(null);
-		jtfBirthYear.setBorder(null);
-		jtfBirthMonth.setBorder(null);
-		jtfBirthday.setBorder(null);
 		jtfPhoneNum1.setBorder(null);
 		jtfPhoneNum2.setBorder(null);
 		jtfAddr.setBorder(null);
@@ -126,8 +158,6 @@ public class JoinDetailView extends JDialog {
 		add(jlPwConfirm);
 		add(jlName);
 		add(jlBirth);
-		add(jlBirth1);
-		add(jlBirth2);
 		add(jlGender);
 		add(JlPhoneNum);
 		add(jlPhoneNum1);
@@ -138,10 +168,10 @@ public class JoinDetailView extends JDialog {
 		add(jpfPw);
 		add(jpfPwConfirm);
 		add(jtfName);
-		add(jtfBirthYear);
-		add(jtfBirthMonth);
-		add(jtfBirthday);
-		add(jtfPhoneNum);
+		add(jcbBirthYear);
+		add(jcbBirthMonth);
+		add(jcbBirthDay);
+		add(jcbPhoneNum);
 		add(jtfPhoneNum1);
 		add(jtfPhoneNum2);
 		add(jtfAddr);//
@@ -153,69 +183,58 @@ public class JoinDetailView extends JDialog {
 		add(jrbM);
 
 		jlTitle.setBounds(70, 10, 170, 30);
-		jlId.setBounds(70, 50, 170, 30);
-		jbtIdConfirm.setBounds(280, 50, 60, 30);
-		jtfId.setBounds(170, 50, 100, 30);
-		jlPw.setBounds(70, 100, 170, 30);
+		jlId.setBounds(70, 50, 100, 30);
+		jtfId.setBounds(170, 50, 170, 30);
+		jbtIdConfirm.setBounds(360, 50, 60, 30);
+		
+		jlPw.setBounds(70, 100, 100, 30);
 		jpfPw.setBounds(170, 100, 170, 30);
-		jlPwConfirm.setBounds(70, 150, 170, 30);
+		jlPwConfirm.setBounds(70, 150, 150, 30);
 		jpfPwConfirm.setBounds(170, 150, 170, 30);
-		jlName.setBounds(70, 200, 170, 30);
+		
+		jlName.setBounds(70, 200, 100, 30);
 		jtfName.setBounds(170, 200, 170, 30);
-		jlBirth.setBounds(70, 250, 170, 30);
-		jlBirth1.setBounds(230, 250, 30, 30);
-		jlBirth2.setBounds(290, 250, 30, 30);
-		jtfBirthYear.setBounds(170, 250, 40, 30);
-		jtfBirthMonth.setBounds(230, 250, 40, 30);
-		jtfBirthday.setBounds(290, 250, 40, 30);
-		jlGender.setBounds(70, 300, 50, 30);
+		
+		jlBirth.setBounds(70, 250, 100, 30);
+		jcbBirthYear.setBounds(170, 250, 80, 30);
+		jcbBirthMonth.setBounds(260, 250, 50, 30);
+		jcbBirthDay.setBounds(320, 250, 50, 30);
+		
+		jlGender.setBounds(70, 300, 80, 30);
 		jrbF.setBounds(170, 300, 70, 30);// 라디오버튼
 		jrbM.setBounds(250, 300, 70, 30);
-		JlPhoneNum.setBounds(70, 350, 170, 30);
-		jtfPhoneNum.setBounds(170, 350, 40, 30);
-		jlPhoneNum1.setBounds(220, 350, 50, 30);
-		jlPhoneNum2.setBounds(280, 350, 50, 30);
-		jtfPhoneNum1.setBounds(230, 350, 40, 30);
-		jtfPhoneNum2.setBounds(300, 350, 40, 30);
-		jlEmail.setBounds(70, 400, 170, 30);
-		jtfEmail.setBounds(170, 400, 170, 30);
+		
+		JlPhoneNum.setBounds(70, 350, 100, 30);
+		jlPhoneNum1.setBounds(245, 350, 30, 30);
+		jlPhoneNum2.setBounds(315, 350, 30, 30);
+		jcbPhoneNum.setBounds(170, 350, 60, 30);
+		jtfPhoneNum1.setBounds(260, 350, 40, 30);
+		jtfPhoneNum2.setBounds(330, 350, 40, 30);
+		
+		jlEmail.setBounds(70, 400, 100, 30);
+		jtfEmail.setBounds(170, 400, 200, 30);
 
-		jtfZipcode.setBounds(170, 450, 100, 30);
-		jbtnSearchAddr.setBounds(280, 450, 90, 30);
-		jtfAddress.setBounds(170, 500, 200, 30);
 		jlAddr.setBounds(70, 450, 200, 30);
-		jtfAddr.setBounds(170, 550, 200, 30);
+		jbtnSearchAddr.setBounds(320, 450, 100, 30);
+		jtfZipcode.setBounds(170, 450, 130, 30);
+		jtfAddress.setBounds(170, 500, 250, 30);
+		jtfAddr.setBounds(170, 550, 250, 30);//상세 
 
-		jbtConfirm.setBounds(130, 650, 60, 30);
-		jbtClose.setBounds(250, 650, 60, 30);
+		jbtConfirm.setBounds(250, 620, 80, 30);
+		jbtClose.setBounds(350, 620, 80, 30);
 
 		JoinDetailEvt jde = new JoinDetailEvt(this);
-		jbtnSearchAddr.addActionListener(jde);
-		jtfId.addActionListener(jde);
-		jpfPw.addActionListener(jde);//
-		jpfPwConfirm.addActionListener(jde);
-		jtfName.addActionListener(jde);
-		jtfBirthYear.addActionListener(jde);
-		jtfBirthMonth.addActionListener(jde);
-		jtfBirthday.addActionListener(jde);
-		jtfPhoneNum1.addActionListener(jde);
-		jtfPhoneNum2.addActionListener(jde);
-		jtfAddr.addActionListener(jde);
-		jtfEmail.addActionListener(jde);
+		jbtConfirm.addActionListener(jde);
 		jbtIdConfirm.addActionListener(jde);
 		jbtClose.addActionListener(jde);
-		jbtConfirm.addActionListener(jde);
-		jrbF.addActionListener(jde);
-		jrbM.addActionListener(jde);
-		jtfBirthYear.addKeyListener(jde);
-		jtfBirthMonth.addKeyListener(jde);
-		jtfBirthday.addKeyListener(jde);
-		jtfPhoneNum.addKeyListener(jde);
+		jbtnSearchAddr.addActionListener(jde);
+		
 		jtfPhoneNum1.addKeyListener(jde);
 		jtfPhoneNum2.addKeyListener(jde);
 
-		setBounds(100, 100, 450, 750);
+		setBounds(100, 100, 500, 740);
 		setVisible(true);
+		setResizable(false);
 	}// JoinDetail
 
 	public JTextField getJtfId() {
@@ -226,21 +245,6 @@ public class JoinDetailView extends JDialog {
 		return jtfName;
 	}
 
-	public JTextField getJtfBirthYear() {
-		return jtfBirthYear;
-	}
-
-	public JTextField getJtfBirthMonth() {
-		return jtfBirthMonth;
-	}
-
-	public JTextField getJtfBirthday() {
-		return jtfBirthday;
-	}
-
-	public JTextField getJtfPhoneNum() {
-		return jtfPhoneNum;
-	}
 
 	public JTextField getJtfPhoneNum1() {
 		return jtfPhoneNum1;
@@ -260,6 +264,34 @@ public class JoinDetailView extends JDialog {
 
 	public JComboBox<String> getJcbPhoneNum() {
 		return jcbPhoneNum;
+	}
+
+	public JComboBox<String> getJcbBirthMonth() {
+		return jcbBirthMonth;
+	}
+
+	public JComboBox<String> getJcbBirthDay() {
+		return jcbBirthDay;
+	}
+
+	public JComboBox<String> getJcbBirthYear() {
+		return jcbBirthYear;
+	}
+
+	public DefaultComboBoxModel<String> getDcbmYear() {
+		return dcbmYear;
+	}
+
+	public DefaultComboBoxModel<String> getDcbmMonth() {
+		return dcbmMonth;
+	}
+
+	public DefaultComboBoxModel<String> getDcbmDay() {
+		return dcbmDay;
+	}
+
+	public DefaultComboBoxModel<String> getDcmbPhone() {
+		return dcmbPhone;
 	}
 
 	public ButtonGroup getBgGender() {

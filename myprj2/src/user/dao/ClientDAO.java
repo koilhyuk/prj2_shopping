@@ -374,7 +374,8 @@ public class ClientDAO {
 
 		return seq;
 	}// seqSearch
-	public void insertMemJoin(JoinDetailVO jdVO) throws SQLException {
+	public boolean insertMemJoin(JoinDetailVO jdVO) throws SQLException {
+		boolean flag=false;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -397,7 +398,7 @@ public class ClientDAO {
 			pstmt.setString(8, jdVO.getAddr());
 			pstmt.setInt(9, jdVO.getZ_seq());
 
-			pstmt.executeQuery();
+			flag=pstmt.executeUpdate()==1;
 
 		} finally {
 			if (pstmt != null) {
@@ -406,8 +407,9 @@ public class ClientDAO {
 			if (con != null) {
 				con.close();
 			}
-
+			
 		}
+		return flag;
 	}// insertMemJoin()
 
 	public boolean idConfrim(String id) throws SQLException {
@@ -426,7 +428,7 @@ public class ClientDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				flag = true;
-			}
+			}//end if 
 
 		} finally {
 			if (rs != null) {
