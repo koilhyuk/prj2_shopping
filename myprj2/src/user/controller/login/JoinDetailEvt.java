@@ -173,6 +173,12 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 				jdv.getJtfId().requestFocus();
 				return;
 			} // end if
+			if (id.length()< 5|| id.length()>20) { 
+				JOptionPane.showMessageDialog(jdv, "아이디는 5~20자사이로 입력해주세요.");
+				jdv.getJtfId().setText("");
+				jdv.getJtfId().requestFocus();
+				return;
+			} // end if
 			if (cDAO.idConfrim(id)) {// 조회된 아이디가 있으면
 				JOptionPane.showMessageDialog(jdv, "사용불가능한 아이디입니다");
 				jdv.getJtfId().setText("");
