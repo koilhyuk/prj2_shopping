@@ -38,7 +38,6 @@ public class AdGoodsMainView extends JPanel {
 	private JPanel jpBrandKind;
 	private JScrollPane jspBrandKind;
 	private JTabbedPane jttpCate;
-//////////////////////////////
 
 //////////// 화면 전체 
 	private JPanel jpContent;

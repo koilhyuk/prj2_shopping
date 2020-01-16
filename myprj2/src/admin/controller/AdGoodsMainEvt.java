@@ -54,7 +54,6 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 
 	//////////// 2019 -09-22
 	private JButton btnBest, btnOuter, btnTop, btnBottom, btnDress, btnBag, btnShoes, btnHeadWear, btnAcc;
-//	private RecentThread rt;
 	public static AdGoodsMainView agmv;
 
 	public AdGoodsMainEvt(AdGoodsMainView agmv) {
@@ -77,21 +76,16 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 		selectCombo = "";
 		searchData = "";
 		brandCheck = agmv.getJlChannel().getText().trim();
-//		rt = new RecentThread();
-//		rt.start();
 		selectAllGoodsList();
 		StaticCla.mv.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-//				deleteRecentTable();
-//					rt.setStop(true);// thread 종료
 				StaticCla.mv.dispose();// 뷰 종료
 			}// windowClosing
 		});// addWindowListener
-	}// UserMainViewEvt
+	}// AdGoodsMainEvt
 
 	private void selectAllGoodsList() {
-
 		int goodsNum = 0;// 상품 갯수 세기
 		SelectGoodsCheckVO sgck = null;
 		JScrollPane jspGoods = agmv.getJspGoods();
@@ -112,6 +106,7 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 				jpGoodsReset();
 				jpGoods.add(new AdGoodsNotPanelView(agmv));
 				jpGoods.setPreferredSize(new Dimension(1000, 390));
+				jspGoods.setVisible(true);
 				agmv.setVisible(true);
 				return;
 			} // end if
@@ -123,8 +118,7 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 					tempInven = " (※ 품절임박 ※)";
 				} else {
 					tempInven = "";
-
-				}
+				} // end else
 				jpGoods.add(new AdGoodsListPanelView(sagVO.getG_img(),
 						sagVO.getG_name() + "(" + sagVO.getG_code() + ")", sagVO.getB_name(), sagVO.getG_price(),
 						sagVO.getG_salenum() + tempInven, sagVO.getG_score()));
@@ -134,7 +128,7 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 			int plusCnt = 0;
 			if (goodsNum % 6 > 0) {// 6의배수가 아닐 때
 				plusCnt = 1;
-			}
+			} // end if
 			jpGoods.setPreferredSize(new Dimension(1000, 285 * ((goodsNum / 6) + plusCnt)));
 			agmv.setVisible(true);
 			jspGoods.setVisible(true);
@@ -158,7 +152,8 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 		AdDAO aDAO = AdDAO.getInstance();
 
 		try {
-			sfchkVO = new SelectFiveCheckVO(brandCheck, clothesType, detailType, searchData.toUpperCase(), selectCombo, tempNum);
+			sfchkVO = new SelectFiveCheckVO(brandCheck, clothesType, detailType, searchData.toUpperCase(), selectCombo,
+					tempNum);
 			List<SelectBestFiveGoodsVO> fiveBestList = aDAO.selectFiveGoods(sfchkVO);
 			if (fiveBestList.isEmpty()) {
 				jpGoodsReset();
@@ -206,7 +201,6 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 ///////////////// 2019-09-22
 			if (detailTypeList.isEmpty()) {
 				JOptionPane.showMessageDialog(agmv, "조회결과 없음");
-//				return;
 			}
 
 			if (detailTypeList.size() % 2 == 0) {// 갯수가 짝수라면
@@ -379,108 +373,58 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 		} // end catch
 
 	}// searchBrandList
-//////////////////////////////
-
-//	private void deleteRecentTable() {
-//		AdDAO aDAO = AdDAO.getInstance();
-//
-//		try {
-//			aDAO.deleteRecent();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} // end catch
-//	}// deleteRecent
-
-//	private void deleteNonMember() {
-//		AdDAO aDAO = AdDAO.getInstance();
-//		try {
-//			aDAO.deleteNonMem();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} // end catch
-//
-//	}// deleteNonMember
-
-//	private void deleteNmemRecent() {
-//		AdDAO aDAO = AdDAO.getInstance();
-//		try {
-//			aDAO.deleteNmemRe();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} // end catch
-//
-//	}// deleteNonMember
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {// 카테고리 버튼 클릭 시 회원 비회원 나누기
 		jtDetail = agmv.getJtDetail();
 		dtmDetail = agmv.getDtmDetail();
-		JTabbedPane jttpCate = agmv.getJttpCate();
 
 		if (ae.getSource() == btnBest) {
 			clothesType = btnBest.getText().toUpperCase().trim();
 			setSearchLabel();
 			btnClickReset(btnBest);
 			selectAllGoodsList();
-//			jspRecent.setBounds(jttpCate.getX(), jttpCate.getY() + jttpCate.getHeight() + 10, jspRecent.getWidth(),
-//					jspRecent.getHeight());
 		}
 
 		if (ae.getSource() == btnOuter) {
 			clothesType = btnOuter.getText().toUpperCase().trim();
 			btnClickReset(btnOuter);
 			selectAllGoodsList();
-//			jspRecent.setBounds(jttpCate.getX(), jttpCate.getY() + jttpCate.getHeight() + 10, jspRecent.getWidth(),
-//					jspRecent.getHeight());
 		}
 		if (ae.getSource() == btnTop) {
 			clothesType = btnTop.getText().toUpperCase().trim();
 			btnClickReset(btnTop);
 			selectAllGoodsList();
-//			jspRecent.setBounds(jttpCate.getX(), jttpCate.getY() + jttpCate.getHeight() + 10, jspRecent.getWidth(),
-//					jspRecent.getHeight());
 		}
 		if (ae.getSource() == btnBottom) {
 			clothesType = btnBottom.getText().toUpperCase().trim();
 			btnClickReset(btnBottom);
 			selectAllGoodsList();
-//			jspRecent.setBounds(jttpCate.getX(), jttpCate.getY() + jttpCate.getHeight() + 10, jspRecent.getWidth(),
-//					jspRecent.getHeight());
 		}
 		if (ae.getSource() == btnDress) {
 			clothesType = btnDress.getText().toUpperCase().trim();
 			btnClickReset(btnDress);
 			selectAllGoodsList();
-//			jspRecent.setBounds(jttpCate.getX(), jttpCate.getY() + jttpCate.getHeight() + 10, jspRecent.getWidth(),
-//					jspRecent.getHeight());
 		}
 		if (ae.getSource() == btnBag) {
 			clothesType = btnBag.getText().toUpperCase().trim();
 			btnClickReset(btnBag);
 			selectAllGoodsList();
-//			jspRecent.setBounds(jttpCate.getX(), jttpCate.getY() + jttpCate.getHeight() + 10, jspRecent.getWidth(),
-//					jspRecent.getHeight());
 		}
 		if (ae.getSource() == btnShoes) {
 			clothesType = btnShoes.getText().toUpperCase().trim();
 			btnClickReset(btnShoes);
 			selectAllGoodsList();
-//			jspRecent.setBounds(jttpCate.getX(), jttpCate.getY() + jttpCate.getHeight() + 10, jspRecent.getWidth(),
-//					jspRecent.getHeight());
 		}
 		if (ae.getSource() == btnHeadWear) {
 			clothesType = btnHeadWear.getText().toUpperCase().trim();
 			btnClickReset(btnHeadWear);
 			selectAllGoodsList();
-//			jspRecent.setBounds(jttpCate.getX(), jttpCate.getY() + jttpCate.getHeight() + 10, jspRecent.getWidth(),
-//					jspRecent.getHeight());
 		}
 		if (ae.getSource() == btnAcc) {
 			clothesType = btnAcc.getText().toUpperCase().trim();
 			btnClickReset(btnAcc);
 			selectAllGoodsList();
-//			jspRecent.setBounds(jttpCate.getX(), jttpCate.getY() + jttpCate.getHeight() + 10, jspRecent.getWidth(),
-//					jspRecent.getHeight());
 		}
 
 		if (ae.getSource() == agmv.getBtnType()) {// 전체 -> 브랜드 -> 보세

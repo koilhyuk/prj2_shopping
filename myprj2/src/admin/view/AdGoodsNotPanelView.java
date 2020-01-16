@@ -10,20 +10,17 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class AdGoodsNotPanelView extends JPanel {
 
-	private AdGoodsMainView ugmv;
-
-	public AdGoodsNotPanelView(AdGoodsMainView ugmv) {
-		this.ugmv = ugmv;
+	public AdGoodsNotPanelView(AdGoodsMainView agmv) {
 		setLayout(null);
-		JLabel jlNothave = new JLabel("조회한 상품은 등록되어 있지 않습니다.");
+		JLabel jlNothave = new JLabel("검색된 상품이 없습니다. 검색어를 변경해 보세요.");
 		Font ft = new Font("맑은 고딕", Font.BOLD, 30);
 		jlNothave.setFont(ft);
-		
+
 		setBackground(Color.white);
 
 		jlNothave.setBounds(250, 130, 800, 100);
 		add(jlNothave);
-		setPreferredSize(new Dimension(ugmv.getJspGoods().getWidth(), ugmv.getJspGoods().getHeight()));
+		setPreferredSize(new Dimension(agmv.getJspGoods().getWidth(), agmv.getJspGoods().getHeight()));
 		setVisible(true);
 	}// UserGoodsNotPanelView
 

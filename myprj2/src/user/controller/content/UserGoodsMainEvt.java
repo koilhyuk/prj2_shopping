@@ -146,6 +146,7 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 				jpGoodsReset();
 				jpGoods.add(new UserGoodsNotPanelView(ugmv));
 				jpGoods.setPreferredSize(new Dimension(1000, 390));
+				jspGoods.setVisible(true);
 				ugmv.setVisible(true);
 				return;
 			} // end if

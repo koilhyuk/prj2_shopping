@@ -10,12 +10,9 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class UserGoodsNotPanelView extends JPanel {
 
-	private UserGoodsMainView ugmv;
-
 	public UserGoodsNotPanelView(UserGoodsMainView ugmv) {
-		this.ugmv = ugmv;
 		setLayout(null);
-		JLabel jlNothave = new JLabel("조회한 상품은 등록되어 있지 않습니다.");
+		JLabel jlNothave = new JLabel("검색된 상품이 없습니다. 검색어를 변경해 보세요.");
 		Font ft = new Font("맑은 고딕", Font.BOLD, 30);
 		jlNothave.setFont(ft);
 
