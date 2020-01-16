@@ -70,7 +70,7 @@ public class AdCusDetailEvt implements ActionListener {
 		String status = sdv.getJtfStop().getText().trim();
 		String code = sdv.getJtfCusNum().getText().trim();
 		AdminDAO aDAO = AdminDAO.getInstance();
-		if (status.equals("Y")) { // 정지X -> 정지시킬때
+		if (status.equals("활성화계정")||status=="활성화계정") { // 정지X -> 정지시킬때
 			switch (JOptionPane.showConfirmDialog(sdv, code + "번의 회원님을 정지시키겠습니까?")) {
 			case JOptionPane.OK_OPTION:
 				try {
@@ -90,9 +90,6 @@ public class AdCusDetailEvt implements ActionListener {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				} // end catch
-			case JOptionPane.CANCEL_OPTION:
-				JOptionPane.showMessageDialog(sdv, code + "님의 정지를 취소하셨습니다.");
-				return;
 			}// end switch
 		
 		} else {// 정지를 풀때
