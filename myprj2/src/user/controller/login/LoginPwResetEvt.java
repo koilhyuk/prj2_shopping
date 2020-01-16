@@ -9,35 +9,38 @@ import javax.swing.JOptionPane;
 
 import kr.co.sist.util.cipher.DataEncrypt;
 import user.dao.ClientDAO;
+import user.view.login.LoginFound;
 import user.view.login.LoginPwReset;
 import user.vo.login.LoginPwResetVO;
 
-public class LoginPwResetEvt  implements ActionListener {
+public class LoginPwResetEvt implements ActionListener {
 	private LoginPwReset lpr;
 	private String id, pass;
+	private LoginFound lf;
 
-	public LoginPwResetEvt(LoginPwReset lpr, String id) {
+	public LoginPwResetEvt(LoginPwReset lpr, String id, LoginFound lf) {
 		this.lpr = lpr;
 		this.id = id;
+		this.lf = lf;
 	}// LoginPwResetEvt
 
 	public void pwReset() {
-		String pass = lpr.getJtfNewPw().getText().trim();
+		pass = lpr.getJtfNewPw().getText().trim();
 		String cipherText = "";
 		try {
 			cipherText = DataEncrypt.messageDigest("MD5", pass);
 		} catch (NoSuchAlgorithmException e1) {
 			e1.printStackTrace();
-		}//end catch
-		// 암호화
+		} // end catch
+			// 암호화
 
 		LoginPwResetVO lprVO = new LoginPwResetVO(id, cipherText);
 		ClientDAO cDAO = ClientDAO.getInstance();
 		try {
-//			if (cDAO.updateResetPw(lprVO)) {
 			if (cDAO.updateResetPw(lprVO)) {
 				JOptionPane.showMessageDialog(lpr, "비밀번호가 재설정 되었습니다");
 				lpr.dispose();
+				lf.dispose();
 			} // end if
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,5 +65,5 @@ public class LoginPwResetEvt  implements ActionListener {
 			}// end switch
 		} // end if
 	}// actionPerformed
-	
+
 }// class

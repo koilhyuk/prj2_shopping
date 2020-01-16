@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -14,10 +14,8 @@ import javax.swing.JTextField;
 import user.controller.login.JoinDetailEvt;
 
 @SuppressWarnings("serial")
-public class JoinDetailView extends JFrame {
+public class JoinDetailView extends JDialog {
 
-	private JLabel jlTitle, jlId, jlPw, jlPwConfirm, jlName, jlBirth, jlBirth1, jlBirth2, jlPhoneNum1, jlPhoneNum2,
-			jlGender, JlPhoneNum, jlAddr, jlEmail;
 	private JTextField jtfId, jtfName, jtfBirthYear, jtfBirthMonth, jtfBirthday, jtfPhoneNum, jtfPhoneNum1,
 			jtfPhoneNum2, jtfAddr, jtfEmail;
 	private JComboBox<String> jcbPhoneNum;
@@ -28,35 +26,35 @@ public class JoinDetailView extends JFrame {
 	private JTextField jtfZipcode, jtfAddress;
 	private JButton jbtnSearchAddr;
 
-	public JoinDetailView() {
-		super("회원가입");
+	public JoinDetailView(ClientLoginView clv) {
+		super(clv, "회원가입", false);
 		this.getContentPane().setBackground(new Color(0x3F4040));
 		jpfPw = new JPasswordField();
 		jpfPwConfirm = new JPasswordField();
 
-		jlTitle = new JLabel("※회원가입");
+		JLabel jlTitle = new JLabel("※회원가입");
 		jlTitle.setForeground(Color.white);
-		jlId = new JLabel("아이디");
+		JLabel jlId = new JLabel("아이디");
 		jlId.setForeground(Color.white);
-		jlPw = new JLabel("비밀번호");
+		JLabel jlPw = new JLabel("비밀번호");
 		jlPw.setForeground(Color.white);
-		jlPwConfirm = new JLabel("비밀번호 재확인");
+		JLabel jlPwConfirm = new JLabel("비밀번호 재확인");
 		jlPwConfirm.setForeground(Color.white);
-		jlName = new JLabel("이름");
+		JLabel jlName = new JLabel("이름");
 		jlName.setForeground(Color.white);
-		jlBirth = new JLabel("생년월일");
+		JLabel jlBirth = new JLabel("생년월일");
 		jlBirth.setForeground(Color.white);
-		jlBirth1 = new JLabel("-");
+		JLabel jlBirth1 = new JLabel("-");
 		jlBirth1.setForeground(Color.white);
-		jlBirth2 = new JLabel("-");
+		JLabel jlBirth2 = new JLabel("-");
 		jlBirth2.setForeground(Color.white);
-		jlGender = new JLabel("성별");
+		JLabel jlGender = new JLabel("성별");
 		jlGender.setForeground(Color.white);
-		JlPhoneNum = new JLabel("전화번호");
+		JLabel JlPhoneNum = new JLabel("전화번호");
 		JlPhoneNum.setForeground(Color.white);
-		jlPhoneNum1 = new JLabel("-");
+		JLabel jlPhoneNum1 = new JLabel("-");
 		jlPhoneNum1.setForeground(Color.white);
-		jlPhoneNum2 = new JLabel("-");
+		JLabel jlPhoneNum2 = new JLabel("-");
 		jlPhoneNum2.setForeground(Color.white);
 
 		jbtnSearchAddr = new JButton("주소 검색");
@@ -65,14 +63,12 @@ public class JoinDetailView extends JFrame {
 		jtfZipcode = new JTextField();
 		jtfAddress = new JTextField();
 
-		jlAddr = new JLabel("주소");
+		JLabel jlAddr = new JLabel("주소");
 		jlAddr.setForeground(Color.white);
-		jlEmail = new JLabel("이메일");
+		JLabel jlEmail = new JLabel("이메일");
 		jlEmail.setForeground(Color.white);
 
 		jtfId = new JTextField();
-//		jtfPw = new JTextField();
-//		jtfPwConfirm = new JTextField();
 		jtfName = new JTextField();
 		jtfBirthYear = new JTextField();
 		jtfBirthMonth = new JTextField();
@@ -221,62 +217,6 @@ public class JoinDetailView extends JFrame {
 		setBounds(100, 100, 450, 750);
 		setVisible(true);
 	}// JoinDetail
-
-	public JLabel getJlTitle() {
-		return jlTitle;
-	}
-
-	public JLabel getJlId() {
-		return jlId;
-	}
-
-	public JLabel getJlPw() {
-		return jlPw;
-	}
-
-	public JLabel getJlPwConfirm() {
-		return jlPwConfirm;
-	}
-
-	public JLabel getJlName() {
-		return jlName;
-	}
-
-	public JLabel getJlBirth() {
-		return jlBirth;
-	}
-
-	public JLabel getJlBirth1() {
-		return jlBirth1;
-	}
-
-	public JLabel getJlBirth2() {
-		return jlBirth2;
-	}
-
-	public JLabel getJlPhoneNum1() {
-		return jlPhoneNum1;
-	}
-
-	public JLabel getJlPhoneNum2() {
-		return jlPhoneNum2;
-	}
-
-	public JLabel getJlGender() {
-		return jlGender;
-	}
-
-	public JLabel getJlPhoneNum() {
-		return JlPhoneNum;
-	}
-
-	public JLabel getJlAddr() {
-		return jlAddr;
-	}
-
-	public JLabel getJlEmail() {
-		return jlEmail;
-	}
 
 	public JTextField getJtfId() {
 		return jtfId;

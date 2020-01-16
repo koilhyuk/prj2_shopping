@@ -15,13 +15,11 @@ import user.dao.ClientDAO;
 import user.view.login.JoinDetailView;
 import user.view.login.ZipcodeSearchView;
 import user.vo.login.JoinDetailVO;
-import user.vo.login.SearchAddrVO;
 
 public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 	private JoinDetailView jdv;
-	private String  phone, addr, email;
+	private String phone, addr, email;
 	private boolean flag;
-	private ZipcodeSearchView scv; 
 
 	public JoinDetailEvt(JoinDetailView jdv) {
 		this.jdv = jdv;
@@ -34,22 +32,21 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		String id = jdv.getJtfId().getText().trim();// 아이디
 
 		String tempGen = ""; // 성별
-//		String addrSeq = (String) jdv.getJtfZipcode().getText();
-		String addrDetail= jdv.getJtfAddress().getText();// 
-		String addr= jdv.getJtfAddr().getText();//상세
-		
-		String zipcode= jdv.getJtfZipcode().getText();
+		String addrDetail = jdv.getJtfAddress().getText();//
+		addr = jdv.getJtfAddr().getText();// 상세
+
+		String zipcode = jdv.getJtfZipcode().getText();
 		String inputPw = new String(jdv.getJpfPw().getPassword());// 비밀번호 보호
-		String inputPw2= new String(jdv.getJpfPwConfirm().getPassword());
+		String inputPw2 = new String(jdv.getJpfPwConfirm().getPassword());
 		String cipherText = "";// 암호화
 		String gendername = "";// 성별
-		int zeq =0;
+		int zeq = 0;
 		if (inputPw.isEmpty()) {
 			JOptionPane.showMessageDialog(jdv, "비밀번호를 입력해주세요.");
 			jdv.getJpfPw().setText("");
 			return;
 		} // end if
-		if(inputPw.length()<5) {
+		if (inputPw.length() < 5) {
 			JOptionPane.showMessageDialog(jdv, "비밀번호는 5자리 이상으로 입력해주세요");
 			return;
 		}
@@ -63,11 +60,11 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 			jdv.getJpfPwConfirm().setText("");
 			return;
 		} // end if
-		
+
 		try {
 			///////////////////// 비밀번호 /////////////////////////////
 			cipherText = DataEncrypt.messageDigest("MD5", inputPw);
-			
+
 		} catch (NoSuchAlgorithmException e1) {
 			e1.printStackTrace();
 		} // end catch
@@ -116,15 +113,14 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		} // end if
 
 		ClientDAO cDAO = ClientDAO.getInstance();
-		
 
 		try {
-			zeq=cDAO.seqSearch(zipcode, addrDetail);
+			zeq = cDAO.seqSearch(zipcode, addrDetail);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-		}//end catch
-		
-		jdVO = new JoinDetailVO(id, cipherText,name, birth, tempGen, phone, addr,email, zeq);
+		} // end catch
+
+		jdVO = new JoinDetailVO(id, cipherText, name, birth, tempGen, phone, addr, email, zeq);
 //		if (jdv.getJtfId().getText().isEmpty()) {
 //			JOptionPane.showMessageDialog(jdv, "아이디를 입력해주세요");
 //		} else if (jdv.getJpfPw().getText().isEmpty()) {
@@ -152,18 +148,14 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 
 		try {
 			cDAO.insertMemJoin(jdVO);
-				JOptionPane.showMessageDialog(jdv, "축하합니다 회원가입이 완료되었습니다");
-		
+			JOptionPane.showMessageDialog(jdv, "축하합니다 회원가입이 완료되었습니다");
+			jdv.dispose();
+
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(jdv, "회원가입에 실패하셨습니다.");
 			e.printStackTrace();
 		}
-
-//			JOptionPane.showMessageDialog(jdv, "DBMS에서 문제 발생");
-
-
 	}// joinConfirm
-
 
 	private void chkId() {
 		String id = jdv.getJtfId().getText().trim(); // 아이디
@@ -174,37 +166,34 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 				JOptionPane.showMessageDialog(jdv, "아이디를 입력해주세요");
 				return;
 			} // end if
-				if(cDAO.idConfrim(id)) {
+			if (cDAO.idConfrim(id)) {
 				JOptionPane.showMessageDialog(jdv, "사용불가능한 아이디입니다");
 				jdv.getJtfId().getText();
 				jdv.getJtfId().setText("");
 				jdv.getJtfId().requestFocus();
 			} else {
 				JOptionPane.showMessageDialog(jdv, "사용가능한 아이디입니다");
-				flag=true;
+				flag = true;
 				jdv.getJpfPw().requestFocus();
 			} // end if
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end catch
-
 	}// chkId
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == jdv.getJbtIdConfirm()) {// 중복버튼
 			chkId();//
-//			JOptionPane.showMessageDialog(jdv, "사용가능한 아이디입니다");
 		} // end if
 
 		if (ae.getSource() == jdv.getJbtConfirm()) {// 확인
-			if(flag) {
+			if (flag) {
 				joinConfirm();
-			}else {
+			} else {
 				JOptionPane.showMessageDialog(jdv, "아이디 중복체크를 해주세요.");
 				return;
-			}//end if
-//			JOptionPane.showMessageDialog(jdv, "축하합니다 회원가입이 완료되었습니다");
+			} // end if
 		} // end if
 
 		if (ae.getSource() == jdv.getJbtClose()) {// 취소
@@ -214,7 +203,6 @@ public class JoinDetailEvt extends KeyAdapter implements ActionListener {
 		if (ae.getSource() == jdv.getJbtnSearchAddr()) {
 			new ZipcodeSearchView(jdv);
 		} // end if
-
 	}// actionPerformed
 
 	@Override

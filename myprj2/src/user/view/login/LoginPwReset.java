@@ -1,7 +1,9 @@
 package user.view.login;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -10,30 +12,37 @@ import javax.swing.JTextField;
 import user.controller.login.LoginPwResetEvt;
 
 @SuppressWarnings("serial")
-public class LoginPwReset extends JFrame{
+public class LoginPwReset extends JDialog {
 
-	private JLabel jlTitle, jlNewPw, jlNewPwConfirm;
 	private JTextField jtfNewPw, jtfNewPwConfirm;
 	private JButton jbtConfirm, jbtCancle;
-	
-	public LoginPwReset(String id) {
-		super("아이디/비밀번호 찾기");
-		
-		jtfNewPw=new JPasswordField();
-		jtfNewPwConfirm=new JPasswordField();
-		
+
+	public LoginPwReset(String id, LoginFound lf) {
+		super(lf, "아이디/비밀번호 찾기", false);
+
+		jtfNewPw = new JPasswordField();
+		jtfNewPwConfirm = new JPasswordField();
+
 		jtfNewPw.setBorder(null);
 		jtfNewPwConfirm.setBorder(null);
-		
-		jlTitle=new JLabel("●비밀번호 재설정");
-		jlNewPw=new JLabel("신규 비밀번호");
-		jlNewPwConfirm=new JLabel("신규 비밀번호 확인");
-		
-		jbtConfirm=new JButton("확인");
-		jbtCancle=new JButton("취소");
-		
-		JPanel jp=new JPanel();
-		
+
+		JLabel jlTitle = new JLabel("●비밀번호 재설정");
+		jlTitle.setForeground(Color.white);
+		JLabel jlNewPw = new JLabel("신규 비밀번호");
+		jlNewPw.setForeground(Color.white);
+		JLabel jlNewPwConfirm = new JLabel("신규 비밀번호 확인");
+		jlNewPwConfirm.setForeground(Color.white);
+
+		jbtConfirm = new JButton("확인");
+		jbtConfirm.setForeground(new Color(0x3F4040));
+		jbtConfirm.setBackground(Color.white);
+
+		jbtCancle = new JButton("취소");
+		jbtCancle.setForeground(new Color(0x3F4040));
+		jbtCancle.setBackground(Color.white);
+
+		JPanel jp = new JPanel();
+
 		jlTitle.setBounds(50, 30, 150, 20);
 		jlNewPw.setBounds(50, 70, 270, 30);
 		jtfNewPw.setBounds(170, 70, 150, 30);
@@ -41,7 +50,7 @@ public class LoginPwReset extends JFrame{
 		jtfNewPwConfirm.setBounds(170, 125, 150, 30);
 		jbtConfirm.setBounds(110, 190, 60, 30);
 		jbtCancle.setBounds(200, 190, 60, 30);
-		
+
 		setLayout(null);
 		add(jtfNewPw);
 		add(jlTitle);
@@ -51,28 +60,18 @@ public class LoginPwReset extends JFrame{
 		add(jbtConfirm);
 		add(jbtCancle);
 		add(jp);
-		
-		LoginPwResetEvt lpre=new LoginPwResetEvt(this,id);
+
+		LoginPwResetEvt lpre = new LoginPwResetEvt(this, id, lf);
 		jtfNewPw.addActionListener(lpre);
 		jtfNewPwConfirm.addActionListener(lpre);
 		jbtConfirm.addActionListener(lpre);
 		jbtCancle.addActionListener(lpre);
-		
+		this.getContentPane().setBackground(new Color(0x3F4040));
+
+		setResizable(false);
 		setBounds(100, 100, 400, 290);
 		setVisible(true);
-	}//AdminLoginFound
-	
-	public JLabel getJlTitle() {
-		return jlTitle;
-	}
-
-	public JLabel getJlNewPw() {
-		return jlNewPw;
-	}
-
-	public JLabel getJlNewPwConfirm() {
-		return jlNewPwConfirm;
-	}
+	}// AdminLoginFound
 
 	public JTextField getJtfNewPw() {
 		return jtfNewPw;
@@ -90,4 +89,4 @@ public class LoginPwReset extends JFrame{
 		return jbtCancle;
 	}
 
-}//class
+}// class

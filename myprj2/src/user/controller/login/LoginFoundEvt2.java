@@ -4,18 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
-import javax.xml.transform.OutputKeys;
 
 import user.dao.ClientDAO;
 import user.view.login.LoginFound;
 import user.view.login.LoginPwReset;
 import user.vo.login.LoginFoundPwVO;
 
-public class LoginFoundEvt2 extends KeyAdapter implements ActionListener{
+public class LoginFoundEvt2 extends KeyAdapter implements ActionListener {
 	private LoginFound lf;
 
 	public LoginFoundEvt2(LoginFound lf) {
@@ -31,20 +29,20 @@ public class LoginFoundEvt2 extends KeyAdapter implements ActionListener{
 
 		ClientDAO cDAO = ClientDAO.getInstance();
 		try {
-			if(cDAO.selectPwFound(lfpVO)) {//입력한 정보가 동일하다면 
+			if (cDAO.selectPwFound(lfpVO)) {// 입력한 정보가 동일하다면
 				switch (JOptionPane.showConfirmDialog(lf, "비밀번호를 재설정 하시겠습니까?")) {
 				case JOptionPane.OK_OPTION:
-					new LoginPwReset(id);// 비밀번호 재설정 창
+					new LoginPwReset(id, lf);// 비밀번호 재설정 창
 					break;
-				}//switch
-			}else {//다르다면 
+				}// switch
+			} else {// 다르다면
 				lf.getJtfId2().setText("");
 				lf.getJtfName2().setText("");
 				lf.getJtfPhoneH3().setText("");
 				lf.getJtfPhoneH4().setText("");
 				JOptionPane.showMessageDialog(lf, "옳지 않은 정보입니다");
 				lf.getJtfId2().requestFocus();// 커서를 아이디에 위치
-			}//end else
+			} // end else
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end catch
@@ -60,39 +58,27 @@ public class LoginFoundEvt2 extends KeyAdapter implements ActionListener{
 			switch (JOptionPane.showConfirmDialog(lf, "비밀번호 찾기 창을 종료하시겠습니까?")) {
 			case JOptionPane.OK_OPTION:
 				lf.dispose();
-				}//end if
-			}// end switch
+			}// end if
+		} // end switch
 	}// actionPerformed
 
 	@Override
 	public void keyTyped(KeyEvent ke) {
-//		if(ke.getSource()==lf.getJtfId2()) {
-//			if (lf.getJtfId2().getText().equals("")) {
-//				JOptionPane.showMessageDialog(lf, "아이디를 입력해주세요.");
-//				lf.getJtfId2().requestFocus();
-//			}//end 
-//		}//end if 
-//		if(ke.getSource()==lf.getJtfName2()) {
-//			if (lf.getJtfName2().getText().equals("")) {
-//				JOptionPane.showMessageDialog(lf, "이름을 입력해주세요.");
-//				lf.getJtfName2().requestFocus();
-//			}//end 
-//		}//end if 
-		if(ke.getSource()==lf.getJtfPhoneF2()) {
-			if (lf.getJtfPhoneF2().getText().length()>=2) {
+		if (ke.getSource() == lf.getJtfPhoneF2()) {
+			if (lf.getJtfPhoneF2().getText().length() >= 2) {
 				lf.getJtfPhoneH3().requestFocus();
 			} // end if
-		}//end if 
-		if(ke.getSource()==lf.getJtfPhoneH3()) {
-			if(lf.getJtfPhoneH3().getText().length()>=3) {
+		} // end if
+		if (ke.getSource() == lf.getJtfPhoneH3()) {
+			if (lf.getJtfPhoneH3().getText().length() >= 3) {
 				lf.getJtfPhoneH4().requestFocus();
 			}
-		}//end if 
-		if(ke.getSource()==lf.getJtfPhoneH4()) {
-			if(lf.getJtfPhoneH4().getText().length()>=3) {
-				
-			}//end if
-		}//end if 
-		
-	}//keyTyped
+		} // end if
+		if (ke.getSource() == lf.getJtfPhoneH4()) {
+			if (lf.getJtfPhoneH4().getText().length() >= 3) {
+
+			} // end if
+		} // end if
+
+	}// keyTyped
 }// class

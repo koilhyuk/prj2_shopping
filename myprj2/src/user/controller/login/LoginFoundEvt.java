@@ -7,11 +7,13 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import user.dao.ClientDAO;
+import user.view.login.ClientLoginView;
 import user.view.login.LoginFound;
 import user.vo.login.LoginFoundIdVO;
 
 public class LoginFoundEvt implements ActionListener {
 	private LoginFound lf;
+	private ClientLoginView clv;
 	private String name, phone, id;
 
 	public LoginFoundEvt(LoginFound lf) {
@@ -34,7 +36,6 @@ public class LoginFoundEvt implements ActionListener {
 			id = cDAO.selectIdFound(lfIVO);
 			if (!id.isEmpty()) {
 				JOptionPane.showMessageDialog(lf, "회원님의 아이디는 [ " + id + " ] 입니다");
-				new LoginFound();
 				lf.dispose();
 			} else {
 				lf.getJtfName();

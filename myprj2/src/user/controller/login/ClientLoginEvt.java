@@ -51,7 +51,7 @@ public class ClientLoginEvt implements ActionListener {
 				}
 				luVO = new LoginUpdateIpVO(id, curIp);
 				updateIp(luVO);
-		
+
 				new UserGoodsMainView(id, curIp);
 				clv.dispose();
 			} else {
@@ -113,11 +113,11 @@ public class ClientLoginEvt implements ActionListener {
 		} // end if
 
 		if (ae.getSource() == clv.getJbtJoin()) {// 회원가입버튼
-			new JoinDetailView();
+			new JoinDetailView(clv);
 		} // end if
 
 		if (ae.getSource() == clv.getJbtfound()) {
-			new LoginFound();
+			new LoginFound(clv);
 		}
 	}// actionPerformed
 
