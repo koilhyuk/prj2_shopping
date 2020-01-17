@@ -31,7 +31,7 @@ public class AdCusDetailEvt implements ActionListener {
 	 */
 	public void modifyCus() {
 		String name = sdv.getJtfCusName().getText().trim(); // 회원이름
-		switch (JOptionPane.showConfirmDialog(sdv, name + "님의 회원을 수정하시겠습니까?")) {
+		switch (JOptionPane.showConfirmDialog(sdv, name + " 님의 회원정보를 수정하시겠습니까?")) {
 		case JOptionPane.OK_OPTION: // 확인
 			String code = sdv.getJtfID().getText().trim();
 //			String name=sdv.getJtfCusName().getText().trim();
@@ -53,7 +53,7 @@ public class AdCusDetailEvt implements ActionListener {
 			AdminDAO aDAO = AdminDAO.getInstance();
 			try {
 				if (aDAO.updateDetailCus(ucVO)) {
-					JOptionPane.showMessageDialog(sdv, "수정완료했습니다");
+					JOptionPane.showMessageDialog(sdv, "회원정보를 수정완료했습니다");
 				} // end if
 			} catch (SQLException e) {
 
@@ -69,23 +69,21 @@ public class AdCusDetailEvt implements ActionListener {
 
 		String status = sdv.getJtfStop().getText().trim();
 		String code = sdv.getJtfCusNum().getText().trim();
+		String name= sdv.getJtfCusName().getText().trim();
 		AdminDAO aDAO = AdminDAO.getInstance();
-		if (status.equals("활성화계정")||status=="활성화계정") { // 정지X -> 정지시킬때
-			switch (JOptionPane.showConfirmDialog(sdv, code + "번의 회원님을 정지시키겠습니까?")) {
+		if (status.equals("Y")) { // 정지X -> 정지시킬때
+			switch (JOptionPane.showConfirmDialog(sdv, name + " 회원님을 정지시키겠습니까?")) {
 			case JOptionPane.OK_OPTION:
 				try {
 					status = "N"; // 정지시킨다.
 					String reason = JOptionPane.showInputDialog("사유 입력\n 예) 거친언행, 도배, 잘못된 코딩 ");
 					updateStopVO usVO = new updateStopVO(status, reason, code);
 					if (!aDAO.updateStopFlag(usVO)) {// 정지에 실패하면
-						JOptionPane.showMessageDialog(sdv, code + "님의 정지상태에 실패하셨습니다.");
+						JOptionPane.showMessageDialog(sdv, name + " 회원님의 정지상태에 실패하셨습니다.");
 					} else {// 성공하면
 						sdv.getJtfStop().setText(status);
 						sdv.getJlreason().setText("비활성화계정  [정지사유 : " + reason + "]");
-						JOptionPane.showMessageDialog(sdv, code + "번의 회원님을 정지시켰습니다.");
-						// 정지가 되면 비회원처럼 사용하게
-						// 된다.(초기화)/////////////////////////////////////////////////////
-
+						JOptionPane.showMessageDialog(sdv, name + " 회원님을 정지시켰습니다.");
 					} // end else
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -93,16 +91,16 @@ public class AdCusDetailEvt implements ActionListener {
 			}// end switch
 		
 		} else {// 정지를 풀때
-			switch (JOptionPane.showConfirmDialog(sdv, code + "번의 회원님의 정지를 해체하시겠습니까?")) {
+			switch (JOptionPane.showConfirmDialog(sdv, name + " 회원님의 정지를 해체하시겠습니까?")) {
 			case JOptionPane.OK_OPTION:
 				try {
 					String reason = "";
 					status = "Y";
 					updateStopVO usVO = new updateStopVO(status, reason, code);
 					if (!aDAO.updateStopFlag(usVO)) {
-						JOptionPane.showMessageDialog(sdv, code + "님의 정지해체에 실패하셨습니다.");
+						JOptionPane.showMessageDialog(sdv, name + " 회원님의 정지해체에 실패하셨습니다.");
 					} else {// 성공하면
-						JOptionPane.showMessageDialog(sdv, code + "번의 회원님의 정지를 해제시켰습니다.");
+						JOptionPane.showMessageDialog(sdv, name + " 회원님의 정지를 해제시켰습니다.");
 						sdv.getJtfStop().setText(status);
 						sdv.getJlreason().setText("활성화계정");
 					} // end else
