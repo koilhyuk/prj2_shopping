@@ -33,7 +33,7 @@ public class LoginView extends JFrame {
 
 		jbtLogin = new JButton("·Î±×ÀÎ");
 		jbtLogin.setBackground(Color.white);
-		jbtLogin.setForeground(new Color(0x3F4040));
+		jbtLogin.setForeground(new Color(0x352A26));
 		jbtLogin.setBorder(new LineBorder(Color.white));		
 
 		jlTitle.setBounds(150, 30, 270, 30);
@@ -43,7 +43,7 @@ public class LoginView extends JFrame {
 		jlPw.setBounds(70, 120, 70, 50);
 		jbtLogin.setBounds(195, 190, 100, 30);
 
-		this.getContentPane().setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(new Color(0x352A26));
 
 		setLayout(null);
 		add(jlTitle);

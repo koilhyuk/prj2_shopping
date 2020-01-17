@@ -82,7 +82,7 @@ public class AdCashCalcView extends JDialog {
 		jpYear.add(jtfYcount);
 		jpYear.add(jtfYear);
 		jpYear.add(jtfYPrice);
-		jpYear.setBorder(new LineBorder(Color.BLACK));
+		jpYear.setBorder(new LineBorder(Color.white));
 
 		jlYprice.setBounds(30, 50, 70, 30);
 		jlYcount.setBounds(30, 90, 70, 30);
@@ -105,7 +105,7 @@ public class AdCashCalcView extends JDialog {
 		jpMonth.add(jtfMonth);
 		jpMonth.add(jtfMPrice);
 
-		jpMonth.setBorder(new LineBorder(Color.BLACK));
+		jpMonth.setBorder(new LineBorder(Color.white));
 
 		jlMprice.setBounds(30, 50, 70, 30);
 		jlMcount.setBounds(30, 90, 70, 30);
@@ -129,7 +129,7 @@ public class AdCashCalcView extends JDialog {
 
 		jpDay.add(jtfDay);
 		jpDay.add(jtfDPrice);
-		jpDay.setBorder(new LineBorder(Color.BLACK));
+		jpDay.setBorder(new LineBorder(Color.white));
 
 		jlDprice.setBounds(30, 50, 70, 30);
 		jlDcount.setBounds(30, 90, 70, 30);
@@ -150,7 +150,7 @@ public class AdCashCalcView extends JDialog {
 		jpTotal.add(jlAllCount);
 		jpTotal.add(jtfAllPrice);
 		jpTotal.add(jtfAllCount);
-		jpTotal.setBorder(new LineBorder(Color.BLACK));
+		jpTotal.setBorder(new LineBorder(Color.white));
 		jlAllPrice.setBounds(30, 10, 100, 30);
 		jlAllCount.setBounds(30, 50, 70, 30);
 		jtfAllPrice.setBounds(100, 10, 200, 30);
@@ -174,8 +174,8 @@ public class AdCashCalcView extends JDialog {
 		jp.add(jpMonth);
 		jp.add(jpYear);
 		jp.setBounds(15, 40, 370, 570);
-		jp.setBorder(new LineBorder(Color.BLACK));
-		jp.setBackground(new Color(0x352A26 ));
+		jp.setBorder(new LineBorder(new Color(0x352A26)));
+		jp.setBackground(new Color(0x352A26));
 
 		jbtClose = new JButton("´Ý±â");
 //		jbtClose.setBackground(new Color(0x352A26));

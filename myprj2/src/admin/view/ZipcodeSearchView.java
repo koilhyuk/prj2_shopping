@@ -92,7 +92,7 @@ public class ZipcodeSearchView extends JDialog {
 		add(jtfSearch);
 		add(jbtnSearch);
 		add(jspTable);
-		this.getContentPane().setBackground(new Color(0x3F4040)); // JDialog 배경색 변경
+		this.getContentPane().setBackground(new Color(0x352A26)); // JDialog 배경색 변경
 
 		setBounds(100, 100, 700, 600);
 		setVisible(true);

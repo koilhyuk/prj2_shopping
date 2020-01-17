@@ -32,12 +32,12 @@ public class AdResetPwView extends JFrame {
 		jpResetPwChk = new JPasswordField();
 		btnReset = new JButton("Àç¼³Á¤");
 		btnReset.setBackground(Color.white);
-		btnReset.setForeground(new Color(0x3F4040));
+		btnReset.setForeground(new Color(0x352A26));
 		btnReset.setBorder(new LineBorder(Color.white));
 
 		btnClose = new JButton("´Ý±â");
 		btnClose.setBackground(Color.white);
-		btnClose.setForeground(new Color(0x3F4040));
+		btnClose.setForeground(new Color(0x352A26));
 		btnClose.setBorder(new LineBorder(Color.white));
 
 		jlPw.setBounds(10, 30, 100, 30);
@@ -56,7 +56,7 @@ public class AdResetPwView extends JFrame {
 		jpResetPwChk.addActionListener(arpe);
 		btnReset.addActionListener(arpe);
 		btnClose.addActionListener(arpe);
-		this.getContentPane().setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(new Color(0x352A26));
 
 		add(jlChk);
 		add(jlPw);

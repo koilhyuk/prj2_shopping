@@ -26,12 +26,12 @@ public class AdPwCheckView extends JDialog {
 		jtpPw = new JPasswordField();
 		btnConfirm = new JButton("»Æ¿Œ");
 		btnConfirm.setBackground(Color.white);
-		btnConfirm.setForeground(new Color(0x3F4040));
+		btnConfirm.setForeground(new Color(0x352A26));
 		btnConfirm.setBorder(new LineBorder(Color.white));
 
 		btnClose = new JButton("¥›±‚");
 		btnClose.setBackground(Color.white);
-		btnClose.setForeground(new Color(0x3F4040));
+		btnClose.setForeground(new Color(0x352A26));
 		btnClose.setBorder(new LineBorder(Color.white));
 
 		jl.setBounds(35, 10, 150, 30);
@@ -42,7 +42,7 @@ public class AdPwCheckView extends JDialog {
 		jtpPw.addActionListener(apce);
 		btnClose.addActionListener(apce);
 		btnConfirm.addActionListener(apce);
-		this.getContentPane().setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(new Color(0x352A26));
 		add(jl);
 		add(jtpPw);
 		add(btnClose);

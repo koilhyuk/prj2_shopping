@@ -179,28 +179,29 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		//평점
 			switch (odDTO.getO_score()) {
 			case 5:
-				jlScore = new JLabel("상품평점 : ★★★★★");
+				jlScore = new JLabel("★★★★★");
 				break;
 			case 4:
-				jlScore = new JLabel("상품평점 : ★★★★☆");
+				jlScore = new JLabel("★★★★☆");
 				break;
 			case 3:
-				jlScore = new JLabel("상품평점 : ★★★☆☆");
+				jlScore = new JLabel("★★★☆☆");
 				break;
 			case 2:
-				jlScore = new JLabel("상품평점 : ★★☆☆☆");
+				jlScore = new JLabel("★★☆☆☆");
 				break;
 			case 1:
-				jlScore = new JLabel("상품평점 : ★☆☆☆☆");
+				jlScore = new JLabel("★☆☆☆☆");
 				break;
 			default:
-				jlScore = new JLabel("평점이 입력되지 않은 상품입니다.");
+				jlScore = new JLabel("☆☆☆☆☆");
 				break;
 			}// switch
-		jlScore.setBounds(170, 40, 200, 30);
+		jlScore.setBounds(250, 40, 150, 30);
 		jlScore.setForeground(Color.red);
+		jlscore.setBounds(170, 40, 70, 30);
 		jpGoods.add(jlScore);
-		jlscore.setBounds(180, 40, 70, 30);
+		jpGoods.add(jlscore);
 
 		JPanel jpDelivery = new JPanel();
 		jpDelivery.setLayout(null);
