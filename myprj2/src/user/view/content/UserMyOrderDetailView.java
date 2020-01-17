@@ -191,8 +191,8 @@ public class UserMyOrderDetailView extends JDialog {
 		jpDelivery.add(jtfDeliverMsg);
 
 		// 수정못하게 막음
+//		jlTitle.setBorder(new LineBorder(new Color(0x352A26)));
 		jlTitle.setEditable(false);
-		jlTitle.setBorder(new LineBorder(new Color(0x352A26)));
 
 		setLayout(null); // 수동
 		jlTitle.setBounds(50, 10, 200, 30);

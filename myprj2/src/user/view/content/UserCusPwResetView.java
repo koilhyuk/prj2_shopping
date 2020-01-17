@@ -52,9 +52,9 @@ public class UserCusPwResetView extends JDialog{
 		add(jp);
 		
 		jbtConfirm.setForeground(Color.white);
-		jbtConfirm.setBackground(new Color(0x3F4040));
+		jbtConfirm.setBackground(new Color(0x043424));
 		jbtCancle.setForeground(Color.white);
-		jbtCancle.setBackground(new Color(0x3F4040));
+		jbtCancle.setBackground(new Color(0x043424));
 		this.getContentPane().setBackground(Color.white);
 		
 		UserCusPwResetEvt lpre=new UserCusPwResetEvt(this,id);
