@@ -59,7 +59,7 @@ public class LoginView extends JFrame {
 		jpfPw.addActionListener(le);
 		jbtLogin.addActionListener(le);
 
-		setBounds(100, 100, 500, 350);
+		setBounds(100, 100, 500, 300);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}// AdminLoginView
