@@ -18,6 +18,7 @@ import javax.swing.border.LineBorder;
 
 import user.controller.content.UserGoodsDetailEvt;
 import user.controller.content.UserGoodsMainEvt;
+import user.view.login.ClientLoginView;
 import user.vo.content.SelectClickGoodsDetailDTO;
 
 @SuppressWarnings("serial")
@@ -31,7 +32,7 @@ public class UserGoodsDetailView extends JDialog {
 	public UserGoodsDetailView(SelectClickGoodsDetailDTO scgdDTO) {
 		super(UserGoodsMainEvt.ugmv, "상품상세", true);
 
-		JLabel jlImg = new JLabel(new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/rs_gd_" + scgdDTO.getgImg()));
+		JLabel jlImg = new JLabel(new ImageIcon(ClientLoginView.USER_FILE_PATH + "/rs_gd_" + scgdDTO.getgImg()));
 		JLabel jlDetail = new JLabel("상품상세보기");
 		JLabel jlBrandTag = new JLabel("-브랜드");
 		JLabel jlBrand = new JLabel("NO".equals(scgdDTO.getbName()) ? "SOHO" : scgdDTO.getbName(), JLabel.LEFT);
@@ -118,11 +119,11 @@ public class UserGoodsDetailView extends JDialog {
 
 		//// 찜하기
 		if (scgdDTO.isgLikeStatus()) {// 찜하기 되어있음
-			likeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
-			rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
+			likeImg = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/like_heart.PNG");
+			rolloverLikeImg = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/unlike_heart.png");
 		} else {// 찜하기 되어 X
-			likeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
-			rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
+			likeImg = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/unlike_heart.png");
+			rolloverLikeImg = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/like_heart.PNG");
 		}
 
 		jbtnGoodsLike = new JButton(likeImg);

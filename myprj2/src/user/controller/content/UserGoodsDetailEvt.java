@@ -17,6 +17,7 @@ import user.dao.UserDAO;
 import user.view.content.PayView;
 import user.view.content.UserGoodsDetailView;
 import user.view.content.UserGoodsMainView;
+import user.view.login.ClientLoginView;
 import user.view.login.LoginDialogView;
 import user.vo.selectZipcodeVO;
 import user.vo.content.SelectClickGoodsDetailDTO;
@@ -94,14 +95,14 @@ public class UserGoodsDetailEvt implements ActionListener {
 					return;
 				} // end if
 					// 이미지 회색하트로 변경
-				changeLikeIcon = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
-				rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
+				changeLikeIcon = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/unlike_heart.png");
+				rolloverLikeImg = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/like_heart.PNG");
 				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "\""+scgdDTO.getgName()+"\" 찜하기 해제되었습니다.");
 				scgdDTO.setgLikeStatus(false);
 			} else {// 좋아요가 되어 X 때 -> 추가
 				uDAO.insertGoodsLike(UserGoodsMainView.id, scgdDTO.getgCode());
-				changeLikeIcon = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/like_heart.PNG");
-				rolloverLikeImg = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/unlike_heart.png");
+				changeLikeIcon = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/like_heart.PNG");
+				rolloverLikeImg = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/unlike_heart.png");
 				JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "\""+scgdDTO.getgName()+"\" 찜하기 되었습니다.");
 				scgdDTO.setgLikeStatus(true);
 			} // end else

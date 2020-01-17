@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import user.view.content.UserGoodsMainView;
+import user.view.login.ClientLoginView;
 
 public class PhotoUploading {
 
@@ -31,7 +31,7 @@ public class PhotoUploading {
 			dos = new DataOutputStream(client.getOutputStream());
 			dis = new DataInputStream(client.getInputStream());
 
-			File file = new File(UserGoodsMainView.USER_FILE_PATH);
+			File file = new File(ClientLoginView.USER_FILE_PATH);
 			File[] temp = file.listFiles();
 			StringBuilder csvFile = new StringBuilder();
 
@@ -57,7 +57,7 @@ public class PhotoUploading {
 				dos.writeUTF("Y");
 				readCnt = dis.readInt();// 파파일 회전 수 받음
 				revFileName = dis.readUTF();// 파일명 받음
-				fos = new FileOutputStream(UserGoodsMainView.USER_FILE_PATH + "/" + revFileName);
+				fos = new FileOutputStream(ClientLoginView.USER_FILE_PATH + "/" + revFileName);
 
 				while (readCnt > 0) {
 					readSize = dis.read(readData);

@@ -14,6 +14,7 @@ import javax.swing.border.TitledBorder;
 
 import user.controller.content.PayCompleteEvt;
 import user.controller.content.UserGoodsMainEvt;
+import user.view.login.ClientLoginView;
 import user.vo.content.CompleteOrderInformDTO;
 
 @SuppressWarnings("serial")
@@ -24,7 +25,7 @@ public class PayCompleteView extends JDialog {
 	public PayCompleteView(CompleteOrderInformDTO coiDTO) {
 		super(UserGoodsMainEvt.ugmv, "결제 완료", false);
 		// 이미지
-		JLabel jlImg = new JLabel((new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/rs_gds_" + coiDTO.getgImg())));// 이미지
+		JLabel jlImg = new JLabel((new ImageIcon(ClientLoginView.USER_FILE_PATH + "/rs_gds_" + coiDTO.getgImg())));// 이미지
 		JLabel jlTitle = new JLabel("결제완료");
 		jlTitle.setForeground(Color.white);
 

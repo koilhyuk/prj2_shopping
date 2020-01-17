@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 
 import user.controller.content.UserGoodsMainEvt;
 import user.controller.content.UserMyPageEvt;
+import user.view.login.ClientLoginView;
 
 @SuppressWarnings("serial")
 public class UserMyPageView extends JDialog {
@@ -56,7 +57,7 @@ public class UserMyPageView extends JDialog {
 		jbtOk.setBackground(new Color(0x043424));
 
 		// 이미지 // 광고
-		ImageIcon iImage = new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/mypagebanner.jpg");
+		ImageIcon iImage = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/mypagebanner.jpg");
 		JLabel jtaImage = new JLabel(iImage);
 		// 수동
 		setLayout(null);

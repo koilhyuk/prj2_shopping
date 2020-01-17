@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import user.controller.content.UserGoodsListPanelEvt;
+import user.view.login.ClientLoginView;
 
 @SuppressWarnings("serial")
 public class UserGoodsListPanelView extends JPanel {
@@ -48,7 +49,7 @@ public class UserGoodsListPanelView extends JPanel {
 		}// switch
 		jlGoodsStar.setForeground(Color.red);
 		
-		jlGoodsImg = new JLabel(new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/rs_gds_" + img));
+		jlGoodsImg = new JLabel(new ImageIcon(ClientLoginView.USER_FILE_PATH + "/rs_gds_" + img));
 
 		jlGoodsImg.setBorder(new LineBorder(Color.BLACK));
 
