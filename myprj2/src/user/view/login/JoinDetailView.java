@@ -96,6 +96,9 @@ public class JoinDetailView extends JDialog {
 		String month[]= new String[12];
 		for(int i=0;i<12; i++) {
 			month[i]=String.valueOf(i+1);
+				if(month[i].length()==1) {
+					month[i]="0"+String.valueOf(i+1);
+				}//end if 
 		}//end for
 		dcbmMonth= new DefaultComboBoxModel<String>(month);
 		jcbBirthMonth= new JComboBox<String>(dcbmMonth);
@@ -104,6 +107,9 @@ public class JoinDetailView extends JDialog {
 		String day[]=new String[31];
 		for(int i=0; i<31; i++) {
 			day[i]=String.valueOf(i+1);
+			if(day[i].length()==1) {
+				day[i]="0"+String.valueOf(i+1);
+			}//end if 
 		}//end for
 		dcbmDay = new DefaultComboBoxModel<String>(day);
 		jcbBirthDay= new JComboBox<String>(dcbmDay);
