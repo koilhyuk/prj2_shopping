@@ -113,7 +113,7 @@ public class UserGoodsMainView extends JFrame {
 		jlChannel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 60));
 		jlChannel.setOpaque(true);
 		jlChannel.setForeground(Color.white);
-		jlChannel.setBackground(new Color(0x3F4040));
+		jlChannel.setBackground(Color.black);
 		jlChannel.setBounds(722, 5, 240, 80);
 
 		btnType = new JButton("BRAND º¸±â");
@@ -125,7 +125,7 @@ public class UserGoodsMainView extends JFrame {
 //		jlChannel.setBorder(new LineBorder(Color.green));
 
 		JPanel jpChannel = new JPanel();
-		jpChannel.setBackground(new Color(0x3F4040));
+		jpChannel.setBackground(Color.black);
 		jpChannel.setLayout(null);
 //		jpChannel.setBorder(new LineBorder(Color.black));
 
@@ -425,7 +425,7 @@ public class UserGoodsMainView extends JFrame {
 		jpBrandKind.setBackground(new Color(0x3F4040));
 
 		jpRecent.setBackground(Color.white);
-		btnSearch.setBackground(new Color(0x3F4040));
+		btnSearch.setBackground(new Color(0x352A26));
 		btnSearch.setForeground(Color.white);
 		jcbSearch.setBackground(new Color(0x3F4040));
 		jcbSearch.setForeground(Color.white);
