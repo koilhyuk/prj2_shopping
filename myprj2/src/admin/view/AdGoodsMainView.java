@@ -78,6 +78,9 @@ public class AdGoodsMainView extends JPanel {
 		setLayout(null);
 
 		//// 2019-09-24
+		ImageIcon logoImg= new ImageIcon(StaticCla.FILE_PATH+"/prj2_logo_back_white_main.png");
+//		ImageIcon logoImg= new ImageIcon("C:/Users/hyebin/git/prj2_shopping/myprj2/src/admin/img"+"/prj2_logo_back_white_main.png");
+		JLabel jlTitle = new JLabel(logoImg);
 		jlChannel = new JLabel("ALL", SwingConstants.CENTER);
 		jlChannel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 60));
 		jlChannel.setOpaque(true);
@@ -320,13 +323,16 @@ public class AdGoodsMainView extends JPanel {
 		jpContent.add(btnSearch);
 		jpContent.add(jtfSearch);
 		jpContent.add(jcbSearch);
-
+		jlTitle.setBounds(20, 10, 270,60 );
+		jpContent.add(jlTitle);
 		add(jspFull);
+//		add(jlTitle);
+
 		jpChannel.setBackground(new Color(0x352A26));
 		jpContent.setBackground(Color.white);
 
 		setBackground(Color.white);
-
+		
 		setBounds(0, 0, 1600, 900);
 		jspFull.setBounds(0, 0, getWidth() - 20, getHeight() - 20);// °íÁ¤ °ª
 		jpChannel.setBounds(0, 70, jspFull.getWidth() - 15, 100);

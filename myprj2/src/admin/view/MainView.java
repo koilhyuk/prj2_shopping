@@ -9,6 +9,7 @@ import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -45,6 +46,7 @@ public class MainView extends JFrame {
 		JPanel jpNorth = new JPanel();
 		jpNorth.setLayout(new BorderLayout());
 		jpNorth.setLayout(null);
+
 
 		jbtnSett = new JButton("ºñ¹Ð¹øÈ£ Àç¼³Á¤");
 		jbtnSett.setBackground(Color.white);
@@ -102,12 +104,11 @@ public class MainView extends JFrame {
 		MainEvt mae = new MainEvt(lss, mlt);
 		
 		////////////////////////////////
-		JLabel jlname = new JLabel("ST");
-		Font f = new Font("¸¼Àº °íµñ", Font.BOLD, 25);
+		ImageIcon logoImg= new ImageIcon(StaticCla.FILE_PATH+"/prj2_logo_back_gray_footer.png");
+//		ImageIcon logoImg= new ImageIcon("C:/Users/hyebin/git/prj2_shopping/myprj2/src/admin/img"+"/prj2_logo_back_gray_footer.png");
+		JLabel jlTitle = new JLabel(logoImg);
 		Font f1 = new Font("¸¼Àº °íµñ", Font.PLAIN, 15);
-		jlname.setFont(f);
-		jlname.setForeground(Color.white);
-		jlname.setBounds(150, 50, 200, 30);
+		jlTitle.setBounds(45, 20, 250, 60);
 		JLabel jladdr = new JLabel("¼­¿ïÆ¯º°½Ã °­³²±¸  Å×Çì¶õ·Î 132(¿ª»ïµ¿) ÇÑµ¶¾àÇ° ºôµù 8Ãþ ST¼îÇÎ¸ô");
 		jladdr.setBounds(550, 10, 650, 25);
 		jladdr.setForeground(Color.white);
@@ -130,7 +131,7 @@ public class MainView extends JFrame {
 		jpline.setBackground(Color.white);
 		jpline.setBounds(330, 13, 3, 130);
 
-		jpbanner.add(jlname);
+		jpbanner.add(jlTitle);
 		jpbanner.add(jpline);
 		jpbanner.add(jladdr);
 		jpbanner.add(jljob);
@@ -143,6 +144,7 @@ public class MainView extends JFrame {
 		jtpMain.addMouseListener(mae);
 		jbtnSett.addActionListener(mae);
 		jbtnLogout.addActionListener(mae);
+	
 		add("North", jpNorth);
 		add("Center", jpCenter);
 		add("South", jpbanner);

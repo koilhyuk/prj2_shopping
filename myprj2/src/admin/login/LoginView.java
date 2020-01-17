@@ -3,6 +3,7 @@ package admin.login;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,22 +11,22 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import admin.run.StaticCla;
+
 @SuppressWarnings("serial")
 public class LoginView extends JFrame {
 
 	private JTextField jtfId;
 	private JPasswordField jpfPw;
 	private JButton jbtLogin;
-
 	public LoginView() {
 		super("관리자 로그인");
 		jtfId = new JTextField();
 		jpfPw = new JPasswordField();
-
-		JLabel jlTitle = new JLabel("§ ST LOGIN §");
-		Font fTitle = new Font("맑은 고딕", Font.BOLD, 30);
-		jlTitle.setFont(fTitle);
-		jlTitle.setForeground(Color.WHITE);
+		
+		ImageIcon logoImg= new ImageIcon(StaticCla.FILE_PATH+"/prj2_logo_back_brown");
+//		ImageIcon logoImg= new ImageIcon("C:/Users/hyebin/git/prj2_shopping/myprj2/src/admin/img"+"/prj2_logo_back_brown.png");
+		JLabel jlTitle = new JLabel(logoImg);
 		JLabel jlId = new JLabel("아이디");
 		jlId.setForeground(Color.white);
 		JLabel jlPw = new JLabel("비밀번호");
@@ -36,12 +37,12 @@ public class LoginView extends JFrame {
 		jbtLogin.setForeground(new Color(0x352A26));
 		jbtLogin.setBorder(new LineBorder(Color.white));		
 
-		jlTitle.setBounds(150, 30, 270, 30);
-		jtfId.setBounds(130, 85, 250, 30);
-		jpfPw.setBounds(130, 130, 250, 30);
-		jlId.setBounds(70, 80, 70, 50);
-		jlPw.setBounds(70, 120, 70, 50);
-		jbtLogin.setBounds(195, 190, 100, 30);
+		jlTitle.setBounds(80, 20, 300, 60);
+		jtfId.setBounds(130, 115, 250, 30);
+		jpfPw.setBounds(130, 160, 250, 30);
+		jlId.setBounds(70, 110, 70, 50);
+		jlPw.setBounds(60, 150, 70, 50);
+		jbtLogin.setBounds(195, 220, 100, 30);
 
 		this.getContentPane().setBackground(new Color(0x352A26));
 
@@ -59,7 +60,7 @@ public class LoginView extends JFrame {
 		jpfPw.addActionListener(le);
 		jbtLogin.addActionListener(le);
 
-		setBounds(100, 100, 500, 300);
+		setBounds(100, 100, 500, 330);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}// AdminLoginView
