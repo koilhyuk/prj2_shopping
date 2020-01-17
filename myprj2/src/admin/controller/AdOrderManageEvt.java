@@ -137,20 +137,27 @@ public class AdOrderManageEvt extends MouseAdapter implements ActionListener {
 	public void deleteOrder() {
 		JTable jtOrder = ov.getJtOrder();
 		int selectRow = ov.getJtOrder().getSelectedRow();
+		
 //		String code=jtOrder.getValueAt(selectRow, 0);
 		if (selectRow == -1) {
 			JOptionPane.showMessageDialog(ov, "삭제하실 행을 선택해주세요.");
 			return;
 		} // end if
 		String code = (String) jtOrder.getValueAt(selectRow, 0);
+		String name = (String) jtOrder.getValueAt(selectRow, 1);
+		String deli = (String) jtOrder.getValueAt(selectRow, 6);
 		try {
-			switch (JOptionPane.showConfirmDialog(ov, code + "번의 주문을 삭제하시겠습니까?")) {
+			switch (JOptionPane.showConfirmDialog(ov, name + "님의 주문내역을 삭제하시겠습니까?")) {
 			case JOptionPane.OK_OPTION:
 				AdminDAO aDAO = AdminDAO.getInstance();
 //				doVO= new 수정_DeleteOrderVO(code);
+				if(deli.equals("N")||deli=="N") {
+					JOptionPane.showMessageDialog(ov, "현재 결제가 진행중인 주문내역이므로 삭제가 불가능합니다.");
+					return;
+				}//end if
 				if (aDAO.deleteOrder(code)) {
 					ov.getDtmOrder().removeRow(selectRow);
-					JOptionPane.showMessageDialog(ov, code + "번의 주문이 삭제되었습니다.");
+					JOptionPane.showMessageDialog(ov, name + "번의 주문내역을 삭제되었습니다.");
 				selectAllOrder();
 				} // end if
 			}// end switch

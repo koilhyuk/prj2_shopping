@@ -498,7 +498,7 @@ public class AdminDAO {
 			selectAllOrder.append(
 					" 	select   o_code,	o_phone,o_delivery,	to_char(o_date,'yyyy-mm-dd') o_date,o_person,m_id,o_quantity, o_buypay, g_name	")
 
-					.append(" 	from ordering o, goods g	").append(" 	where (o.g_code=g.g_code)	");
+					.append(" 	from ordering o, goods g	").append(" 	where (o.g_code=g.g_code)	 and o_delivery !='D'	");
 //					.append(" and to_char(sysdate,'yyyymmdd') =to_char(o_date,'yyyymmdd')		");
 			switch (slVO.getIndex()) {
 			case 1:// 주문번호
@@ -594,7 +594,7 @@ public class AdminDAO {
 		try {
 			con = getConn();
 			StringBuilder deleteOrder = new StringBuilder();
-			deleteOrder.append(" delete from ordering where o_code=? 	");
+			deleteOrder.append(" update ordering set o_delivery='D' where o_code=? 	and o_delivery='Y' ");
 
 			pstmt = con.prepareStatement(deleteOrder.toString());
 
