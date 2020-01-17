@@ -176,8 +176,8 @@ public class UserMyOrderDetailView extends JDialog {
 				jlScore = new JLabel("");
 				break;
 			}// switch
+			jlScore.setForeground(Color.red);
 		} // end else
-		jlScore.setForeground(Color.red);
 
 		JPanel jpDelivery = new JPanel();
 		jpDelivery.setLayout(null);
