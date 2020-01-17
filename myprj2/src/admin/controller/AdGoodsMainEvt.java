@@ -375,7 +375,7 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 	}// searchBrandList
 
 	@Override
-	public void actionPerformed(ActionEvent ae) {// 카테고리 버튼 클릭 시 회원 비회원 나누기
+	public void actionPerformed(ActionEvent ae) {
 		jtDetail = agmv.getJtDetail();
 		dtmDetail = agmv.getDtmDetail();
 
@@ -514,7 +514,6 @@ public class AdGoodsMainEvt extends MouseAdapter implements ActionListener {
 		if (ae.getSource() == agmv.getJtfSearchBrand() || ae.getSource() == agmv.getBtnSearchBrand()) {
 			searchBrandList();
 		} // end if
-
 	}// actionPerformed
 
 	@Override

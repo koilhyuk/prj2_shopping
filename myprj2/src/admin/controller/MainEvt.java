@@ -30,19 +30,15 @@ public class MainEvt extends MouseAdapter implements ActionListener {
 
 		this.lss = lss;
 		this.mlt = mlt;
-//		rt = new admin.thread.RecentThread();
-//		rt.start();
 
 		StaticCla.mv.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-//				rt.setStop(true);
 				StaticCla.mv.dispose();
 			}
 
 			@Override
 			public void windowClosed(WindowEvent e) {
-//				rt.setStop(true);
 				mlt.setStop(true);
 				lss.setStop(true);
 				try {
@@ -52,7 +48,7 @@ public class MainEvt extends MouseAdapter implements ActionListener {
 				} finally {
 					System.exit(ABORT);// JVM이 종료 될 때 생성 된 모든 인스턴스가 종료
 				} // end finally
-			}
+			}// windowClosed
 		});
 	}// MainViewEvt
 
