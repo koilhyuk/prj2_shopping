@@ -53,7 +53,6 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 			DataDecrypt dd = new DataDecrypt(UserGoodsMainView.KEY);
 			cardNum = dd.decryption(uDAO.selectCardNum(selectCard, UserGoodsMainView.id));
 
-			System.err.println("==" + cardNum);
 			jtfCardOne.setText(cardNum.substring(0, 4));
 			jtfCardThree.setText(cardNum.substring(cardNum.indexOf("-", 2) + 1, cardNum.indexOf("-", 2) + 5));
 
@@ -80,7 +79,6 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 		JTextField jtfDemand = pv.getJtfDemand();
 		JTextField jtfDetailDel = pv.getJtfDetailDel();
 
-//		System.err.println("======================"+new String(jpfCVC.getPassword()));
 		if ("".equals(jtfOrder.getText().trim())) {
 			JOptionPane.showMessageDialog(UserGoodsMainEvt.ugmv, "주문자를 입력해주세요.");
 			jtfOrder.requestFocus();
@@ -152,7 +150,6 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 			UserDAO uDAO = UserDAO.getInstance();
 			SelectOrderChkCard socc = new SelectOrderChkCard(transCardNum, transCardCVC, cardMethod);
 			cardCode = uDAO.selectChkCard(socc);
-			System.err.println(cardCode);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
@@ -184,7 +181,6 @@ public class PayEvt extends KeyAdapter implements ActionListener {
 
 		UserDAO uDAO = UserDAO.getInstance();
 		try {
-			System.err.println(bgiVO);
 			uDAO.insertNewOrdering(bgiVO);
 			// 성공을 했다면 최근 oCode가져오기
 			oCode = uDAO.selectRecentOrdering(bgiVO.getmId());

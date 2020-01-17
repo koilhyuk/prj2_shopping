@@ -18,11 +18,9 @@ public class UserCardUploadView extends JDialog {
 	private JTextField jtfCard1, jtfCard2, jtfCard3, jtfCard4, jtfCVC;
 	private JComboBox<String> jcbCardName;
 	private DefaultComboBoxModel<String> dcbmCard;
-	private UserMyPageView ugmv;
 
 	public UserCardUploadView(UserMyPageView ugmv) {
 		super(ugmv, "카드등록", true);
-		this.ugmv = ugmv;
 
 		JLabel jlCard = new JLabel("카드선택");
 		JLabel jlCVC = new JLabel("CVC(3자리)");
@@ -63,7 +61,7 @@ public class UserCardUploadView extends JDialog {
 		jbtnClose.addActionListener(ucue);
 		jcbCardName.addActionListener(ucue);
 		jtfCVC.addActionListener(ucue);// cvc는 액션
-		
+
 		jtfCVC.addKeyListener(ucue);
 		jtfCard1.addKeyListener(ucue);
 		jtfCard2.addKeyListener(ucue);
@@ -138,9 +136,5 @@ public class UserCardUploadView extends JDialog {
 	public DefaultComboBoxModel<String> getDcbmCard() {
 		return dcbmCard;
 	}
-
-//	public static void main(String[] args) {
-//		new UserCardUploadView();
-//	}
 
 }// class

@@ -15,8 +15,8 @@ import user.view.content.UserMyPageView;
 import user.vo.content.SelectCusDataVO;
 
 public class UserMyPageEvt implements ActionListener {
-	static UserMyPageView mdv;
-	private static String id;
+	public static UserMyPageView mdv;
+	private String id;
 
 	public UserMyPageEvt(UserMyPageView mdv, String id) {
 		this.mdv = mdv;
@@ -40,7 +40,6 @@ public class UserMyPageEvt implements ActionListener {
 		if (ae.getSource() == mdv.getJbtOrderList()) {// 주문내역
 			new UserMyOrderView(id);
 		} // end if
-		SelectCusDataVO cdVO = new SelectCusDataVO();
 		if (ae.getSource() == mdv.getJbtMyData()) {// 내정보변경
 			searchCusData();
 		} // end if
@@ -57,6 +56,6 @@ public class UserMyPageEvt implements ActionListener {
 			case JOptionPane.OK_OPTION:
 				mdv.dispose();
 			}// end if
-		}
+		} // end if
 	}// actionPerformed
 }// class

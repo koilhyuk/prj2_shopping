@@ -13,12 +13,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import user.dao.SelectAddrDAO;
-import user.view.content.PayView;
 import user.view.content.UserCusDataView;
 import user.view.content.ZipcodeSearchCusView;
-import user.view.content.ZipcodeSearchOrderView;
-import user.view.login.JoinDetailView;
-import user.view.login.ZipcodeSearchView;
 import user.vo.login.CheckAddrVO;
 import user.vo.login.SearchAddrVO;
 

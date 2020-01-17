@@ -12,9 +12,9 @@ import user.dao.ClientDAO;
 import user.view.content.UserCusPwResetView;
 import user.vo.login.LoginPwResetVO;
 
-public class UserCusPwResetEvt  implements ActionListener {
+public class UserCusPwResetEvt implements ActionListener {
 	private UserCusPwResetView lpr;
-	private static String id;
+	private String id;
 
 	public UserCusPwResetEvt(UserCusPwResetView lpr, String id) {
 		this.lpr = lpr;
@@ -28,15 +28,15 @@ public class UserCusPwResetEvt  implements ActionListener {
 			cipherText = DataEncrypt.messageDigest("MD5", pass);
 		} catch (NoSuchAlgorithmException e1) {
 			e1.printStackTrace();
-		}//end catch
-		// 암호화
-		if(pass.isEmpty()||!pass.equals(lpr.getJtfNewPwConfirm().getText())) {
+		} // end catch
+			// 암호화
+		if (pass.isEmpty() || !pass.equals(lpr.getJtfNewPwConfirm().getText())) {
 			JOptionPane.showMessageDialog(lpr, "비밀번호와 비밀번호 확인이 일치하지 않습니다");
 			lpr.getJtfNewPw().setText("");
 			lpr.getJtfNewPwConfirm().setText("");
 			lpr.getJtfNewPw().requestFocus();
 			return;
-		}//
+		} //
 		LoginPwResetVO lprVO = new LoginPwResetVO(id, cipherText);
 		ClientDAO cDAO = ClientDAO.getInstance();
 		try {
@@ -53,7 +53,7 @@ public class UserCusPwResetEvt  implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == lpr.getJbtConfirm()) {// 확인 버튼 클릭
-				pwReset();
+			pwReset();
 		} // end if
 
 		if (ae.getSource() == lpr.getJbtCancle()) {// 취소 버튼 클릭
@@ -63,5 +63,5 @@ public class UserCusPwResetEvt  implements ActionListener {
 			}// end switch
 		} // end if
 	}// actionPerformed
-	
+
 }// class

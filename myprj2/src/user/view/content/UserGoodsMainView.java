@@ -303,6 +303,13 @@ public class UserGoodsMainView extends JFrame {
 		jpContent.add(jpBestGoods);
 		jpContent.add(jlBest);
 
+		ImageIcon mainLogoImg = new ImageIcon(ClientLoginView.USER_FILE_PATH+"/prj2_logo_back_white.PNG");
+		JLabel jlMainLogo = new JLabel(mainLogoImg);
+		
+		jlMainLogo.setBounds(20, 10, 250, 54);
+		jpContent.add(jlMainLogo);
+		
+		
 		jlBest.setBounds(310, 230, 100, 40);
 		jpBestGoods.setBounds(310, 260, 1070, 290);
 
@@ -357,12 +364,13 @@ public class UserGoodsMainView extends JFrame {
 		jpContent.add(jcbSearch);
 
 		//////////////////////////////////////////////////////////////////////
-		JLabel jlname = new JLabel("ST");
+		ImageIcon logoImg =new ImageIcon(ClientLoginView.USER_FILE_PATH+"/prj2_logo_back_gray.PNG");
+		JLabel jlname = new JLabel(logoImg);
 		Font f = new Font("¸¼Àº °íµñ", Font.BOLD, 40);
 		Font f1 = new Font("¸¼Àº °íµñ", Font.PLAIN, 20);
 		jlname.setFont(f);
 		jlname.setForeground(Color.white);
-		jlname.setBounds(150, 50, 200, 50);
+		jlname.setBounds(15, 40, 300, 68);
 		JLabel jladdr = new JLabel("¼­¿ï Æ¯º°½Ã °­³²±¸  Å×Çì¶õ·Î 132(¿ª»ïµ¿) ÇÑµ¶¾àÇ° ºôµù 8Ãþ ST¼îÇÎ¸ô");
 		jladdr.setBounds(500, 20, 650, 30);
 		jladdr.setForeground(Color.white);

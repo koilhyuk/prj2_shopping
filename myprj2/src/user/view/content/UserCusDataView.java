@@ -3,14 +3,11 @@ package user.view.content;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import user.controller.content.UserCusDataEvt;

@@ -13,7 +13,6 @@ import user.vo.content.SelectClickGoodsDetailDTO;
 public class UserGoodsRecentPanelEvt implements ActionListener {
 
 	private String goodsCode;
-
 	private UserGoodsRecentPanelView ugrpv;
 
 	public UserGoodsRecentPanelEvt(UserGoodsRecentPanelView ugrpv) {

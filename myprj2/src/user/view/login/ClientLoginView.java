@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
 
 import user.controller.login.ClientLoginEvt;
 
@@ -18,9 +17,8 @@ public class ClientLoginView extends JFrame {
 
 	private JTextField jtfId;
 	private JPasswordField jpfPw;
-	private JLabel jlTitle, jlId, jlPw;
 	private JButton jbtLogin, jbtBLogin, jbtJoin, jbtfound;
-	
+
 	public static final String USER_FILE_PATH = "C:/Users/SAMSUNG/AppData/Roaming/SPB_Data/git/prj2_shopping/myprj2/src/user/img";
 
 	public ClientLoginView() {
@@ -28,15 +26,15 @@ public class ClientLoginView extends JFrame {
 
 		jtfId = new JTextField();
 		jpfPw = new JPasswordField();
-		
-		ImageIcon logoImg = new ImageIcon(ClientLoginView.USER_FILE_PATH+"/prj2_logo_back_brown.PNG");
-		jlTitle = new JLabel(logoImg);
+
+		ImageIcon logoImg = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/prj2_logo_back_brown.PNG");
+		JLabel jlTitle = new JLabel(logoImg);
 		Font fTitle = new Font("맑은 고딕", Font.BOLD, 30);
 		jlTitle.setFont(fTitle);
 		jlTitle.setForeground(Color.WHITE);
-		jlId = new JLabel("아이디");
+		JLabel jlId = new JLabel("아이디");
 		jlId.setForeground(Color.WHITE);
-		jlPw = new JLabel("비밀번호");
+		JLabel jlPw = new JLabel("비밀번호");
 		jlPw.setForeground(Color.WHITE);
 
 		jbtLogin = new JButton("로그인");
@@ -47,7 +45,6 @@ public class ClientLoginView extends JFrame {
 		jbtJoin.setBackground(Color.white);
 		jbtfound = new JButton("아이디/비밀번호 찾기");
 		jbtfound.setBackground(Color.white);
-
 
 		jlTitle.setBounds(100, 15, 300, 67);
 		jtfId.setBounds(130, 105, 250, 30);
@@ -99,18 +96,6 @@ public class ClientLoginView extends JFrame {
 
 	public JButton getJbtBLogin() {
 		return jbtBLogin;
-	}
-
-	public JLabel getJlTitle() {
-		return jlTitle;
-	}
-
-	public JLabel getJlId() {
-		return jlId;
-	}
-
-	public JLabel getJlPw() {
-		return jlPw;
 	}
 
 	public JButton getJbtJoin() {

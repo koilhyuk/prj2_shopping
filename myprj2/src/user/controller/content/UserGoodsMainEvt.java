@@ -139,7 +139,6 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 		try {
 			sgck = new SelectGoodsCheckVO(brandCheck, clothesType, detailType, searchData.toUpperCase(), selectCombo);
 			List<SelectAllGoodsVO> list = uDAO.selectAllGoods(sgck);
-			System.err.println(list.size());
 			if (list.isEmpty()) {
 				ugmv.getJtfSearch().setText("");
 				searchData = "";
@@ -158,7 +157,7 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 					tempInven = " (※ 품절임박 ※)";
 				} else {
 					tempInven = "";
-				}// end else
+				} // end else
 				jpGoods.add(new UserGoodsListPanelView(sagVO.getG_img(),
 						sagVO.getG_name() + "(" + sagVO.getG_code() + ")", sagVO.getB_name(), sagVO.getG_price(),
 						sagVO.getG_salenum() + tempInven, sagVO.getG_score()));
@@ -192,7 +191,8 @@ public class UserGoodsMainEvt extends MouseAdapter implements ActionListener {
 		UserDAO uDAO = UserDAO.getInstance();
 
 		try {
-			sfchkVO = new SelectFiveCheckVO(brandCheck, clothesType, detailType, searchData.toUpperCase(), selectCombo, tempNum);
+			sfchkVO = new SelectFiveCheckVO(brandCheck, clothesType, detailType, searchData.toUpperCase(), selectCombo,
+					tempNum);
 			List<SelectBestFiveGoodsVO> fiveBestList = uDAO.selectFiveGoods(sfchkVO);
 			if (fiveBestList.isEmpty()) {
 				jpGoodsReset();

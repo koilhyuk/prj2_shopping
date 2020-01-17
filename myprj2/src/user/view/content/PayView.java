@@ -176,7 +176,6 @@ public class PayView extends JDialog {
 		jtfProName.setText(sniDTO.getgName());
 		jtfFinalPrice.setText(String.valueOf(sniDTO.getTotalMoney()));
 		jtfOrder.setText(sniDTO.getmName());
-		System.err.println("PayView====" + sniDTO.getCardList().get(0).getCarNum());
 		jtfPhoneFront.setText(
 				sniDTO.getmPhone().substring(sniDTO.getmPhone().indexOf("-") + 1, sniDTO.getmPhone().indexOf("-") + 5));
 		jtfPhoneBehind.setText(sniDTO.getmPhone().substring(sniDTO.getmPhone().lastIndexOf("-") + 1,

@@ -7,14 +7,11 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import user.dao.ClientDAO;
-import user.view.login.ClientLoginView;
 import user.view.login.LoginFound;
 import user.vo.login.LoginFoundIdVO;
 
 public class LoginFoundEvt implements ActionListener {
 	private LoginFound lf;
-	private ClientLoginView clv;
-	private String name, phone, id;
 
 	public LoginFoundEvt(LoginFound lf) {
 		this.lf = lf;

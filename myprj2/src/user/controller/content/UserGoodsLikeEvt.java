@@ -38,7 +38,6 @@ public class UserGoodsLikeEvt implements ActionListener {
 			List<SelectAllGoodsVO> list = uDAO.selectLikeAllGoods(UserGoodsMainView.id);
 
 			if (list.isEmpty()) {
-//				jpGoodsReset();
 				jpGoods.setPreferredSize(new Dimension(700, 390));
 				uglv.setVisible(true);
 				return;
@@ -69,12 +68,6 @@ public class UserGoodsLikeEvt implements ActionListener {
 		} // end catch
 	}// selectAllGoodsList
 
-//	private void jpGoodsReset() {
-//		jpGoods.setVisible(false);
-//		jpGoods.removeAll();
-//		jpGoods.setVisible(true);
-//	}// jpGoodsReset
-
 	@Override
 	public void actionPerformed(ActionEvent ae) {// 카테고리 버튼 클릭 시 회원 비회원 나누기
 
@@ -83,6 +76,6 @@ public class UserGoodsLikeEvt implements ActionListener {
 				uglv.dispose();
 			}
 		} // end if
-	}
+	}// actionPerformed
 
 }// class

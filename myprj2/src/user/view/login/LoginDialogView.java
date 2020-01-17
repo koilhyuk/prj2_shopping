@@ -3,6 +3,7 @@ package user.view.login;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -25,13 +26,13 @@ public class LoginDialogView extends JDialog {
 
 		jtfId = new JTextField();
 		jpfPw = new JPasswordField();
-		JLabel jlTitle = new JLabel("§ ST LOGIN §");
+		ImageIcon logoImg = new ImageIcon(ClientLoginView.USER_FILE_PATH + "/prj2_logo_back_brown.PNG");
+		JLabel jlTitle = new JLabel(logoImg);
 
 		Font fTitle = new Font("맑은 고딕", Font.BOLD, 30);
 		jlTitle.setFont(fTitle);
 		jlTitle.setForeground(Color.WHITE);
-		
-		
+
 		JLabel jlId = new JLabel("아이디");
 		jlId.setForeground(Color.WHITE);
 		JLabel jlPw = new JLabel("비밀번호");
@@ -39,17 +40,17 @@ public class LoginDialogView extends JDialog {
 
 		jbtClose = new JButton("닫기");
 		jbtClose.setBackground(Color.white);
-		
+
 		jbtLogin = new JButton("로그인");
 		jbtLogin.setBackground(Color.white);
 
-		jlTitle.setBounds(160, 30, 200, 30);
-		jtfId.setBounds(130, 85, 250, 30);
-		jpfPw.setBounds(130, 130, 250, 30);
+		jlTitle.setBounds(100, 15, 300, 67);
+		jtfId.setBounds(130, 105, 250, 30);
+		jpfPw.setBounds(130, 150, 250, 30);
 		jlId.setBounds(70, 80, 70, 50);
 		jlPw.setBounds(70, 120, 70, 50);
-		jbtLogin.setBounds(140, 190, 100, 30);
-		jbtClose.setBounds(260, 190, 100, 30);
+		jbtLogin.setBounds(140, 200, 100, 30);
+		jbtClose.setBounds(260, 200, 100, 30);
 
 		setLayout(null);
 		add(jlTitle);
