@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import admin.controller.AdGoodsPanelDetailEvt;
@@ -33,6 +34,7 @@ public class AdGoodsPanelDetailView extends JDialog {
 		JLabel jlSellTag = new JLabel("-누적 판매");
 		JLabel jlSell = new JLabel(String.valueOf(scgdDTO.getgSaleNum()) + " 개", JLabel.LEFT);
 		JLabel jlLikeTag = new JLabel("-♥찜");
+		
 		JLabel jlLike = new JLabel(scgdDTO.getgLikeNum() + " 개");
 
 		jlDetail.setForeground(Color.white);
@@ -65,6 +67,7 @@ public class AdGoodsPanelDetailView extends JDialog {
 			break;
 		}// switch
 
+		jlGoodsStar.setForeground(Color.red);
 		Font f = new Font("맑은 고딕)", Font.BOLD, 30);
 		jlDetail.setFont(f);
 
@@ -110,16 +113,17 @@ public class AdGoodsPanelDetailView extends JDialog {
 		jlLikeTag.setBounds(360, 230, 90, 50);
 		jlLike.setBounds(470, 230, 300, 50);
 
-		jtaStrong.setBounds(30, 400, 720, 250);
+		jtaStrong.setBounds(30, 400, 720, 260);
+		jtaStrong.setBorder(new LineBorder(Color.black));
 
 		jbtnClose.setBounds(670, 340, 80, 30);
-		jbtnClose.setBackground(new Color(0x3F4040));
+		jbtnClose.setBackground(new Color(0x352A26));
 		jbtnClose.setForeground(Color.white);
-		jbtnClose.setBorder(new LineBorder(new Color(0x3F4040)));
+		jbtnClose.setBorder(new LineBorder(new Color(0x352A26)));
 		
 
-		jpDetail.setBounds(20, 0, 800, 80);
-		jpDetail.setBackground(new Color(0x3F4040));
+		jpDetail.setBounds(20, 5, 800, 80);
+		jpDetail.setBackground(new Color(0x352A26));
 
 		jsp.add(jbtnClose);
 		jsp.add(jlSell);
@@ -135,17 +139,18 @@ public class AdGoodsPanelDetailView extends JDialog {
 		jsp.add(jlGPrice);
 		jsp.add(jlPriceTag);
 		jsp.add(jtaStrong);
-		jsp.setBounds(20, 80, 800, 800);
+		jsp.setBounds(20, 80, 800, 680);
 
 		jpDetail.add(jlDetail);
 		add(jsp);
 		add(jpDetail);
+		jsp.setBackground(Color.white);
 
 		setLayout(null);
 		setResizable(false);
 		AdGoodsPanelDetailEvt agpdEvt = new AdGoodsPanelDetailEvt(this);
 		jbtnClose.addActionListener(agpdEvt);
-
+		this.getContentPane().setBackground(Color.white); //JDialog 배경색 변경 
 		setBounds(200, 20, 850, 800);
 		setVisible(true);
 

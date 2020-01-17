@@ -46,7 +46,7 @@ public class AdGoodsDetailView extends JDialog {
 		Font font = new Font("맑은 고딕", Font.BOLD, 20);
 		// 라벨
 		JTextField jlTitle = new JTextField(" 상품정보 ");
-		jlTitle.setBackground(Color.black);
+		jlTitle.setBackground(new Color(0x352A26));
 		jlTitle.setHorizontalAlignment(JTextField.CENTER);
 		jlTitle.setForeground(Color.white);
 
@@ -202,7 +202,7 @@ public class AdGoodsDetailView extends JDialog {
 		add(jbtnClose);
 		add(jbtnUpload);
 		add(jbtnImg);
-		this.getContentPane().setBackground(new Color(0x3F4040)); // JDialog 배경색 변경
+		this.getContentPane().setBackground(new Color(0x352A26)); // JDialog 배경색 변경
 
 		AdGoodsDetailEvt pde = new AdGoodsDetailEvt(this, dgDTO.getG_img(), gle);
 		jbtnClose.addActionListener(pde);

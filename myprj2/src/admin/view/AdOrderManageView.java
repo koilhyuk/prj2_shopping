@@ -86,7 +86,7 @@ public class AdOrderManageView extends JPanel {
 //            @Override
 //            protected void configureScrollBarColors()
 //            {
-//                this.thumbColor = new Color(0x3F4040);
+//                this.thumbColor = new Color(0x352A26);
 //            }
 //            
 //        });
@@ -96,10 +96,10 @@ public class AdOrderManageView extends JPanel {
 		Font fontHh = new Font("맑은 고딕", Font.BOLD, 15); // 테이블헤더
 		th = jtOrder.getTableHeader(); // header설정
 		th.setFont(fontHh); // header 폰트 변경
-		th.setBackground(new Color(0x3F4040));
+		th.setBackground(new Color(0x352A26));
 		th.setForeground(Color.white);
-		jtOrder.setBorder(new LineBorder(new Color(0x3F4040)));
-		jtOrder.setSelectionForeground(new Color(0x3F4040));
+		jtOrder.setBorder(new LineBorder(new Color(0x352A26)));
+		jtOrder.setSelectionForeground(new Color(0x352A26));
 		jtOrder.setBackground(Color.white);
 
 		th.setPreferredSize(new Dimension(30, 35)); // header 높이 변경
@@ -150,14 +150,14 @@ public class AdOrderManageView extends JPanel {
 		jtfSearch.setBounds(490, 20, 250, 30);
 		jbtnSearch.setBounds(750, 20, 100, 30);
 		jbtnCash.setBounds(1000, 20, 100, 30);
-		jpLabel.setBackground(new Color(0x3F4040));
+		jpLabel.setBackground(new Color(0x352A26));
 		jpLabel.setBorder(new LineBorder(Color.black));
 		jpLabel.setBounds(-5, 0, 1700, 80);
 
 		jbtnSearch.setForeground(Color.white);
-		jbtnSearch.setBackground(new Color(0x3F4040));
+		jbtnSearch.setBackground(new Color(0x352A26));
 		jbtnCash.setForeground(Color.white);
-		jbtnCash.setBackground(new Color(0x3F4040));
+		jbtnCash.setBackground(new Color(0x352A26));
 
 		setLayout(null);
 		jspOrder.setBounds(80, 120, 1330, 600);

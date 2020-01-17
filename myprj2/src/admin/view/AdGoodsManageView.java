@@ -94,10 +94,10 @@ public class AdGoodsManageView extends JPanel {
 
 		th = jtGoods.getTableHeader(); // header설정
 		th.setFont(fontHh); // header 폰트 변경
-		th.setBackground(new Color(0x3F4040));
+		th.setBackground(new Color(0x352A26));
 		th.setForeground(Color.white);
-		jtGoods.setBorder(new LineBorder(new Color(0x3F4040)));
-		jtGoods.setSelectionForeground(new Color(0x3F4040));
+		jtGoods.setBorder(new LineBorder(new Color(0x352A26)));
+		jtGoods.setSelectionForeground(new Color(0x352A26));
 		jtGoods.setBackground(Color.white);
 		Font tableList = new Font("맑은 고딕", Font.PLAIN, 15);
 		jtGoods.setFont(tableList);
@@ -144,16 +144,16 @@ public class AdGoodsManageView extends JPanel {
 		jcbSearch.setBounds(350, 20, 120, 30);
 		jtfSearch.setBounds(490, 20, 250, 30);
 		jbtnSearch.setBounds(750, 20, 100, 30);
-		jpLabel.setBackground(new Color(0x3F4040));
+		jpLabel.setBackground(new Color(0x352A26));
 		jpLabel.setBorder(new LineBorder(Color.black));
 		jpLabel.setBounds(-5, 0, 1700, 80);
 		
 		jbtnSearch.setForeground(Color.white);
-		jbtnSearch.setBackground(new Color(0x3F4040));
+		jbtnSearch.setBackground(new Color(0x352A26));
 		jbtnCate.setForeground(Color.white);
-		jbtnCate.setBackground(new Color(0x3F4040));
+		jbtnCate.setBackground(new Color(0x352A26));
 		jbtnUpload.setForeground(Color.white);
-		jbtnUpload.setBackground(new Color(0x3F4040));
+		jbtnUpload.setBackground(new Color(0x352A26));
 		
 
 		setLayout(null); // 수동배치

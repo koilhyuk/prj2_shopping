@@ -96,11 +96,11 @@ public class AdCusManageView extends JPanel {
 		th.setPreferredSize(new Dimension(30,35)); //header 높이 변경 
 		Font tfFont= new Font("맑은 고딕", Font.BOLD, 15);
 		th.setFont(tfFont);
-		th.setBackground(new Color(0x3F4040));
+		th.setBackground(new Color(0x352A26));
 		th.setForeground(Color.white);
-		jtCus.setBorder(new LineBorder( new Color(0x3F4040)));
+		jtCus.setBorder(new LineBorder( new Color(0x352A26)));
 		jtCus.setSelectionBackground(new Color(0xA3A1A1));
-		jtCus.setSelectionForeground(new Color(0x3F4040));
+		jtCus.setSelectionForeground(new Color(0x352A26));
 		jtCus.setBackground(Color.white);
 
 		// 접속중인 회원
@@ -119,12 +119,11 @@ public class AdCusManageView extends JPanel {
 		jpCusList.add(jsp);
 
 		jpCusList.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-		jpCusList.setBackground(new Color(0x3F4040));
+		jpCusList.setBackground(new Color(0x352A26));
 
 		jbtnSearch = new JButton("회원조회");
 		jbtnSearch.setForeground(Color.white);
-//		jbtnSearch.setBorderPainted(false);
-		jbtnSearch.setBackground(new Color(0x3F4040));
+		jbtnSearch.setBackground(new Color(0x352A26));
 		jtfSearch = new JTextField("조회하실 내용을 입력해주세요.");
 
 		JPanel jpLabel = new JPanel();
@@ -139,7 +138,7 @@ public class AdCusManageView extends JPanel {
 		jpLabel.add(jtfSearch);
 		jpLabel.add(jbtnSearch);
 
-		jpLabel.setBackground(new Color(0x3F4040));
+		jpLabel.setBackground(new Color(0x352A26));
 		setLayout(null);
 
 		jspPro.setBounds(80, 120, 1100, 600);

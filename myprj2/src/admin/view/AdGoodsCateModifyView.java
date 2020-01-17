@@ -95,14 +95,14 @@ public class AdGoodsCateModifyView extends JDialog {
 		jpBrand.add(jbtnBImg);
 		jpBrand.add(jbtnBDelete);
 
-		jbtnBModufy.setBackground(new Color(0x3F4040));
+		jbtnBModufy.setBackground(new Color(0x352A26));
 		jbtnBModufy.setForeground(Color.white);
-		jbtnBClose.setBackground(new Color(0x3F4040));
+		jbtnBClose.setBackground(new Color(0x352A26));
 		jbtnBClose.setForeground(Color.white);
-		jbtnBImg.setBackground(new Color(0x3F4040));
+		jbtnBImg.setBackground(new Color(0x352A26));
 		jbtnBImg.setForeground(Color.white);
 		
-		jbtnBDelete.setBackground(new Color(0x3F4040));
+		jbtnBDelete.setBackground(new Color(0x352A26));
 		jbtnBDelete.setForeground(Color.white);
 		
 		
@@ -122,11 +122,11 @@ public class AdGoodsCateModifyView extends JDialog {
 		jpCategory.add(jlCategoty);
 		jpCategory.add(jtfTypeCode);
 
-		jbtnCAdd.setBackground(new Color(0x3F4040));
+		jbtnCAdd.setBackground(new Color(0x352A26));
 		jbtnCAdd.setForeground(Color.white);
-		jbtnCClose.setBackground(new Color(0x3F4040));
+		jbtnCClose.setBackground(new Color(0x352A26));
 		jbtnCClose.setForeground(Color.white);
-		jbtnCDelete.setBackground(new Color(0x3F4040));
+		jbtnCDelete.setBackground(new Color(0x352A26));
 		jbtnCDelete.setForeground(Color.white);
 		
 		// jtp
@@ -146,7 +146,7 @@ public class AdGoodsCateModifyView extends JDialog {
 		});
 		
 		
-		this.getContentPane().setBackground(new Color(0x3F4040)); //JDialog 배경색 변경 
+		this.getContentPane().setBackground(new Color(0x352A26)); //JDialog 배경색 변경 
 
 		jtp.addTab("브랜드 수정", jpBrand);
 		jtp.addTab("카테고리수정", jpCategory);

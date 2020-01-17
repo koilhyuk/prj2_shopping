@@ -53,7 +53,7 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		JTextField jlTitle = new JTextField(" 주문정보  ");
 		Font titleFont = new Font("맑은 고딕", Font.BOLD, 20);
 		jlTitle.setFont(titleFont);
-		jlTitle.setBackground(Color.black);
+		jlTitle.setBackground(new Color(0x352A26));
 		jlTitle.setForeground(Color.white);
 		jlTitle.setHorizontalAlignment(JTextField.CENTER);
 		
@@ -198,6 +198,7 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 				break;
 			}// switch
 		jlScore.setBounds(170, 40, 200, 30);
+		jlScore.setForeground(Color.red);
 		jpGoods.add(jlScore);
 		jlscore.setBounds(180, 40, 70, 30);
 
@@ -236,8 +237,7 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		jpDelivery.setBounds(15, 450, 630, 130);
 		jpDelivery.setBorder(new LineBorder(Color.lightGray));
 		jbtnClose.setBounds(280, 590, 120, 30);
-		jbtnClose.setBackground(new Color(0x3F4040));
-		jbtnClose.setForeground(Color.white);
+		jbtnClose.setBackground(Color.white);
 		
 		add(jlTitle);
 		add(jlImg);
@@ -249,7 +249,7 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		add(jlPayTitle);
 		add(jlDeliTitle);
 
-		this.getContentPane().setBackground(new Color(0x3F4040)); //JDialog 배경색 변경 
+		this.getContentPane().setBackground(new Color(0x352A26)); //JDialog 배경색 변경 
 		setBounds(100, 100, 700, 680);
 		jbtnClose.addActionListener(this);
 

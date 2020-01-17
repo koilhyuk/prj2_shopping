@@ -47,7 +47,7 @@ public class AdGoodsCateManageView extends JDialog {
 			}
 
 		};
-		jtBrand.getTableHeader().setBackground(new Color(0x3F4040));
+		jtBrand.getTableHeader().setBackground(new Color(0x352A26));
 		jtBrand.getTableHeader().setForeground(Color.white);
 		// ´ëºÐ·ù
 		dlmType = new DefaultListModel<String>();
@@ -93,11 +93,11 @@ public class AdGoodsCateManageView extends JDialog {
 		jspBrand.setBackground(Color.white);
 		jpType.setBackground(Color.white);
 		
-		jbtnAdd.setBackground(new Color(0x3F4040));
+		jbtnAdd.setBackground(new Color(0x352A26));
 		jbtnAdd.setForeground(Color.white);
-		jbtnModify.setBackground(new Color(0x3F4040));
+		jbtnModify.setBackground(new Color(0x352A26));
 		jbtnModify.setForeground(Color.white);
-		jbtnClose.setBackground(new Color(0x3F4040));
+		jbtnClose.setBackground(new Color(0x352A26));
 		jbtnClose.setForeground(Color.white);
 		add(jspBrand);
 		add(jpType);

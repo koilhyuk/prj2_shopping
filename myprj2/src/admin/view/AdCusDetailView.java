@@ -44,7 +44,7 @@ public class AdCusDetailView extends JDialog {
 		// 라벨
 		JTextField jlTitle = new JTextField(" 회원정보  ");
 		jlTitle.setFont(titleFont);
-		jlTitle.setBackground(Color.black);
+		jlTitle.setBackground(new Color(0x352A26));
 		jlTitle.setForeground(Color.white);
 		jlTitle.setHorizontalAlignment(JTextField.CENTER);
 		
@@ -176,7 +176,8 @@ public class AdCusDetailView extends JDialog {
 		jpCus2.add(jtfCusbunzi);
 		jpCus2.add(jtfEmail);
 		jpCus2.add(jbtnAddr);
-		jbtnAddr.setBackground(Color.white);
+		jbtnAddr.setBackground(new Color(0x043424));
+		jbtnAddr.setForeground(Color.white);
 
 		// setText
 		jtfCusNum.setText(scDTO.getM_code());
@@ -244,7 +245,7 @@ public class AdCusDetailView extends JDialog {
 		add(jbtnClose);
 		add(jbtnModify);
 		add(jbtnStop);
-		this.getContentPane().setBackground(new Color(0x3F4040)); //JDialog 배경색 변경 
+		this.getContentPane().setBackground(new Color(0x352A26)); //JDialog 배경색 변경 
 
 		setBounds(100, 100, 600, 800);
 		AdCusDetailEvt cde = new AdCusDetailEvt(this);

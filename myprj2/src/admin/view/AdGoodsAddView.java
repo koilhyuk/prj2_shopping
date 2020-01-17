@@ -66,7 +66,7 @@ public class AdGoodsAddView extends JDialog {
 		// 라벨
 		JTextField jlPro = new JTextField("상품등록");
 		jlPro.setFont(titleFont);
-		jlPro.setBackground(Color.black);
+		jlPro.setBackground(new Color(0x352A26));
 		jlPro.setForeground(Color.white);
 		jlPro.setHorizontalAlignment(JTextField.CENTER);
 		JLabel jlBrand = new JLabel("브랜드");
@@ -157,7 +157,7 @@ public class AdGoodsAddView extends JDialog {
 		jbtnGoodsAdd.setBackground(Color.white);
 		jbtnGoodsAdd.setBorder(new LineBorder(Color.white));	
 		
-		this.getContentPane().setBackground(new Color(0x3F4040)); //JDialog 배경색 변경 
+		this.getContentPane().setBackground(new Color(0x352A26)); //JDialog 배경색 변경 
 		AdGoodsAddEvt pue = new AdGoodsAddEvt(this,gle);
 		jbtnClose.addActionListener(pue);
 		jbtnGoodsAdd.addActionListener(pue);

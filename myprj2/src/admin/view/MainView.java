@@ -70,10 +70,10 @@ public class MainView extends JFrame {
 		jtpMain.addTab("»óÇ°°ü¸®", new AdGoodsManageView());
 		jtpMain.addTab("ÁÖ¹®°ü¸®", new AdOrderManageView());
 		jtpMain.setForeground(Color.white);
-		jtpMain.setBackground(Color.black);
+		jtpMain.setBackground(new Color(0x352A26));
 
-		jpNorth.setBackground(new Color(0x3F4040));
-		jpCenter.setBackground(new Color(0x3F4040));
+		jpNorth.setBackground(new Color(0x352A26));
+		jpCenter.setBackground(new Color(0x352A26));
 		// ÅÜ Å×µÎ¸® ¾ø¾Ö±â //
 		jtpMain.setUI(new BasicTabbedPaneUI() {
 			private final Insets borderInsets = new Insets(0, 0, 0, 0);
@@ -103,23 +103,23 @@ public class MainView extends JFrame {
 		
 		////////////////////////////////
 		JLabel jlname = new JLabel("ST");
-		Font f = new Font("¸¼Àº °íµñ", Font.BOLD, 30);
-		Font f1 = new Font("¸¼Àº °íµñ", Font.PLAIN, 17);
+		Font f = new Font("¸¼Àº °íµñ", Font.BOLD, 25);
+		Font f1 = new Font("¸¼Àº °íµñ", Font.PLAIN, 15);
 		jlname.setFont(f);
 		jlname.setForeground(Color.white);
 		jlname.setBounds(150, 50, 200, 30);
-		JLabel jladdr = new JLabel("¼­¿ï Æ¯º°½Ã °­³²±¸  Å×Çì¶õ·Î 132(¿ª»ïµ¿) ÇÑµ¶¾àÇ° ºôµù 8Ãþ ST¼îÇÎ¸ô");
-		jladdr.setBounds(500, 20, 650, 25);
+		JLabel jladdr = new JLabel("¼­¿ïÆ¯º°½Ã °­³²±¸  Å×Çì¶õ·Î 132(¿ª»ïµ¿) ÇÑµ¶¾àÇ° ºôµù 8Ãþ ST¼îÇÎ¸ô");
+		jladdr.setBounds(550, 10, 650, 25);
 		jladdr.setForeground(Color.white);
 		jladdr.setFont(f1);
 
 		JLabel jljob = new JLabel("»ç¾÷ÀÚ ¹øÈ£ : 214-89-29543  |  ´ëÇ¥ : °íÀÏÇõ  |  °³ÀÎÁ¤º¸Ã³¸®°ü¸®Ã¥ÀÓÀÚ : ±èÇýºó");
-		jljob.setBounds(500, 60, 800, 25);
+		jljob.setBounds(550, 40, 800, 25);
 		jljob.setForeground(Color.white);
 		jljob.setFont(f1);
 
 		JLabel jlinfo = new JLabel("Copyright (C) 2012 ST Instituete of System Technolgy ., ALL Right Reserved");
-		jlinfo.setBounds(500, 100, 800, 25);
+		jlinfo.setBounds(550, 70, 800, 25);
 		jlinfo.setForeground(Color.white);
 		jlinfo.setFont(f1);
 
@@ -135,7 +135,7 @@ public class MainView extends JFrame {
 		jpbanner.add(jladdr);
 		jpbanner.add(jljob);
 		jpbanner.add(jlinfo);
-		jpbanner.setPreferredSize(new Dimension(1600,130));
+		jpbanner.setPreferredSize(new Dimension(1600,110));
 		jpbanner.setLayout(null);
 		setResizable(false);
 		////////////////////////////////

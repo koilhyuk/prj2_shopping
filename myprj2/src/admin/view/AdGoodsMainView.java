@@ -82,17 +82,17 @@ public class AdGoodsMainView extends JPanel {
 		jlChannel.setFont(new Font("맑은 고딕", Font.BOLD, 60));
 		jlChannel.setOpaque(true);
 		jlChannel.setForeground(Color.white);
-		jlChannel.setBackground((new Color(0x3F4040)));
+		jlChannel.setBackground(new Color(0x352A26));
 		jlChannel.setBounds(722, 5, 240, 80);
 
 		btnType = new JButton("BRAND 보기");
 		btnType.setBounds(1400, 20, 120, 50);
 		btnType.setBackground(Color.white);
-		btnType.setForeground(new Color(0x3F4040));
+		btnType.setForeground(new Color(0x043424));
 		btnType.setBorder(new LineBorder(Color.white));
 
 		JPanel jpChannel = new JPanel();
-		jpChannel.setBackground(Color.blue);
+		jpChannel.setBackground(new Color(0x352A26));
 		jpChannel.setLayout(null);
 
 		jpChannel.add(btnType);
@@ -107,7 +107,7 @@ public class AdGoodsMainView extends JPanel {
 
 		////////////// best
 		jpBestGoods = new JPanel();
-		jpBestGoods.setBorder(new LineBorder(Color.black));
+		jpBestGoods.setBorder(new LineBorder(new Color(0x043424)));
 		jpBestGoods.setLayout(new FlowLayout(FlowLayout.LEFT));
 		jpBestGoods.setBackground(Color.white);
 
@@ -122,13 +122,13 @@ public class AdGoodsMainView extends JPanel {
 		String[] searchCombo = new String[] { "상품명", "브랜드명" };
 		dcbmSearch = new DefaultComboBoxModel<String>(searchCombo);
 		jcbSearch = new JComboBox<String>(dcbmSearch);
-		jcbSearch.setBackground(new Color(0x3F4040));
+		jcbSearch.setBackground(new Color(0x043424));
 		jcbSearch.setForeground(Color.white);
 
 		jtfSearch = new JTextField();
 		btnSearch = new JButton("조회");
 		btnSearch.setForeground(Color.white);
-		btnSearch.setBackground(new Color(0x3F4040));
+		btnSearch.setBackground(new Color(0x043424));
 
 		dtmDetail = new DefaultTableModel(1, 2);
 		jtDetail = new JTable(dtmDetail) {
@@ -164,30 +164,30 @@ public class AdGoodsMainView extends JPanel {
 
 		///////////////////////////////
 
-		btnBest.setBackground(new Color(0x3F4040));
+		btnBest.setBackground(new Color(0x043424));
 		btnBest.setForeground(Color.white);
 
-		btnOuter.setBackground(new Color(0x3F4040));
+		btnOuter.setBackground(new Color(0x043424));
 		btnOuter.setForeground(Color.white);
 
-		btnTop.setBackground(new Color(0x3F4040));
+		btnTop.setBackground(new Color(0x043424));
 		btnTop.setForeground(Color.white);
 
-		btnBottom.setBackground(new Color(0x3F4040));
+		btnBottom.setBackground(new Color(0x043424));
 		btnBottom.setForeground(Color.white);
-		btnDress.setBackground(new Color(0x3F4040));
+		btnDress.setBackground(new Color(0x043424));
 		btnDress.setForeground(Color.white);
 
 		//////////////// 2019 - 09-22
-		btnBag.setBackground(new Color(0x3F4040));
+		btnBag.setBackground(new Color(0x043424));
 		btnBag.setForeground(Color.white);
 
-		btnShoes.setBackground(new Color(0x3F4040));
+		btnShoes.setBackground(new Color(0x043424));
 		btnShoes.setForeground(Color.white);
 
-		btnHeadWear.setBackground(new Color(0x3F4040));
+		btnHeadWear.setBackground(new Color(0x043424));
 		btnHeadWear.setForeground(Color.white);
-		btnAcc.setBackground(new Color(0x3F4040));
+		btnAcc.setBackground(new Color(0x043424));
 		btnAcc.setForeground(Color.white);
 
 		///////////////////////////////
@@ -255,8 +255,8 @@ public class AdGoodsMainView extends JPanel {
 		jttpCate.addTab("품목", jpCloBtn);
 		jttpCate.addTab("브랜드", jpBrandKind);
 
-		jpCloBtn.setBackground(new Color(0x3F4040));
-		jpBrandKind.setBackground(new Color(0x3F4040));
+		jpCloBtn.setBackground(new Color(0x043424));
+		jpBrandKind.setBackground(new Color(0x043424));
 
 		jttpCate.setBounds(10, 300, 200, btnAcc.getY() + 70);
 		jpContent.add(jttpCate);
@@ -322,12 +322,12 @@ public class AdGoodsMainView extends JPanel {
 		jpContent.add(jcbSearch);
 
 		add(jspFull);
-		jpChannel.setBackground(new Color(0x3F4040));
+		jpChannel.setBackground(new Color(0x352A26));
 		jpContent.setBackground(Color.white);
 
 		setBackground(Color.white);
 
-		setBounds(0, 0, 1600, 800);
+		setBounds(0, 0, 1600, 900);
 		jspFull.setBounds(0, 0, getWidth() - 20, getHeight() - 20);// 고정 값
 		jpChannel.setBounds(0, 70, jspFull.getWidth() - 15, 100);
 		jpContent.setPreferredSize(new Dimension(jspFull.getWidth() - 20, jspFull.getHeight() + 1050));// 고정 값

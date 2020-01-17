@@ -93,11 +93,11 @@ public class AdGoodsCateAddView extends JDialog{
 		jpBrand.add(jbtnBClose);
 		jpBrand.add(jbtnBImg);
 		
-		jbtnBAdd.setBackground(new Color(0x3F4040));
+		jbtnBAdd.setBackground(new Color(0x352A26));
 		jbtnBAdd.setForeground(Color.white);
-		jbtnBClose.setBackground(new Color(0x3F4040));
+		jbtnBClose.setBackground(new Color(0x352A26));
 		jbtnBClose.setForeground(Color.white);
-		jbtnBImg.setBackground(new Color(0x3F4040));
+		jbtnBImg.setBackground(new Color(0x352A26));
 		jbtnBImg.setForeground(Color.white);
 		
 		JPanel jpCategory= new JPanel();
@@ -113,9 +113,9 @@ public class AdGoodsCateAddView extends JDialog{
 		jpCategory.add(jpType);
 		jpCategory.add(jlCategoty);
 	
-		jbtnCAdd.setBackground(new Color(0x3F4040));
+		jbtnCAdd.setBackground(new Color(0x352A26));
 		jbtnCAdd.setForeground(Color.white);
-		jbtnCClose.setBackground(new Color(0x3F4040));
+		jbtnCClose.setBackground(new Color(0x352A26));
 		jbtnCClose.setForeground(Color.white);
 		
 		
@@ -141,7 +141,7 @@ public class AdGoodsCateAddView extends JDialog{
 		
 		
 		
-		this.getContentPane().setBackground(new Color(0x3F4040)); //JDialog 배경색 변경 
+		this.getContentPane().setBackground(new Color(0x352A26)); //JDialog 배경색 변경 
 		
 		add("Center",jtp);
 		AdGoodsCateAddEvt ace= new AdGoodsCateAddEvt(this);

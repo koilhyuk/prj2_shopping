@@ -20,9 +20,9 @@ public class AdGoodsListPanelView extends JPanel {
 
 	public AdGoodsListPanelView(String img, String name, String brand, int price, String sell, int star) {
 		jbtnGoodsDetail = new JButton("상세보기");
-		jbtnGoodsDetail.setBackground(new Color(0x3F4040));
+		jbtnGoodsDetail.setBackground(new Color(0x043424));
 		jbtnGoodsDetail.setForeground(Color.white);
-		jbtnGoodsDetail.setBorder(new LineBorder(new Color(0x3F4040)));
+		jbtnGoodsDetail.setBorder(new LineBorder(new Color(0x043424)));
 
 		jlGoodsName = new JLabel(name);
 		jlGoodsBrand = new JLabel(brand);
@@ -52,7 +52,7 @@ public class AdGoodsListPanelView extends JPanel {
 			jlGoodsStar = new JLabel("");
 			break;
 		}// switch
-
+		jlGoodsStar.setForeground(Color.red);
 		jlGoodsImg = new JLabel(new ImageIcon(StaticCla.FILE_PATH + "/rs_gds_" + img));
 		jlGoodsImg.setBorder(new LineBorder(Color.BLACK));
 

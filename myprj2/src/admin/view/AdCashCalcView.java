@@ -70,7 +70,7 @@ public class AdCashCalcView extends JDialog {
 		
 		Font font = new Font("¸¼Àº °íµñ", Font.BOLD, 20);
 		jtf.setForeground(Color.white);
-		jtf.setBackground(new Color(0x3F4040));
+		jtf.setBackground(new Color(0x352A26));
 		jtf.setFont(font);
 		jtf.setHorizontalAlignment(JTextField.CENTER);
 		
@@ -91,9 +91,9 @@ public class AdCashCalcView extends JDialog {
 		jtfYear.setBounds(30, 10, 60, 30);
 		jtfYPrice.setBounds(100, 10, 200, 30);
 
-		jtfYear.setBackground(new Color(0x3F4040));
+		jtfYear.setBackground(new Color(0x352A26));
 		jtfYear.setForeground(Color.white);
-		jtfYPrice.setBackground(new Color(0x3F4040));
+		jtfYPrice.setBackground(new Color(0x352A26));
 		jtfYPrice.setForeground(Color.white);
 
 		JPanel jpMonth = new JPanel();// ¿ù
@@ -114,9 +114,9 @@ public class AdCashCalcView extends JDialog {
 		jtfMonth.setBounds(30, 10, 60, 30);
 		jtfMPrice.setBounds(100, 10, 200, 30);
 
-		jtfMonth.setBackground(new Color(0x3F4040));
+		jtfMonth.setBackground(new Color(0x352A26));
 		jtfMonth.setForeground(Color.white);
-		jtfMPrice.setBackground(new Color(0x3F4040));
+		jtfMPrice.setBackground(new Color(0x352A26));
 		jtfMPrice.setForeground(Color.white);
 
 
@@ -139,9 +139,9 @@ public class AdCashCalcView extends JDialog {
 		jtfDay.setBounds(30, 10, 60, 30);
 		jtfDPrice.setBounds(100, 10, 200, 30);
 
-		jtfDay.setBackground(new Color(0x3F4040));
+		jtfDay.setBackground(new Color(0x352A26));
 		jtfDay.setForeground(Color.white);
-		jtfDPrice.setBackground(new Color(0x3F4040));
+		jtfDPrice.setBackground(new Color(0x352A26));
 		jtfDPrice.setForeground(Color.white);
 
 		JPanel jpTotal = new JPanel();
@@ -175,11 +175,11 @@ public class AdCashCalcView extends JDialog {
 		jp.add(jpYear);
 		jp.setBounds(15, 40, 370, 570);
 		jp.setBorder(new LineBorder(Color.BLACK));
-		jp.setBackground(new Color(0x3F4040 ));
+		jp.setBackground(new Color(0x352A26 ));
 
 		jbtClose = new JButton("´Ý±â");
-		jbtClose.setBackground(new Color(0x3F4040));
-		jbtClose.setForeground(Color.white);
+//		jbtClose.setBackground(new Color(0x352A26));
+		jbtClose.setBackground(Color.white);
 		
 		jbtClose.setBounds(160, 620, 70, 30);
 		jtf.setBounds(15, 5, 370, 30);
@@ -195,7 +195,7 @@ public class AdCashCalcView extends JDialog {
 		jtfcalStart.setEditable(false);
 		jtfcalEnd.setEditable(false);
 		
-		this.getContentPane().setBackground(Color.white);
+		this.getContentPane().setBackground(new Color(0x352A26));
 		jtfDprice.setBackground(Color.white);
 		jtfDcount.setBackground(Color.white);
 		jtfMprice.setBackground(Color.white);
