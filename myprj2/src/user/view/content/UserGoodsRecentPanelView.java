@@ -40,7 +40,7 @@ public class UserGoodsRecentPanelView extends JPanel {
 		setBackground(Color.white);
 
 		setBackground(Color.white);
-		jbtnGoodsDetail.setBackground(new Color(0x3F4040));
+		jbtnGoodsDetail.setBackground(new Color(0x043424));
 		jbtnGoodsDetail.setForeground(Color.white);
 		
 		

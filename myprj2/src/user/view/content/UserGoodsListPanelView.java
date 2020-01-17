@@ -46,6 +46,8 @@ public class UserGoodsListPanelView extends JPanel {
 			jlGoodsStar = new JLabel("");
 			break;
 		}// switch
+		jlGoodsStar.setForeground(Color.red);
+		
 		jlGoodsImg = new JLabel(new ImageIcon(UserGoodsMainView.USER_FILE_PATH + "/rs_gds_" + img));
 
 		jlGoodsImg.setBorder(new LineBorder(Color.BLACK));
@@ -73,7 +75,7 @@ public class UserGoodsListPanelView extends JPanel {
 		add(jlGoodsStar);
 		add(jlGoodsImg);
 		setBackground(Color.white);
-		jbtnGoodsDetail.setBackground(new Color(0x3F4040));
+		jbtnGoodsDetail.setBackground(new Color(0x043424));
 		jbtnGoodsDetail.setForeground(Color.white);
 
 		setPreferredSize(new Dimension(170, 280));

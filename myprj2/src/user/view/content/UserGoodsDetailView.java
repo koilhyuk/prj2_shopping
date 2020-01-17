@@ -75,6 +75,7 @@ public class UserGoodsDetailView extends JDialog {
 			break;
 		}// switch
 
+		jlGoodsStar.setForeground(Color.red);
 		jtfSelectNum = new JTextField("1");
 		jtfSelectNum.setHorizontalAlignment(JTextField.CENTER);
 
@@ -104,13 +105,13 @@ public class UserGoodsDetailView extends JDialog {
 
 		jbtnBuy = new JButton("±¸¸Å");
 		jbtnBuy.setForeground(Color.white);
-		jbtnBuy.setBackground(new Color(0x3F4040));
+		jbtnBuy.setBackground(new Color(0x043424));
 		jbtnMinus = new JButton("-");
 		jbtnMinus.setForeground(Color.white);
-		jbtnMinus.setBackground(new Color(0x3F4040));
+		jbtnMinus.setBackground(new Color(0x043424));
 		jbtnPlus = new JButton("+");
 		jbtnPlus.setForeground(Color.white);
-		jbtnPlus.setBackground(new Color(0x3F4040));
+		jbtnPlus.setBackground(new Color(0x043424));
 
 		ImageIcon likeImg = null;
 		ImageIcon rolloverLikeImg = null;
@@ -173,7 +174,7 @@ public class UserGoodsDetailView extends JDialog {
 		jpTotalMoney.add(jlTotalMoneyTag);
 
 		jpDetail.setBounds(20, 0, 800, 80);
-		jpDetail.setBackground(new Color(0x3F4040));
+		jpDetail.setBackground(new Color(0x352A26));
 
 		jsp.add(jbtnGoodsLike);
 		jsp.add(jpTotalMoney);
@@ -224,7 +225,6 @@ public class UserGoodsDetailView extends JDialog {
 	public JButton getJbtnMinus() {
 		return jbtnMinus;
 	}
-
 
 	public JLabel getJlGName() {
 		return jlGName;

@@ -41,11 +41,11 @@ public class UserGoodsLikeView extends JDialog {
 		JPanel jpHeader = new JPanel();
 		jpHeader.setLayout(null);
 		jpHeader.setBounds(0, 0, 760, 80);
-		jpHeader.setBackground(new Color(0x3F4040));
+		jpHeader.setBackground(new Color(0x352A26));
 		
 		jbtnComfirm = new JButton("»Æ¿Œ");
 		jbtnComfirm.setBounds(325, 705, 80, 35);
-		jbtnComfirm.setBackground(new Color(0x3F4040));
+		jbtnComfirm.setBackground(new Color(0x043424));
 		jbtnComfirm.setForeground(Color.white);
 		
 

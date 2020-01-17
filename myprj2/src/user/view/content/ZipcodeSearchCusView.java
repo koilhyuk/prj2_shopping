@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import user.controller.content.ZipcodeSearchCusEvt;
-import user.controller.content.ZipcodeSearchOrderEvt;
 
 //
 @SuppressWarnings("serial")
@@ -86,7 +85,7 @@ public class ZipcodeSearchCusView extends JDialog {
 		jtZipcode.addMouseListener(zsoe);
 		jbtnSearch.setBackground(Color.white);
 		jlZipcode.setForeground(Color.white);
-		this.getContentPane().setBackground(new Color(0x3F4040)); // JDialog 배경색 변경
+		this.getContentPane().setBackground(new Color(0x352A26)); // JDialog 배경색 변경
 
 		add(cbGugun);
 		add(cbSido);

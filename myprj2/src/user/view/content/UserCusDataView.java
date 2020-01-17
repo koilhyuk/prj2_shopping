@@ -154,16 +154,16 @@ public class UserCusDataView extends JFrame {
 		jbtBack.setBounds(250, 560, 70, 30);
 		
 		jbtBack.setForeground(Color.white);
-		jbtBack.setBackground(new Color(0x3F4040));
+		jbtBack.setBackground(new Color(0x043424));
 		jbtConfirm.setForeground(Color.white);
-		jbtConfirm.setBackground(new Color(0x3F4040));
+		jbtConfirm.setBackground(new Color(0x043424));
 		
 		jbtnSearchAddr.setForeground(Color.white);
-		jbtnSearchAddr.setBackground(new Color(0x3F4040));
+		jbtnSearchAddr.setBackground(new Color(0x043424));
 		jbtnPass.setForeground(Color.white);
-		jbtnPass.setBackground(new Color(0x3F4040));
+		jbtnPass.setBackground(new Color(0x043424));
 		jbtWithdrawal.setForeground(Color.white);
-		jbtWithdrawal.setBackground(new Color(0x3F4040));
+		jbtWithdrawal.setBackground(new Color(0x043424));
 
 		UserCusDataEvt ucd = new UserCusDataEvt(this, id);
 		jbtConfirm.addActionListener(ucd);

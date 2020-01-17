@@ -66,12 +66,12 @@ public class LoginFound extends JDialog {
 		JPanel jpIdFoundTitle = new JPanel(); // id title
 		jpIdFoundTitle.add(jlTitle);
 		jpIdFoundTitle.setBounds(60, 5, 100, 20);
-		jpIdFoundTitle.setBackground(new Color(0x3F4040));
+		jpIdFoundTitle.setBackground(new Color(0x352A26));
 		JPanel jpIdFoundName = new JPanel(); // id 이름
 		jpIdFoundName.add(jlName);
 		jpIdFoundName.add(jtfName);
 		jpIdFoundName.setBounds(60, 55, 230, 30);
-		jpIdFoundName.setBackground(new Color(0x3F4040));
+		jpIdFoundName.setBackground(new Color(0x352A26));
 
 		JPanel jpIdFoundPhone = new JPanel(); // id 전화번호
 		jpIdFoundPhone.add(jlPhoneNum);
@@ -81,13 +81,13 @@ public class LoginFound extends JDialog {
 		jpIdFoundPhone.add(jlPhoneH2);
 		jpIdFoundPhone.add(jtfPhoneH2);
 		jpIdFoundPhone.setBounds(30, 105, 270, 30);
-		jpIdFoundPhone.setBackground(new Color(0x3F4040));
+		jpIdFoundPhone.setBackground(new Color(0x352A26));
 
 		JPanel jpIdFoundBtn = new JPanel(); // id 버튼
 		jpIdFoundBtn.add(jbtConfirm);
 		jpIdFoundBtn.add(jbtCancle);
 		jpIdFoundBtn.setBounds(95, 165, 180, 40);
-		jpIdFoundBtn.setBackground(new Color(0x3F4040));
+		jpIdFoundBtn.setBackground(new Color(0x352A26));
 
 		JPanel jpIdFound = new JPanel(); // id큰 패널
 		jpIdFound.setLayout(null);
@@ -95,29 +95,29 @@ public class LoginFound extends JDialog {
 		jpIdFound.add(jpIdFoundName);
 		jpIdFound.add(jpIdFoundPhone);
 		jpIdFound.add(jpIdFoundBtn);
-		jpIdFound.setBackground(new Color(0x3F4040));
+		jpIdFound.setBackground(new Color(0x352A26));
 		////////////////////// 비밀번호찾기////////////////////////////
 		JPanel jpPwFoundTitle = new JPanel(); // pw title
 		jpPwFoundTitle.add(jlTitle2);
 		jpPwFoundTitle.setBounds(60, 5, 100, 20);
-		jpPwFoundTitle.setBackground(new Color(0x3F4040));
+		jpPwFoundTitle.setBackground(new Color(0x352A26));
 
 		JPanel jpPwFoundId = new JPanel(); // pw id
 		jpPwFoundId.add(jlId2);
 		jpPwFoundId.add(jtfId2);
 		jpPwFoundId.setBounds(60, 35, 230, 30);
-		jpPwFoundId.setBackground(new Color(0x3F4040));
+		jpPwFoundId.setBackground(new Color(0x352A26));
 
 		JPanel jpPwFoundName = new JPanel(); // pw 이름
 		jpPwFoundName.add(jlName2);
 		jpPwFoundName.add(jtfName2);
 		jpPwFoundName.setBounds(65, 75, 230, 30);
-		jpPwFoundName.setBackground(new Color(0x3F4040));
+		jpPwFoundName.setBackground(new Color(0x352A26));
 
 		JPanel jpPwFoundPhone = new JPanel(); // 전화번호
 		jpPwFoundPhone.add(jlPhoneNum2);
 		jpPwFoundPhone.add(jtfPhoneF2);//
-		jpPwFoundPhone.setBackground(new Color(0x3F4040));
+		jpPwFoundPhone.setBackground(new Color(0x352A26));
 
 		jpPwFoundPhone.add(jlPhoneH3);
 		jpPwFoundPhone.add(jtfPhoneH3);
@@ -129,7 +129,7 @@ public class LoginFound extends JDialog {
 		jpPwFoundBtn.add(jbtConfirm2);
 		jpPwFoundBtn.add(jbtCancle2);
 		jpPwFoundBtn.setBounds(95, 165, 180, 40);
-		jpPwFoundBtn.setBackground(new Color(0x3F4040));
+		jpPwFoundBtn.setBackground(new Color(0x352A26));
 
 		JPanel jpPwFound = new JPanel(); // pw큰 패널
 		jpPwFound.setLayout(null);
@@ -138,7 +138,7 @@ public class LoginFound extends JDialog {
 		jpPwFound.add(jpPwFoundName);
 		jpPwFound.add(jpPwFoundPhone);
 		jpPwFound.add(jpPwFoundBtn);
-		jpPwFound.setBackground(new Color(0x3F4040));
+		jpPwFound.setBackground(new Color(0x352A26));
 
 		JTabbedPane jtpFound = new JTabbedPane();
 		jtpFound.addTab("아이디찾기", jpIdFound);
@@ -158,19 +158,19 @@ public class LoginFound extends JDialog {
 		jtfPhoneH4.addKeyListener(lfe2);
 		add("Center", jtpFound);
 
-		jpPwFound.setBackground(new Color(0x3F4040));
-		jpIdFound.setBackground(new Color(0x3F4040));
+		jpPwFound.setBackground(new Color(0x352A26));
+		jpIdFound.setBackground(new Color(0x352A26));
 
-		jbtConfirm.setForeground(new Color(0x3F4040));
+		jbtConfirm.setForeground(new Color(0x352A26));
 		jbtConfirm.setBackground(Color.white);
 
-		jbtConfirm2.setForeground(new Color(0x3F4040));
+		jbtConfirm2.setForeground(new Color(0x352A26));
 		jbtConfirm2.setBackground(Color.white);
-		jbtCancle.setForeground(new Color(0x3F4040));
+		jbtCancle.setForeground(new Color(0x352A26));
 		jbtCancle.setBackground(Color.white);
-		jbtCancle2.setForeground(new Color(0x3F4040));
+		jbtCancle2.setForeground(new Color(0x352A26));
 		jbtCancle2.setBackground(Color.white);
-		this.getContentPane().setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(new Color(0x352A26));
 
 		setResizable(false);
 		setBounds(100, 100, 400, 290);

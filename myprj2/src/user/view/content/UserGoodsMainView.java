@@ -113,7 +113,7 @@ public class UserGoodsMainView extends JFrame {
 		jlChannel.setFont(new Font("맑은 고딕", Font.BOLD, 60));
 		jlChannel.setOpaque(true);
 		jlChannel.setForeground(Color.white);
-		jlChannel.setBackground(Color.black);
+		jlChannel.setBackground(new Color(0x352A26));
 		jlChannel.setBounds(722, 5, 240, 80);
 
 		btnType = new JButton("BRAND 보기");
@@ -122,12 +122,10 @@ public class UserGoodsMainView extends JFrame {
 		btnType.setBorder(new LineBorder(Color.white));
 		btnType.setBounds(1400, 20, 120, 50);
 
-//		jlChannel.setBorder(new LineBorder(Color.green));
 
 		JPanel jpChannel = new JPanel();
-		jpChannel.setBackground(Color.black);
+		jpChannel.setBackground(new Color(0x352A26));
 		jpChannel.setLayout(null);
-//		jpChannel.setBorder(new LineBorder(Color.black));
 
 		jpChannel.add(btnType);
 		jpChannel.add(jlChannel);
@@ -202,30 +200,30 @@ public class UserGoodsMainView extends JFrame {
 
 		///////////////////////////////
 
-		btnBest.setBackground(new Color(0x3F4040));
+		btnBest.setBackground(new Color(0x043424));
 		btnBest.setForeground(Color.white);
 
-		btnOuter.setBackground(new Color(0x3F4040));
+		btnOuter.setBackground(new Color(0x043424));
 		btnOuter.setForeground(Color.white);
 
-		btnTop.setBackground(new Color(0x3F4040));
+		btnTop.setBackground(new Color(0x043424));
 		btnTop.setForeground(Color.white);
 
-		btnBottom.setBackground(new Color(0x3F4040));
+		btnBottom.setBackground(new Color(0x043424));
 		btnBottom.setForeground(Color.white);
-		btnDress.setBackground(new Color(0x3F4040));
+		btnDress.setBackground(new Color(0x043424));
 		btnDress.setForeground(Color.white);
 
 		//////////////// 2019 - 09-22
-		btnBag.setBackground(new Color(0x3F4040));
+		btnBag.setBackground(new Color(0x043424));
 		btnBag.setForeground(Color.white);
 
-		btnShoes.setBackground(new Color(0x3F4040));
+		btnShoes.setBackground(new Color(0x043424));
 		btnShoes.setForeground(Color.white);
 
-		btnHeadWear.setBackground(new Color(0x3F4040));
+		btnHeadWear.setBackground(new Color(0x043424));
 		btnHeadWear.setForeground(Color.white);
-		btnAcc.setBackground(new Color(0x3F4040));
+		btnAcc.setBackground(new Color(0x043424));
 		btnAcc.setForeground(Color.white);
 
 		///////////////////////////////
@@ -406,9 +404,9 @@ public class UserGoodsMainView extends JFrame {
 
 			btnOrderNe = new JButton("마이페이지");
 			btnOrderNe.setBounds(115, 200, 90, 30);
-			btnOrderNe.setBackground(new Color(0x3F4040));
+			btnOrderNe.setBackground(new Color(0x043424));
 			btnOrderNe.setForeground(Color.white);
-			btnOrderNe.setBorder(new LineBorder(new Color(0x3F4040)));
+			btnOrderNe.setBorder(new LineBorder(new Color(0x043424)));
 			jpContent.add(btnOrderNe);
 			btnOrderNe.addMouseListener(ugme);
 			btnOrderNe.addActionListener(ugme);
@@ -419,15 +417,15 @@ public class UserGoodsMainView extends JFrame {
 
 		btnLogout.setBounds(10, 200, 90, 30);
 
-		btnLogout.setBackground(new Color(0x3F4040));
+		btnLogout.setBackground(new Color(0x043424));
 		btnLogout.setForeground(Color.white);
-		btnLogout.setBorder(new LineBorder(new Color(0x3F4040)));
-		jpBrandKind.setBackground(new Color(0x3F4040));
+		btnLogout.setBorder(new LineBorder(new Color(0x043424)));
+		jpBrandKind.setBackground(new Color(0x043424));
 
 		jpRecent.setBackground(Color.white);
-		btnSearch.setBackground(new Color(0x352A26));
+		btnSearch.setBackground(new Color(0x043424));
 		btnSearch.setForeground(Color.white);
-		jcbSearch.setBackground(new Color(0x3F4040));
+		jcbSearch.setBackground(new Color(0x043424));
 		jcbSearch.setForeground(Color.white);
 
 		jpContent.setBackground(Color.white);

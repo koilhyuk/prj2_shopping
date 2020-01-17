@@ -58,7 +58,7 @@ public class ClientLoginView extends JFrame {
 		jbtJoin.setBounds(100, 240, 100, 30);
 		jbtfound.setBounds(210, 240, 170, 30);
 
-		this.getContentPane().setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(new Color(0x352A26));
 
 		setLayout(null);
 		add(jlTitle);

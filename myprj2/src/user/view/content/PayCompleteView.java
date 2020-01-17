@@ -76,12 +76,12 @@ public class PayCompleteView extends JDialog {
 
 		btnOk = new JButton("»Æ¿Œ");
 		btnOk.setForeground(Color.white);
-		btnOk.setBackground(new Color(0x3F4040));
+		btnOk.setBackground(new Color(0x043424));
 
 		/////////////////////////////////////////////
 		JPanel jpTitle = new JPanel();
 		jpTitle.setBounds(0, 20, 550, 70);
-		jpTitle.setBackground(new Color(0x3F4040));
+		jpTitle.setBackground(new Color(0x352A26));
 
 		jlImg.setBounds(40, 160, 130, 140);
 		jlImg.setBorder(new LineBorder(Color.BLACK));

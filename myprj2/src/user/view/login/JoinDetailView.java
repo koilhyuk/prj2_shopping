@@ -35,7 +35,7 @@ public class JoinDetailView extends JDialog {
 
 	public JoinDetailView(ClientLoginView clv) {
 		super(clv, "회원가입", false);
-		this.getContentPane().setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(new Color(0x352A26));
 		jpfPw = new JPasswordField();
 		jpfPwConfirm = new JPasswordField();
 
@@ -135,10 +135,10 @@ public class JoinDetailView extends JDialog {
 		jbtClose.setBackground(Color.white);
 
 		jrbF = new JRadioButton("여자");
-		jrbF.setBackground(new Color(0x3F4040));
+		jrbF.setBackground(new Color(0x352A26));
 		jrbF.setForeground(Color.white);
 		jrbM = new JRadioButton("남자");
-		jrbM.setBackground(new Color(0x3F4040));
+		jrbM.setBackground(new Color(0x352A26));
 		jrbM.setForeground(Color.white);
 
 		bgGender = new ButtonGroup();

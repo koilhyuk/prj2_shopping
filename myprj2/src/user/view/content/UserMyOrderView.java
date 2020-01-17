@@ -5,19 +5,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.Date;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -27,8 +20,6 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import admin.controller.AdGoodsManageEvt;
-import admin.run.StaticCla;
 import user.controller.content.UserGoodsMainEvt;
 import user.controller.content.UserMyOrderEvt;
 
@@ -41,25 +32,23 @@ public class UserMyOrderView extends JDialog {
 	private JTableHeader th;
 	private JButton jbtClose;
 
-	private static String id;
 	public UserMyOrderView(String id) {
-		super(UserGoodsMainEvt.ugmv,id+"님의 주문내역",false);
-		this.id=id;
+		super(UserGoodsMainEvt.ugmv, id + "님의 주문내역", false);
 
-		JLabel jlTitle = new JLabel("▒  '"+id+"'회원님의 주문내역  ▒");
+		JLabel jlTitle = new JLabel("▒  '" + id + "'회원님의 주문내역  ▒");
 		jlTitle.setForeground(Color.white);
 		// 폰트
 		Font font = new Font("맑은 고딕", Font.BOLD, 20); // 타이틀폰트
 		Font fontHh = new Font("맑은 고딕", Font.BOLD, 15); // 테이블헤더
 		jlTitle.setFont(font);
-		
-		jbtClose= new JButton("닫기");
-		// 번호추가
+
+		jbtClose = new JButton("닫기");
+		// 번호추가	
 		String[] columnName = { "상품명", "브랜드", "배송여부", "가격", "주문일" };
 
 		dtmOrderList = new DefaultTableModel(columnName, 20) {
 //			// 숫자는 숫자로 정렬하기 위한 처리 2019-09-12 15:35
-			Class[] types = { String.class, String.class, String.class,Integer.class, Date.class };
+			Class[] types = { String.class, String.class, String.class, Integer.class, Date.class };
 
 			@Override
 			public Class getColumnClass(int columnIndex) { // 정렬
@@ -67,7 +56,7 @@ public class UserMyOrderView extends JDialog {
 			}
 		};
 
-		jtOrder = new JTable(dtmOrderList){
+		jtOrder = new JTable(dtmOrderList) {
 
 			@Override
 			public boolean isCellEditable(int row, int column) {// 편집못하게 막음
@@ -77,10 +66,10 @@ public class UserMyOrderView extends JDialog {
 
 		th = jtOrder.getTableHeader(); // header설정
 		th.setFont(fontHh); // header 폰트 변경
-		th.setBackground(new Color(0x3F4040));
+		th.setBackground(new Color(0x352A26));
 		th.setForeground(Color.white);
-		jtOrder.setBorder(new LineBorder(new Color(0x3F4040)));
-		jtOrder.setSelectionForeground(new Color(0x3F4040));
+		jtOrder.setBorder(new LineBorder(Color.black));
+		jtOrder.setSelectionForeground(Color.black);
 		jtOrder.setBackground(Color.white);
 		Font tableList = new Font("맑은 고딕", Font.BOLD, 13);
 		jtOrder.setFont(tableList);
@@ -110,18 +99,18 @@ public class UserMyOrderView extends JDialog {
 		jpLabel.setLayout(null);
 		add(jlTitle);
 		jlTitle.setBounds(80, 20, 400, 50);
-		jpLabel.setBackground(new Color(0x3F4040));
+		jpLabel.setBackground(new Color(0x352A26));
 		jpLabel.setBorder(new LineBorder(Color.black));
 		jpLabel.setBounds(-5, 0, 1000, 80);
-		
+
 		setLayout(null); // 수동배치
 
 		jspOrder.setBounds(30, 120, 800, 380);
 		jbtClose.setBounds(360, 510, 100, 30);
-		
+
 		jbtClose.setForeground(Color.white);
-		jbtClose.setBackground(new Color(0x3F4040));
-		
+		jbtClose.setBackground(new Color(0x043424));
+
 		add(jbtClose);
 		add(jspOrder);
 		add(jpLabel);
@@ -130,9 +119,9 @@ public class UserMyOrderView extends JDialog {
 		TableRowSorter<TableModel> table = new TableRowSorter<TableModel>(jtOrder.getModel());
 		jtOrder.setRowSorter(table);
 
-		UserMyOrderEvt umo= new UserMyOrderEvt(this,id);
+		UserMyOrderEvt umo = new UserMyOrderEvt(this, id);
 		// action이벤트 처리
-		
+
 		// 마우스 이벤트 처리
 		jtOrder.addMouseListener(umo);
 		jbtClose.addActionListener(umo);
@@ -148,35 +137,24 @@ public class UserMyOrderView extends JDialog {
 
 	}// AdGoodsManageView
 
-	
 	public DefaultTableModel getDtmOrderList() {
 		return dtmOrderList;
 	}
-
 
 	public JTable getJtOrder() {
 		return jtOrder;
 	}
 
-
 	public JScrollPane getJspOrder() {
 		return jspOrder;
 	}
-
 
 	public JTableHeader getTh() {
 		return th;
 	}
 
-
-	public static String getId() {
-		return id;
-	}
-
-
 	public JButton getJbtClose() {
 		return jbtClose;
 	}
-	
 
 }// class

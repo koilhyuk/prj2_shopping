@@ -66,7 +66,7 @@ public class LoginPwReset extends JDialog {
 		jtfNewPwConfirm.addActionListener(lpre);
 		jbtConfirm.addActionListener(lpre);
 		jbtCancle.addActionListener(lpre);
-		this.getContentPane().setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(new Color(0x352A26));
 
 		setResizable(false);
 		setBounds(100, 100, 400, 290);

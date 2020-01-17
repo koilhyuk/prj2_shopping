@@ -6,7 +6,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -85,7 +84,7 @@ public class ZipcodeSearchView extends JDialog {
 		jtZipcode.addMouseListener(zse);
 		jbtnSearch.setBackground(Color.white);
 		jlZipcode.setForeground(Color.white);
-		this.getContentPane().setBackground(new Color(0x3F4040)); // JDialog 배경색 변경
+		this.getContentPane().setBackground(new Color(0x352A26)); // JDialog 배경색 변경
 
 		add(cbGugun);
 		add(cbSido);

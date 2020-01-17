@@ -5,14 +5,13 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 import user.dao.ClientDAO;
-import user.view.content.UserMyPageView;
+import user.view.content.UserCardUploadView;
 import user.view.content.UserCusDataView;
 import user.view.content.UserGoodsLikeView;
-import user.view.content.UserCardUploadView;
 import user.view.content.UserMyOrderView;
+import user.view.content.UserMyPageView;
 import user.vo.content.SelectCusDataVO;
 
 public class UserMyPageEvt implements ActionListener {
@@ -59,11 +58,5 @@ public class UserMyPageEvt implements ActionListener {
 				mdv.dispose();
 			}// end if
 		}
-		if (ae.getSource() == mdv.getJbtLogOut()) {// 로그아웃
-			switch (JOptionPane.showConfirmDialog(mdv, "로그아웃 하시겠습니까?")) {
-			case JOptionPane.OK_OPTION:
-				mdv.dispose();
-			}// end switch
-		} // end if
 	}// actionPerformed
 }// class

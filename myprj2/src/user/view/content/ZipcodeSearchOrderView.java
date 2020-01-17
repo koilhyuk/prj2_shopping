@@ -85,7 +85,7 @@ public class ZipcodeSearchOrderView extends JDialog {
 		jtZipcode.addMouseListener(zsoe);
 		jbtnSearch.setBackground(Color.white);
 		jlZipcode.setForeground(Color.white);
-		this.getContentPane().setBackground(new Color(0x3F4040)); // JDialog 배경색 변경
+		this.getContentPane().setBackground(new Color(0x043424)); // JDialog 배경색 변경
 
 		add(cbGugun);
 		add(cbSido);

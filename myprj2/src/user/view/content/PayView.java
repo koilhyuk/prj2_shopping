@@ -103,13 +103,13 @@ public class PayView extends JDialog {
 		jbtnCancel = new JButton("취소하기");
 		jbtnaddr = new JButton("주소검색");
 
-		jbtnPay.setBackground(new Color(0x3F4040));
+		jbtnPay.setBackground(new Color(0x043424));
 		jbtnPay.setForeground(Color.white);
 
-		jbtnaddr.setBackground(new Color(0x3F4040));
+		jbtnaddr.setBackground(new Color(0x043424));
 		jbtnaddr.setForeground(Color.white);
 
-		jbtnCancel.setBackground(new Color(0x3F4040));
+		jbtnCancel.setBackground(new Color(0x043424));
 		jbtnCancel.setForeground(Color.white);
 
 		JPanel jpCard = new JPanel();

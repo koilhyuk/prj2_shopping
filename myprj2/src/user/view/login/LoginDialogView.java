@@ -5,7 +5,6 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -68,7 +67,7 @@ public class LoginDialogView extends JDialog {
 		jbtLogin.addActionListener(lde);
 		jbtClose.addActionListener(lde);
 
-		this.getContentPane().setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(new Color(0x352A26));
 
 		setBounds(200, 200, 500, 300);
 		setVisible(true);

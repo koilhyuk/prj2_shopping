@@ -95,7 +95,7 @@ public class UserCardUploadView extends JDialog {
 		jlCard3.setForeground(Color.white);
 		jlCVC.setForeground(Color.white);
 
-		this.getContentPane().setBackground(new Color(0x3F4040));
+		this.getContentPane().setBackground(new Color(0x352A26));
 
 		setBounds(400, 300, 500, 270);
 		setResizable(false);
