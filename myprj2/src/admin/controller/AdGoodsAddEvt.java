@@ -138,7 +138,7 @@ public class AdGoodsAddEvt implements ActionListener {
 			inventory = Integer.parseInt(tempInven);
 
 			InsertGoodsAddVO dpVO = new InsertGoodsAddVO(img, brand, detailType, name, price, inventory, strong);
-			if (img.isEmpty()) {
+			if (img.isEmpty()||"".equals(img)||guv.getJlImg().getIcon().toString().isEmpty()||!new File(guv.getJlImg().getIcon().toString()).exists()) {
 				JOptionPane.showMessageDialog(guv, "상품 이미지를 등록해주세요.");
 				return;
 			} // end if
@@ -163,7 +163,10 @@ public class AdGoodsAddEvt implements ActionListener {
 				guv.getJtaStrongPoint().requestFocus();
 				return;
 			} // end if
-//			if(img.is)
+			if(guv.getJcbBrand().getSelectedIndex()==0) {
+				JOptionPane.showMessageDialog(guv, "브랜드를 선택해주세요.");
+				return;
+			}//end if 
 			modifyImg();
 			AdminDAO svDAO = AdminDAO.getInstance();
 			// DBMS 추가

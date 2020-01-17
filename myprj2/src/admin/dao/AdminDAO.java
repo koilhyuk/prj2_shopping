@@ -625,9 +625,9 @@ public class AdminDAO {
 		try {
 			con = getConn();
 			StringBuilder selectDetailOrder = new StringBuilder();
-			selectDetailOrder.append(" 	select  g_img, o_addr, o_delmsg,p_method , o_person, o.o_code, o_score	 ")
-					.append("	from ordering o, goods g, pay p ")
-					.append(" where (o.g_code=g.g_code) and (p.m_id=o.m_id) and o.o_code=? ");
+			selectDetailOrder.append(" 	select  g_img,concat(concat(concat(z_sido,' '||nvl(z_gugun,'')),' '||z_dong),' '||z_bunji)o_addr, o_delmsg,p_method , o_person, o.o_code, o_score	 ")
+					.append("	from ordering o, goods g, pay p, ADDRESS a ")
+					.append(" where (o.g_code=g.g_code) and (p.m_id=o.m_id) and  (a.z_seq=o.z_seq) and o.o_code=? ");
 
 			pstmt = con.prepareStatement(selectDetailOrder.toString());
 			pstmt.setString(1, odDTO.getO_code());

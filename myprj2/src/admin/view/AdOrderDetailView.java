@@ -30,7 +30,7 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 //	private JTextField jtfOrderer, jtfReceive, jtfRecAddr, jtfPhone, jtfGoodsName, jtfbuyNum, jtfbuyMethod,
 
 	private JLabel jtfOrderer, jtfReceive, jtfRecAddr, jtfPhone, jtfGoodsName, jtfbuyNum, jtfbuyMethod, jtfTotalPrice,
-			jtfOrderDate, jtfDeliveryFlag, jtfDeliverMsg, jtfScore;
+			jtfOrderDate, jtfDeliveryFlag, jtfDeliverMsg, jtfScore,jlScore;
 
 	private JButton jbtnClose;
 	private JLabel jlImg;
@@ -99,6 +99,7 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		
 		JLabel jlDeliverMsg = new JLabel("배송요청사항 :");//
 		jlDeliverMsg.setFont(fontCon);
+		
 
 		jtfOrderer = new JLabel();
 		jtfReceive = new JLabel();
@@ -113,19 +114,22 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		jtfDeliverMsg = new JLabel();
 		jtfScore = new JLabel();
 
-		jbtnClose = new JButton("확인");
+		jbtnClose = new JButton("닫기");
 		// setText
-		jtfScore.setText(String.valueOf(odDTO.getO_score()));
 		jtfOrderer.setText(odDTO.getM_id());// 주문자
 		jtfReceive.setText(odDTO.getO_person());// 받는이
 		jtfRecAddr.setText(odDTO.getO_addr());
 		jtfPhone.setText(odDTO.getO_phone());
 		jtfGoodsName.setText(odDTO.getG_name() + "(" + odDTO.getO_code() + ")");
-		jtfbuyNum.setText(String.valueOf(odDTO.getO_quantity()));
-		jtfbuyMethod.setText(odDTO.getP_method());
-		jtfTotalPrice.setText(String.valueOf(odDTO.getO_buypay()));
+		jtfbuyNum.setText(String.valueOf(odDTO.getO_quantity())+" 개");
+		jtfbuyMethod.setText(odDTO.getP_method()+" 카드");
+		jtfTotalPrice.setText(String.valueOf(odDTO.getO_buypay())+" 원");
 		jtfOrderDate.setText(odDTO.getO_date());
-		jtfDeliveryFlag.setText(odDTO.getO_delivery());
+		if(odDTO.getO_delivery().equals("Y")||odDTO.getO_delivery()=="Y") {
+			jtfDeliveryFlag.setText("배송완료");
+		}else {
+			jtfDeliveryFlag.setText("배송 중");
+		}//end else
 		jtfDeliverMsg.setText(odDTO.getO_delmsg());
 
 		JPanel jpCuOrder = new JPanel();
@@ -134,23 +138,17 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		jlOrderer.setBounds(15, 10, 80, 30);
 		jpCuOrder.add(jlOrderer);
 
-		jlReceiver.setBounds(200, 10, 60, 30);
+		jlReceiver.setBounds(15, 40, 60, 30);
 		jpCuOrder.add(jlReceiver);
-
-		jlRecAddr.setBounds(15, 40, 60, 30);
-		jpCuOrder.add(jlRecAddr);
 
 		jlPhone.setBounds(15, 70, 60, 30);
 		jpCuOrder.add(jlPhone);
 
-		jtfOrderer.setBounds(100, 10, 100, 30);
+		jtfOrderer.setBounds(90, 10, 100, 30);
 		jpCuOrder.add(jtfOrderer);
 
-		jtfReceive.setBounds(260, 10, 100, 30);
+		jtfReceive.setBounds(75, 40, 100, 30);
 		jpCuOrder.add(jtfReceive);
-
-		jtfRecAddr.setBounds(80, 40, 250, 30);
-		jpCuOrder.add(jtfRecAddr);
 
 		jtfPhone.setBounds(80, 70, 230, 30);
 		jpCuOrder.add(jtfPhone);
@@ -167,33 +165,56 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		jpGoods.add(jlTotalPrice);
 		jlOrderDate.setBounds(15, 130, 80, 30);
 		jpGoods.add(jlOrderDate);
-		jtfGoodsName.setBounds(90, 10, 230, 30);
+		jtfGoodsName.setBounds(80, 10, 230, 30);
 		jpGoods.add(jtfGoodsName);
 		jtfbuyNum.setBounds(100, 40, 80, 30);//
 		jpGoods.add(jtfbuyNum);//
-		jtfbuyMethod.setBounds(100, 70, 230, 30);
+		jtfbuyMethod.setBounds(90, 70, 230, 30);
 		jpGoods.add(jtfbuyMethod);
-		jtfTotalPrice.setBounds(140, 100, 230, 30);
+		jtfTotalPrice.setBounds(110, 100, 230, 30);
 		jpGoods.add(jtfTotalPrice);
 		jtfOrderDate.setBounds(90, 130, 230, 30);
 		jpGoods.add(jtfOrderDate);
 
+		//평점
+			switch (odDTO.getO_score()) {
+			case 5:
+				jlScore = new JLabel("상품평점 : ★★★★★");
+				break;
+			case 4:
+				jlScore = new JLabel("상품평점 : ★★★★☆");
+				break;
+			case 3:
+				jlScore = new JLabel("상품평점 : ★★★☆☆");
+				break;
+			case 2:
+				jlScore = new JLabel("상품평점 : ★★☆☆☆");
+				break;
+			case 1:
+				jlScore = new JLabel("상품평점 : ★☆☆☆☆");
+				break;
+			default:
+				jlScore = new JLabel("평점이 입력되지 않은 상품입니다.");
+				break;
+			}// switch
+		jlScore.setBounds(170, 40, 200, 30);
+		jpGoods.add(jlScore);
 		jlscore.setBounds(180, 40, 70, 30);
-		jpGoods.add(jlscore);
-
-		jtfScore.setBounds(250, 40, 100, 30);
-		jpGoods.add(jtfScore);
 
 		JPanel jpDelivery = new JPanel();
 		jpDelivery.setLayout(null);
 		jlDeliveryFlag.setBounds(10, 10, 150, 30);
 		jpDelivery.add(jlDeliveryFlag);
-		jlDeliverMsg.setBounds(10, 50, 150, 30);
+		jlDeliverMsg.setBounds(10, 90, 150, 30);
 		jpDelivery.add(jlDeliverMsg);
-		jtfDeliveryFlag.setBounds(120, 10, 180, 30);
+		jtfDeliveryFlag.setBounds(90, 10, 180, 30);
 		jpDelivery.add(jtfDeliveryFlag);
-		jtfDeliverMsg.setBounds(120, 50, 450, 30);
+		jtfDeliverMsg.setBounds(120, 90, 450, 30);
 		jpDelivery.add(jtfDeliverMsg);
+		jlRecAddr.setBounds(10, 50, 60, 30);
+		jpDelivery.add(jlRecAddr);
+		jtfRecAddr.setBounds(80, 50, 450, 30);
+		jpDelivery.add(jtfRecAddr);
 
 		jlTitle.setEditable(false);
 
@@ -212,9 +233,9 @@ public class AdOrderDetailView extends JDialog implements ActionListener {
 		jpCuOrder.setBorder(new LineBorder(Color.lightGray));
 		jpGoods.setBounds(290, 240, 360, 170);
 		jpGoods.setBorder(new LineBorder(Color.lightGray));
-		jpDelivery.setBounds(15, 450, 630, 100);
+		jpDelivery.setBounds(15, 450, 630, 130);
 		jpDelivery.setBorder(new LineBorder(Color.lightGray));
-		jbtnClose.setBounds(280, 570, 120, 30);
+		jbtnClose.setBounds(280, 590, 120, 30);
 		jbtnClose.setBackground(new Color(0x3F4040));
 		jbtnClose.setForeground(Color.white);
 		
