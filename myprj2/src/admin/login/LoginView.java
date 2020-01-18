@@ -24,7 +24,7 @@ public class LoginView extends JFrame {
 		jtfId = new JTextField();
 		jpfPw = new JPasswordField();
 		
-		ImageIcon logoImg= new ImageIcon(StaticCla.FILE_PATH+"/prj2_logo_back_brown");
+		ImageIcon logoImg= new ImageIcon(StaticCla.FILE_PATH+"/prj2_logo_back_brown.png");
 //		ImageIcon logoImg= new ImageIcon("C:/Users/hyebin/git/prj2_shopping/myprj2/src/admin/img"+"/prj2_logo_back_brown.png");
 		JLabel jlTitle = new JLabel(logoImg);
 		JLabel jlId = new JLabel("¾ÆÀÌµð");

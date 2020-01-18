@@ -71,7 +71,7 @@ public class AdCusDetailEvt implements ActionListener {
 		String code = sdv.getJtfCusNum().getText().trim();
 		String name= sdv.getJtfCusName().getText().trim();
 		AdminDAO aDAO = AdminDAO.getInstance();
-		if (status.equals("Y")) { // 정지X -> 정지시킬때
+		if (status.equals("Y")||status.equals("활성화계정")) { // 정지X -> 정지시킬때
 			switch (JOptionPane.showConfirmDialog(sdv, name + " 회원님을 정지시키겠습니까?")) {
 			case JOptionPane.OK_OPTION:
 				try {
