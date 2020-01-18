@@ -3,6 +3,7 @@ package admin.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 import javax.swing.JOptionPane;
 
@@ -12,19 +13,21 @@ import admin.view.AdCashCalcView;
 import admin.vo.SelectCashCalcVO;
 
 public class AdCashCalcEvt implements ActionListener {
-	
-	public final static int CALDAY = 0 ;
+
+	public final static int CALDAY = 0;
 	public final static int CALMON = 1;
 	public final static int CALYEAR = 2;
 	public final static int CALTOTAL = 3;
-	
+
 	private AdCashCalcView cv;
+
 	public AdCashCalcEvt(AdCashCalcView cv) {
-		this.cv=cv;
+		this.cv = cv;
 		calculateTotal();
-	}//AdCashCalcEvt
-	
+	}// AdCashCalcEvt
+
 	public void calculateTotal() {
+		DecimalFormat priceFormat = new DecimalFormat("###,###");
 
 		SelectCashCalcVO cVO = null;
 		AdDAO uDAO = AdDAO.getInstance();
@@ -34,23 +37,23 @@ public class AdCashCalcEvt implements ActionListener {
 				cVO = uDAO.selectCalTotal(i);
 				switch (i) {
 				case CALDAY:
-					cv.getJtfDprice().setText(cVO.getPrice() + " 원");
-					cv.getJtfDcount().setText(cVO.getSaleCnt() + " 개");
+					cv.getJtfDprice().setText(priceFormat.format(cVO.getPrice()) + " 원");
+					cv.getJtfDcount().setText(priceFormat.format(cVO.getSaleCnt()) + " 개");
 					cVO = null;
 					break;
 				case CALMON:
-					cv.getJtfMprice().setText(cVO.getPrice() + " 원");
-					cv.getJtfMcount().setText(cVO.getSaleCnt() + " 개");
+					cv.getJtfMprice().setText(priceFormat.format(cVO.getPrice()) + " 원");
+					cv.getJtfMcount().setText(priceFormat.format(cVO.getSaleCnt()) + " 개");
 					cVO = null;
 					break;
 				case CALYEAR:
-					cv.getJtfYprice().setText(cVO.getPrice() + " 원");
-					cv.getJtfYcount().setText(cVO.getSaleCnt() + " 개");
+					cv.getJtfYprice().setText(priceFormat.format(cVO.getPrice()) + " 원");
+					cv.getJtfYcount().setText(priceFormat.format(cVO.getSaleCnt()) + " 개");
 					cVO = null;
 					break;
 				case CALTOTAL:
-					cv.getJtfAllPrice().setText(cVO.getPrice() + " 원");
-					cv.getJtfAllCount().setText(cVO.getSaleCnt() + " 개");
+					cv.getJtfAllPrice().setText(priceFormat.format(cVO.getPrice()) + " 원");
+					cv.getJtfAllCount().setText(priceFormat.format(cVO.getSaleCnt()) + " 개");
 					cVO = null;
 					break;
 				}// end switch
@@ -63,10 +66,10 @@ public class AdCashCalcEvt implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==cv.getJbtClose()) {
+		if (e.getSource() == cv.getJbtClose()) {
 			cv.dispose();
-		}//end if 
+		} // end if
 
-	}//actionPerformed
+	}// actionPerformed
 
-}//class
+}// class
